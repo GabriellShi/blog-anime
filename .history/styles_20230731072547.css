@@ -1,0 +1,66 @@
+/*defini os estilos gerais da página, como fundo e cores de texto */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #7f8081;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* define os estilos das seções pai */ 
+  .lado-esquerdo-pai,
+  .lado-direito-pai {
+    box-sizing: border-box;
+    padding: 10px;
+    height: 100vh; 
+    color:  white;
+    
+    /* ajusta a altura para ocupar toda a altura da janela */
+  }
+  
+  /* defini os estilos do lado esquerdo */
+  .lado-esquerdo-pai {
+    float: left;
+    width: 80%;
+    background-color: #031a64;
+  }
+  
+  /* defini os estilos do lado direito */
+  .lado-direito-pai {
+    float: left;
+    width: 20%;
+    background-color: #270264;
+  }
+  
+  /* Limpar floats após as seções */
+  .clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  * Estilos para tornar o layout flexível */
+  .lado-esquerdo-filho {
+      display: flex;
+      flex-wrap: wrap; /* Para permitir que os netos se ajustem em várias linhas */
+  }
+  
+  /* Estilos para cada neto */
+  .lado-esquerdo-neto1,
+  .lado-esquerdo-neto2,
+  .lado-esquerdo-neto3 {
+      flex: 0 0 33.33%; /* Cada neto ocupará inicialmente 33.33% da largura do pai */
+      padding: 10px; /* Apenas para espaçamento entre os netos */
+      box-sizing: border-box; /* Inclui o padding no cálculo da largura total do neto */
+  }
+  
+  /* Estilos adicionais para tornar o design mais agradável */
+  .lado-esquerdo-filho {
+      border: 1px solid #ccc; /* Apenas para visualizar o contêiner do filho */
+  }
+  
+  .lado-esquerdo-neto1,
+  .lado-esquerdo-neto2,
+  .lado-esquerdo-neto3 {
+      background-color: #f2f2f2; /* Apenas para distinguir os netos */
+  }
+  

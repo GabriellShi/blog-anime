@@ -1,0 +1,139 @@
+/*defini os estilos gerais da página, como fundo e cores de texto */
+
+* {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box; 
+}
+
+/* ------------**Estilização da pagina Index**---------- */
+  
+
+  /* ----**Estilização lado esquerdo da pagina */
+
+  /* define os estilos das seções pai */ 
+  .lado-esquerdo-pai,
+  .lado-direito-pai {
+    box-sizing: border-box; 
+    padding: 10px; 
+    color:  white;
+    background-color: aqua;
+    
+    /* ajusta a altura para ocupar toda a altura da janela */
+  }
+  
+  /* defini os estilos do lado esquerdo */
+  .lado-esquerdo-pai {
+    float: left;
+    width: 80%;
+    background-color: #031a64;
+  }
+  
+  /* defini os estilos do lado direito */
+  .lado-direito-pai {
+    float: left;
+    width: 20%;
+    background-color: #2c0e5e;
+  }
+  
+  /* Limpar floats após as seções */
+  .clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* estilizando os titulos das divs maiores. Definindo margens, padding e cor de fundo */
+.titulo-destaque-index {
+  background-color: black;
+  border-radius: 0px 0px 15px 0px;
+  padding: 0.3rem;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+}
+
+  /* estiliza a lista para ficar resposivo e um ao lado do outro com display flex  */
+  .lado-esquerdo-filho1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+/*   Estiliza as listas netos a terem uma largura fixam margin e a coloração do fundo */
+  .lado-esquerdo-neto1 {
+    background-color: black;
+    flex: 1;
+    min-width: 10rem; /* Defina a largura mínima que deseja para cada div item */
+    max-width: 50rem;
+    margin: 10px;
+    text-align: center;
+  }
+
+  /* Definindo o tamanho da fonte do titulo h1 do neto do lado esquerdo  */
+  .lado-esquerdo-neto1 h1 {
+    font-size: 1rem;
+  }
+
+    /* Definindo o tamanho da fonte do titulo h1 do neto do lado esquerdo  */
+    .lado-esquerdo-neto1 p {
+      font-size: 0.8rem;
+    }
+
+  /* estiliza o lado esquerdo filho 2 com fundo, remoção da lista e com display flex */
+  .lado-esquerdo-filho2 {
+    display: flex;
+    background-color: gray;
+  }
+
+/*   estiliza o lado esquerdo neto 2 com uma padding interno na lateral esquerda  */
+  .lado-esquerdo-neto2 {
+    padding-left: 1rem;
+  }
+
+
+  /* ----**Estilização lado direito da pagina */
+
+.lado-direito-neto1 {
+  display: flex;
+}
+
+.lado-direito-neto1 img {
+  width: 100%;
+  align-items: center;
+}
+
+.lado-direito-neto1 h1, h3 {
+  font-size: 0.8rem;
+}
+
+
+
+
+
+
+
+
+/* -------------** Resposividade para Mobile e tablet ** ---------------- */
+
+  /* Responsividade da pagina para aparelhos abaixo de 826 pixels */
+  @media (max-width: 826px) {
+
+    /* retirando o display flex da div e centralizando o texto e imagem */
+    .lado-esquerdo-filho2 {
+      display: grid;
+      text-align: center;
+    }
+
+    /* tirando a coluna do lado direito da pagina */
+    .lado-direito-pai {
+      display: none;
+    }
+
+    /* deixando a coluna do lado esquerdo da pagina com 100% do espaço */ 
+    .lado-esquerdo-pai{
+      width: 100%;
+    }
+  }

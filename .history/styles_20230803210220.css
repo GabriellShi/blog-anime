@@ -1,0 +1,84 @@
+/*defini os estilos gerais da página, como fundo e cores de texto */
+
+* {
+  list-style: none;
+}
+body {
+
+  }
+  
+  /* define os estilos das seções pai */ 
+  .lado-esquerdo-pai,
+  .lado-direito-pai {
+    box-sizing: border-box; 
+    padding: 10px; 
+    color:  white;
+    background-color: aqua;
+    
+    /* ajusta a altura para ocupar toda a altura da janela */
+  }
+  
+  /* defini os estilos do lado esquerdo */
+  .lado-esquerdo-pai {
+    float: left;
+    width: 80%;
+    background-color: #031a64;
+  }
+  
+  /* defini os estilos do lado direito */
+  .lado-direito-pai {
+    float: left;
+    width: 20%;
+    background-color: #2c0e5e;
+  }
+  
+  /* Limpar floats após as seções */
+  .clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* estiliza a lista para ficar resposivo e um ao lado do outro com display flex  */
+  .lado-esquerdo-filho1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+/*   Estiliza as listas netos a terem uma largura fixam margin e a coloração do fundo */
+  .lado-esquerdo-neto1 {
+    background-color: black;
+    flex: 1;
+    min-width: 10rem; /* Defina a largura mínima que deseja para cada div item */
+    max-width: 50rem;
+    margin: 10px;
+    text-align: center;
+  }
+
+  /* estiliza o lado esquerdo filho 2 com fundo, remoção da lista e com display flex */
+  .lado-esquerdo-filho2 {
+    display: flex;
+    text-align: center;
+    list-style: none;
+    background-color: gray;
+  }
+
+/*   estiliza o lado esquerdo neto 2 com uma padding interno na lateral esquerda  */
+  .lado-esquerdo-neto2 {
+    padding-left: 1rem;
+  }
+
+  @media (max-width: 826px) {
+    .lado-esquerdo-filho2 {
+      display: grid;
+    }
+
+    .lado-direito-pai {
+      display: none;
+    }
+
+    .lado-esquerdo-pai{
+      width: 100%;
+    }
+  }
