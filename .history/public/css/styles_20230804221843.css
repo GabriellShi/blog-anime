@@ -1,0 +1,731 @@
+/*defini os estilos gerais da página, como fundo e cores de texto */
+
+* {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box; 
+}
+
+
+/* ------------**Estilização do Header**---------- */
+
+.icone-login-partials {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  background-color: hsl(0, 0%, 0%);
+}
+
+/*Definindo fonte padrão dos textos do site e zerando margem do site total*/
+* {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+
+/* Defininfo a largura e retirando as margem do header  */
+.wrapper-partials {
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* retirando o espaçamento entre o logo e os itens do menu  */
+.menu-partials ul {
+  padding: 0;
+}
+
+/* Dando margem lateral ao logo  */
+.logo-partials {
+  margin-left: 1rem;
+}
+
+/* Definindo cor, dando esaçamento e centralizando os itens dentro da tag nav (menu-navegador)  */
+.nav-partials {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  background-color: hsl(0, 0%, 0%);
+}
+
+/* Definindo a largura e dando margem a imagem que fai no menu de navegação  */
+.nav-partials img {
+  width: 6.5rem;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+
+/* Deixando os item no menu de navegação um ao lado do outro, dando espaçamento com gap e tirando os topicos das listas  */
+.nav-partials ul {
+  list-style: none;
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* tirando o sublinhado dos links do menu de navegação  */
+.nav-partials a {
+  text-decoration: none;
+  color: #00e6ff;
+}
+
+.nav-partials #toggle-partials,
+.nav-partials label {
+  display: none;
+}
+
+.nav-partials #toggle-partials-2,
+.nav-partials label {
+  display: none;
+}
+
+/* Defindo tamanho, margin interna e cores do texto e da borda dos itens do menu de navegação  */
+.menu-partials li {
+  font-size: 1rem;
+  border: 1px solid #00e6ff;
+  background-color: transparent;
+  border-radius: 1px 10px;
+  color: #00e6ff;
+  padding: 0.5rem;
+  margin-left: 1rem;
+}
+
+/* definindo a cores que os itens do menu terão ao passar o mouse neles */
+.menu-partials li:hover {
+  background-color: #00e6ff;
+  color: white;
+}
+
+/* Deixando uma linha branca entre o header e o container 1  */
+.linha-partials {
+  border-bottom: 1px solid #3a9faa;
+}
+
+/* estilizando a barra de pesquisa, definindo cores, larguras, margens e centralizando itens.  */
+.barra-de-pesquisa-partials {
+  background-color: rgb(66, 65, 65);
+  padding: 3px;
+  color: white;
+  border-radius: 5px;
+  width: 14rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* deixando o icone de login e barra de pesquisa na mesma linha  */
+.login-pesquisa-partials {
+  display: flex;
+  align-items: center;
+}
+
+/* dando uma magin lateral as divs dos icones de login e barra de pesquisa   */
+.login-pesquisa-partials div {
+  margin-right: 1rem;
+}
+
+/* Estilizando o input da barra de pesquisa, definindo o tamanho do texto, a largura e altura do input e cor de fundo  */
+.barra-de-pesquisa-partials input {
+  width: 12rem;
+  height: 2rem;
+  background-color: rgb(66, 65, 65);
+  border: 0;
+  font-size: 1rem;
+  margin-left: 1rem;
+  outline: 0;
+  color: white;
+  border-radius: 5px;
+}
+
+/* tirando o fundo do botão lupa e deixando ele como notão clicável  */
+.barra-de-pesquisa-partials button {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+/* Definindo a largura da imagem da lupa e dando uma margem lateral interna */
+.barra-de-pesquisa-partials img {
+  width: 1.5rem;
+  margin-left: -1rem;
+}
+
+.barra-de-pesquisa-partials-mobile,
+.icone-login-partials-mobile,
+.toggle-partials-2-pai,
+.icone-login-partials-mobile,
+.login-pesquisa-partials-2,
+.categoria-mobile {
+  display: none;
+}
+
+/* definindo a largura da barra que separa a barra de pesquisa e o icone de login  */
+.barra-separadora-partials img {
+  width: 2.2px;
+}
+
+/* definindo a largura do icone de login  */
+.icone-login-partials img {
+  width: 1.5rem;
+}
+
+.categoria-desktop-login ul {
+  padding: 0;
+}
+
+.categoria-desktop-login ul li {
+  position: relative;
+  z-index: 5;
+}
+
+.categoria-desktop-login ul li a {
+  text-decoration: none;
+}
+
+.categoria-desktop-login ul li :hover {
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+}
+
+.categoria-desktop-login ul ul {
+  display: none;
+  left: -4.4rem;
+  top: 3rem;
+  position: absolute;
+  padding: 0;
+}
+
+.categoria-desktop-login ul li:hover ul {
+  display: block;
+  background-color: #00e6ff;
+  border-radius: 10px;
+}
+
+.categoria-desktop-login ul ul {
+  width: auto;
+  padding: 0.5rem;
+}
+
+.categoria-desktop-login ul ul li a {
+  display: block;
+  color: black;
+  border-bottom: 1px dashed rgb(0, 0, 0);
+  padding-bottom: 10px;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-right: 10px;
+}
+
+/* ---------------------- Estilização do menu categorias --------------------  */
+
+.menu-partials ul {
+  text-align: center;
+}
+
+.menu-partials ul li {
+  position: relative;
+  z-index: 5;
+}
+
+.menu-partials ul li a {
+  color: #00e6ff;
+  text-decoration: none;
+}
+
+.menu-partials ul li :hover {
+  color: rgb(182, 17, 17);
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+}
+
+.menu-partials ul ul {
+  display: none;
+  left: -2.4rem;
+  top: 2.5rem;
+  position: absolute;
+}
+
+.menu-partials ul li:hover ul {
+  display: block;
+  background-color: rgb(26, 25, 25);
+}
+
+.menu-partials ul ul {
+  width: auto;
+  padding-right: 15px;
+}
+
+.menu-partials ul ul li a {
+  display: block;
+  color: rgb(255, 255, 255);
+  border-bottom: 1px dashed black;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.categorias-partials li {
+  border-radius: 0;
+  border: 0;
+}
+
+.categoria-desktop img {
+  width: 1.5rem;
+}
+
+/*  -------------------- DAQUI PARA BAIXO FICA A ESTILIZAÇÃO DO HEADER MOBILE -------------------- */
+
+/* Retirando o espaçamento dos topicos do menu de navegação e minuindo os itens  */
+
+@media (max-width: 1115px) {
+  .menu-partials li {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 1078px) {
+  .menu-partials li {
+    font-size: 0.7rem;
+    margin: 0;
+  }
+
+  .menu-partials ul ul {
+    display: none;
+    left: -2rem;
+    top: 1.9rem;
+    position: absolute;
+  }
+
+  .menu-partials ul ul {
+    padding-left: 15px;
+  }
+}
+
+/* Retirando o espaçamento dos topicos do menu de navegação  */
+@media (max-width: 1001px) {
+  .nav-partials ul {
+    gap: 0.7rem;
+  }
+}
+
+/* Diminuindo o tamanho e dando uma margin inferior nos itens do menu de navegação  */
+@media (max-width: 905px) {
+  .menu-partials li {
+    font-size: 0.7rem;
+    margin-bottom: 2px;
+  }
+}
+
+@media (max-width: 900px) {
+  .login-pesquisa-partials {
+    display: none;
+  }
+}
+
+/*------------------DAQUI PARA BAIXO COMEÇA A ESTILIZAÇÃO MOBILE DE 630PX PARA BAIXO--------------------------*/
+
+@media (max-width: 887px) {
+  /*------------------Daqui Para baixo fica a estilização do HEADER MOBILE--------------------------*/
+
+  .login-pesquisa-partials-2,
+  .categoria-mobile {
+    display: list-item;
+  }
+
+  /* deixando o icone de login e barra de pesquisa na mesma linha  */
+  .login-pesquisa-partials-2 {
+    display: flex;
+    align-items: center;
+  }
+
+  /* dando uma magin lateral as divs dos icones de login e barra de pesquisa   */
+  .login-pesquisa-partials-2 div {
+    margin-right: 1rem;
+  }
+
+  /* Definindo a largura, altura e deixando os itens na mesma linha do menu de navegação  */
+  .nav-partials .menu-partials {
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+  }
+
+  /* Dando margem e espaçamento ao menu de navegação */
+  .nav-partials {
+    justify-content: space-between;
+    padding-left: 0.3rem;
+    flex-wrap: none;
+  }
+
+  /* Deixando os itens do menu de navegação um em cima do outro, centralizando e dando margem interna  */
+  .nav-partials ul {
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem 0;
+  }
+
+  /* Dando cor e deixando o cursor com um formato que clicagem  */
+  .nav-partials label {
+    display: inline-flex;
+    color: white;
+    cursor: pointer;
+    margin-right: 1rem;
+  }
+
+  /* Definindo a largura da imagem do logo do menu de navegação  */
+  .nav-partials label img {
+    width: 2.3rem;
+  }
+
+  /* zerando a margem da imagem do menu de navegação  */
+  .nav-partials img {
+    margin-right: 0;
+  }
+
+  /* Deixando a altura do menu de navegação em 100%  */
+  .nav-partials #toggle-partials:checked ~ .menu-partials {
+    height: 100%;
+  }
+}
+
+@media (max-width: 530px) {
+  .icone-login-desk {
+    display: none;
+  }
+
+  .nav-partials {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .icone-login-partials-mobile {
+    position: relative;
+    right: 3rem;
+  }
+
+  .toggle-partials-2-pai {
+    position: relative;
+    left: 2rem;
+  }
+
+  .nav-partials label img {
+    width: 1.5rem;
+  }
+  .toggle-partials-2-pai,
+  .icone-login-partials-mobile,
+  .toggle-partials-2-pai {
+    display: list-item;
+  }
+
+  .icone-login-partials-mobile img {
+    width: 1rem;
+  }
+
+  .toggle-partials-2-pai label {
+    margin: 0;
+  }
+
+  .icone-login-partials,
+  .barra-separadora-partials,
+  .barra-de-pesquisa-partials {
+    display: none;
+  }
+
+  .barra-de-pesquisa-partials-mobile {
+    background-color: rgb(66, 65, 65);
+    padding: 3px;
+    color: white;
+    border-radius: 5px;
+    width: 14rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Estilizando o input da barra de pesquisa, definindo o tamanho do texto, a largura e altura do input e cor de fundo  */
+  .barra-de-pesquisa-partials-mobile input {
+    width: 12rem;
+    height: 2rem;
+    background-color: rgb(66, 65, 65);
+    border: 0;
+    font-size: 1rem;
+    margin-left: 1rem;
+    outline: 0;
+    color: white;
+    border-radius: 5px;
+  }
+
+  /* tirando o fundo do botão lupa e deixando ele como notão clicável  */
+  .barra-de-pesquisa-partials-mobile button {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+  }
+
+  .barra-de-pesquisa-partials-mobile img {
+    width: 1.5rem;
+  }
+
+  .icone-login-mob ul ul {
+    left: 0.1rem;
+  }
+}
+
+
+
+/* ------------**Estilização da pagina Index**---------- */
+  
+
+  /* ----**Estilização lado esquerdo da pagina */
+
+  /* define os estilos das seções pai */ 
+  .lado-esquerdo-pai,
+  .lado-direito-pai {
+    box-sizing: border-box; 
+    padding: 10px; 
+    color:  white;
+    background-color: aqua;
+    
+    /* ajusta a altura para ocupar toda a altura da janela */
+  }
+  
+  /* defini os estilos do lado esquerdo */
+  .lado-esquerdo-pai {
+    float: left;
+    width: 80%;
+    background-color: #031a64;
+  }
+  
+  /* defini os estilos do lado direito */
+  .lado-direito-pai {
+    float: left;
+    width: 20%;
+    background-color: #2c0e5e;
+  }
+  
+  /* Limpar floats após as seções */
+  .clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* estilizando os titulos das divs maiores. Definindo margens, padding e cor de fundo */
+.titulo-destaque-index {
+  background-color: black;
+  border-radius: 0px 0px 15px 0px;
+  padding: 0.3rem;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+}
+
+  /* estiliza a lista para ficar resposivo e um ao lado do outro com display flex  */
+  .lado-esquerdo-filho1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+/*   Estiliza as listas netos a terem uma largura fixam margin e a coloração do fundo */
+  .lado-esquerdo-neto1 {
+    background-color: black;
+    flex: 1;
+    min-width: 10rem; /* Defina a largura mínima que deseja para cada div item */
+    max-width: 50rem;
+    margin: 10px;
+    text-align: center;
+  }
+
+  /* Definindo o tamanho da fonte do titulo h1 do neto do lado esquerdo  */
+  .lado-esquerdo-neto1 h1 {
+    font-size: 1rem;
+  }
+
+    /* Definindo o tamanho da fonte do titulo h1 do neto do lado esquerdo  */
+    .lado-esquerdo-neto1 p {
+      font-size: 0.8rem;
+    }
+
+  /* estiliza o lado esquerdo filho 2 com fundo, remoção da lista e com display flex */
+  .lado-esquerdo-filho2 {
+    display: flex;
+    background-color: gray;
+  }
+
+/*   estiliza o lado esquerdo neto 2 com uma padding interno na lateral esquerda  */
+  .lado-esquerdo-neto2 {
+    padding-left: 1rem;
+  }
+
+
+  /* ----**Estilização lado direito da pagina */
+
+/*   deixando a div neto com os itens internos um do lado do outro e centralizado */
+.lado-direito-neto1 {
+  display: flex;
+  align-items: center;
+}
+
+/* defininfo o tamanho das imagens do lado dieito da pagina  */
+.lado-direito-neto1 img {
+  width: 100%;
+  
+}
+
+/* definindo o tamanho dos texto do lado direito da pagina */
+.lado-direito-neto1 h1, h3 {
+  font-size: 0.8rem;
+}
+
+
+
+
+
+/* --------------*** Estilização da pagina Da Noticia ***-------------- */
+
+/* definindo o tamanho e dando espaço na lateral do titulo */
+.titulo-noticia {
+  font-size: 1.5rem;
+  padding-left: 1rem;
+}
+
+/* deixando os icones de autor e data um do lado do outro e dando margin a eles */
+.sect-autor-data-pai {
+  display: flex;
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+}
+
+/* defindo o tamanho dos icones */
+.sect-autor-data-pai img{
+  width: 1rem;
+}
+
+/* definindo o tamanho dos textos do autor e data */
+.sect-autor-data-pai h2{
+  padding-left: 0.5rem;
+  font-size: 1rem;
+}
+
+/* dando espaçamento interno nos textos e icones de autor e data */
+.sect-autor-data-filho {
+  display: flex;
+  padding-left: 1rem;
+}
+
+/* definindo o tamanho da imagem principal da noticia */
+.sect-capa-pagina-noticia img{
+  width: 95%;
+  margin-bottom: 2rem;
+}
+
+/* definindo o tamanho dos texto de descrição e dando margin em baixo */
+.sect-descricao {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* dando margim ao texto leia tambem  */
+.sect-leia-tambem-pai h1 {
+  margin-bottom: 1rem;
+}
+
+/* definindo o tamanho dos icones da sessão leia tambem */
+.sect-leia-tambem-pai img {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+}
+
+/* deixando os icones e textos da sessão leia tambem um ao lado do outro, dando margim e centralizando */
+.sect-leia-tambem-filho {
+  display: flex;
+  margin-bottom: 0.5rem;
+  align-items: center;
+}
+
+/* dando margin e dexando o texto e icones do texto veja mais um ao lado do outro */
+.sect-veja-mais{
+  display: flex;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* definindo o tamanho do icones veja mais */
+.sect-veja-mais img{
+  width: 1rem;
+}
+
+/* definindo o tamanho e cor da linha da pagina de noticia */
+.linha-noticia {
+  border-top: 3px solid black;
+}
+/* 
+deixando o logo e texto da resenha do autor um do lado do outro de dando uma margin */
+.sect-resenha-autor {
+  display: flex;
+  margin-top: 2rem;
+}
+
+/* definindo a largura do logo do autor */
+.sect-resenha-autor img {
+  width: 7rem;
+  height: 7rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+/* -------------** Resposividade para Mobile e tablet ** ---------------- */
+
+  /* Responsividade da pagina para aparelhos abaixo de 826 pixels */
+  @media (max-width: 826px) {
+
+    /* retirando o display flex da div e centralizando o texto e imagem */
+    .lado-esquerdo-filho2 {
+      display: grid;
+      text-align: center;
+    }
+
+    /* tirando a coluna do lado direito da pagina */
+    .lado-direito-pai {
+      display: none;
+    }
+
+    /* deixando a coluna do lado esquerdo da pagina com 100% do espaço */ 
+    .lado-esquerdo-pai{
+      width: 100%;
+    }
+  }
+
+  
+  /* Responsividade da pagina para aparelhos abaixo de 545 pixels */
+  @media (max-width: 545px) {
+
+/*     deixando o logo e resenha do autor um em baixo do outro e centralizando tudo */
+    .sect-resenha-autor {
+      display: grid;
+      text-align: center;
+      display: block;
+    }
+
+    /* dando margin ao logo do autor */
+    .sect-resenha-autor img{
+      margin-bottom: 1.5rem;
+    }
+
+    /* centralizando e dando espaçamento no titulo da pagina */
+    .titulo-noticia {
+      font-size: 1.2rem;
+      padding-left: 1rem;
+    }
+
+  }
