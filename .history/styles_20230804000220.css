@@ -96,19 +96,16 @@
 
   /* ----**Estilização lado direito da pagina */
 
-/*   deixando a div neto com os itens internos um do lado do outro e centralizado */
 .lado-direito-neto1 {
   display: flex;
   align-items: center;
 }
 
-/* defininfo o tamanho das imagens do lado dieito da pagina  */
 .lado-direito-neto1 img {
   width: 100%;
   
 }
 
-/* definindo o tamanho dos texto do lado direito da pagina */
 .lado-direito-neto1 h1, h3 {
   font-size: 0.8rem;
 }
@@ -119,97 +116,11 @@
 
 /* --------------*** Estilização da pagina Da Noticia ***-------------- */
 
-/* definindo o tamanho e dando espaço na lateral do titulo */
-.titulo-noticia {
-  font-size: 1.5rem;
-  padding-left: 1rem;
-}
 
-/* deixando os icones de autor e data um do lado do outro e dando margin a eles */
-.sect-autor-data-pai {
-  display: flex;
-  margin-bottom: 1rem;
-  margin-top: 0.5rem;
-}
 
-/* defindo o tamanho dos icones */
-.sect-autor-data-pai img{
-  width: 1rem;
-}
 
-/* definindo o tamanho dos textos do autor e data */
-.sect-autor-data-pai h2{
-  padding-left: 0.5rem;
-  font-size: 1rem;
-}
 
-/* dando espaçamento interno nos textos e icones de autor e data */
-.sect-autor-data-filho {
-  display: flex;
-  padding-left: 1rem;
-}
 
-/* definindo o tamanho da imagem principal da noticia */
-.sect-capa-pagina-noticia img{
-  width: 95%;
-  margin-bottom: 2rem;
-}
-
-/* definindo o tamanho dos texto de descrição e dando margin em baixo */
-.sect-descricao {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-/* dando margim ao texto leia tambem  */
-.sect-leia-tambem-pai h1 {
-  margin-bottom: 1rem;
-}
-
-/* definindo o tamanho dos icones da sessão leia tambem */
-.sect-leia-tambem-pai img {
-  width: 1rem;
-  height: 1rem;
-  margin-right: 0.5rem;
-}
-
-/* deixando os icones e textos da sessão leia tambem um ao lado do outro, dando margim e centralizando */
-.sect-leia-tambem-filho {
-  display: flex;
-  margin-bottom: 0.5rem;
-  align-items: center;
-}
-
-/* dando margin e dexando o texto e icones do texto veja mais um ao lado do outro */
-.sect-veja-mais{
-  display: flex;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-/* definindo o tamanho do icones veja mais */
-.sect-veja-mais img{
-  width: 1rem;
-}
-
-/* definindo o tamanho e cor da linha da pagina de noticia */
-.linha-noticia {
-  border-top: 3px solid black;
-}
-/* 
-deixando o logo e texto da resenha do autor um do lado do outro de dando uma margin */
-.sect-resenha-autor {
-  display: flex;
-  margin-top: 2rem;
-}
-
-/* definindo a largura do logo do autor */
-.sect-resenha-autor img {
-  width: 7rem;
-  height: 7rem;
-  margin-left: 2rem;
-  margin-right: 2rem;
-}
 /* -------------** Resposividade para Mobile e tablet ** ---------------- */
 
   /* Responsividade da pagina para aparelhos abaixo de 826 pixels */
@@ -230,28 +141,4 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
     .lado-esquerdo-pai{
       width: 100%;
     }
-  }
-
-  
-  /* Responsividade da pagina para aparelhos abaixo de 545 pixels */
-  @media (max-width: 545px) {
-
-/*     deixando o logo e resenha do autor um em baixo do outro e centralizando tudo */
-    .sect-resenha-autor {
-      display: grid;
-      text-align: center;
-      display: block;
-    }
-
-    /* dando margin ao logo do autor */
-    .sect-resenha-autor img{
-      margin-bottom: 1.5rem;
-    }
-
-    /* centralizando e dando espaçamento no titulo da pagina */
-    .titulo-noticia {
-      font-size: 1.2rem;
-      padding-left: 1rem;
-    }
-
   }

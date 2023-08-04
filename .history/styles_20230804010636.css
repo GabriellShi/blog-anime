@@ -243,15 +243,14 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
       display: block;
     }
 
-    /* dando margin ao logo do autor */
     .sect-resenha-autor img{
       margin-bottom: 1.5rem;
     }
 
-    /* centralizando e dando espaçamento no titulo da pagina */
     .titulo-noticia {
       font-size: 1.2rem;
       padding-left: 1rem;
     }
+    
 
   }

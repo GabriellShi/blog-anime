@@ -235,23 +235,20 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
   
   /* Responsividade da pagina para aparelhos abaixo de 545 pixels */
   @media (max-width: 545px) {
-
-/*     deixando o logo e resenha do autor um em baixo do outro e centralizando tudo */
     .sect-resenha-autor {
       display: grid;
       text-align: center;
       display: block;
     }
 
-    /* dando margin ao logo do autor */
     .sect-resenha-autor img{
       margin-bottom: 1.5rem;
     }
 
-    /* centralizando e dando espaçamento no titulo da pagina */
     .titulo-noticia {
       font-size: 1.2rem;
       padding-left: 1rem;
     }
+    
 
   }
