@@ -1,0 +1,16 @@
+<%- include("./partials/headAdm") %> <%- include("./partials/headerAdm") %>
+
+<h1 class="titulo-news-create">Editar Noticia</h1>
+
+ <main class="form-news-create">
+
+    <form action="/detailsNews/edit/<%= news.id %>" method="post" enctype="multipart/form-data">
+        <input class="input-form" type="text" name="titulo" placeholder="Titulo" value="<%= news.titulo %>">
+        <input class="input-form" type="text" name="description" placeholder="Descrição" value="<%= news.description %>">
+        <input class="input-form" type="text" name="conecxao" placeholder="Conexão" value="<%= news.conecxao %>">
+        <input class="input-form" type="text" name="categoria" placeholder="Categoria" value="<%= news.categoria %>">
+        <input class="input-form" type="file" name="image">
+        <button type="submit">Salvar Edições</button>
+      </form>
+      
+</main>

@@ -5,9 +5,6 @@ const database = {
   database: process.env.DB_DATABASE || "",
   host: process.env.DB_HOST || "localhost",
   dialect: process.env.DB_DIALECT || "mysql",
-  define: {
-    underscored: true
-  }
 };
 
 module.exports = database;

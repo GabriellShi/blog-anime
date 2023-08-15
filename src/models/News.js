@@ -2,7 +2,6 @@ const db = require("../config/sequelize");
 const Sequelize = require("sequelize");
 
 
-
 const News = db.define(
   "News",
   {
@@ -13,8 +12,6 @@ const News = db.define(
     },
     titulo: {
       type: Sequelize.DataTypes.STRING(150),
-      // Não permite valor nulo
-      // Por padrão ele permite nulo
       allowNull: false,
     },
     description: {
@@ -32,16 +29,13 @@ const News = db.define(
     image: {
       type: Sequelize.DataTypes.STRING(500),
     },
-    is_active: {
-      type: Sequelize.DataTypes.INTEGER.UNSIGNED,
-      defaultValue: 1,
-    },
 
+  },
 
+  {
+    timestamps: false, // Isso desativará as colunas de timestamps
   },
 
 );
 
-
-
-module.exports = News;  
+module.exports = News;
