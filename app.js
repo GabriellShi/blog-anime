@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const port = 3040;
 const path = require("path");
+const methodOverride = require("method-override");
+
 
 
 const indexRoute = require("./src/routes/indexRoute");
@@ -15,7 +17,7 @@ const indexAdmRoute = require("./src/routes/indexAdmRoute");
 // Ex: POST => PUT
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
+app.use(methodOverride("_method"));
 //
 // Configura pasta estática para acesso externo
 app.use(express.static(path.join(__dirname, "public")));

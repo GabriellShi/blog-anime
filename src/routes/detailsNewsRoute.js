@@ -20,8 +20,7 @@ router.post("/create", upload.single("image"), detailsNewsController.store);
 router.get("/edit/:id", detailsNewsController.edit);
 
 // Executa a atualização
-router.put("/edit/:id", upload.single("image"), detailsNewsController.update);
-
+router.post("/edit/:id", upload.single("image"), detailsNewsController.update);
 router.get("/delete/:id", detailsNewsController.delete);
 
 router.delete("/delete/:id", detailsNewsController.destroy);

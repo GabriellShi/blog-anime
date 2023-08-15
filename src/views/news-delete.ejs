@@ -1,0 +1,21 @@
+<%- include("./partials/headAdm") %> <%- include("./partials/headerAdm") %>
+
+<main>
+  <h1>Deletar Notica</h1>
+  <% if(locals.detailsNews){ %>
+  <div class="imagem-usuario">
+    <img src="<%= detailsNews.image %>" alt="imagem" />
+    <span>Titulo: <%= detailsNews.titulo %>  </span>
+    <span>Descrição: <%= detailsNews.description %> </span>
+    <span>Conexão: <%= detailsNews.conecxao %> </span>
+    <span>Categoria: <%= detailsNews.categoria %> </span>
+  </div>
+  <form action="/detailsNews/delete/ <%= detailsNews.id %>?_method=delete" method="post">
+    <h2>Deseja Deletar esse usuário</h2>
+    <a href="/detailsNews"><button type="button">Não</button></a>
+    <button type="submit">Sim</button>
+  </form>
+  <% } else {%>
+  <h2>Usuario não Entrado por motivos do além</h2>
+  <% } %>
+</main>

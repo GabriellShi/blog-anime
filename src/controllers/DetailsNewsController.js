@@ -16,11 +16,19 @@ const detailsNewsController = {
     try {
       // Busque todas as notícias do banco de dados
       const news = await News.findAll();
-
+  
+      // Mapeie os URLs completos das imagens
+      const newsWithImageUrls = news.map((newsItem) => {
+        return {
+          ...newsItem.toJSON(),
+          imageUrl: upload.path + newsItem.image,
+        };
+      });
+      
+  
       return res.render("news", {
         title: "Lista de Notícias",
-        news,
-        
+        news: newsWithImageUrls,
       });
     } catch (error) {
       console.error(error);
@@ -30,6 +38,7 @@ const detailsNewsController = {
       });
     }
   },
+  
 
   // show - controlador que ira visualizar os detalhas de cada usuario da lista 'users'
   show: async (req, res) => {
@@ -133,99 +142,99 @@ const detailsNewsController = {
 
   // Executa a atualização
   update: async (req, res) => {
-    const usersJson = fs.readFileSync(
-      path.join(__dirname, "..", "data", "users.json"),
-      "utf-8"
-    );
-    const users = JSON.parse(usersJson);
-
     const { id } = req.params;
-    const { nome, nomedeuser, senha, email } = req.body;
+    const { titulo, description, conecxao, categoria } = req.body;
 
-    // Esse codigo abaixo ira fazer uma listagem dos id que tem na lista e fazer uma busca pelo usuario
-    // apresentando uma mensagem caso encontrado ou não
-    const userResult = users.find((user) => user.id === parseInt(id));
-    let filename;
-    if (req.file) {
-      filename = req.file.filename;
-    }
-    if (!userResult) {
+    try {
+      const newsToUpdate = await News.findByPk(id);
+
+      let filename = newsToUpdate.image;
+      if (req.file) {
+        filename = req.file.filename;
+      }
+
+      await newsToUpdate.update({
+        titulo,
+        description,
+        conecxao,
+        categoria,
+        image: filename,
+      });
+
+      return res.render("success", {
+        title: "Notícia Atualizada",
+        message: `Notícia ${newsToUpdate.titulo} foi atualizada`,
+      });
+    } catch (error) {
+      console.error(error);
       return res.render("error", {
-        title: "Ops!",
-        message: "Usuario não encontrado",
+        title: "Erro",
+        message: "Erro ao atualizar notícia",
       });
     }
-
-    const updateUser = userResult;
-    if (nome) updateUser.nome = nome;
-    if (nomedeuser) updateUser.nomedeuser = nomedeuser;
-    if (senha) updateUser.senha = senha;
-    if (email) updateUser.email = email;
-    if (filename) {
-      let imageTmp = updateUser.image;
-      fs.unlinkSync(upload.path + imageTmp);
-      updateUser.image = filename;
-    }
-    return res.render("success", {
-      title: "Usuário Atualizado",
-      message: `Usuário ${updateUser.nome} foi atualizado`,
-    });
   },
+  
 
   delete: async (req, res) => {
-    const usersJson = fs.readFileSync(
-      path.join(__dirname, "..", "data", "users.json"),
-      "utf-8"
-    );
-    const users = JSON.parse(usersJson);
-
     const { id } = req.params;
 
-    // Esse codigo abaixo ira fazer uma listagem dos id que tem na lista e fazer uma busca pelo usuario
-    // apresentando uma mensagem caso encontrado ou não
-    const userResult = users.find((user) => user.id === parseInt(id));
-    if (!userResult) {
-      return res.render("error", {
-        title: "Ops!",
-        message: "Usuario não encontrado",
+    try {
+      // Busque os detalhes da notícia no banco de dados pelo ID
+      const detailsNews = await News.findByPk(id);
+
+      if (!detailsNews) {
+        return res.render("error", {
+          title: "Ops!",
+          message: "Detalhes da notícia não encontrados",
+        });
+      }
+
+      const news = {
+        ...detailsNews.toJSON(),
+        image: files.base64Encode(upload.path + detailsNews.image),
+      };
+
+      return res.render("news-delete", {
+        title: "Deletar Notícia",
+        detailsNews: detailsNews, // Certifique-se de passar o objeto corretamente aqui
+      });
+      
+    } catch (error) {
+      console.error(error);
+      return res.status(500).render("error", {
+        title: "Erro",
+        message: "Ocorreu um erro ao carregar os detalhes da notícia para exclusão",
       });
     }
-    const user = {
-      ...userResult,
-      image: files.base64Encode(upload.path + userResult.image),
-    };
-    return res.render("user-delete", {
-      title: "Deletar Usuario",
-      user,
-    });
-  },
+   },
 
-  destroy: async (req, res) => {
-    const usersJson = fs.readFileSync(
-      path.join(__dirname, "..", "data", "users.json"),
-      "utf-8"
-    );
-    const users = JSON.parse(usersJson);
-
+   destroy: async (req, res) => {
     const { id } = req.params;
 
-    // Esse codigo abaixo ira fazer uma listagem dos id que tem na lista e fazer uma busca pelo usuario
-    // apresentando uma mensagem caso encontrado ou não
-    const result = users.findIndex((user) => user.id === parseInt(id));
-    if (!result === -1) {
+    try {
+      const newsToDelete = await News.findByPk(id);
+
+      if (!newsToDelete) {
+        return res.render("error", {
+          title: "Ops!",
+          message: "Notícia não encontrada",
+        });
+      }
+
+      // Deleta a notícia do banco de dados
+      await newsToDelete.destroy();
+
+      return res.render("success", {
+        title: "Notícia Deletada",
+        message: "Notícia deletada com sucesso!",
+      });
+    } catch (error) {
+      console.error(error);
       return res.render("error", {
-        title: "Ops!",
-        message: "Usuario não encontrado",
+        title: "Erro",
+        message: "Erro ao deletar notícia",
       });
     }
-
-    fs.unlinkSync(upload.path + users[result].image);
-
-    users.splice(result, 1);
-    return res.render("success", {
-      title: "Usuario Deletado",
-      message: "Usuário deletado com sucesso!",
-    });
   },
 };
 

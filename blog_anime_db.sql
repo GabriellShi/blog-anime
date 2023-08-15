@@ -13,9 +13,7 @@ CREATE TABLE news (
     description TEXT(1000)  NOT NULL,
     conecxao VARCHAR(100) NOT NULL,
     categoria VARCHAR(100) NOT NULL,
-    image VARCHAR(500),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
+    image VARCHAR(500)
 );
 
 -- Altera tabela
@@ -25,7 +23,8 @@ CREATE TABLE news (
 -- Insere um ou mais usuário
 INSERT INTO news (titulo, description, conecxao, categoria, image)
 VALUES 
-	("naruto vem ai", "foi anunciado a data", "hNaruto", "novidade", "c81a386493658f2006dc.png");
+	("naruto vem ai", "foi anunciado a data", "hNaruto", "novidade", "c81a386493658f2006dc.png"),
+    ("Sasuke vem ai", "A data foi anunciado ", "Sasuke", "novidade", "c81a386493658f2006dc.png");
 
 
 -- Lista todos os usuários
@@ -34,7 +33,7 @@ SELECT * FROM news;
 -- UPDATE users SET is_admin = 1 WHERE id = 16;
 
 -- Deleta o usuário a partir do id
--- DELETE FROM users WHERE id = 1;
+-- DELETE FROM news WHERE id = 7;
 
 -- Atualiza dados de uma linha
 -- UPDATE users 

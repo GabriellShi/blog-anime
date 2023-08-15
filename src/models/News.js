@@ -28,6 +28,8 @@ const News = db.define(
     },
     image: {
       type: Sequelize.DataTypes.STRING(500),
+      allowNull: false,
+
     },
 
   },
