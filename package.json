@@ -19,22 +19,35 @@
   "dependencies": {
     "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
+<<<<<<< HEAD
     "db": "^4.0.1",
+=======
+>>>>>>> 52b961a336c04122a07f338781d3e82ec478e56d
     "dotenv": "^16.3.1",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
+<<<<<<< HEAD
     "fs": "^0.0.1-security",
+=======
+>>>>>>> 52b961a336c04122a07f338781d3e82ec478e56d
     "method-override": "^3.0.0",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.6.0",
     "node": "^20.5.0",
     "nodemon": "^3.0.1",
+<<<<<<< HEAD
     "op": "^0.0.6",
+=======
+>>>>>>> 52b961a336c04122a07f338781d3e82ec478e56d
     "sequelize": "^6.32.1",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "prettier": "^3.0.1"
+=======
+    "prettier": "^3.0.0-alpha.6"
+>>>>>>> 52b961a336c04122a07f338781d3e82ec478e56d
   }
 }

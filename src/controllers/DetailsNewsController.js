@@ -1,3 +1,4 @@
+
 // const fs = require("fs");
 // const files = require("../helpers/files");
 // const upload = require("../config/upload");
@@ -97,6 +98,6 @@ const detailsNewsController = {
       });
     }
   },
-};
+ }
 
 module.exports = detailsNewsController;

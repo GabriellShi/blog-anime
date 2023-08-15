@@ -1,3 +1,4 @@
+
 // Importe os módulos necessários
 const express = require("express");
 const router = express.Router();
@@ -10,6 +11,8 @@ router.get("/create", detailsNewsController.create);
 router.post("/create", upload.single('avatar'), detailsNewsController.store);
 
 router.get("/news", detailsNewsController.index);
+
+
 
 
 module.exports = router;

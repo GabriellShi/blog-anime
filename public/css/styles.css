@@ -1,11 +1,15 @@
 /*defini os estilos gerais da página, como fundo e cores de texto */
+
+
 * {
   list-style: none;
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
   box-sizing: border-box;
+
   scroll-behavior: smooth;
+
 }
 
 /* ------------**Estilização do Header**---------- */
@@ -16,6 +20,15 @@
   align-items: center;
   justify-content: space-between;
   background-color: hsl(0, 0%, 0%);
+}
+
+
+/*Definindo fonte padrão dos textos do site e zerando margem do site total*/
+* {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
 }
 
 
