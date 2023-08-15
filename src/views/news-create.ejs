@@ -1,0 +1,13 @@
+<%- include("./partials/headAdm") %> <%- include("./partials/headerAdm") %>
+
+<main>
+    <form action="/news-create" method="post" enctype="multipart/form-data">
+            <input type="text" name="titulo" placeholder="Titulo">
+            <input type="text" name="description" placeholder="Descrição">
+            <input type="text" name="conecxao" placeholder="Conexão">
+            <input type="text" name="categoria" placeholder="Categoria">
+            <input type="image" name="image">
+
+            <button type="submit"> Criar Noticia </button>
+    </form>
+</main>
