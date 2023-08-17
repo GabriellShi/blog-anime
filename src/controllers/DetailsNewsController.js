@@ -16,19 +16,18 @@ const detailsNewsController = {
     try {
       // Busque todas as notícias do banco de dados
       const news = await News.findAll();
-  
+
       // Mapeie os URLs completos das imagens
-      const newsWithImageUrls = news.map((newsItem) => {
-        return {
-          ...newsItem.toJSON(),
-          imageUrl: upload.path + newsItem.image,
-        };
+      news.map((detailsNews) => {
+        if (detailsNews.image) {
+          detailsNews.image = files.base64Encode(upload.path + detailsNews.image);
+        }
       });
-      
-  
+
       return res.render("news", {
         title: "Lista de Notícias",
-        news: newsWithImageUrls,
+        news,
+      
       });
     } catch (error) {
       console.error(error);
@@ -38,40 +37,43 @@ const detailsNewsController = {
       });
     }
   },
-  
 
   // show - controlador que ira visualizar os detalhas de cada usuario da lista 'users'
-  show: async (req, res) => {
-    try {
-      const { id } = req.params;
+// show - controlador que irá visualizar os detalhes de cada notícia
+// show - controlador que irá visualizar os detalhes de cada notícia
+show: async (req, res) => {
+  try {
+    const { id } = req.params;
 
-      // Busque os detalhes da notícia no banco de dados pelo ID
-      const detailsNews = await News.findByPk(id);
+    // Busque os detalhes da notícia no banco de dados pelo ID
+    const detailsNews = await News.findByPk(id);
 
-      if (!detailsNews) {
-        return res.render("error", {
-          title: "Ops!",
-          message: "Detalhes da notícia não encontrado",
-        });
-      }
-
-      const news = {
-        ...detailsNews.toJSON(),
-        image: files.base64Encode(upload.path + detailsNews.image),
-      };
-
-      return res.render("detailsNews", {
-        title: "Visualizar notícia",
-        news,
-      });
-    } catch (error) {
-      console.error(error); // Mostrar o erro completo no console para depuração
-      return res.status(500).render("error", {
-        title: "Erro",
-        message: "Ocorreu um erro ao carregar os detalhes da notícia",
+    if (!detailsNews) {
+      return res.render("error", {
+        title: "Ops!",
+        message: "Detalhes da notícia não encontrado",
       });
     }
-  },
+
+    // Converte a imagem em base64
+    if (detailsNews.image) {
+      detailsNews.image = files.base64Encode(upload.path + detailsNews.image);
+    }
+
+    return res.render("detailsNews", {
+      title: "Visualizar notícia",
+      news: detailsNews,
+      detailsNews,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).render("error", {
+      title: "Erro",
+      message: "Ocorreu um erro ao carregar os detalhes da notícia",
+    });
+  }
+},
+
 
   create: async (req, res) => {
     return res.render("news-create", { title: "Cadastrar Noticia" });
@@ -83,7 +85,7 @@ const detailsNewsController = {
       if (req.file) {
         filename = req.file.filename;
       }
-      
+
       const novaNews = await News.create({
         titulo,
         description,
@@ -91,10 +93,8 @@ const detailsNewsController = {
         categoria,
         image: filename,
       });
-  
+
       res.redirect("/detailsNews");
-      
-      
     } catch (error) {
       console.error(error); // Adicione essa linha para registrar o erro no console
       res.render("news-create", {
@@ -103,8 +103,6 @@ const detailsNewsController = {
       });
     }
   },
-  
-  
 
   // Mostra a tela
   edit: async (req, res) => {
@@ -121,20 +119,22 @@ const detailsNewsController = {
         });
       }
   
-      const news = {
-        ...detailsNews.toJSON(),
-        image: files.base64Encode(upload.path + detailsNews.image),
-      };
+      // Converte a imagem em base64
+      if (detailsNews.image) {
+        detailsNews.image = files.base64Encode(upload.path + detailsNews.image);
+      }
   
       return res.render("news-edit", {
         title: "Editar Notícia",
-        news,
+        news: detailsNews, // Passamos os detalhes diretamente para a propriedade 'news'
+        detailsNews,
       });
     } catch (error) {
       console.error(error);
       return res.status(500).render("error", {
         title: "Erro",
-        message: "Ocorreu um erro ao carregar os detalhes da notícia para edição",
+        message:
+          "Ocorreu um erro ao carregar os detalhes da notícia para edição",
       });
     }
   },
@@ -173,7 +173,6 @@ const detailsNewsController = {
       });
     }
   },
-  
 
   delete: async (req, res) => {
     const { id } = req.params;
@@ -189,26 +188,25 @@ const detailsNewsController = {
         });
       }
 
-      const news = {
-        ...detailsNews.toJSON(),
-        image: files.base64Encode(upload.path + detailsNews.image),
-      };
+      if (detailsNews.image) {
+        detailsNews.image = files.base64Encode(upload.path + detailsNews.image);
+      }
 
       return res.render("news-delete", {
         title: "Deletar Notícia",
         detailsNews: detailsNews, // Certifique-se de passar o objeto corretamente aqui
       });
-      
     } catch (error) {
       console.error(error);
       return res.status(500).render("error", {
         title: "Erro",
-        message: "Ocorreu um erro ao carregar os detalhes da notícia para exclusão",
+        message:
+          "Ocorreu um erro ao carregar os detalhes da notícia para exclusão",
       });
     }
-   },
+  },
 
-   destroy: async (req, res) => {
+  destroy: async (req, res) => {
     const { id } = req.params;
 
     try {

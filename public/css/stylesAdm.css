@@ -69,3 +69,11 @@
   text-align: center;
   margin-top: 1rem;
 }
+
+
+
+  /* ---------** Estilização da pagina news ADM **----------- */
+
+.lado-esquerdo-neto1 img {
+  width: 30%;
+}

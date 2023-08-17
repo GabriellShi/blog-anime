@@ -5,7 +5,17 @@ const indexAdmController = {
         title: "Pagina ADM", //user: req.cookies.user,
       });
     },
+
+    paginasCreate: (req, res) => {
+      return res.render("paginasCreate", {
+        title: "Pagina Creater", //user: req.cookies.user,
+      });
+    },
   };
+
   
+
+
+
   module.exports = indexAdmController;
   
