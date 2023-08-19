@@ -1,0 +1,32 @@
+<%- include("./partials/headAdm") %> <%- include("./partials/headerAdm")%>
+
+<main>
+  <h1>Lista de Recomendações</h1>
+  <% if(temporada.length > 0){ %>
+    <% for(let detailsTemporada of temporada) {%>
+  <table>
+    <li class="lado-esquerdo-neto1">
+      <div>
+        <img src="<%= detailsTemporada.image %>" alt="Imagem" />
+
+
+        <h1><%= detailsTemporada.titulo %></h1>
+        <h3>data: 20/20/2023</h3>
+        <p><%= detailsTemporada.description %></p>
+      </div>
+      <div>
+        <td>
+          <a href="/detailsTemporada/<%= detailsTemporada.id %>">Visualizar</a>
+          <a href="/detailsTemporada/edit/<%= detailsTemporada.id %>">Editar</a>
+          <a href="/detailsTemporada/delete/<%= detailsTemporada.id %>">Excluir</a>
+        </td>
+      </div>
+    </li>
+
+   
+  </table>
+  <% } %>
+  <% } else { %>
+  <h2>Nenhuma Temporada Encontrado</h2>
+  <%} %>
+</main>

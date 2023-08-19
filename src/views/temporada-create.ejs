@@ -1,0 +1,23 @@
+<%- include("./partials/headAdm") %> <%- include("./partials/headerAdm") %>
+
+<h1 class="titulo-news-create">Criar Temporada</h1>
+
+ <main class="form-news-create">
+
+    <form action="/detailsTemporada/create" method="post" enctype="multipart/form-data" >
+   
+            <input class="input-form" type="text" name="titulo" placeholder="Titulo">
+            <input class="input-form" type="file" name="image">
+            <input class="input-form" type="text" name="description" placeholder="Descrição">    
+            <input class="input-form" type="text" name="conecxao" placeholder="Conexão">
+            <input class="input-form" type="text" name="categoria" placeholder="Categoria">
+            <input class="input-form" type="text" name="genero1" placeholder="Genero 1"  >
+            <input class="input-form" type="text" name="genero2" placeholder="Genero 2" >
+            <input class="input-form" type="text" name="genero3" placeholder="Genero 3" >
+            <input class="input-form" type="date" name="estreia" placeholder="Data de Estreia" >
+            <input class="input-form" type="text" name="streaming" placeholder="streaming" >
+
+
+            <button type="submit"> Criar Temporada </button>
+    </form> 
+</main>

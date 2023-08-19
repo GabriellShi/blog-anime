@@ -10,6 +10,7 @@ const indexRoute = require("./src/routes/indexRoute");
 const detailsNewsRoute = require("./src/routes/detailsNewsRoute");
 const indexAdmRoute = require("./src/routes/indexAdmRoute");
 const detailsRecomendaRoute = require("./src/routes/detailsRecomendaRoute");
+const detailsTemporadaRoute = require("./src/routes/detailsTemporadaRoute");
 
 
 
@@ -36,5 +37,6 @@ app.listen(port, () => {
 
 app.use("/detailsNews", detailsNewsRoute);
 app.use("/detailsRecomenda", detailsRecomendaRoute);
+app.use("/detailsTemporada", detailsTemporadaRoute);
 app.use("/", indexRoute);
 app.use("/", indexAdmRoute);

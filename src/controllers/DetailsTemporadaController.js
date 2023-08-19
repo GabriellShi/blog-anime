@@ -7,27 +7,28 @@ const path = require("path");
 const db = require("../config/sequelize");
 const News = require("../models/News");
 const Recomenda = require("../models/Recomenda");
+const Temporada = require("../models/Temporada");
 const { Op } = require("sequelize");
 
-const detailsRecomendaController = {
+const detailsTemporadaController = {
   // index - controlador da aba que visualiza a lista dos usuario /
   // esse codigo renderiza a tabela 'users' dos usuarios
   // /Pode retornar uma página ou não
   index: async (req, res) => {
     try {
       // Busque todas as notícias do banco de dados
-      const recomenda = await Recomenda.findAll();
+      const temporada = await Temporada.findAll();
 
       // Mapeie os URLs completos das imagens
-      recomenda.map((detailsRecomenda) => {
-        if (detailsRecomenda.image1) {
-          detailsRecomenda.image1 = files.base64Encode(upload.path + detailsRecomenda.image1);
+      temporada.map((detailsTemporada) => {
+        if (detailsTemporada.image) {
+          detailsTemporada.image = files.base64Encode(upload.path + detailsTemporada.image);
         }
       });
 
-      return res.render("recomenda", {
+      return res.render("temporada", {
         title: "Lista de Notícias",
-        recomenda,
+        temporada,
       
       });
     } catch (error) {
@@ -47,9 +48,9 @@ show: async (req, res) => {
     const { id } = req.params;
 
     // Busque os detalhes da notícia no banco de dados pelo ID
-    const detailsRecomenda = await Recomenda.findByPk(id);
+    const detailsTemporada = await Temporada.findByPk(id);
 
-    if (!detailsRecomenda) {
+    if (!detailsTemporada) {
       return res.render("error", {
         title: "Ops!",
         message: "Detalhes da notícia não encontrado",
@@ -57,14 +58,14 @@ show: async (req, res) => {
     }
 
     // Converte a imagem em base64
-    if (detailsRecomenda.image1) {
-      detailsRecomenda.image1 = files.base64Encode(upload.path + detailsRecomenda.image1);
+    if (detailsTemporada.image) {
+      detailsTemporada.image = files.base64Encode(upload.path + detailsTemporada.image);
     }
 
-    return res.render("detailsRecomenda", {
+    return res.render("detailsTemporada", {
       title: "Visualizar notícia",
-      recomenda: detailsRecomenda,
-      detailsRecomenda,
+      temporada: detailsTemporada,
+      detailsTemporada,
     });
   } catch (error) {
     console.error(error);
@@ -77,35 +78,33 @@ show: async (req, res) => {
 
 
   create: async (req, res) => {
-    return res.render("recomenda-create", { title: "Cadastrar Noticia" });
+    return res.render("temporada-create", { title: "Cadastrar Noticia" });
   },
   store: async (req, res) => {
-    const { titulo1, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, 
-       description1, description2, description3, description4, description5, description6, description7, 
-       description8, description9, description10,
-        conecxao, categoria } = req.body;
+    const { titulo, description, conecxao, categoria, genero1, genero2, genero3, estreia, streaming } = req.body;
     try {
       let filename = "default-image.jpeg";
       if (req.file) {
         filename = req.file.filename;
       }
 
-      const novaNews = await Recomenda.create({
-        titulo1, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, 
-        description1, description2, description3, description4, description5, description6, description7, 
-        description8, description9, description10,
-
+      const novaNews = await Temporada.create({
+        titulo,
+        description,
         conecxao,
         categoria,
-
-        image1: filename, image2: filename, image3: filename, image4: filename, image5: filename, 
-        image6: filename, image7: filename, image8: filename, image9: filename, image10: filename,
+        genero1, 
+        genero2, 
+        genero3, 
+        estreia, 
+        streaming,
+        image: filename,
       });
 
-      res.redirect("/detailsRecomenda");
+      res.redirect("/detailsTemporada");
     } catch (error) {
       console.error(error); // Adicione essa linha para registrar o erro no console
-      res.render("recomenda-create", {
+      res.render("temporada-create", {
         title: "Erro",
         message: "Erro ao criar notícia!",
       });
@@ -118,9 +117,9 @@ show: async (req, res) => {
   
     try {
       // Busque os detalhes da notícia no banco de dados pelo ID
-      const detailsRecomenda = await Recomenda.findByPk(id);
+      const detailsTemporada = await Temporada.findByPk(id);
   
-      if (!detailsRecomenda) {
+      if (!detailsTemporada) {
         return res.render("error", {
           title: "Ops!",
           message: "Detalhes da notícia não encontrados",
@@ -128,14 +127,14 @@ show: async (req, res) => {
       }
   
       // Converte a imagem em base64
-      if (detailsRecomenda.image1) {
-        detailsRecomenda.image1 = files.base64Encode(upload.path + detailsRecomenda.image1);
+      if (detailsTemporada.image) {
+        detailsTemporada.image = files.base64Encode(upload.path + detailsTemporada.image);
       }
   
-      return res.render("recomenda-edit", {
+      return res.render("temporada-edit", {
         title: "Editar Notícia",
-        recomenda: detailsRecomenda, // Passamos os detalhes diretamente para a propriedade 'news'
-        detailsRecomenda,
+        temporada: detailsTemporada, // Passamos os detalhes diretamente para a propriedade 'news'
+        detailsTemporada,
       });
     } catch (error) {
       console.error(error);
@@ -151,29 +150,27 @@ show: async (req, res) => {
   // Executa a atualização
   update: async (req, res) => {
     const { id } = req.params;
-    const {  titulo1, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, 
-      description1, description2, description3, description4, description5, description6, description7, 
-      description8, description9, description10,
-       conecxao, categori } = req.body;
+    const { titulo, description, conecxao, categoria, genero1, genero2, genero3, estreia, streaming } = req.body;
 
     try {
-      const newsToUpdate = await Recomenda.findByPk(id);
+      const newsToUpdate = await Temporada.findByPk(id);
 
-      let filename = newsToUpdate.image1;
+      let filename = newsToUpdate.image;
       if (req.file) {
         filename = req.file.filename;
       }
 
       await newsToUpdate.update({
-        titulo1, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, 
-        description1, description2, description3, description4, description5, description6, description7, 
-        description8, description9, description10,
-
+        titulo,
+        description,
         conecxao,
         categoria,
-
-        image1: filename, image2: filename, image3: filename, image4: filename, image5: filename, 
-        image6: filename, image7: filename, image8: filename, image9: filename, image10: filename,
+        genero1, 
+        genero2, 
+        genero3, 
+        estreia, 
+        streaming,
+        image: filename,
       });
 
       return res.render("success", {
@@ -194,22 +191,22 @@ show: async (req, res) => {
 
     try {
       // Busque os detalhes da notícia no banco de dados pelo ID
-      const detailsRecomenda = await Recomenda.findByPk(id);
+      const detailsTemporada = await Temporada.findByPk(id);
 
-      if (!detailsRecomenda) {
+      if (!detailsTemporada) {
         return res.render("error", {
           title: "Ops!",
           message: "Detalhes da notícia não encontrados",
         });
       }
 
-      if (detailsRecomenda.image1) {
-        detailsRecomenda.image1 = files.base64Encode(upload.path + detailsRecomenda.image1);
+      if (detailsTemporada.image) {
+        detailsTemporada.image = files.base64Encode(upload.path + detailsTemporada.image);
       }
 
-      return res.render("recomenda-delete", {
+      return res.render("temporada-delete", {
         title: "Deletar Notícia",
-        detailsRecomenda: detailsRecomenda, // Certifique-se de passar o objeto corretamente aqui
+        detailsTemporada: detailsTemporada, // Certifique-se de passar o objeto corretamente aqui
       });
     } catch (error) {
       console.error(error);
@@ -225,7 +222,7 @@ show: async (req, res) => {
     const { id } = req.params;
 
     try {
-      const newsToDelete = await Recomenda.findByPk(id);
+      const newsToDelete = await Temporada.findByPk(id);
 
       if (!newsToDelete) {
         return res.render("error", {
@@ -251,4 +248,4 @@ show: async (req, res) => {
   },
 };
 
-module.exports = detailsRecomendaController;
+module.exports = detailsTemporadaController;

@@ -1,0 +1,25 @@
+<%- include("./partials/headAdm") %> <%- include("./partials/headerAdm") %>
+
+<h1 class="titulo-news-create">Editar Temporada</h1>
+
+<main class="form-news-create">
+  <form action="/detailsTemporada/edit/<%= temporada.id %>" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="_method" value="POST">
+
+
+    <input class="input-form" type="text" name="titulo" placeholder="Titulo" value="<%= temporada.titulo%>">
+    <input class="input-form" type="text" name="description" placeholder="Descrição" value="<%= temporada.description %>">
+    <input class="input-form" type="file" name="image1" value="<%= temporada.image %>">
+    <img src="<%= detailsTemporada.image %>" alt="Imagem" />
+
+    <input class="input-form" type="text" name="conecxao" placeholder="Conexão" value="<%= temporada.conecxao %>">
+    <input class="input-form" type="text" name="categoria" placeholder="Categoria" value="<%= temporada.categoria %>">
+    <input class="input-form" type="text" name="genero1" placeholder="Genero 1" value="<%= temporada.genero1 %>">
+    <input class="input-form" type="text" name="genero2" placeholder="Genero 2" value="<%= temporada.genero2 %>">
+    <input class="input-form" type="text" name="genero3" placeholder="Genero 3" value="<%= temporada.genero3 %>">
+    <input class="input-form" type="date" name="estreia" placeholder="Data de Estreia" value="<%= temporada.estreia %>">
+    <input class="input-form" type="text" name="streaming" placeholder="streaming" value="<%= temporada.streaming %>">
+
+    <button type="submit">Salvar Edições</button>
+  </form>
+</main>

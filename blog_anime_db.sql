@@ -105,3 +105,35 @@ VALUES
 SELECT * FROM recomenda;
 
  -- DELETE FROM recomenda WHERE id = 1;
+
+
+
+
+-- Cria tabela de usuário
+CREATE TABLE temporada (
+	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    titulo VARCHAR(150) NOT NULL,
+    description TEXT(1000)  NOT NULL,
+    conecxao VARCHAR(100) NOT NULL,
+    categoria VARCHAR(100) NOT NULL,
+    genero1 VARCHAR(100) NOT NULL,
+    genero2 VARCHAR(100) NOT NULL,
+    genero3 VARCHAR(100) NOT NULL,
+    image VARCHAR(500),
+    estreia VARCHAR(100) NOT NULL,
+    streaming VARCHAR(100) NOT NULL
+);
+
+INSERT INTO temporada (
+titulo, description, conecxao, categoria, genero1, genero2, genero3, estreia, streaming, image
+)
+
+VALUES 
+	(
+"tate no yusha", "na luta pelos mundos", "tate", "temporada", "ação", "aventura", "drama", "2023", "desney", "1d8770ecb20c7c2248e6.png"
+    );
+
+-- Lista todos os usuários
+SELECT * FROM temporada;
+
+-- DELETE FROM temporada WHERE id = 2;

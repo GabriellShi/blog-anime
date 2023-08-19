@@ -1,0 +1,26 @@
+<%- include("./partials/headAdm") %> <%- include("./partials/headerAdm") %>
+
+<main>
+  <h1>Deletar Temporada</h1>
+  <% if(locals.detailsTemporada){ %>
+  <div class="imagem-usuario">
+    <img src="<%= detailsTemporada.image %>" alt="imagem" />
+    <span>Titulo: <%= detailsTemporada.titulo %>  </span>
+    <span>Descrição: <%= detailsTemporada.description %> </span>
+    <span>Conexão: <%= detailsTemporada.conecxao %> </span>
+    <span>Categoria: <%= detailsTemporada.categoria %> </span>
+    <span>Genero 1: <%= detailsTemporada.genero1 %> </span>
+    <span>Genero 2: <%= detailsTemporada.genero2 %> </span>
+    <span>Genero 3: <%= detailsTemporada.genero3 %> </span>
+    <span>Data da Estreia: <%= detailsTemporada.estreia %> </span>
+    <span>Streaming: <%= detailsTemporada.streaming %> </span>
+  </div>
+  <form action="/detailsTemporada/delete/ <%= detailsTemporada.id %>?_method=delete" method="post">
+    <h2>Deseja Deletar esse usuário</h2>
+    <a href="/detailsTemporada"><button type="button">Não</button></a>
+    <button type="submit">Sim</button>
+  </form>
+  <% } else {%>
+  <h2>Temporada não Entrada por motivos do além</h2>
+  <% } %>
+</main>
