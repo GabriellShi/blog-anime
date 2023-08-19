@@ -1,0 +1,59 @@
+<%- include("./partials/headAdm") %> <%- include("./partials/headerAdm") %>
+
+<main>
+  <h1>Deletar Recomendação</h1>
+  <% if(locals.detailsRecomenda){ %>
+  <div class="imagem-usuario">
+    <img src="<%= detailsRecomenda.image1 %>" alt="imagem" />
+    <span>Titulo: <%= detailsRecomenda.titulo1 %>  </span>
+    <span>Descrição: <%= detailsRecomenda.description1 %> </span>
+
+    <img src="<%= detailsRecomenda.image2 %>" alt="imagem" />
+    <span>Titulo: <%= detailsRecomenda.titulo2 %>  </span>
+    <span>Descrição: <%= detailsRecomenda.description2 %> </span>
+
+    <img src="<%= detailsRecomenda.image3 %>" alt="imagem" />
+    <span>Titulo: <%= detailsRecomenda.titulo3 %>  </span>
+    <span>Descrição: <%= detailsRecomenda.description3 %> </span>
+
+    <img src="<%= detailsRecomenda.image4 %>" alt="imagem" />
+    <span>Titulo: <%= detailsRecomenda.titulo4 %>  </span>
+    <span>Descrição: <%= detailsRecomenda.description4 %> </span>
+
+    <img src="<%= detailsRecomenda.image5 %>" alt="imagem" />
+    <span>Titulo: <%= detailsRecomenda.titulo5 %>  </span>
+    <span>Descrição: <%= detailsRecomenda.description5 %> </span>
+
+    <img src="<%= detailsRecomenda.image6 %>" alt="imagem" />
+    <span>Titulo: <%= detailsRecomenda.titulo6 %>  </span>
+    <span>Descrição: <%= detailsRecomenda.description6 %> </span>
+
+    <img src="<%= detailsRecomenda.image7 %>" alt="imagem" />
+    <span>Titulo: <%= detailsRecomenda.titulo7 %>  </span>
+    <span>Descrição: <%= detailsRecomenda.description7 %> </span>
+
+    <img src="<%= detailsRecomenda.image8 %>" alt="imagem" />
+    <span>Titulo: <%= detailsRecomenda.titulo8 %>  </span>
+    <span>Descrição: <%= detailsRecomenda.description8 %> </span>
+
+    <img src="<%= detailsRecomenda.image9 %>" alt="imagem" />
+    <span>Titulo: <%= detailsRecomenda.titulo9 %>  </span>
+    <span>Descrição: <%= detailsRecomenda.description9 %> </span>
+
+    <img src="<%= detailsRecomenda.image10 %>" alt="imagem" />
+    <span>Titulo: <%= detailsRecomenda.titulo10 %>  </span>
+    <span>Descrição: <%= detailsRecomenda.description10 %> </span>
+
+
+    <span>Conexão: <%= detailsRecomenda.conecxao %> </span>
+    <span>Categoria: <%= detailsRecomenda.categoria %> </span>
+  </div>
+  <form action="/detailsRecomenda/delete/ <%= detailsRecomenda.id %>?_method=delete" method="post">
+    <h2>Deseja Deletar esse usuário</h2>
+    <a href="/detailsRecomenda"><button type="button">Não</button></a>
+    <button type="submit">Sim</button>
+  </form>
+  <% } else {%>
+  <h2>Recomendação não Entrada por motivos do além</h2>
+  <% } %>
+</main>

@@ -9,6 +9,7 @@ const methodOverride = require("method-override");
 const indexRoute = require("./src/routes/indexRoute");
 const detailsNewsRoute = require("./src/routes/detailsNewsRoute");
 const indexAdmRoute = require("./src/routes/indexAdmRoute");
+const detailsRecomendaRoute = require("./src/routes/detailsRecomendaRoute");
 
 
 
@@ -34,5 +35,6 @@ app.listen(port, () => {
 
 
 app.use("/detailsNews", detailsNewsRoute);
+app.use("/detailsRecomenda", detailsRecomendaRoute);
 app.use("/", indexRoute);
 app.use("/", indexAdmRoute);

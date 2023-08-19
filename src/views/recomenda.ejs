@@ -1,0 +1,32 @@
+<%- include("./partials/headAdm") %> <%- include("./partials/headerAdm")%>
+
+<main>
+  <h1>Lista de Recomendações</h1>
+  <% if(recomenda.length > 0){ %>
+    <% for(let detailsRecomenda of recomenda) {%>
+  <table>
+    <li class="lado-esquerdo-neto1">
+      <div>
+        <img src="<%= detailsRecomenda.image1 %>" alt="Imagem" />
+
+
+        <h1><%= detailsRecomenda.titulo1 %></h1>
+        <h3>data: 20/20/2023</h3>
+        <p><%= detailsRecomenda.description1 %></p>
+      </div>
+      <div>
+        <td>
+          <a href="/detailsRecomenda/<%= detailsRecomenda.id %>">Visualizar</a>
+          <a href="/detailsRecomenda/edit/<%= detailsRecomenda.id %>">Editar</a>
+          <a href="/detailsRecomenda/delete/<%= detailsRecomenda.id %>">Excluir</a>
+        </td>
+      </div>
+    </li>
+
+   
+  </table>
+  <% } %>
+  <% } else { %>
+  <h2>Nenhuma Recomendação Encontrado</h2>
+  <%} %>
+</main>
