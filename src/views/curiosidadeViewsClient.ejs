@@ -1,0 +1,26 @@
+<%- include("./partials/head") %>
+<%- include("./partials/header")%>
+
+<main>
+  <h1>Curiosidades</h1>
+
+  <% if (curiosidades.length > 0) { %>
+    <ul class="lado-esquerdo-filho1">
+      <% for (let curiosidade of curiosidades) { %>
+        <li class="lado-esquerdo-neto1">
+          <div>
+            <img src="<%= curiosidade.image %>" alt="Capa Noticia" />
+            <h1><%= curiosidade.titulo %></h1>
+            <h3>data: <%= curiosidade.created_at.toLocaleDateString() %></h3>
+            <p><%= curiosidade.description %></p>
+            <button type="submit">
+              <a href="/detailsNews/<%= curiosidade.id %>">VER MAIS</a>
+            </button>
+          </div>
+        </li>
+      <% } %>
+    </ul>
+  <% } else { %>
+    <h2>Nenhuma Curiosidade Encontrada</h2>
+  <% } %>
+</main>

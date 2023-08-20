@@ -2,162 +2,104 @@
 
 <main>
   <section class="lado-esquerdo-pai">
+    <!-- Destaque -->
     <h1 class="titulo-destaque-index">DESTAQUE</h1>
     <div>
       <ul class="lado-esquerdo-filho1">
+        <% for (const noticia of mergedData.slice(0, 3)) { %>
         <li class="lado-esquerdo-neto1">
-          <img src="/img/solo.jpeg" alt="Capa Notica" />
-          <h1>
-            Zom 100: Bucket List of the Dead – 5º Episódio do anime sofre com
-            atraso
-          </h1>
-          <h3>data: 20/20/2023</h3>
-          <p>
-            A conta oficial no Twitter da adaptação em anime do mangá “Zom 100:
-            Zombie ni Naru Made ni Shitai 100 no Koto” anunciou que o quinto
-            episódio do anime será adiado para o dia 13 de agosto.
-          </p>
+          <img src="<%= noticia.image %>" alt="Capa Noticia" />
+          <h1><%= noticia.titulo %></h1>
+          <h3>data: <%= noticia.created_at.toLocaleDateString() %></h3>
+          <p><%= noticia.description %></p>
+          <button type="submit">
+            <% if (noticia instanceof News) { %>
+            <a href="/detailsNews/<%= noticia.id %>">VER MAIS</a>
+            <% } else if (noticia instanceof Recomenda) { %>
+            <a href="/detailsRecomenda/<%= noticia.id %>">VER MAIS</a>
+            <% } %>
+          </button>
         </li>
-        <li class="lado-esquerdo-neto1">
-          <img src="/img/solo.jpeg" alt="Capa Notica" />
-          <h1>
-            Zom 100: Bucket List of the Dead – 5º Episódio do anime sofre com
-            atraso
-          </h1>
-          <h3>data: 20/20/2023</h3>
-          <p>
-            A conta oficial no Twitter da adaptação em anime do mangá “Zom 100:
-            Zombie ni Naru Made ni Shitai 100 no Koto” anunciou que o quinto
-            episódio do anime será adiado para o dia 13 de agosto.
-          </p>
-        </li>
-        <li class="lado-esquerdo-neto1">
-          <img src="/img/solo.jpeg" alt="Capa Notica" />
-          <h1>
-            Zom 100: Bucket List of the Dead – 5º Episódio do anime sofre com
-            atraso
-          </h1>
-          <h3>data: 20/20/2023</h3>
-          <p>
-            A conta oficial no Twitter da adaptação em anime do mangá “Zom 100:
-            Zombie ni Naru Made ni Shitai 100 no Koto” anunciou que o quinto
-            episódio do anime será adiado para o dia 13 de agosto.
-          </p>
-        </li>
+
+        <% } %>
       </ul>
     </div>
 
+    <!-- Principais Notícias -->
     <h1 class="titulo-destaque-index">PRINCIPAIS NOTICIAS</h1>
-    <div>
+    <div class="lado-esquerdo-filho0">
       <ul class="lado-esquerdo-filho2">
-        <div>
-          <li><img src="/img/solo.jpeg" alt="Capa Notica" /></li>
+        <% for (const noticia of mergedData.slice(3)) { %>
+        <div class="lado-esquerdo-filho3">
+          <div>
+            <li><img src="<%= noticia.image %>" alt="Capa Noticia" /></li>
+          </div>
+          <div class="lado-esquerdo-neto2">
+            <h2><%= noticia.titulo %></h2>
+            <p>data: <%= noticia.created_at.toLocaleDateString() %></p>
+            <button type="submit">
+              <% if (noticia instanceof News) { %>
+              <a href="/detailsNews/<%= noticia.id %>">VER MAIS</a>
+              <% } else if (noticia instanceof Recomenda) { %>
+              <a href="/detailsRecomenda/<%= noticia.id %>">VER MAIS</a>
+              <% } %>
+            </button>
+          </div>
         </div>
-        <div class="lado-esquerdo-neto2">
-          <h2>
-            Zom 100: Bucket List of the Dead – 5º Episódio do anime sofre com
-            atraso
-          </h2>
-          <p>data: 20/20/2023</p>
-          <button type="submit"><a href="/detailsNews">VER MAIS</a></button>
-        </div>
+        <% } %>
       </ul>
     </div>
   </section>
+
   <section class="lado-direito-pai">
     <h1 class="titulo-destaque-index">TEMPORADAS</h1>
 
-    <ul>
-      <li class="lado-esquerdo-neto1 lado-direito-neto1">
-        <div>
-          <img src="/img/solo.jpeg" alt="Capa Notica" />
-        </div>
-        <div>
-          <h1>
-            Zom 100: Bucket List of the Dead – 5º Episódio do anime sofre com
-            atraso
-          </h1>
-          <h3>data: 20/20/2023</h3>
-        </div>
-      </li>
-    </ul>
-
-    <ul>
-      <li class="lado-esquerdo-neto1 lado-direito-neto1">
-        <div>
-          <img src="/img/solo.jpeg" alt="Capa Notica" />
-        </div>
-        <div>
-          <h1>
-            Zom 100: Bucket List of the Dead – 5º Episódio do anime sofre com
-            atraso
-          </h1>
-          <h3>data: 20/20/2023</h3>
-        </div>
-      </li>
-    </ul>
-
-    <ul>
-      <li class="lado-esquerdo-neto1 lado-direito-neto1">
-        <div>
-          <img src="/img/solo.jpeg" alt="Capa Notica" />
-        </div>
-        <div>
-          <h1>
-            Zom 100: Bucket List of the Dead – 5º Episódio do anime sofre com
-            atraso
-          </h1>
-          <h3>data: 20/20/2023</h3>
-        </div>
-      </li>
-    </ul>
+    <% if (temporadaNews.length > 0) { %>
+      <ul>
+        <% for (let detailsTemporada of temporadaNews) { %>
+          <li class="lado-esquerdo-neto1 lado-direito-neto1">
+            <button type="submit">
+              <a href="/detailsTemporada/<%= detailsTemporada.id %>">
+            <div>
+              <img src="<%= detailsTemporada.image %>" alt="Capa Notica" />
+            </div>
+            <div>
+              <h1><%= detailsTemporada.titulo %></h1>
+              <h3>data: <%= new Date(detailsTemporada.created_at).toLocaleDateString() %></h3>
+            </div>
+            </a>
+            </button>
+          </li>
+        <% } %>
+      </ul>
+    <% } else { %>
+      <h2>Nenhuma Notícia de Temporada Encontrada</h2>
+    <% } %>
 
     <h1 class="titulo-destaque-index">CURIOSIDADES</h1>
 
-    <ul>
-      <li class="lado-esquerdo-neto1 lado-direito-neto1">
-        <div>
-          <img src="/img/solo.jpeg" alt="Capa Notica" />
-        </div>
-        <div>
-          <h1>
-            Zom 100: Bucket List of the Dead – 5º Episódio do anime sofre com
-            atraso
-          </h1>
-          <h3>data: 20/20/2023</h3>
-        </div>
-      </li>
-    </ul>
+    <% if (curiosidadeNews.length > 0) { %>
+      <ul>
+        <% for (let curiosidade of curiosidadeNews) { %>
+          <li class="lado-esquerdo-neto1 lado-direito-neto1">
+            <button type="submit">
+              <a href="/detailsNews/<%= curiosidade.id %>">
+            <div>
+              <img src="<%= curiosidade.image %>" alt="Capa Notica" />
+            </div>
+            <div>
+              <h1><%= curiosidade.titulo %></h1>
+              <h3>data: <%= new Date(curiosidade.created_at).toLocaleDateString() %></h3>
+            </div>
+            </a>
+            </button>
+          </li>
+        <% } %>
+      </ul>
+    <% } else { %>
+      <h2>Nenhuma Notícia de curiosidade Encontrada</h2>
+    <% } %>
 
-    <ul>
-      <li class="lado-esquerdo-neto1 lado-direito-neto1">
-        <div>
-          <img src="/img/solo.jpeg" alt="Capa Notica" />
-        </div>
-        <div>
-          <h1>
-            Zom 100: Bucket List of the Dead – 5º Episódio do anime sofre com
-            atraso
-          </h1>
-          <h3>data: 20/20/2023</h3>
-        </div>
-      </li>
-    </ul>
-
-    <ul>
-      <li class="lado-esquerdo-neto1 lado-direito-neto1">
-        <div>
-          <img src="/img/solo.jpeg" alt="Capa Notica" />
-        </div>
-        <div>
-          <h1>
-            Zom 100: Bucket List of the Dead – 5º Episódio do anime sofre com
-            atraso
-          </h1>
-          <h3>data: 20/20/2023</h3>
-        </div>
-      </li>
-    </ul>
   </section>
 </main>
 

@@ -13,11 +13,13 @@ CREATE TABLE news (
     description TEXT(1000)  NOT NULL,
     conecxao VARCHAR(100) NOT NULL,
     categoria VARCHAR(100) NOT NULL,
-    image VARCHAR(500)
+    image VARCHAR(500),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    tipo VARCHAR(150) NOT NULL
 );
 
 -- Altera tabela
--- ALTER TABLE users ADD is_admin TINYINT DEFAULT 0;
+ -- ALTER TABLE news ADD created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
     
 
 -- Insere um ou mais usuário
@@ -33,7 +35,7 @@ SELECT * FROM news;
 -- UPDATE users SET is_admin = 1 WHERE id = 16;
 
 -- Deleta o usuário a partir do id
- -- DELETE FROM news WHERE id = 8;
+ -- DELETE FROM news WHERE id = 3;
 
 -- Atualiza dados de uma linha
 -- UPDATE users 
@@ -51,7 +53,7 @@ SELECT * FROM news;
 -- Cria tabela de usuário
 CREATE TABLE recomenda (
 	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    titulo1 VARCHAR(150) NOT NULL,
+    titulo VARCHAR(150) NOT NULL,
     titulo2 VARCHAR(150) NOT NULL,
     titulo3 VARCHAR(150) NOT NULL,
     titulo4 VARCHAR(150) NOT NULL,
@@ -61,7 +63,7 @@ CREATE TABLE recomenda (
     titulo8 VARCHAR(150) NOT NULL,
     titulo9 VARCHAR(150) NOT NULL,
     titulo10 VARCHAR(150) NOT NULL,
-    description1 TEXT(1000)  NOT NULL,
+    description TEXT(1000)  NOT NULL,
     description2 TEXT(1000)  NOT NULL,
     description3 TEXT(1000)  NOT NULL,
     description4 TEXT(1000)  NOT NULL,
@@ -73,7 +75,7 @@ CREATE TABLE recomenda (
     description10 TEXT(1000)  NOT NULL,
     conecxao VARCHAR(100) NOT NULL,
     categoria VARCHAR(100) NOT NULL,
-    image1 VARCHAR(500),
+    image VARCHAR(500),
     image2 VARCHAR(500),
     image3 VARCHAR(500),
     image4 VARCHAR(500),
@@ -82,20 +84,23 @@ CREATE TABLE recomenda (
     image7 VARCHAR(500),
     image8 VARCHAR(500),
     image9 VARCHAR(500),
-    image10 VARCHAR(500)
+    image10 VARCHAR(500),
+    
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    tipo VARCHAR(150) NOT NULL
 );
 
 INSERT INTO recomenda (
-titulo1, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10,
-description1, description2, description3, description4, description5, description6, description7, description8, description9, description10,
-conecxao, categoria, 
-image1, image2, image3, image4, image5, image6, image7, image8, image9, image10
+titulo, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10,
+description, description2, description3, description4, description5, description6, description7, description8, description9, description10,
+conecxao, categoria, tipo,
+image, image2, image3, image4, image5, image6, image7, image8, image9, image10
 )
 VALUES 
 	(
 "naruto vem ai 1", "naruto vem ai 2", "naruto vem ai 3", "naruto vem ai 4", "naruto vem ai 5", "naruto vem ai 6", "naruto vem ai 7", "naruto vem ai 8", "naruto vem ai 9", "naruto vem ai 10",
 "foi anunciado a data 1", "foi anunciado a data 2", "foi anunciado a data 3", "foi anunciado a data 4", "foi anunciado a data 5", "foi anunciado a data 6", "foi anunciado a data 7", "foi anunciado a data 8", "foi anunciado a data 9", "foi anunciado a data 10",
-"hNaruto", "novidade", 
+"hNaruto", "novidade", "anime",
 "1d8770ecb20c7c2248e6.png", "1d8770ecb20c7c2248e6.png", "1d8770ecb20c7c2248e6.png", "1d8770ecb20c7c2248e6.png", "1d8770ecb20c7c2248e6.png", "1d8770ecb20c7c2248e6.png", "1d8770ecb20c7c2248e6.png", "1d8770ecb20c7c2248e6.png", "1d8770ecb20c7c2248e6.png", "1d8770ecb20c7c2248e6.png"
     );
 
@@ -104,7 +109,7 @@ VALUES
 -- Lista todos os usuários
 SELECT * FROM recomenda;
 
- -- DELETE FROM recomenda WHERE id = 1;
+ -- DELETE FROM recomenda WHERE id = 3;
 
 
 
@@ -121,7 +126,9 @@ CREATE TABLE temporada (
     genero3 VARCHAR(100) NOT NULL,
     image VARCHAR(500),
     estreia VARCHAR(100) NOT NULL,
-    streaming VARCHAR(100) NOT NULL
+    streaming VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    tipo VARCHAR(150) NOT NULL
 );
 
 INSERT INTO temporada (
@@ -136,4 +143,4 @@ VALUES
 -- Lista todos os usuários
 SELECT * FROM temporada;
 
--- DELETE FROM temporada WHERE id = 2;
+-- DELETE FROM temporada WHERE id = 1;

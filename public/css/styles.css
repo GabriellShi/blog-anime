@@ -721,6 +721,7 @@
   flex-wrap: wrap;
   justify-content: center;
   margin-bottom: 2rem;
+  color: white;
 }
 
 /*   Estiliza as listas netos a terem uma largura fixam margin e a coloração do fundo */
@@ -743,10 +744,22 @@
   font-size: 0.8rem;
 }
 
+.lado-esquerdo-neto1 img {
+  width: 100%;
+}
+
 /* estiliza o lado esquerdo filho 2 com fundo, remoção da lista e com display flex */
-.lado-esquerdo-filho2 {
+.lado-esquerdo-filho3 {
   display: flex;
-  background-color: gray;
+
+}
+
+.lado-esquerdo-filho2 img {
+  width: 50%;
+}
+
+.lado-esquerdo-filho0 {
+  background-color: rgb(85, 83, 83);
 }
 
 /*   estiliza o lado esquerdo neto 2 com uma padding interno na lateral esquerda  */

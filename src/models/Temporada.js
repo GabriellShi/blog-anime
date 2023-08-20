@@ -59,6 +59,16 @@ const Temporada = db.define(
         type: Sequelize.DataTypes.STRING(100),
         allowNull: false,
       },
+
+      tipo: {
+        type: Sequelize.DataTypes.STRING(100),
+        allowNull: false,
+      },
+      
+      created_at: {
+        type: Sequelize.DataTypes.DATE,
+        defaultValue: Sequelize.NOW, // Define o valor padrão como a data e hora atual
+      },
   },
 
   {

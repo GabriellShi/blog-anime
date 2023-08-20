@@ -7,6 +7,7 @@ const path = require("path");
 const db = require("../config/sequelize");
 const News = require("../models/News");
 const Recomenda = require("../models/Recomenda");
+const Temporada = require("../models/Temporada");
 const { Op } = require("sequelize");
 
 const detailsRecomendaController = {
@@ -20,8 +21,8 @@ const detailsRecomendaController = {
 
       // Mapeie os URLs completos das imagens
       recomenda.map((detailsRecomenda) => {
-        if (detailsRecomenda.image1) {
-          detailsRecomenda.image1 = files.base64Encode(upload.path + detailsRecomenda.image1);
+        if (detailsRecomenda.image) {
+          detailsRecomenda.image = files.base64Encode(upload.path + detailsRecomenda.image);
         }
       });
 
@@ -57,14 +58,100 @@ show: async (req, res) => {
     }
 
     // Converte a imagem em base64
-    if (detailsRecomenda.image1) {
-      detailsRecomenda.image1 = files.base64Encode(upload.path + detailsRecomenda.image1);
+    if (detailsRecomenda.image) {
+      detailsRecomenda.image = files.base64Encode(upload.path + detailsRecomenda.image);
     }
+
+    const noticiasAnimes = await News.findAll({
+      where: {
+        tipo: "Animes"
+      },
+      order: [['created_at', 'DESC']]
+    });
+
+    const recomendacoesAnimes = await Recomenda.findAll({
+      where: {
+        tipo: "Animes"
+      },
+      order: [['created_at', 'DESC']]
+    });
+
+    const temporadasAnimes = await Temporada.findAll({
+      where: {
+        tipo: "Animes"
+      },
+      order: [['created_at', 'DESC']]
+    });
+
+    // Combine the data from all three tables
+    let tipoAnime = [...noticiasAnimes, ...recomendacoesAnimes, ...temporadasAnimes];
+
+    // Sort tipoAnime by created_at in descending order
+    tipoAnime.sort((a, b) => b.created_at - a.created_at);
+
+    // Limitar a lista de notícias de anime a 5 itens
+    tipoAnime = tipoAnime.slice(0, 5);
+
+    // Base64 encode images
+    tipoAnime.map((item) => {
+      if (item.image) {
+        item.image = files.base64Encode(upload.path + item.image);
+      }
+
+      if (item instanceof News) {
+        item.contentType = 'News';
+      } else if (item instanceof Recomenda) {
+        item.contentType = 'Recomenda';
+      } else if (item instanceof Temporada) {
+        item.contentType = 'Temporada';
+      }
+    });
+
+    const noticiasMangas = await News.findAll({
+      where: {
+        tipo: "Mangas"
+      },
+      order: [['created_at', 'DESC']]
+    });
+
+    const recomendacoesMangas = await Recomenda.findAll({
+      where: {
+        tipo: "Mangas"
+      },
+      order: [['created_at', 'DESC']]
+    });
+
+    const temporadasMangas = await Temporada.findAll({
+      where: {
+        tipo: "Mangas"
+      },
+      order: [['created_at', 'DESC']]
+    });
+
+    // Combine the data from all three tables
+    let tipoMangas = [...noticiasMangas, ...recomendacoesMangas, ...temporadasMangas];
+
+
+    // Sort tipoMangas by created_at in descending order
+    tipoMangas.sort((a, b) => b.created_at - a.created_at);
+
+ 
+    tipoMangas = tipoMangas.slice(0, 5);
+
+    // Base64 encode images
+    tipoMangas.map((item) => {
+      if (item.image) {
+        item.image = files.base64Encode(upload.path + item.image);
+      }
+      
+    });
 
     return res.render("detailsRecomenda", {
       title: "Visualizar notícia",
       recomenda: detailsRecomenda,
       detailsRecomenda,
+      tipoAnime,
+      tipoMangas,
     });
   } catch (error) {
     console.error(error);
@@ -80,10 +167,10 @@ show: async (req, res) => {
     return res.render("recomenda-create", { title: "Cadastrar Noticia" });
   },
   store: async (req, res) => {
-    const { titulo1, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, 
-       description1, description2, description3, description4, description5, description6, description7, 
+    const { titulo, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, 
+       description, description2, description3, description4, description5, description6, description7, 
        description8, description9, description10,
-        conecxao, categoria } = req.body;
+        conecxao, categoria, tipo} = req.body;
     try {
       let filename = "default-image.jpeg";
       if (req.file) {
@@ -91,14 +178,15 @@ show: async (req, res) => {
       }
 
       const novaNews = await Recomenda.create({
-        titulo1, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, 
-        description1, description2, description3, description4, description5, description6, description7, 
+        titulo, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, 
+        description, description2, description3, description4, description5, description6, description7, 
         description8, description9, description10,
 
         conecxao,
         categoria,
+        tipo,
 
-        image1: filename, image2: filename, image3: filename, image4: filename, image5: filename, 
+        image: filename, image2: filename, image3: filename, image4: filename, image5: filename, 
         image6: filename, image7: filename, image8: filename, image9: filename, image10: filename,
       });
 
@@ -128,8 +216,8 @@ show: async (req, res) => {
       }
   
       // Converte a imagem em base64
-      if (detailsRecomenda.image1) {
-        detailsRecomenda.image1 = files.base64Encode(upload.path + detailsRecomenda.image1);
+      if (detailsRecomenda.image) {
+        detailsRecomenda.image = files.base64Encode(upload.path + detailsRecomenda.image);
       }
   
       return res.render("recomenda-edit", {
@@ -151,10 +239,10 @@ show: async (req, res) => {
   // Executa a atualização
   update: async (req, res) => {
     const { id } = req.params;
-    const {  titulo1, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, 
-      description1, description2, description3, description4, description5, description6, description7, 
+    const {  titulo, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, 
+      description, description2, description3, description4, description5, description6, description7, 
       description8, description9, description10,
-       conecxao, categori } = req.body;
+       conecxao, categoria, tipo } = req.body;
 
     try {
       const newsToUpdate = await Recomenda.findByPk(id);
@@ -165,14 +253,15 @@ show: async (req, res) => {
       }
 
       await newsToUpdate.update({
-        titulo1, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, 
-        description1, description2, description3, description4, description5, description6, description7, 
+        titulo, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, 
+        description, description2, description3, description4, description5, description6, description7, 
         description8, description9, description10,
 
         conecxao,
         categoria,
+        tipo,
 
-        image1: filename, image2: filename, image3: filename, image4: filename, image5: filename, 
+        image: filename, image2: filename, image3: filename, image4: filename, image5: filename, 
         image6: filename, image7: filename, image8: filename, image9: filename, image10: filename,
       });
 
@@ -203,8 +292,8 @@ show: async (req, res) => {
         });
       }
 
-      if (detailsRecomenda.image1) {
-        detailsRecomenda.image1 = files.base64Encode(upload.path + detailsRecomenda.image1);
+      if (detailsRecomenda.image) {
+        detailsRecomenda.image = files.base64Encode(upload.path + detailsRecomenda.image);
       }
 
       return res.render("recomenda-delete", {

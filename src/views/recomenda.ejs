@@ -7,12 +7,12 @@
   <table>
     <li class="lado-esquerdo-neto1">
       <div>
-        <img src="<%= detailsRecomenda.image1 %>" alt="Imagem" />
+        <img src="<%= detailsRecomenda.image %>" alt="Imagem" />
 
 
-        <h1><%= detailsRecomenda.titulo1 %></h1>
-        <h3>data: 20/20/2023</h3>
-        <p><%= detailsRecomenda.description1 %></p>
+        <h1><%= detailsRecomenda.titulo %></h1>
+        <h3><%= detailsRecomenda.created_at.toLocaleDateString('pt-BR') %></h3>
+        <p><%= detailsRecomenda.description %></p>
       </div>
       <div>
         <td>

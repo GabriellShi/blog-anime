@@ -1,0 +1,26 @@
+<%- include("./partials/head") %> <%- include("./partials/header")%>
+
+<main>
+  <h1>Lista de Temporadas</h1>
+
+  <% if (temporada.length > 0) { %>
+    <ul class="lado-esquerdo-filho1">
+      <% for (let detailsTemporada of temporada) { %>
+        <li class="lado-esquerdo-neto1">
+          <div>
+            <img src="<%= detailsTemporada.image %>" alt="Capa Noticia" />
+            <h1><%= detailsTemporada.titulo %></h1>
+            <h3>data: <%= detailsTemporada.created_at.toLocaleDateString() %></h3>
+            <p><%= detailsTemporada.description %></p>
+            <button type="submit">
+              <a href="/detailsTemporada/<%= detailsTemporada.id %>">VER MAIS</a>
+            </button>
+          </div>
+        </li>
+      <% } %>
+    </ul>
+  <% } else { %>
+    <h2>Nenhuma Temporada Encontrada</h2>
+  <% } %>
+  
+</main>

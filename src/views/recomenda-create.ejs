@@ -6,9 +6,9 @@
 
     <form action="/detailsRecomenda/create" method="post" enctype="multipart/form-data" >
         <label for="">Recondação 1</label>
-            <input class="input-form" type="text" name="titulo1" placeholder="Titulo">
-            <input class="input-form" type="file" name="image1">
-            <input class="input-form" type="text" name="description1" placeholder="Descrição">
+            <input class="input-form" type="text" name="titulo" placeholder="Titulo">
+            <input class="input-form" type="file" name="image">
+            <input class="input-form" type="text" name="description" placeholder="Descrição">
 
         <label for="">Recondação 2</label>
             <input class="input-form" type="text" name="titulo2" placeholder="Titulo">
@@ -57,7 +57,14 @@
 
             
             <input class="input-form" type="text" name="conecxao" placeholder="Conexão">
-            <input class="input-form" type="text" name="categoria" placeholder="Categoria">
+            
+            <select class="input-form" name="categoria"> <option value="" disabled selected>Categoria</option>
+                <option value="Recomendações">Recomendações</option> <option value="Novidades">Novidades</option> 
+                <option value="Temporadas">Temporadas</option> <option value="Curiosidades">Curiosidades</option>
+              </select>
+              <select class="input-form" name="tipo"> <option value="" disabled selected>Tipo</option>
+                 <option value="Animes">Animes</option> <option value="Mangas">Mangas</option> 
+              </select>
 
 
             <button type="submit"> Criar Recomendação </button>

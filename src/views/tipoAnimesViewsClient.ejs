@@ -1,0 +1,32 @@
+<%- include("./partials/head") %>
+<%- include("./partials/header") %>
+
+<main>
+  <h1>Animes</h1>
+
+  <% if (tipoAnime.length > 0) { %>
+    <ul class="lado-esquerdo-filho1">
+      <% for (let anime of tipoAnime) { %>
+        <li class="lado-esquerdo-neto1">
+          <div>
+            <img src="<%= anime.image %>" alt="Capa Noticia" />
+            <h1><%= anime.titulo %></h1>
+            <h3>data: <%= new Date(anime.created_at).toLocaleDateString() %></h3>
+            <p><%= anime.description %></p>
+            <button type="submit">
+              <% if (anime.contentType === 'News') { %>
+                <a href="/detailsNews/<%= anime.id %>">VER MAIS</a>
+              <% } else if (anime.contentType === 'Recomenda') { %>
+                <a href="/detailsRecomenda/<%= anime.id %>">VER MAIS</a>
+              <% } else if (anime.contentType === 'Temporada') { %>
+                <a href="/detailsTemporada/<%= anime.id %>">VER MAIS</a>
+              <% } %>
+            </button>
+          </div>
+        </li>
+      <% } %>
+    </ul>
+  <% } else { %>
+    <h2>Nenhum Anime Encontrado</h2>
+  <% } %>
+</main>

@@ -3,9 +3,13 @@ const files = require("../helpers/files");
 const upload = require("../config/upload");
 const path = require("path");
 
+
+
 // Configuração para conexão com o banco de dados
 const db = require("../config/sequelize");
 const News = require("../models/News");
+const Recomenda = require("../models/Recomenda");
+const Temporada = require("../models/Temporada");
 const { Op } = require("sequelize");
 
 const detailsNewsController = {
@@ -55,15 +59,107 @@ show: async (req, res) => {
       });
     }
 
+    if (detailsNews.created_at) {
+      const createdAtDate = new Date(detailsNews.created_at);
+      const formattedCreatedAt = `${createdAtDate.getDate()}/${createdAtDate.getMonth() + 1}/${createdAtDate.getFullYear()}`;
+      detailsNews.formattedCreatedAt = formattedCreatedAt;
+    }
+
     // Converte a imagem em base64
     if (detailsNews.image) {
       detailsNews.image = files.base64Encode(upload.path + detailsNews.image);
     }
 
+    const noticiasAnimes = await News.findAll({
+      where: {
+        tipo: "Animes"
+      },
+      order: [['created_at', 'DESC']]
+    });
+
+    const recomendacoesAnimes = await Recomenda.findAll({
+      where: {
+        tipo: "Animes"
+      },
+      order: [['created_at', 'DESC']]
+    });
+
+    const temporadasAnimes = await Temporada.findAll({
+      where: {
+        tipo: "Animes"
+      },
+      order: [['created_at', 'DESC']]
+    });
+
+    // Combine the data from all three tables
+    let tipoAnime = [...noticiasAnimes, ...recomendacoesAnimes, ...temporadasAnimes];
+
+    // Sort tipoAnime by created_at in descending order
+    tipoAnime.sort((a, b) => b.created_at - a.created_at);
+
+    // Limitar a lista de notícias de anime a 5 itens
+    tipoAnime = tipoAnime.slice(0, 5);
+
+    // Base64 encode images
+    tipoAnime.map((item) => {
+      if (item.image) {
+        item.image = files.base64Encode(upload.path + item.image);
+      }
+
+      if (item instanceof News) {
+        item.contentType = 'News';
+      } else if (item instanceof Recomenda) {
+        item.contentType = 'Recomenda';
+      } else if (item instanceof Temporada) {
+        item.contentType = 'Temporada';
+      }
+    });
+
+    const noticiasMangas = await News.findAll({
+      where: {
+        tipo: "Mangas"
+      },
+      order: [['created_at', 'DESC']]
+    });
+
+    const recomendacoesMangas = await Recomenda.findAll({
+      where: {
+        tipo: "Mangas"
+      },
+      order: [['created_at', 'DESC']]
+    });
+
+    const temporadasMangas = await Temporada.findAll({
+      where: {
+        tipo: "Mangas"
+      },
+      order: [['created_at', 'DESC']]
+    });
+
+    // Combine the data from all three tables
+    let tipoMangas = [...noticiasMangas, ...recomendacoesMangas, ...temporadasMangas];
+
+
+    // Sort tipoMangas by created_at in descending order
+    tipoMangas.sort((a, b) => b.created_at - a.created_at);
+
+ 
+    tipoMangas = tipoMangas.slice(0, 5);
+
+    // Base64 encode images
+    tipoMangas.map((item) => {
+      if (item.image) {
+        item.image = files.base64Encode(upload.path + item.image);
+      }
+      
+    });
+
     return res.render("detailsNews", {
       title: "Visualizar notícia",
       news: detailsNews,
       detailsNews,
+      tipoAnime,
+      tipoMangas,
     });
   } catch (error) {
     console.error(error);
@@ -75,11 +171,12 @@ show: async (req, res) => {
 },
 
 
+
   create: async (req, res) => {
     return res.render("news-create", { title: "Cadastrar Noticia" });
   },
   store: async (req, res) => {
-    const { titulo, description, conecxao, categoria } = req.body;
+    const { titulo, description, conecxao, categoria, tipo } = req.body;
     try {
       let filename = "default-image.jpeg";
       if (req.file) {
@@ -91,6 +188,7 @@ show: async (req, res) => {
         description,
         conecxao,
         categoria,
+        tipo,
         image: filename,
       });
 
@@ -143,7 +241,7 @@ show: async (req, res) => {
   // Executa a atualização
   update: async (req, res) => {
     const { id } = req.params;
-    const { titulo, description, conecxao, categoria } = req.body;
+    const { titulo, description, conecxao, categoria, tipo } = req.body;
 
     try {
       const newsToUpdate = await News.findByPk(id);
@@ -158,6 +256,7 @@ show: async (req, res) => {
         description,
         conecxao,
         categoria,
+        tipo,
         image: filename,
       });
 

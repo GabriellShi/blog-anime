@@ -10,7 +10,7 @@ const Recomenda = db.define(
       primaryKey: true,
     },
 
-    titulo1: { type: Sequelize.DataTypes.STRING(150), allowNull: false },
+    titulo: { type: Sequelize.DataTypes.STRING(150), allowNull: false },
 
     titulo2: { type: Sequelize.DataTypes.STRING(150), allowNull: false },
 
@@ -32,7 +32,7 @@ const Recomenda = db.define(
 
 
 
-    description1: { type: Sequelize.DataTypes.TEXT(1000), allowNull: false },
+    description: { type: Sequelize.DataTypes.TEXT(1000), allowNull: false },
 
     description2: { type: Sequelize.DataTypes.TEXT(1000), allowNull: false },
 
@@ -64,7 +64,7 @@ const Recomenda = db.define(
     },
 
 
-    image1: { type: Sequelize.DataTypes.STRING(500), allowNull: false },
+    image: { type: Sequelize.DataTypes.STRING(500), allowNull: false },
 
     image2: { type: Sequelize.DataTypes.STRING(500), allowNull: false },
 
@@ -83,6 +83,16 @@ const Recomenda = db.define(
     image9: { type: Sequelize.DataTypes.STRING(500), allowNull: false },
 
     image10: { type: Sequelize.DataTypes.STRING(500), allowNull: false },
+
+    tipo: {
+      type: Sequelize.DataTypes.STRING(100),
+      allowNull: false,
+    },
+
+    created_at: {
+      type: Sequelize.DataTypes.DATE,
+      defaultValue: Sequelize.NOW, // Define o valor padrão como a data e hora atual
+    },
   },
 
   {
