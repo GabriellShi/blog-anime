@@ -1,0 +1,17 @@
+<%- include("./partials/headAdm") %> <%- include("./partials/headerAdm") %>
+
+<h1 class="titulo-news-create">Editar Calendario</h1>
+
+<main class="form-news-create">
+  <form action="/detailsLancamento/edit/<%= lancamento.id %>" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="_method" value="POST">
+    <input class="input-form" type="text" name="titulo" placeholder="Titulo" value="<%= lancamento.titulo %>">
+    <input class="input-form" type="text" name="horario" placeholder="Horario" value="<%= lancamento.horario %>">
+    <input class="input-form" type="text" name="dia" placeholder="Dia" value="<%= lancamento.dia %>">
+    <input class="input-form" type="text" name="streaming" placeholder="Streaming" value="<%= lancamento.categoria %>">
+    <input class="input-form" type="file" name="image" value="<%= lancamento.image %>">
+    <img src="<%= detailsLancamento.image %>" alt="Imagem" />
+
+    <button type="submit">Salvar Edições</button>
+  </form>
+</main>

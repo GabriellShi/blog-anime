@@ -7,10 +7,14 @@ const methodOverride = require("method-override");
 
 
 const indexRoute = require("./src/routes/indexRoute");
+const contatoRoute = require("./src/routes/contatoRoute");
+const searchRoute = require("./src/routes/searchRoute");
+const calendarioAnimesRoute = require("./src/routes/calendarioAnimesRoute");
 const detailsNewsRoute = require("./src/routes/detailsNewsRoute");
 const indexAdmRoute = require("./src/routes/indexAdmRoute");
 const detailsRecomendaRoute = require("./src/routes/detailsRecomendaRoute");
 const detailsTemporadaRoute = require("./src/routes/detailsTemporadaRoute");
+const detailsLancamentoRoute = require("./src/routes/detailsLancamentoRoute");
 
 
 
@@ -36,7 +40,11 @@ app.listen(port, () => {
 
 
 app.use("/detailsNews", detailsNewsRoute);
+app.use("/", contatoRoute);
+app.use("/", searchRoute);
+app.use("/", calendarioAnimesRoute);
 app.use("/detailsRecomenda", detailsRecomendaRoute);
 app.use("/detailsTemporada", detailsTemporadaRoute);
+app.use("/detailsLancamento", detailsLancamentoRoute);
 app.use("/", indexRoute);
 app.use("/", indexAdmRoute);

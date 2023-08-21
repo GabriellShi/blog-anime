@@ -30,6 +30,9 @@ const Recomenda = db.define(
 
     titulo10: { type: Sequelize.DataTypes.STRING(150), allowNull: false },
 
+    titulo11: { type: Sequelize.DataTypes.STRING(150), allowNull: false },
+
+
 
 
     description: { type: Sequelize.DataTypes.TEXT(1000), allowNull: false },
@@ -51,6 +54,9 @@ const Recomenda = db.define(
     description9: { type: Sequelize.DataTypes.TEXT(1000), allowNull: false },
 
     description10: { type: Sequelize.DataTypes.TEXT(1000), allowNull: false },
+
+    description11: { type: Sequelize.DataTypes.TEXT(1000), allowNull: false },
+
 
 
     conecxao: {
@@ -83,6 +89,9 @@ const Recomenda = db.define(
     image9: { type: Sequelize.DataTypes.STRING(500), allowNull: false },
 
     image10: { type: Sequelize.DataTypes.STRING(500), allowNull: false },
+
+    image11: { type: Sequelize.DataTypes.STRING(500), allowNull: false },
+
 
     tipo: {
       type: Sequelize.DataTypes.STRING(100),

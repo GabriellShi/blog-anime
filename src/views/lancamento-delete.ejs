@@ -1,0 +1,21 @@
+<%- include("./partials/headAdm") %> <%- include("./partials/headerAdm") %>
+
+<main>
+  <h1>Deletar Calendario</h1>
+  <% if(locals.detailsLancamento){ %>
+  <div class="imagem-usuario">
+    <img src="<%= detailsLancamento.image %>" alt="imagem" />
+    <span>Titulo: <%= detailsLancamento.titulo %>  </span>
+    <span>Descrição: <%= detailsLancamento.description %> </span>
+    <span>Conexão: <%= detailsLancamento.conecxao %> </span>
+    <span>Categoria: <%= detailsLancamento.categoria %> </span>
+  </div>
+  <form action="/detailsLancamento/delete/ <%= detailsLancamento.id %>?_method=delete" method="post">
+    <h2>Deseja Deletar esse usuário</h2>
+    <a href="/detailsLancamento"><button type="button">Não</button></a>
+    <button type="submit">Sim</button>
+  </form>
+  <% } else {%>
+  <h2>Usuario não Entrado por motivos do além</h2>
+  <% } %>
+</main>

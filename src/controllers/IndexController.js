@@ -79,7 +79,9 @@ const indexController = {
 
   temporadaViewsClient: async (req, res) => {
     try {
-      const temporada = await Temporada.findAll();
+      const temporada = await Temporada.findAll({
+        order: [['created_at', 'DESC']]
+      });
   
       temporada.map((detailsTemporada) => {
         if (detailsTemporada.image) {

@@ -1,0 +1,62 @@
+<%- include("./partials/head") %>
+<%- include("./partials/header") %>
+<h1>Resultados da Pesquisa</h1>
+
+<h2>News</h2>
+<% if (news.length > 0) { %>
+  <ul>
+    <% news.forEach((noticia) => { %>
+      <li>
+        <h3><%= noticia.titulo %></h3>
+        <img src="<%= noticia.image %>" alt="<%= noticia.titulo %>">
+        <p><%= noticia.description %></p>
+        <p>Data de criação: <%= noticia.created_at.toLocaleDateString() %></p>
+      </li>
+      <button type="submit">
+        <a href="/detailsNews/<%= noticia.id %>">VER MAIS</a>
+      </button>
+    <% }) %>
+  </ul>
+<% } else { %>
+  <p>Nenhum resultado encontrado para notícias.</p>
+<% } %>
+
+<h2>Recomendações</h2>
+<% if (recomenda.length > 0) { %>
+  <ul>
+    <% recomenda.forEach((noticia) => { %>
+      <li>
+        <h3><%= noticia.titulo %></h3>
+        <img src="<%= noticia.image %>" alt="<%= noticia.titulo %>">
+        <p><%= noticia.description %></p>
+        <p>Data de criação: <%= noticia.created_at.toLocaleDateString() %></p>
+      </li>
+      <button type="submit">
+        <a href="/detailsRecomenda/<%= noticia.id %>">VER MAIS</a>
+      </button>
+    <% }) %>
+  </ul>
+<% } else { %>
+  <p>Nenhum resultado encontrado para recomendações.</p>
+<% } %>
+
+<h2>Temporadas</h2>
+<% if (temporada.length > 0) { %>
+  <ul>
+    <% temporada.forEach((noticia) => { %>
+      <li>
+        <h3><%= noticia.titulo %></h3>
+        <img src="<%= noticia.image %>" alt="<%= noticia.titulo %>">
+        <p><%= noticia.description %></p>
+        <p>Data de criação: <%= noticia.created_at.toLocaleDateString() %></p>
+      </li>
+      <button type="submit">
+        <a href="/detailsTemporada/<%= noticia.id %>">VER MAIS</a>
+      </button>
+    <% }) %>
+  </ul>
+<% } else { %>
+  <p>Nenhum resultado encontrado para temporadas.</p>
+<% } %>
+
+<%- include("./partials/footer") %>

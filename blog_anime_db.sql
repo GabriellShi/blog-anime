@@ -144,3 +144,27 @@ VALUES
 SELECT * FROM temporada;
 
 -- DELETE FROM temporada WHERE id = 1;
+
+
+-- Cria tabela de usuário
+CREATE TABLE lancamento (
+	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    titulo VARCHAR(150) NOT NULL,
+    horario VARCHAR(100) NOT NULL,
+    dia VARCHAR(100) NOT NULL,
+    image VARCHAR(500),
+    streaming VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO lancamento (
+titulo, horario, dia, image, streaming
+)
+
+VALUES 
+	(
+"tate no yusha", "na luta pelos mundos", "tate", "temporada", "ação"
+    );
+
+-- Lista todos os usuários
+SELECT * FROM lancamento;

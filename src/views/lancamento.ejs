@@ -1,0 +1,56 @@
+<%- include("partials/headAdm") %> <%- include("partials/headerAdm") %>
+
+<main>
+  <h1>Calendario</h1>
+
+  <div class="dias-da-semana-buttons">
+    <% const diasDaSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta",
+    "Sexta", "Sábado"]; %> <% for (const dia of diasDaSemana) { %>
+    <button class="dia-button" data-dia="<%= dia %>"><%= dia %></button>
+    <% } %>
+  </div>
+
+  <div class="lancamentos-container">
+    <!-- Aqui vamos inserir os lançamentos dinamicamente usando JavaScript -->
+  </div>
+</main>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const diasButtons = document.querySelectorAll(".dia-button");
+    const lancamentosContainer = document.querySelector(".lancamentos-container");
+    const lancamentoData = <%- JSON.stringify(lancamento) %>;
+
+    diasButtons.forEach(button => {
+      button.addEventListener("click", function() {
+        const diaClicado = this.getAttribute("data-dia");
+        const lancamentosDoDia = lancamentoData.filter(item => item.dia === diaClicado);
+
+        let lancamentosHTML = "";
+
+        if (lancamentosDoDia.length > 0) {
+          lancamentosDoDia.forEach(detailsLancamento => {
+            lancamentosHTML += `
+              <table>
+                <tr>
+                  <td><img src="${detailsLancamento.image}" alt="Imagem"></td>
+                  <td>
+                    <h1>${detailsLancamento.titulo}</h1>
+                    <h3>${detailsLancamento.horario}</h3>
+                    <p>${detailsLancamento.streaming}</p>
+                  </td>
+                </tr>
+              </table>
+            `;
+          });
+        } else {
+          lancamentosHTML = "<h2>Nenhum Lançamento Encontrado</h2>";
+        }
+
+        lancamentosContainer.innerHTML = lancamentosHTML;
+      });
+    });
+  });
+</script>
+
+
+</main>

@@ -58,9 +58,18 @@ show: async (req, res) => {
     }
 
     // Converte a imagem em base64
-    if (detailsRecomenda.image) {
-      detailsRecomenda.image = files.base64Encode(upload.path + detailsRecomenda.image);
-    }
+    if (detailsRecomenda.image) {detailsRecomenda.image = files.base64Encode(upload.path + detailsRecomenda.image); }
+    if (detailsRecomenda.image2) {detailsRecomenda.image2 = files.base64Encode(upload.path + detailsRecomenda.image2); }
+    if (detailsRecomenda.image3) {detailsRecomenda.image3 = files.base64Encode(upload.path + detailsRecomenda.image3); }
+    if (detailsRecomenda.image4) {detailsRecomenda.image4 = files.base64Encode(upload.path + detailsRecomenda.image4); }
+    if (detailsRecomenda.image5) {detailsRecomenda.image5 = files.base64Encode(upload.path + detailsRecomenda.image5); }
+    if (detailsRecomenda.image6) {detailsRecomenda.image6 = files.base64Encode(upload.path + detailsRecomenda.image6); }
+    if (detailsRecomenda.image7) {detailsRecomenda.image7 = files.base64Encode(upload.path + detailsRecomenda.image7); }
+    if (detailsRecomenda.image8) {detailsRecomenda.image8 = files.base64Encode(upload.path + detailsRecomenda.image8); }
+    if (detailsRecomenda.image9) {detailsRecomenda.image9 = files.base64Encode(upload.path + detailsRecomenda.image9); }
+    if (detailsRecomenda.image10) {detailsRecomenda.image10 = files.base64Encode(upload.path + detailsRecomenda.image10); }
+    if (detailsRecomenda.image11) {detailsRecomenda.image11 = files.base64Encode(upload.path + detailsRecomenda.image11); }
+
 
     const noticiasAnimes = await News.findAll({
       where: {
@@ -167,9 +176,9 @@ show: async (req, res) => {
     return res.render("recomenda-create", { title: "Cadastrar Noticia" });
   },
   store: async (req, res) => {
-    const { titulo, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, 
+    const { titulo, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, titulo11,
        description, description2, description3, description4, description5, description6, description7, 
-       description8, description9, description10,
+       description8, description9, description10, description11,
         conecxao, categoria, tipo} = req.body;
     try {
       let filename = "default-image.jpeg";
@@ -178,16 +187,16 @@ show: async (req, res) => {
       }
 
       const novaNews = await Recomenda.create({
-        titulo, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, 
+        titulo, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, titulo11,
         description, description2, description3, description4, description5, description6, description7, 
-        description8, description9, description10,
+        description8, description9, description10, description11,
 
         conecxao,
         categoria,
         tipo,
 
         image: filename, image2: filename, image3: filename, image4: filename, image5: filename, 
-        image6: filename, image7: filename, image8: filename, image9: filename, image10: filename,
+        image6: filename, image7: filename, image8: filename, image9: filename, image10: filename, image11: filename,
       });
 
       res.redirect("/detailsRecomenda");
@@ -239,9 +248,9 @@ show: async (req, res) => {
   // Executa a atualização
   update: async (req, res) => {
     const { id } = req.params;
-    const {  titulo, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, 
+    const {  titulo, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10,  titulo11,
       description, description2, description3, description4, description5, description6, description7, 
-      description8, description9, description10,
+      description8, description9, description10, description11,
        conecxao, categoria, tipo } = req.body;
 
     try {
@@ -253,16 +262,16 @@ show: async (req, res) => {
       }
 
       await newsToUpdate.update({
-        titulo, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, 
+        titulo, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, titulo11,
         description, description2, description3, description4, description5, description6, description7, 
-        description8, description9, description10,
+        description8, description9, description10, description11,
 
         conecxao,
         categoria,
         tipo,
 
         image: filename, image2: filename, image3: filename, image4: filename, image5: filename, 
-        image6: filename, image7: filename, image8: filename, image9: filename, image10: filename,
+        image6: filename, image7: filename, image8: filename, image9: filename, image10: filename,  image11: filename,
       });
 
       return res.render("success", {
