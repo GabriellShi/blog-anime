@@ -1,6 +1,5 @@
 /*defini os estilos gerais da página, como fundo e cores de texto */
 
-
 * {
   list-style: none;
   margin: 0;
@@ -9,7 +8,6 @@
   box-sizing: border-box;
 
   scroll-behavior: smooth;
-
 }
 
 /* ------------**Estilização do Header**---------- */
@@ -22,7 +20,6 @@
   background-color: hsl(0, 0%, 0%);
 }
 
-
 /*Definindo fonte padrão dos textos do site e zerando margem do site total*/
 * {
   margin: 0;
@@ -30,7 +27,6 @@
   scroll-behavior: smooth;
   box-sizing: border-box;
 }
-
 
 /* Defininfo a largura e retirando as margem do header  */
 .wrapper-partials {
@@ -286,9 +282,492 @@
   width: 1.5rem;
 }
 
+
+
+/*------------------Daqui Para baixo fica a estilização do SCROLL DE ROLAGEM GERAL--------------------------*/
+
+/* Estilizando o Botão de Scroll para o topo da pagina  */
+.scrollTop {
+  outline: none;
+  border: 0;
+  background-color: transparent;
+  width: 60px;
+  height: 60px;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  left: 0px;
+  bottom: 20px;
+  z-index: 999;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+}
+
+/* Estilizando quano ele ira aparacer  */
+.scrollTop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Estilizando a largura da imagem e fazendo a rotação dela  */
+.scrollTop img {
+  width: 50%;
+  transform: rotate(-90deg);
+}
+
+/* ------------**Estilização da pagina Index**---------- */
+
+/* ----**Estilização lado esquerdo da pagina */
+
+/* define os estilos das seções pai */
+.lado-esquerdo-pai,
+.lado-direito-pai {
+  box-sizing: border-box;
+  padding: 10px;
+  color: white;
+  background-color: aqua;
+  min-height: 100vh; /* Definindo a altura mínima como 100% da viewport */
+}
+
+/* Estilização do lado esquerdo */
+.lado-esquerdo-pai {
+  float: left;
+  width: 80%;
+  background-color: #031a64;
+  z-index: 2;
+}
+
+/* Estilização do lado direito */
+.lado-direito-pai {
+  float: left;
+  width: 20%;
+  height: auto;
+  background-color: #2c0e5e;
+}
+
+/* Limpar floats após as seções */
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* estilizando os titulos das divs maiores. Definindo margens, padding e cor de fundo */
+.titulo-destaque-index {
+  background-color: black;
+  border-radius: 0px 0px 15px 0px;
+  padding: 0.3rem;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* estiliza a lista para ficar resposivo e um ao lado do outro com display flex  */
+.lado-esquerdo-filho1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2rem;
+  color: white;
+}
+
+/*   Estiliza as listas netos a terem uma largura fixam margin e a coloração do fundo */
+.lado-esquerdo-neto1 {
+  background-color: black;
+  flex: 1;
+  min-width: 10rem; /* Defina a largura mínima que deseja para cada div item */
+  max-width: 50rem;
+  margin: 10px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Definindo o tamanho da fonte do titulo h1 do neto do lado esquerdo  */
+.lado-esquerdo-neto1 h1 {
+  font-size: 1rem;
+  color: yellow;
+  padding-top: 0.5rem;
+  padding-bottom: 0.3rem;
+}
+
+.lado-esquerdo-neto1 h1:hover {
+  color: red;
+}
+
+/* Definindo o tamanho da fonte do titulo h1 do neto do lado esquerdo  */
+.lado-esquerdo-neto1 p {
+  font-size: 0.8rem;
+  text-align: justify;
+  padding: 0.5rem;
+  color: white;
+}
+
+.lado-esquerdo-neto1 img {
+  width: 100%;
+}
+
+.lado-esquerdo-neto1 h3 {
+  font-size: 0.7rem;
+  padding-top: 0.3rem;
+  padding-right: 0.5rem;
+  color: red;
+  text-align: end;
+}
+
+.lado-esquerdo-neto1 a {
+  text-decoration: none;
+}
+
+
+
+
+
+
+/* Abaixo está a estilização do Zoom das imagens  ****/
+.zoomable-image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.zoomable-image {
+  max-width: 100%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.zoomable-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(39, 83, 141, 0.281);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.zoomable-image-container:hover .zoomable-image {
+  transform: scale(1.1);
+}
+
+.zoomable-image-container:hover .zoomable-image-overlay {
+  opacity: 1;
+}
+
+/* Efeito de filtro de imagem ao passar o mouse */
+.zoomable-image-container {
+  position: relative;
+  overflow: hidden;
+  transition: filter 0.3s ease-in-out;
+}
+
+.zoomable-image {
+  max-width: 100%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.zoomable-image-container:hover .zoomable-image {
+  transform: scale(1.1);
+}
+
+.zoomable-image-container:hover {
+  filter: brightness(1.3) saturate(2); /* Ajusta o brilho e a saturação */
+}
+
+
+.lado-esquerdo-neto2 {
+ background-color: black;
+}
+
+.lado-esquerdo-neto2 h2{
+  padding-top: 0.7rem;
+  padding-bottom: 0.5rem;
+  color: yellow;
+  font-size: 1.3rem;
+}
+
+.lado-esquerdo-neto2 h2:hover {
+  color: red;
+}
+
+.lado-esquerdo-neto2 h4{
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-right: 0.7rem;
+  text-align: end;
+  font-size: 0.8rem;
+  color: red;
+}
+
+.lado-esquerdo-neto2 p{
+  padding-top: 0.5rem;
+  padding-right: 0.5rem;
+  padding-bottom: 0.5rem;
+
+  font-size: 1rem;
+  text-align: justify;
+  color: white;
+}
+
+.image-principais-noticias {
+  width: 100%;
+  height: 100%;
+
+}
+
+.lado-esquerdo-filho2 img {
+  width: 100%;
+  height: 100%;
+
+
+}
+
+.lado-esquerdo-filho2  {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2rem;
+  color: white;
+}
+
+.lado-esquerdo-filho2 a {
+  text-decoration: none;
+}
+
+
+
+/* estiliza o lado esquerdo filho 2 com fundo, remoção da lista e com display flex */
+.lado-esquerdo-filho3 {
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+.lado-esquerdo-filho3  {
+width: 100%;
+}
+/*   estiliza o lado esquerdo neto 2 com uma padding interno na lateral esquerda  */
+.lado-esquerdo-neto2 {
+  padding-left: 1rem;
+}
+
+.button-ver-mais {
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+/* ----**Estilização lado direito da pagina */
+
+
+
+/*   deixando a div neto com os itens internos um do lado do outro e centralizado */
+.lado-direito-neto1 {
+  display: flex;
+  align-items: center;
+}
+
+/* defininfo o tamanho das imagens do lado dieito da pagina  */
+.lado-direito-neto1 img {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-right: 0.4rem;
+}
+
+/* definindo o tamanho dos texto do lado direito da pagina */
+.lado-direito-neto1 h1,
+h3 {
+  font-size: 0.8rem;
+}
+
+.lado-direito-neto1 button {
+  background-color: black;
+  border: 0;
+  padding: 0.3rem;
+}
+
+.temporada-lado-direito{
+  display: flex;
+}
+
+.temporada-lado-direito h1{
+  text-align:justify;
+}
+
+.temporada-lado-direito-image {
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+}
+
+/* --------------*** Estilização da pagina Da Noticia ***-------------- */
+
+/* definindo o tamanho e dando espaço na lateral do titulo */
+.titulo-noticia {
+  font-size: 1.5rem;
+  padding-left: 1rem;
+}
+
+/* deixando os icones de autor e data um do lado do outro e dando margin a eles */
+.sect-autor-data-pai {
+  display: flex;
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+}
+
+/* defindo o tamanho dos icones */
+.sect-autor-data-pai img {
+  width: 1rem;
+}
+
+/* definindo o tamanho dos textos do autor e data */
+.sect-autor-data-pai h2 {
+  padding-left: 0.5rem;
+  font-size: 1rem;
+}
+
+/* dando espaçamento interno nos textos e icones de autor e data */
+.sect-autor-data-filho {
+  display: flex;
+  padding-left: 1rem;
+}
+
+/* definindo o tamanho da imagem principal da noticia */
+.sect-capa-pagina-noticia img {
+  width: 95%;
+  margin-bottom: 2rem;
+}
+
+/* definindo o tamanho dos texto de descrição e dando margin em baixo */
+.sect-descricao {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* dando margim ao texto leia tambem  */
+.sect-leia-tambem-pai h1 {
+  margin-bottom: 1rem;
+}
+
+/* definindo o tamanho dos icones da sessão leia tambem */
+.sect-leia-tambem-pai img {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+}
+
+/* deixando os icones e textos da sessão leia tambem um ao lado do outro, dando margim e centralizando */
+.sect-leia-tambem-filho {
+  display: flex;
+  margin-bottom: 0.5rem;
+  align-items: center;
+}
+
+/* dando margin e dexando o texto e icones do texto veja mais um ao lado do outro */
+.sect-veja-mais {
+  display: flex;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* definindo o tamanho do icones veja mais */
+.sect-veja-mais img {
+  width: 1rem;
+}
+
+/* definindo o tamanho e cor da linha da pagina de noticia */
+.linha-noticia {
+  border-top: 3px solid black;
+}
+/* 
+deixando o logo e texto da resenha do autor um do lado do outro de dando uma margin */
+.sect-resenha-autor {
+  display: flex;
+  margin-top: 2rem;
+}
+
+/* definindo a largura do logo do autor */
+.sect-resenha-autor img {
+  width: 7rem;
+  height: 7rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+/* 
+/* ------------**Estilização do Footer**---------- */
+/* 
+.footer-index-maior {
+  background-color: black;
+  width: 100%;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-top: 1px solid #3a9faa;
+  padding: 1rem;
+}
+
+.footer-index {
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  justify-content: center;
+  justify-content: space-around;
+  justify-content: center;
+}
+
+.logo img {
+  width: 10rem;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 1rem;
+  flex-direction: row;
+  flex-flow: wrap;
+}
+
+.topicos-footer-index {
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  justify-content: center;
+  padding-bottom: 1rem;
+}
+
+.topicos-footer-index a {
+  text-decoration: none;
+  color: white;
+  list-style: none;
+  padding: 1rem;
+}
+
+.topicos-footer-index a:hover {
+  color: rgb(4, 248, 248);
+}
+
+.direitos-footer-index {
+  text-align: center;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  justify-content: center;
+}  */
+
+
+
+
+
 /*  -------------------- DAQUI PARA BAIXO FICA A ESTILIZAÇÃO DO HEADER MOBILE -------------------- */
 
 /* Retirando o espaçamento dos topicos do menu de navegação e minuindo os itens  */
+
+
+
+
 
 @media (max-width: 1115px) {
   .menu-partials li {
@@ -392,7 +871,7 @@
 
   /* zerando a margem da imagem do menu de navegação  */
   .nav-partials img {
-    margin-right: 0;
+    margin-right: 1rem;
   }
 
   /* Deixando a altura do menu de navegação em 100%  */
@@ -401,7 +880,76 @@
   }
 }
 
+@media (max-width: 663px) {
+
+  .lado-esquerdo-filho3{
+    display: grid;
+  }
+}
+
 @media (max-width: 530px) {
+  .lupa-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: inline;
+    padding: 0;
+    margin: 0;
+  }
+
+  .search-input {
+    display: none;
+    padding: 10px;
+    background-color: rgb(66, 65, 65);
+    padding: 3px;
+    color: white;
+    border-radius: 5px;
+    width: 21rem;
+    height: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .search-input input {
+    background-color: transparent;
+    width: 19rem;
+    height: 1.6rem;
+    border: 0;
+    color: white;
+  }
+
+  /* Remove o contorno ao clicar no elemento de entrada */
+  input:focus {
+    outline: none;
+  }
+
+  .button-l {
+    display: none;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .button-l button {
+    width: 2rem;
+    height: 2rem;
+    margin-left: -2rem;
+    background-color: transparent;
+    border: 0;
+  }
+
+  .partials-mobile-search-button {
+    display: flex;
+  }
+
+  .partials-mobile-search-button img {
+    width: 20px;
+    margin-top: -0.5rem;
+    cursor: pointer;
+  }
+
+  #toggle-partials-2:checked + label .search-input {
+    display: block;
+  }
+
   .icone-login-desk {
     display: none;
   }
@@ -418,7 +966,7 @@
 
   .toggle-partials-2-pai {
     position: relative;
-    left: 2rem;
+    left: 0.5rem;
   }
 
   .nav-partials label img {
@@ -485,401 +1033,18 @@
   }
 }
 
-/* ------------**Estilização do Footer**---------- */
+@media (max-width: 916px) {
+    /* tirando a coluna do lado direito da pagina */
+    .lado-direito-pai {
+      display: none;
+    }
 
-.footer-index-maior {
-  background-color: black;
-  width: 100%;
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-  border-top: 1px solid #3a9faa;
-  padding: 1rem;
+  /* deixando a coluna do lado esquerdo da pagina com 100% do espaço */
+  .lado-esquerdo-pai {
+    width: 100%;
+  }
 }
 
-.footer-index {
-  display: flex;
-  flex-direction: row;
-  flex-flow: wrap;
-  justify-content: center;
-  justify-content: space-around;
-  justify-content: center;
-}
-
-.logo img {
-  width: 10rem;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  padding-bottom: 1rem;
-  flex-direction: row;
-  flex-flow: wrap;
-}
-
-.topicos-footer-index {
-  display: flex;
-  flex-direction: row;
-  flex-flow: wrap;
-  justify-content: center;
-  padding-bottom: 1rem;
-}
-
-.topicos-footer-index a {
-  text-decoration: none;
-  color: white;
-  list-style: none;
-  padding: 1rem;
-}
-
-.topicos-footer-index a:hover {
-  color: rgb(4, 248, 248);
-}
-
-.direitos-footer-index {
-  text-align: center;
-  color: white;
-  display: flex;
-  flex-direction: row;
-  flex-flow: wrap;
-  justify-content: center;
-}
-
-/*------------------Daqui Para baixo fica a estilização do SCROLL DE ROLAGEM GERAL--------------------------*/
-
-/* Estilizando o Botão de Scroll para o topo da pagina  */
-.scrollTop {
-  outline: none;
-  border: 0;
-  background-color: transparent;
-  width: 60px;
-  height: 60px;
-  padding: 8px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  left: 0px;
-  bottom: 20px;
-  z-index: 999;
-  cursor: pointer;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.4s ease;
-}
-
-/* Estilizando quano ele ira aparacer  */
-.scrollTop.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Estilizando a largura da imagem e fazendo a rotação dela  */
-.scrollTop img {
-  width: 50%;
-  transform: rotate(-90deg);
-}
-.footer-index-maior {
-  background-color: black;
-  width: 100%;
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-  border-top: 1px solid #3a9faa;
-  padding: 1rem;
-}
-
-.footer-index {
-  display: flex;
-  flex-direction: row;
-  flex-flow: wrap;
-  justify-content: center;
-  justify-content: space-around;
-  justify-content: center;
-}
-
-.logo img {
-  width: 10rem;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  padding-bottom: 1rem;
-  flex-direction: row;
-  flex-flow: wrap;
-}
-
-.topicos-footer-index {
-  display: flex;
-  flex-direction: row;
-  flex-flow: wrap;
-  justify-content: center;
-  padding-bottom: 1rem;
-}
-
-.topicos-footer-index a {
-  text-decoration: none;
-  color: white;
-  list-style: none;
-  padding: 1rem;
-}
-
-.topicos-footer-index a:hover {
-  color: rgb(4, 248, 248);
-}
-
-.direitos-footer-index {
-  text-align: center;
-  color: white;
-  display: flex;
-  flex-direction: row;
-  flex-flow: wrap;
-  justify-content: center;
-}
-
-/*------------------Daqui Para baixo fica a estilização do SCROLL DE ROLAGEM GERAL--------------------------*/
-
-/* Estilizando o Botão de Scroll para o topo da pagina  */
-.scrollTop {
-  outline: none;
-  border: 0;
-  background-color: transparent;
-  width: 60px;
-  height: 60px;
-  padding: 8px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  left: 0px;
-  bottom: 20px;
-  z-index: 999;
-  cursor: pointer;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.4s ease;
-}
-
-/* Estilizando quano ele ira aparacer  */
-.scrollTop.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Estilizando a largura da imagem e fazendo a rotação dela  */
-.scrollTop img {
-  width: 50%;
-  transform: rotate(-90deg);
-}
-
-/* ------------**Estilização da pagina Index**---------- */
-
-/* ----**Estilização lado esquerdo da pagina */
-
-/* define os estilos das seções pai */
-.lado-esquerdo-pai,
-.lado-direito-pai {
-  box-sizing: border-box;
-  padding: 10px;
-  color: white;
-  background-color: aqua;
-
-  /* ajusta a altura para ocupar toda a altura da janela */
-}
-
-/* defini os estilos do lado esquerdo */
-.lado-esquerdo-pai {
-  float: left;
-  width: 80%;
-  background-color: #031a64;
-}
-
-/* defini os estilos do lado direito */
-.lado-direito-pai {
-  float: left;
-  width: 20%;
-  background-color: #2c0e5e;
-}
-
-/* Limpar floats após as seções */
-.clearfix::after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* estilizando os titulos das divs maiores. Definindo margens, padding e cor de fundo */
-.titulo-destaque-index {
-  background-color: black;
-  border-radius: 0px 0px 15px 0px;
-  padding: 0.3rem;
-  padding-left: 1rem;
-  margin-bottom: 1rem;
-}
-
-/* estiliza a lista para ficar resposivo e um ao lado do outro com display flex  */
-.lado-esquerdo-filho1 {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 2rem;
-  color: white;
-}
-
-/*   Estiliza as listas netos a terem uma largura fixam margin e a coloração do fundo */
-.lado-esquerdo-neto1 {
-  background-color: black;
-  flex: 1;
-  min-width: 10rem; /* Defina a largura mínima que deseja para cada div item */
-  max-width: 50rem;
-  margin: 10px;
-  text-align: center;
-}
-
-/* Definindo o tamanho da fonte do titulo h1 do neto do lado esquerdo  */
-.lado-esquerdo-neto1 h1 {
-  font-size: 1rem;
-}
-
-/* Definindo o tamanho da fonte do titulo h1 do neto do lado esquerdo  */
-.lado-esquerdo-neto1 p {
-  font-size: 0.8rem;
-}
-
-.lado-esquerdo-neto1 img {
-  width: 100%;
-}
-
-/* estiliza o lado esquerdo filho 2 com fundo, remoção da lista e com display flex */
-.lado-esquerdo-filho3 {
-  display: flex;
-
-}
-
-.lado-esquerdo-filho2 img {
-  width: 50%;
-}
-
-.lado-esquerdo-filho0 {
-  background-color: rgb(85, 83, 83);
-}
-
-/*   estiliza o lado esquerdo neto 2 com uma padding interno na lateral esquerda  */
-.lado-esquerdo-neto2 {
-  padding-left: 1rem;
-}
-
-/* ----**Estilização lado direito da pagina */
-
-/*   deixando a div neto com os itens internos um do lado do outro e centralizado */
-.lado-direito-neto1 {
-  display: flex;
-  align-items: center;
-}
-
-/* defininfo o tamanho das imagens do lado dieito da pagina  */
-.lado-direito-neto1 img {
-  width: 100%;
-}
-
-/* definindo o tamanho dos texto do lado direito da pagina */
-.lado-direito-neto1 h1,
-h3 {
-  font-size: 0.8rem;
-}
-
-/* --------------*** Estilização da pagina Da Noticia ***-------------- */
-
-/* definindo o tamanho e dando espaço na lateral do titulo */
-.titulo-noticia {
-  font-size: 1.5rem;
-  padding-left: 1rem;
-}
-
-/* deixando os icones de autor e data um do lado do outro e dando margin a eles */
-.sect-autor-data-pai {
-  display: flex;
-  margin-bottom: 1rem;
-  margin-top: 0.5rem;
-}
-
-/* defindo o tamanho dos icones */
-.sect-autor-data-pai img {
-  width: 1rem;
-}
-
-/* definindo o tamanho dos textos do autor e data */
-.sect-autor-data-pai h2 {
-  padding-left: 0.5rem;
-  font-size: 1rem;
-}
-
-/* dando espaçamento interno nos textos e icones de autor e data */
-.sect-autor-data-filho {
-  display: flex;
-  padding-left: 1rem;
-}
-
-/* definindo o tamanho da imagem principal da noticia */
-.sect-capa-pagina-noticia img {
-  width: 95%;
-  margin-bottom: 2rem;
-}
-
-/* definindo o tamanho dos texto de descrição e dando margin em baixo */
-.sect-descricao {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-/* dando margim ao texto leia tambem  */
-.sect-leia-tambem-pai h1 {
-  margin-bottom: 1rem;
-}
-
-/* definindo o tamanho dos icones da sessão leia tambem */
-.sect-leia-tambem-pai img {
-  width: 1rem;
-  height: 1rem;
-  margin-right: 0.5rem;
-}
-
-/* deixando os icones e textos da sessão leia tambem um ao lado do outro, dando margim e centralizando */
-.sect-leia-tambem-filho {
-  display: flex;
-  margin-bottom: 0.5rem;
-  align-items: center;
-}
-
-/* dando margin e dexando o texto e icones do texto veja mais um ao lado do outro */
-.sect-veja-mais {
-  display: flex;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-/* definindo o tamanho do icones veja mais */
-.sect-veja-mais img {
-  width: 1rem;
-}
-
-/* definindo o tamanho e cor da linha da pagina de noticia */
-.linha-noticia {
-  border-top: 3px solid black;
-}
-/* 
-deixando o logo e texto da resenha do autor um do lado do outro de dando uma margin */
-.sect-resenha-autor {
-  display: flex;
-  margin-top: 2rem;
-}
-
-/* definindo a largura do logo do autor */
-.sect-resenha-autor img {
-  width: 7rem;
-  height: 7rem;
-  margin-left: 2rem;
-  margin-right: 2rem;
-}
-/* -------------** Resposividade para Mobile e tablet ** ---------------- */
 
 /* Responsividade da pagina para aparelhos abaixo de 826 pixels */
 @media (max-width: 826px) {
@@ -889,15 +1054,7 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
     text-align: center;
   }
 
-  /* tirando a coluna do lado direito da pagina */
-  .lado-direito-pai {
-    display: none;
-  }
 
-  /* deixando a coluna do lado esquerdo da pagina com 100% do espaço */
-  .lado-esquerdo-pai {
-    width: 100%;
-  }
 }
 
 /* Responsividade da pagina para aparelhos abaixo de 545 pixels */
@@ -920,3 +1077,5 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
     padding-left: 1rem;
   }
 }
+
+

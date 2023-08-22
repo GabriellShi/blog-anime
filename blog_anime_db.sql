@@ -63,6 +63,7 @@ CREATE TABLE recomenda (
     titulo8 VARCHAR(150) NOT NULL,
     titulo9 VARCHAR(150) NOT NULL,
     titulo10 VARCHAR(150) NOT NULL,
+    titulo11 VARCHAR(150) NOT NULL,
     description TEXT(1000)  NOT NULL,
     description2 TEXT(1000)  NOT NULL,
     description3 TEXT(1000)  NOT NULL,
@@ -73,6 +74,7 @@ CREATE TABLE recomenda (
     description8 TEXT(1000)  NOT NULL,
     description9 TEXT(1000)  NOT NULL,
     description10 TEXT(1000)  NOT NULL,
+    description11 TEXT(1000)  NOT NULL,
     conecxao VARCHAR(100) NOT NULL,
     categoria VARCHAR(100) NOT NULL,
     image VARCHAR(500),
@@ -85,10 +87,12 @@ CREATE TABLE recomenda (
     image8 VARCHAR(500),
     image9 VARCHAR(500),
     image10 VARCHAR(500),
+    image11 VARCHAR(500),
     
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     tipo VARCHAR(150) NOT NULL
 );
+
 
 INSERT INTO recomenda (
 titulo, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10,
@@ -168,3 +172,5 @@ VALUES
 
 -- Lista todos os usuários
 SELECT * FROM lancamento;
+
+--  DELETE FROM lancamento WHERE id = 1;

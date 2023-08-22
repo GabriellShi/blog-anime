@@ -19,7 +19,9 @@ const detailsNewsController = {
   index: async (req, res) => {
     try {
       // Busque todas as notícias do banco de dados
-      const news = await News.findAll();
+      const news = await News.findAll({
+        order: [['created_at', 'DESC']]
+      });
 
       // Mapeie os URLs completos das imagens
       news.map((detailsNews) => {
