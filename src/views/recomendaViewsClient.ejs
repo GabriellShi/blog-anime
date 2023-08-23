@@ -6,21 +6,21 @@
   <% if (recomenda.length > 0) { %>
     <ul class="lado-esquerdo-filho1">
       <% for (let detailsRecomenda of recomenda) { %>
-        <li class="lado-esquerdo-neto1">
-          <div>
-            <img src="<%= detailsRecomenda.image %>" alt="Capa Noticia" />
-            <h1><%= detailsRecomenda.titulo %></h1>
-            <h3>data: <%= detailsRecomenda.created_at.toLocaleDateString() %></h3>
-            <p><%= detailsRecomenda.description %></p>
-            <button type="submit">
-              <a href="/detailsRecomenda/<%= detailsRecomenda.id %>">VER MAIS</a>
-            </button>
+      <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
+        <a href="/detailsRecomenda/<%= detailsRecomenda.id %>">
+          <div class="zoomable-image-container">
+            <img class="zoomable-image" src="<%= detailsRecomenda.image %>" alt="Capa Noticia" />
+            <div class="zoomable-image-overlay"></div>
           </div>
-        </li>
+          <h1><%= detailsRecomenda.titulo %></h1>
+          <h3>Data: <%= detailsRecomenda.created_at.toLocaleDateString() %></h3>
+          <p><%= detailsRecomenda.description.substring(0, 298) %>...</p>
+
+        </a>
+      </li>
+      <% } %>
       <% } %>
     </ul>
-  <% } else { %>
-    <h2>Nenhuma Recomenda Encontrada</h2>
-  <% } %>
-  
+
+
 </main>

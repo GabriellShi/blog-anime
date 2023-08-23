@@ -366,6 +366,11 @@
   margin-bottom: 1rem;
 }
 
+.titulo-destaque-index2 {
+  margin-top: 3rem;
+}
+
+
 /* estiliza a lista para ficar resposivo e um ao lado do outro com display flex  */
 .lado-esquerdo-filho1 {
   display: flex;
@@ -373,17 +378,19 @@
   justify-content: center;
   margin-bottom: 2rem;
   color: white;
+  min-width: 18rem; /* Defina a largura mínima que deseja para cada div item */
+
 }
 
 /*   Estiliza as listas netos a terem uma largura fixam margin e a coloração do fundo */
 .lado-esquerdo-neto1 {
   background-color: black;
   flex: 1;
-  min-width: 10rem; /* Defina a largura mínima que deseja para cada div item */
-  max-width: 50rem;
+  min-width: 18rem; /* Defina a largura mínima que deseja para cada div item */
+  max-width: 21rem;
   margin: 10px;
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 /* Definindo o tamanho da fonte do titulo h1 do neto do lado esquerdo  */
@@ -418,12 +425,44 @@
   text-align: end;
 }
 
+
 .lado-esquerdo-neto1 a {
   text-decoration: none;
 }
 
+.lado-direito-subneto1 div {
+  background-color: black;
+}
+
+.lado-direito-neto1  {
+  border: 0;
+}
+
+.lado-direito-neto5 button{
+  margin-bottom: 20rem;
+}
+.lado-esquerdo-neto5 a {
+  background-color: black;
+}
+
+.lado-esquerdo-neto5 a {
+  text-decoration: none;
+  color: yellow;
+}
+
+.lado-esquerdo-neto5 a:hover {
+  color: red;
+}
+
+.lado-esquerdo-neto5 h3 {
+  padding-top: 0.5rem;
+  color: white;
+}
 
 
+.lado-esquerdo-neto6  a{
+  padding: 0.3rem;
+}
 
 
 
@@ -577,6 +616,10 @@ width: 100%;
   padding-right: 0.4rem;
 }
 
+.manga-link:hover {
+  border: 2px solid yellow;
+}
+
 /* definindo o tamanho dos texto do lado direito da pagina */
 .lado-direito-neto1 h1,
 h3 {
@@ -589,8 +632,14 @@ h3 {
   padding: 0.3rem;
 }
 
+.lado-direito-neto1 button:hover {
+  border: 2px solid yellow;
+
+}
+
 .temporada-lado-direito{
   display: flex;
+  margin-bottom: 1rem;
 }
 
 .temporada-lado-direito h1{
@@ -601,6 +650,7 @@ h3 {
   width: 100%;
   display: flex;
   align-items: center;
+
 
 }
 

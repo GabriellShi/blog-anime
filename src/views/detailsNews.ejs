@@ -73,9 +73,9 @@
   <section class="lado-direito-pai">
     <h1 class="titulo-destaque-index">ANIME</h1>
 
-   <ul>
+    <ul class="lado-direito-filho1">
       <% for (let anime of tipoAnime) { %>
-        <li class="lado-esquerdo-neto1 lado-direito-neto1">
+        <li class="lado-esquerdo-neto5 lado-direito-neto1">
           <button type="submit">
             <% if (anime.contentType === 'News') { %>
               <a href="/detailsNews/<%= anime.id %>">
@@ -84,12 +84,14 @@
             <% } else if (anime.contentType === 'Temporada') { %>
               <a href="/detailsTemporada/<%= anime.id %>">
             <% } %>
-            <div>
-              <img src="<%= anime.image %>" alt="Capa Notica" />
-            </div>
-            <div>
-              <h1><%= anime.titulo %></h1>
-              <h3><%= new Date(anime.created_at).toLocaleDateString('pt-BR') %></h3>
+            <div class="temporada-lado-direito">
+              <div class="temporada-lado-direito-image">
+                <img src="<%= anime.image %>" alt="Capa Notica" />
+              </div>
+              <div>
+                <h1><%= anime.titulo %></h1>
+                <h3><%= new Date(anime.created_at).toLocaleDateString('pt-BR') %></h3>
+              </div>
             </div>
             <% if (anime.contentType === 'News') { %>
               </a>
@@ -109,27 +111,45 @@
     
     
 
-    <h1 class="titulo-destaque-index">MANGA</h1>
+    <h1 class="titulo-destaque-index titulo-destaque-index2">MANGA</h1>
 
-    <% if (tipoMangas.length > 0) { %>
-      <ul>
-        <% for (let mangas of tipoMangas) { %>
-          <li class="lado-esquerdo-neto1 lado-direito-neto1">
-            <a class="manga-link" href="/detailsNews/<%= mangas.id %>">
-              <div>
-                <img src="<%= mangas.image %>" alt="Capa Notica" />
+    <% if (tipoAnime.length > 0) { %>
+      <ul class="lado-direito-filho1">
+        <% for (let anime of tipoAnime) { %>
+          <li class="lado-esquerdo-neto5 lado-esquerdo-neto6 lado-direito-neto1">
+            <button type="submit">
+              <% if (anime.contentType === 'News') { %>
+                <a href="/detailsNews/<%= anime.id %>">
+              <% } else if (anime.contentType === 'Recomenda') { %>
+                <a href="/detailsRecomenda/<%= anime.id %>">
+              <% } else if (anime.contentType === 'Temporada') { %>
+                <a href="/detailsTemporada/<%= anime.id %>">
+              <% } %>
+              <div class="temporada-lado-direito">
+                <div class="temporada-lado-direito-image">
+                  <img src="<%= anime.image %>" alt="Capa Notica" />
+                </div>
+                <div>
+                  <h1><%= anime.titulo %></h1>
+                  <h3><%= new Date(anime.created_at).toLocaleDateString('pt-BR') %></h3>
+                </div>
               </div>
-              <div>
-                <h1><%= mangas.titulo %></h1>
-                <h3><%= new Date(mangas.created_at).toLocaleDateString('pt-BR') %></h3>
-              </div>
-            </a>
+              <% if (anime.contentType === 'News') { %>
+                </a>
+              <% } else if (anime.contentType === 'Recomenda') { %>
+                </a>
+              <% } else if (anime.contentType === 'Temporada') { %>
+                </a>
+              <% } %>
+            </button>
           </li>
         <% } %>
       </ul>
     <% } else { %>
-      <h2>Nenhum manga Encontrado</h2>
+      <h2>Nenhum anime Encontrado</h2>
     <% } %>
+    
+    
     
   </section>
 </main>

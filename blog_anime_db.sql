@@ -23,12 +23,11 @@ CREATE TABLE news (
     
 
 -- Insere um ou mais usuário
-INSERT INTO news (titulo, description, conecxao, categoria, image)
+INSERT INTO news (titulo, description, conecxao, categoria, image, tipo)
 VALUES 
-	("naruto vem ai", "foi anunciado a data", "hNaruto", "novidade", "c81a386493658f2006dc.png"),
-    ("Sasuke vem ai", "A data foi anunciado ", "Sasuke", "novidade", "c81a386493658f2006dc.png");
 
-
+('Oshi no Ko – Mães proíbem que seus filhos leiam o mangá', 'Não é de hoje que o anime e mangá de Oshi no Ko causa controvérsias pelo mundo, no entanto a reviravolta dessa vez, uma imagem de um aviso na biblioteca de um centro infantil no Japão, tornando viral nas mídias sociais.  Oshi no Ko – Mães proíbem que seus filhos leiam o mangá Confira:  A imagem publicada mostra um aviso: Infeliz notícia. Recebemos reclamações sobre a presença do mangá “Oshi no Ko” neste centro. A história parece ser projetada para meninos e meninas em idade escolar e acima. Lamentamos não poder fornecer estes livros agora.  A franquia “ Oshi no Ko ” tornou-se o centro das atenções devido às diferentes reações que gerou na comunidade. A série de mangá, escrita por Aka Akasaka e ilustrada por Mengo Yokoyari , conta a história dos filhos renascidos de um ídolo adolescente e apresenta temas complexos e maduros. Embora tenha sido muito bem recebido pelo público adulto, sua presença em uma biblioteca destinada a crianças pequenas gerou debates.', 'Oshi no Ko', 'Novidades', '1c8f4edc5a0af315ae0c.jpg', 'Animes'
+);
 -- Lista todos os usuários
 SELECT * FROM news;
 
@@ -136,14 +135,14 @@ CREATE TABLE temporada (
 );
 
 INSERT INTO temporada (
-titulo, description, conecxao, categoria, genero1, genero2, genero3, estreia, streaming, image
+titulo, description, conecxao, categoria, genero1, genero2, genero3, estreia, streaming, image, tipo
 )
 
 VALUES 
-	(
-"tate no yusha", "na luta pelos mundos", "tate", "temporada", "ação", "aventura", "drama", "2023", "desney", "1d8770ecb20c7c2248e6.png"
-    );
 
+
+( 'Hunter x Hunter nova tempora', 'Um rumor corre forte no twitter do usuário @Tsumize, que ao que tudo indica, Hunter x Hunter vai ganhar um novo projeto em anime. De acordo com o vazamento, a Shueisha decidiu em março deste ano a condução e preparativos para o novo anime.  Alerta de Rumor – Hunter x Hunter terá novo anime', 'Hunter x Hunter', 'Temporadas', 'aventura', 'aventura', 'aventura', '392353c51e859ceb25bb.jpe', '2023-08-23', 'Crunchyoul', 'Mangas'
+);
 -- Lista todos os usuários
 SELECT * FROM temporada;
 

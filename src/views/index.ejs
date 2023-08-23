@@ -73,7 +73,7 @@
     <% if (temporadaNews.length > 0) { %>
       <ul class="lado-direito-filho1">
         <% for (let detailsTemporada of temporadaNews) { %>
-          <li class="lado-esquerdo-neto1 lado-direito-neto1">
+          <li class="lado-esquerdo-neto5 lado-direito-neto1">
             <button type="submit">
               <a href="/detailsTemporada/<%= detailsTemporada.id %>">
             <div class="temporada-lado-direito">
@@ -95,12 +95,12 @@
       <h2>Nenhuma Notícia de Temporada Encontrada</h2>
     <% } %>
 
-    <h1 class="titulo-destaque-index">CURIOSIDADES</h1>
+    <h1 class="titulo-destaque-index titulo-destaque-index2">CURIOSIDADES</h1>
 
     <% if (curiosidadeNews.length > 0) { %>
       <ul class="lado-direito-filho1">
         <% for (let curiosidade of curiosidadeNews) { %>
-          <li class="lado-esquerdo-neto1 lado-direito-neto1">
+          <li class="lado-esquerdo-neto5 lado-direito-neto1">
             <button type="submit">
               <a href="/detailsNews/<%= curiosidade.id %>">
             <div class="temporada-lado-direito">
@@ -108,7 +108,7 @@
                 <img src="<%= curiosidade.image %>" alt="Capa Notica" />
               </div>
               <div>
-                <h1><%= curiosidade.titulo %></h1>
+                <h1><%= curiosidade.titulo.substring(0, 48) %></h1>
                 <h3>data: <%= new Date(curiosidade.created_at).toLocaleDateString() %></h3>
               </div>
             </div>

@@ -70,6 +70,7 @@ const indexController = {
         curiosidadeNews,
         temporadaNews,
         
+        
       });
     } catch (error) {
       console.error(error);
@@ -105,7 +106,9 @@ const indexController = {
 
   recomendaViewsClient: async (req, res) => {
     try {
-      const recomenda = await Recomenda.findAll();
+      const recomenda = await Recomenda.findAll({
+        order: [['created_at', 'DESC']]
+      });
   
       recomenda.map((detailsRecomenda) => {
         if (detailsRecomenda.image) {

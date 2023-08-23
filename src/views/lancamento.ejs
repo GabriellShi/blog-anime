@@ -8,12 +8,14 @@
     "Sexta", "Sábado"]; %> <% for (const dia of diasDaSemana) { %>
     <button class="dia-button" data-dia="<%= dia %>"><%= dia %></button>
     <% } %>
+
   </div>
 
   <div class="lancamentos-container">
     <!-- Aqui vamos inserir os lançamentos dinamicamente usando JavaScript -->
   </div>
 </main>
+
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     const diasButtons = document.querySelectorAll(".dia-button");

@@ -15,6 +15,8 @@ const detailsRecomendaController = {
   // esse codigo renderiza a tabela 'users' dos usuarios
   // /Pode retornar uma página ou não
   index: async (req, res) => {
+
+    const { id } = req.params;
     try {
       // Busque todas as notícias do banco de dados
       const recomenda = await Recomenda.findAll({
@@ -27,6 +29,8 @@ const detailsRecomendaController = {
           detailsRecomenda.image = files.base64Encode(upload.path + detailsRecomenda.image);
         }
       });
+
+
 
       return res.render("recomenda", {
         title: "Lista de Notícias",
@@ -49,15 +53,10 @@ show: async (req, res) => {
   try {
     const { id } = req.params;
 
-    // Busque os detalhes da notícia no banco de dados pelo ID
+    // Busque os detalhes da notícia no banco de dados pelo ID ssssssssssssssssss
     const detailsRecomenda = await Recomenda.findByPk(id);
 
-    if (!detailsRecomenda) {
-      return res.render("error", {
-        title: "Ops!",
-        message: "Detalhes da notícia não encontrado",
-      });
-    }
+
 
     // Converte a imagem em base64
     if (detailsRecomenda.image) {detailsRecomenda.image = files.base64Encode(upload.path + detailsRecomenda.image); }
@@ -157,6 +156,13 @@ show: async (req, res) => {
       
     });
 
+    if (!detailsRecomenda) {
+      return res.render("error", {
+        title: "Ops!",
+        message: "Detalhes da notícia não encontrado",
+      });
+    }
+
     return res.render("detailsRecomenda", {
       title: "Visualizar notícia",
       recomenda: detailsRecomenda,
@@ -182,11 +188,32 @@ show: async (req, res) => {
        description, description2, description3, description4, description5, description6, description7, 
        description8, description9, description10, description11,
         conecxao, categoria, tipo} = req.body;
-    try {
-      let filename = "default-image.jpeg";
-      if (req.file) {
-        filename = req.file.filename;
-      }
+        const { image, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11 } = req.files;
+
+        try {
+            let filename1 = "user-default.jpeg";
+            let filename2 = "user-default.jpeg";
+            let filename3 = "user-default.jpeg";
+            let filename4 = "user-default.jpeg";
+            let filename5 = "user-default.jpeg";
+            let filename6 = "user-default.jpeg";
+            let filename7 = "user-default.jpeg";
+            let filename8 = "user-default.jpeg";
+            let filename9 = "user-default.jpeg";
+            let filename10 = "user-default.jpeg";
+            let filename11 = "user-default.jpeg";
+
+            if (image) { filename1 = image[0].filename; }
+            if (image2) { filename2 = image2[0].filename; }
+            if (image3) { filename3 = image3[0].filename; }
+            if (image4) { filename4 = image4[0].filename; }
+            if (image5) { filename5 = image5[0].filename; }
+            if (image6) { filename6 = image6[0].filename; }
+            if (image7) { filename7 = image7[0].filename; }
+            if (image8) { filename8 = image8[0].filename; }
+            if (image9) { filename9 = image9[0].filename; }
+            if (image10) { filename10 = image10[0].filename; }
+            if (image11) { filename11 = image11[0].filename; }
 
       const novaNews = await Recomenda.create({
         titulo, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, titulo11,
@@ -197,9 +224,9 @@ show: async (req, res) => {
         categoria,
         tipo,
 
-        image: filename, image2: filename, image3: filename, image4: filename, image5: filename, 
-        image6: filename, image7: filename, image8: filename, image9: filename, image10: filename, image11: filename,
-      });
+        image: filename1, image2: filename2, image3: filename3, image4: filename4, image5: filename5,
+        image6: filename6, image7: filename7, image8: filename8, image9: filename9, image10: filename10, image11: filename11,
+               });
 
       res.redirect("/detailsRecomenda");
     } catch (error) {
@@ -248,46 +275,46 @@ show: async (req, res) => {
   
 
   // Executa a atualização
-  update: async (req, res) => {
-    const { id } = req.params;
-    const {  titulo, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10,  titulo11,
-      description, description2, description3, description4, description5, description6, description7, 
-      description8, description9, description10, description11,
-       conecxao, categoria, tipo } = req.body;
+update: async (req, res) => {
+  const { id } = req.params;
+  const {
+    titulo, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, titulo11,
+    description, description2, description3, description4, description5, description6, description7,
+    description8, description9, description10, description11,
+    conecxao, categoria, tipo
+  } = req.body;
 
-    try {
-      const newsToUpdate = await Recomenda.findByPk(id);
+  try {
+    const newsToUpdate = await Recomenda.findByPk(id);
 
-      let filename = newsToUpdate.image1;
-      if (req.file) {
-        filename = req.file.filename;
-      }
-
-      await newsToUpdate.update({
-        titulo, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, titulo11,
-        description, description2, description3, description4, description5, description6, description7, 
-        description8, description9, description10, description11,
-
-        conecxao,
-        categoria,
-        tipo,
-
-        image: filename, image2: filename, image3: filename, image4: filename, image5: filename, 
-        image6: filename, image7: filename, image8: filename, image9: filename, image10: filename,  image11: filename,
-      });
-
-      return res.render("success", {
-        title: "Notícia Atualizada",
-        message: `Notícia ${newsToUpdate.titulo} foi atualizada`,
-      });
-    } catch (error) {
-      console.error(error);
-      return res.render("error", {
-        title: "Erro",
-        message: "Erro ao atualizar notícia",
-      });
+    let filename = newsToUpdate.image; // Altere de image1 para image
+    if (req.file) {
+      filename = req.file.filename;
     }
-  },
+
+    await newsToUpdate.update({
+      titulo, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, titulo11,
+      description, description2, description3, description4, description5, description6, description7,
+      description8, description9, description10, description11,
+      conecxao,
+      categoria,
+      tipo,
+      image: filename, image2: filename, image3: filename, image4: filename, image5: filename,
+      image6: filename, image7: filename, image8: filename, image9: filename, image10: filename, image11: filename,
+    });
+
+    return res.render("success", {
+      title: "Notícia Atualizada",
+      message: `Notícia ${newsToUpdate.titulo} foi atualizada`,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.render("error", {
+      title: "Erro",
+      message: "Erro ao atualizar notícia",
+    });
+  }
+},
 
   delete: async (req, res) => {
     const { id } = req.params;
