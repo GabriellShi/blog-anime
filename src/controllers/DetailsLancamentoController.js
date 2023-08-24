@@ -35,6 +35,7 @@ const detailsLancamentoController = {
       return res.render("lancamento", {
         title: "Lista de Notícias",
         lancamento,
+
       });
     } catch (error) {
       console.error(error);

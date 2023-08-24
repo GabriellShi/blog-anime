@@ -4,8 +4,8 @@
   <h1>Calendario</h1>
 
   <div class="dias-da-semana-buttons">
-    <% const diasDaSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta",
-    "Sexta", "Sábado"]; %> <% for (const dia of diasDaSemana) { %>
+    <% const diasDaSemana = ["Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira",
+    "Sexta-Feira", "Sábado"]; %> <% for (const dia of diasDaSemana) { %>
     <button class="dia-button" data-dia="<%= dia %>"><%= dia %></button>
     <% } %>
 
@@ -40,9 +40,15 @@
                     <h3>${detailsLancamento.horario}</h3>
                     <p>${detailsLancamento.streaming}</p>
                   </td>
+
                 </tr>
               </table>
+              <a href="/detailsLancamento/ ${detailsLancamento.id}">Visualizar</a>
+                  <a href="/detailsLancamento/edit/ ${detailsLancamento.id}">Editar</a>
+                  <a href="/detailsLancamento/delete/ ${detailsLancamento.id}">Excluir</a>
+
             `;
+            
           });
         } else {
           lancamentosHTML = "<h2>Nenhum Lançamento Encontrado</h2>";

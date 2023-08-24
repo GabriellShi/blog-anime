@@ -10,7 +10,10 @@ const db = require("../config/sequelize");
 const calendarioAnimesController = {
     // Pode retornar uma página ou não
     calendarioAnimes: async (req, res) => {
-      const lancamento = await Lancamento.findAll();
+      const lancamento = await Lancamento.findAll({
+        order: [['created_at', 'DESC']]
+
+      });
 
       // Mapeie os URLs completos das imagens
       lancamento.map((detailsLancamento) => {
