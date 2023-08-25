@@ -24,7 +24,7 @@ const calendarioAnimesController = {
         }
       });
       return res.render("calendarioAnimes", {
-        title: "Pagina de calendarioAnimes" ,
+        title: "Calendario" ,
         lancamento, 
       });
     },

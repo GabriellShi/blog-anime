@@ -35,6 +35,11 @@ const Temporada = db.define(
         allowNull: false 
     },
 
+    image2:
+    { type: Sequelize.DataTypes.STRING(500), 
+       allowNull: false 
+   },
+
     genero1: {
         type: Sequelize.DataTypes.STRING(100),
         allowNull: false,
@@ -61,6 +66,11 @@ const Temporada = db.define(
       },
 
       tipo: {
+        type: Sequelize.DataTypes.STRING(100),
+        allowNull: false,
+      },
+
+      estacao: {
         type: Sequelize.DataTypes.STRING(100),
         allowNull: false,
       },

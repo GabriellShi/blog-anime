@@ -157,12 +157,13 @@ show: async (req, res) => {
     });
 
     return res.render("detailsNews", {
-      title: "Visualizar notícia",
+      title: detailsNews.titulo, // Use o título da notícia como título da guia do navegador
       news: detailsNews,
       detailsNews,
       tipoAnime,
       tipoMangas,
     });
+    
   } catch (error) {
     console.error(error);
     return res.status(500).render("error", {

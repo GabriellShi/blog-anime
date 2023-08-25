@@ -67,18 +67,19 @@
 
   </section>
 
+
   <section class="lado-direito-pai">
     <h1 class="titulo-destaque-index">TEMPORADAS</h1>
 
     <% if (temporadaNews.length > 0) { %>
       <ul class="lado-direito-filho1">
-        <% for (let detailsTemporada of temporadaNews) { %>
+        <% for (let detailsTemporada of temporadaNews.slice(0, 5)) { %>
           <li class="lado-esquerdo-neto5 lado-direito-neto1">
             <button type="submit">
               <a href="/detailsTemporada/<%= detailsTemporada.id %>">
             <div class="temporada-lado-direito">
               <div class="temporada-lado-direito-image">
-                <img src="<%= detailsTemporada.image %>" alt="Capa Notica" />
+                <img src="<%= detailsTemporada.image2 %>" alt="Capa Notica" />
               </div>
               <div>
                 

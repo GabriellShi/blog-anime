@@ -1,17 +1,43 @@
 <%- include("./partials/headAdm") %> <%- include("./partials/headerAdm") %>
 
-<h1 class="titulo-news-create">Editar Noticia</h1>
+<main class="form-news-create main-news-adm">
+  <h1 class="titulo-news-create">Editar Noticia</h1>
 
 <main class="form-news-create">
-  <form action="/detailsNews/edit/<%= news.id %>" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="_method" value="POST">
-    <input class="input-form" type="text" name="titulo" placeholder="Titulo" value="<%= news.titulo %>">
-    <input class="input-form" type="text" name="description" placeholder="Descrição" value="<%= news.description %>">
-    <input class="input-form" type="text" name="conecxao" placeholder="Conexão" value="<%= news.conecxao %>">
-    <input class="input-form" type="text" name="categoria" placeholder="Categoria" value="<%= news.categoria %>">
-    <input class="input-form" type="file" name="image" value="<%= news.image %>">
-    <img src="<%= detailsNews.image %>" alt="Imagem" />
 
-    <button type="submit">Salvar Edições</button>
-  </form>
+  <form action="/detailsNews/edit/<%= news.id %>" method="post" enctype="multipart/form-data" >
+    <input type="hidden" name="_method" value="POST">
+    <label for="">Titulo</label>
+    <input class="input-form" type="text" name="titulo" placeholder="Titulo" value=" <%= news.titulo %>">
+    
+    <label for="">Descrição</label>
+    <input class="input-form" type="text" name="description" placeholder="Descrição" value="  <%= news.description %>">
+    
+    <label for="">Conexão</label>
+    <input class="input-form" type="text" name="conecxao" placeholder="Conexão" value=" <%= news.conecxao %>">
+
+    <label for="">Categoria</label>
+    <select class="input-form" name="categoria">
+        <option value="" disabled selected>Categoria:</option>
+        <option value="Recomendações" <%= news.categoria === "Recomendações" ? "selected" : "" %>>Recomendações</option>
+        <option value="Novidades" <%= news.categoria === "Novidades" ? "selected" : "" %>>Novidades</option>
+        <option value="Temporadas" <%= news.categoria === "Temporadas" ? "selected" : "" %>>Temporadas</option>
+        <option value="Curiosidades" <%= news.categoria === "Curiosidades" ? "selected" : "" %>>Curiosidades</option>
+    </select>
+    
+    <label for="">Tipo</label>
+    <select class="input-form" name="tipo">
+        <option value="" disabled selected>Tipo:</option>
+        <option value="Animes" <%= news.tipo === "Animes" ? "selected" : "" %>>Animes</option>
+        <option value="Mangas" <%= news.tipo === "Mangas" ? "selected" : "" %>>Mangas</option>
+    </select>
+    
+    <label for="">Imagem</label>
+      <input class="input-form" type="file" name="image" value="<%= news.image %>">
+    <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
+      <img src="<%= detailsNews.image %>" alt="Imagem" />
+    </li>
+
+    <button type="submit"> Criar Noticia </button>
+</form> 
 </main>

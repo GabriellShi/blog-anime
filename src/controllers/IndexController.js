@@ -48,6 +48,12 @@ const indexController = {
         }
       });
 
+      temporadaNews.map((detailsTemporada) => {
+        if (detailsTemporada.image2) {
+          detailsTemporada.image2 = files.base64Encode(upload.path + detailsTemporada.image2);
+        }
+      });
+
       const curiosidadeNews = await News.findAll({
         where: {
           categoria: "Curiosidades"
@@ -63,7 +69,7 @@ const indexController = {
         }
       });
       res.render('index', {
-        title: 'Seu título aqui',
+        title: 'Go Geek',
         mergedData,
         News,
         Recomenda,
@@ -91,7 +97,7 @@ const indexController = {
       });
   
       return res.render("temporadaViewsClient", {
-        title: "Lista de Temporadas",
+        title: "Temporadas",
         temporada, // Certifique-se de passar a variável temporada para a renderização
       });
     } catch (error) {
@@ -117,7 +123,7 @@ const indexController = {
       });
   
       return res.render("recomendaViewsClient", {
-        title: "Lista de Recomenda",
+        title: "Recomendações",
         recomenda, // Certifique-se de passar a variável temporada para a renderização
       });
     } catch (error) {

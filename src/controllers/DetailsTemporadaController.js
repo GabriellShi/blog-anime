@@ -149,7 +149,7 @@ show: async (req, res) => {
     });
 
     return res.render("detailsTemporada", {
-      title: "Visualizar notícia",
+      title: detailsTemporada.titulo,
       temporada: detailsTemporada,
       detailsTemporada,
       tipoAnime,
@@ -169,12 +169,16 @@ show: async (req, res) => {
     return res.render("temporada-create", { title: "Cadastrar Noticia" });
   },
   store: async (req, res) => {
-    const { titulo, description, conecxao, categoria, genero1, genero2, genero3, estreia, streaming, tipo } = req.body;
+    const { titulo, description, conecxao, categoria, genero1, genero2, genero3, estreia, streaming, tipo, estacao } = req.body;
+    const { image, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11 } = req.files;
+
     try {
-      let filename = "default-image.jpeg";
-      if (req.file) {
-        filename = req.file.filename;
-      }
+        let filename1 = "user-default.jpeg";
+        let filename2 = "user-default.jpeg";
+
+        if (image) { filename1 = image[0].filename; }
+        if (image2) { filename2 = image2[0].filename; }
+
 
       const novaNews = await Temporada.create({
         titulo,
@@ -187,7 +191,11 @@ show: async (req, res) => {
         genero3, 
         estreia, 
         streaming,
-        image: filename,
+        estacao,
+
+        image: filename1, 
+        image2: filename2, 
+             
       });
 
       res.redirect("/detailsTemporada");
@@ -239,15 +247,15 @@ show: async (req, res) => {
   // Executa a atualização
   update: async (req, res) => {
     const { id } = req.params;
-    const { titulo, description, conecxao, categoria, genero1, genero2, genero3, estreia, streaming, tipo } = req.body;
+    const { titulo, description, conecxao, categoria, genero1, genero2, genero3, estreia, streaming, tipo, estacao } = req.body;
 
     try {
-      const newsToUpdate = await Temporada.findByPk(id);
+      let filename1 = "user-default.jpeg";
+      let filename2 = "user-default.jpeg";
 
-      let filename = newsToUpdate.image;
-      if (req.file) {
-        filename = req.file.filename;
-      }
+      if (image) { filename1 = image[0].filename; }
+      if (image2) { filename2 = image2[0].filename; }
+
 
       await newsToUpdate.update({
         titulo,
@@ -260,7 +268,9 @@ show: async (req, res) => {
         genero3, 
         estreia, 
         streaming,
-        image: filename,
+        estacao,
+        image: filename1, 
+        image2: filename2, 
       });
 
       return res.render("success", {

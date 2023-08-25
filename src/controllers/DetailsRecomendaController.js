@@ -164,7 +164,7 @@ show: async (req, res) => {
     }
 
     return res.render("detailsRecomenda", {
-      title: "Visualizar notícia",
+      title: detailsRecomenda.titulo,
       recomenda: detailsRecomenda,
       detailsRecomenda,
       tipoAnime,
@@ -253,10 +253,19 @@ show: async (req, res) => {
         });
       }
   
-      // Converte a imagem em base64
-      if (detailsRecomenda.image) {
-        detailsRecomenda.image = files.base64Encode(upload.path + detailsRecomenda.image);
-      }
+     // Converte a imagem em base64
+     if (detailsRecomenda.image) {detailsRecomenda.image = files.base64Encode(upload.path + detailsRecomenda.image); }
+     if (detailsRecomenda.image2) {detailsRecomenda.image2 = files.base64Encode(upload.path + detailsRecomenda.image2); }
+     if (detailsRecomenda.image3) {detailsRecomenda.image3 = files.base64Encode(upload.path + detailsRecomenda.image3); }
+     if (detailsRecomenda.image4) {detailsRecomenda.image4 = files.base64Encode(upload.path + detailsRecomenda.image4); }
+     if (detailsRecomenda.image5) {detailsRecomenda.image5 = files.base64Encode(upload.path + detailsRecomenda.image5); }
+     if (detailsRecomenda.image6) {detailsRecomenda.image6 = files.base64Encode(upload.path + detailsRecomenda.image6); }
+     if (detailsRecomenda.image7) {detailsRecomenda.image7 = files.base64Encode(upload.path + detailsRecomenda.image7); }
+     if (detailsRecomenda.image8) {detailsRecomenda.image8 = files.base64Encode(upload.path + detailsRecomenda.image8); }
+     if (detailsRecomenda.image9) {detailsRecomenda.image9 = files.base64Encode(upload.path + detailsRecomenda.image9); }
+     if (detailsRecomenda.image10) {detailsRecomenda.image10 = files.base64Encode(upload.path + detailsRecomenda.image10); }
+     if (detailsRecomenda.image11) {detailsRecomenda.image11 = files.base64Encode(upload.path + detailsRecomenda.image11); }
+ 
   
       return res.render("recomenda-edit", {
         title: "Editar Notícia",
@@ -277,30 +286,50 @@ show: async (req, res) => {
   // Executa a atualização
 update: async (req, res) => {
   const { id } = req.params;
-  const {
-    titulo, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, titulo11,
-    description, description2, description3, description4, description5, description6, description7,
+  const {titulo, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, titulo11,
+    description, description2, description3, description4, description5, description6, description7, 
     description8, description9, description10, description11,
-    conecxao, categoria, tipo
-  } = req.body;
+     conecxao, categoria, tipo} = req.body;
 
-  try {
-    const newsToUpdate = await Recomenda.findByPk(id);
+     const { image, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11 } = req.files;
 
-    let filename = newsToUpdate.image; // Altere de image1 para image
-    if (req.file) {
-      filename = req.file.filename;
-    }
+     try {
+         let filename1 = "user-default.jpeg";
+         let filename2 = "user-default.jpeg";
+         let filename3 = "user-default.jpeg";
+         let filename4 = "user-default.jpeg";
+         let filename5 = "user-default.jpeg";
+         let filename6 = "user-default.jpeg";
+         let filename7 = "user-default.jpeg";
+         let filename8 = "user-default.jpeg";
+         let filename9 = "user-default.jpeg";
+         let filename10 = "user-default.jpeg";
+         let filename11 = "user-default.jpeg";
+
+         if (image) { filename1 = image[0].filename; }
+         if (image2) { filename2 = image2[0].filename; }
+         if (image3) { filename3 = image3[0].filename; }
+         if (image4) { filename4 = image4[0].filename; }
+         if (image5) { filename5 = image5[0].filename; }
+         if (image6) { filename6 = image6[0].filename; }
+         if (image7) { filename7 = image7[0].filename; }
+         if (image8) { filename8 = image8[0].filename; }
+         if (image9) { filename9 = image9[0].filename; }
+         if (image10) { filename10 = image10[0].filename; }
+         if (image11) { filename11 = image11[0].filename; }
 
     await newsToUpdate.update({
       titulo, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, titulo11,
-      description, description2, description3, description4, description5, description6, description7,
-      description8, description9, description10, description11,
-      conecxao,
-      categoria,
-      tipo,
-      image: filename, image2: filename, image3: filename, image4: filename, image5: filename,
-      image6: filename, image7: filename, image8: filename, image9: filename, image10: filename, image11: filename,
+        description, description2, description3, description4, description5, description6, description7, 
+        description8, description9, description10, description11,
+
+        conecxao,
+        categoria,
+        tipo,
+
+        image: filename1, image2: filename2, image3: filename3, image4: filename4, image5: filename5,
+        image6: filename6, image7: filename7, image8: filename8, image9: filename9, image10: filename10, image11: filename11,
+               
     });
 
     return res.render("success", {

@@ -383,6 +383,12 @@ body {
   margin-top: 3rem;
 }
 
+/* Estilo para o botão selecionado */
+.dia-button.selected {
+  background-color: #3498db; /* Cor de fundo que você deseja quando selecionado */
+  color: white; /* Cor do texto quando selecionado */
+}
+
 
 /* estiliza a lista para ficar resposivo e um ao lado do outro com display flex  */
 .lado-esquerdo-filho1 {
@@ -883,7 +889,10 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
   font-size: 0.6rem;
 }
 
-
+.dias-da-semana-buttons {
+  display: flex;
+  justify-content: center;
+}
 
 .dias-da-semana-buttons button {
   border: 1px solid #00e6ff;
@@ -898,6 +907,66 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
 .dias-da-semana-buttons button:hover {
   background-color: #00e6ff;
   cursor: pointer;
+}
+
+
+/* ----------- Pagina ViewsTemporada -----------  */
+
+.lado-esquerdo-neto1-temporada a{
+  display: flex;
+  max-width: 60rem;
+}
+
+.lado-esquerdo-neto1-temporada {
+  min-width: 32rem;
+}
+
+.zoomable-image-container-temporada {
+  min-width: 50%;
+  max-width: 50%;
+}
+
+.div2 {
+  min-width: 50%;
+  max-width: 50%;
+}
+
+.lado-esquerdo-neto1-temporada p {
+  margin-left: 0.6srem;
+  margin-right: 0.6rem;
+  border-bottom: 1px solid white;
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.generos-temporada {
+  display: flex;
+  padding-left: 0.4rem;
+  
+}
+
+.generos-temporada h3 {
+  color: #00e6ff;
+  font-size: 0.7rem;
+}
+
+.generos-temporada2 h3 {
+  background-color: #d10202;
+  color: white;
+  margin-left: 0.3rem;
+  border-radius: 5px;
+  padding: 0.3rem;
+}
+
+.generos-temporada-principal {
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+  font-size: 0.8rem;
+  color: white;
+  margin-left: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 

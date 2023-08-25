@@ -36,6 +36,7 @@ router.post("/edit/:id",   upload.fields([
     { name: "image7", maxCount: 1 }, { name: "image8", maxCount: 1 }, { name: "image9", maxCount: 1 },
     { name: "image10", maxCount: 1 }, { name: "image11", maxCount: 1 }
   ]),  detailsRecomendaController.update);
+  
 router.get("/delete/:id", detailsRecomendaController.delete);
 
 router.delete("/delete/:id", detailsRecomendaController.destroy);
