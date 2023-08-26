@@ -25,12 +25,14 @@
       <p><%= detailsNews.description %></p>
     </div>
 
-    <div class="iframe-video">
-      <iframe
-        src="https://www.youtube.com/embed/<%= detailsNews.link_video %>"
-        frameborder="0"
-      ></iframe>
-    </div>
+    <% if (detailsNews.link_video) { %>
+      <div class="iframe-video">
+        <iframe
+          src="https://www.youtube.com/embed/<%= detailsNews.link_video %>"
+          frameborder="0"
+        ></iframe>
+      </div>
+    <% } %>
 
 
     <div class="leia-tambem-details">

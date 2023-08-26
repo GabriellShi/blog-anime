@@ -46,7 +46,7 @@ const detailsRecomendaController = {
         message: "Ocorreu um erro ao carregar as notícias",
       });
     }
-  },
+  },  
 
   // show - controlador que ira visualizar os detalhas de cada usuario da lista 'users'
 // show - controlador que irá visualizar os detalhes de cada notícia
@@ -421,6 +421,7 @@ update: async (req, res) => {
       });
     }
   },
+  
 };
 
 module.exports = detailsRecomendaController;

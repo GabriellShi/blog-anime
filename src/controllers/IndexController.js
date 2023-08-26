@@ -68,15 +68,15 @@ const indexController = {
           curiosidade.image = files.base64Encode(upload.path + curiosidade.image);
         }
       });
+      
+
       res.render('index', {
         title: 'Go Geek',
-        mergedData,
+        mergedData: mergedData.slice(0, 10), // Limitar a 10 notícias iniciais
         News,
         Recomenda,
         curiosidadeNews,
         temporadaNews,
-        
-        
       });
     } catch (error) {
       console.error(error);
@@ -84,6 +84,41 @@ const indexController = {
     }
   },
 
+  loadMoreNews: async (req, res) => {
+    try {
+      const offset = parseInt(req.params.offset);
+  
+      const noticiasDestaque2 = await News.findAll({
+        order: [['created_at', 'DESC']]
+      });
+  
+      const temporadasRecomendadas2 = await Recomenda.findAll({
+        order: [['created_at', 'DESC']]
+      });
+  
+      const mergedData = [...noticiasDestaque2, ...temporadasRecomendadas2];
+      mergedData.sort((a, b) => b.created_at - a.created_at);
+  
+      // Atualize as URLs das imagens
+      mergedData.map((item) => {
+        if (item.image) {
+          item.imageUrl = '/images/' + item.image; // Use '/images/' em vez de '/image/'
+        }
+      });
+  
+      const newsSlice = mergedData.slice(offset, offset + 10);
+  
+      res.render('partials/newsList', { newsSlice });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Erro ao carregar mais notícias');
+    }
+  },
+  
+  
+  
+  
+  
   temporadaViewsClient: async (req, res) => {
     try {
       const temporada = await Temporada.findAll({
@@ -265,6 +300,7 @@ const indexController = {
     }
   
   },
+  
 };
 
 module.exports = indexController;

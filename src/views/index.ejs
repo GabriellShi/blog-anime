@@ -41,31 +41,101 @@
     
 
 
-    <!-- Principais Notícias -->
-    <h1 class="titulo-destaque-index">PRINCIPAIS NOTICIAS</h1>
 
 
-      <ul class="lado-esquerdo-filho2">
-        <% for (const noticia of mergedData.slice(3)) { %>
-       <li>
-        <div class="lado-esquerdo-filho3">
-          <div class="zoomable-image-container image-principais-noticias">
-            <a href="<%= noticia instanceof News ? '/detailsNews/' + noticia.id : '/detailsRecomenda/' + noticia.id %>">
-            <img class="zoomable-image" src="<%= noticia.image %>" alt="Capa Noticia" />
-            <div class="zoomable-image-overlay"></div>
+
+
+
+
+
+
+    <ul class="lado-esquerdo-filho2" id="newsList">
+      <% for (const noticia of mergedData.slice(0, 10)) { %>
+        <li>
+          <div class="lado-esquerdo-filho3">
+            <div class="zoomable-image-container image-principais-noticias">
+              <a href="<%= noticia instanceof News ? '/detailsNews/' + noticia.id : '/detailsRecomenda/' + noticia.id %>">
+                <img class="zoomable-image" src="<%= noticia.image %>" alt="Capa Noticia" />
+                <div class="zoomable-image-overlay"></div>
+              </a>
+            </div>
+            <div class="lado-esquerdo-neto2">
+              <h2><%= noticia.titulo %></h2>
+              <h4>Data: <%= new Date(noticia.created_at).toLocaleDateString() %></h4>
+              <p><%= noticia.description.substring(0, 200) %>...</p>
+            </div>
           </div>
-          <div class="lado-esquerdo-neto2">
-            <h2><%= noticia.titulo %></h2>
-            <h4>Data: <%= noticia.created_at.toLocaleDateString() %></h4>
-            <p><%= noticia.description.substring(0, 200) %>...</p>
-          </a>
-          </div>
-        </div>
-       </li>
-        <% } %>
-      </ul>
+        </li>
+      <% } %>
+    </ul> 
+    
+    <div id="loadMoreContainer">
+      <button id="loadMoreButton">Ver mais</button>
+    </div>
+    
+    <script>
+      let offsetNoticias = 10;
+    
+      function carregarMaisNoticias() {
+        $.ajax({
+          url: `/carregarMaisNoticias/${offsetNoticias}`,
+          method: "GET",
+          success: function(data) {
+            $("#newsList").append(data);
+            offsetNoticias += 10;
+          },
+          error: function(error) {
+            console.error(error);
+          }
+        });
+      }
+    
+      $("#loadMoreButton").click(carregarMaisNoticias);
+    </script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   <section class="lado-direito-pai">

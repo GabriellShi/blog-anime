@@ -48,9 +48,16 @@
 
 <h1 class="titulo-paginas">Trailer</h1>
 
+    <% if (detailsTemporada.link_video) { %>
     <section class="iframe-video" id="videoTrailer">
-      <iframe src="https://www.youtube.com/embed/<%= detailsTemporada.link_video %>" frameborder="0"></iframe>
-    </section>
+      <div class="iframe-video ">
+        <iframe
+          src="https://www.youtube.com/embed/<%= detailsTemporada.link_video %>"
+          frameborder="0"
+        ></iframe>
+      </div>
+    <% } %>
+
     
     <script>
       document.addEventListener("DOMContentLoaded", function() {
