@@ -180,15 +180,10 @@ const indexController = {
         order: [['created_at', 'DESC']]
       });
 
-      const temporadasAnimes = await Temporada.findAll({
-        where: {
-          tipo: "Animes"
-        },
-        order: [['created_at', 'DESC']]
-      });
+
 
       // Combine the data from all three tables
-      const tipoAnime = [...noticiasAnimes, ...recomendacoesAnimes, ...temporadasAnimes];
+      const tipoAnime = [...noticiasAnimes, ...recomendacoesAnimes];
 
       // Sort tipoAnime by created_at in descending order
       tipoAnime.sort((a, b) => b.created_at - a.created_at);
@@ -203,9 +198,7 @@ const indexController = {
           item.contentType = 'News';
         } else if (item instanceof Recomenda) {
           item.contentType = 'Recomenda';
-        } else if (item instanceof Temporada) {
-          item.contentType = 'Temporada';
-        }
+        } 
       });
       
       return res.render("tipoAnimesViewsClient", {
@@ -239,15 +232,9 @@ const indexController = {
         order: [['created_at', 'DESC']]
       });
 
-      const temporadasMangas = await Temporada.findAll({
-        where: {
-          tipo: "Mangas"
-        },
-        order: [['created_at', 'DESC']]
-      });
 
       // Combine the data from all three tables
-      const tipoMangas = [...noticiasMangas, ...recomendacoesMangas, ...temporadasMangas];
+      const tipoMangas = [...noticiasMangas, ...recomendacoesMangas];
 
       // Sort tipoMangas by created_at in descending order
       tipoMangas.sort((a, b) => b.created_at - a.created_at);
@@ -262,9 +249,7 @@ const indexController = {
           item.contentType = 'News';
         } else if (item instanceof Recomenda) {
           item.contentType = 'Recomenda';
-        } else if (item instanceof Temporada) {
-          item.contentType = 'Temporada';
-        }
+        } 
       });
       
       return res.render("tipoMangasViewsClient", {

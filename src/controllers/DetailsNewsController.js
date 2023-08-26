@@ -11,6 +11,8 @@ const News = require("../models/News");
 const Recomenda = require("../models/Recomenda");
 const Temporada = require("../models/Temporada");
 const { Op } = require("sequelize");
+const { Sequelize } = require("../config/sequelize"); 
+
 
 const detailsNewsController = {
   // index - controlador da aba que visualiza a lista dos usuario /
@@ -86,15 +88,10 @@ show: async (req, res) => {
       order: [['created_at', 'DESC']]
     });
 
-    const temporadasAnimes = await Temporada.findAll({
-      where: {
-        tipo: "Animes"
-      },
-      order: [['created_at', 'DESC']]
-    });
+ 
 
     // Combine the data from all three tables
-    let tipoAnime = [...noticiasAnimes, ...recomendacoesAnimes, ...temporadasAnimes];
+    let tipoAnime = [...noticiasAnimes, ...recomendacoesAnimes];
 
     // Sort tipoAnime by created_at in descending order
     tipoAnime.sort((a, b) => b.created_at - a.created_at);
@@ -112,8 +109,6 @@ show: async (req, res) => {
         item.contentType = 'News';
       } else if (item instanceof Recomenda) {
         item.contentType = 'Recomenda';
-      } else if (item instanceof Temporada) {
-        item.contentType = 'Temporada';
       }
     });
 
@@ -131,15 +126,9 @@ show: async (req, res) => {
       order: [['created_at', 'DESC']]
     });
 
-    const temporadasMangas = await Temporada.findAll({
-      where: {
-        tipo: "Mangas"
-      },
-      order: [['created_at', 'DESC']]
-    });
-
+  
     // Combine the data from all three tables
-    let tipoMangas = [...noticiasMangas, ...recomendacoesMangas, ...temporadasMangas];
+    let tipoMangas = [...noticiasMangas, ...recomendacoesMangas];
 
 
     // Sort tipoMangas by created_at in descending order
@@ -156,12 +145,34 @@ show: async (req, res) => {
       
     });
 
+    const nextRecomenda = await News.findAll({
+      where: {
+        id: {
+          [Sequelize.Op.not]: id,
+        },
+        created_at: {
+          [Sequelize.Op.lt]: detailsNews.created_at, // Alterado para "menor que" para pegar recomendações mais antigas
+        },
+      },
+      order: [['created_at', 'DESC']], // Ordena por data descendente (mais antigas primeiro)
+      limit: 3,
+    });
+    
+
+    // Base64 encode images das próximas recomendações
+    nextRecomenda.map((item) => {
+      if (item.image) {
+        item.image = files.base64Encode(upload.path + item.image);
+      }
+    });
+
     return res.render("detailsNews", {
       title: detailsNews.titulo, // Use o título da notícia como título da guia do navegador
       news: detailsNews,
       detailsNews,
       tipoAnime,
       tipoMangas,
+      nextRecomenda,
     });
     
   } catch (error) {
@@ -179,7 +190,7 @@ show: async (req, res) => {
     return res.render("news-create", { title: "Cadastrar Noticia" });
   },
   store: async (req, res) => {
-    const { titulo, description, conecxao, categoria, tipo } = req.body;
+    const { titulo, description, conecxao, categoria, tipo, link_video } = req.body;
     try {
       let filename = "default-image.jpeg";
       if (req.file) {
@@ -192,6 +203,7 @@ show: async (req, res) => {
         conecxao,
         categoria,
         tipo,
+        link_video,
         image: filename,
       });
 
@@ -244,7 +256,7 @@ show: async (req, res) => {
   // Executa a atualização
   update: async (req, res) => {
     const { id } = req.params;
-    const { titulo, description, conecxao, categoria, tipo } = req.body;
+    const { titulo, description, conecxao, categoria, tipo, link_video } = req.body;
 
     try {
       const newsToUpdate = await News.findByPk(id);
@@ -260,6 +272,7 @@ show: async (req, res) => {
         conecxao,
         categoria,
         tipo,
+        link_video,
         image: filename,
       });
 

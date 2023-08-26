@@ -40,6 +40,11 @@ const Temporada = db.define(
        allowNull: false 
    },
 
+   link_video:
+   { type: Sequelize.DataTypes.STRING(250), 
+      allowNull: false 
+  },
+
     genero1: {
         type: Sequelize.DataTypes.STRING(100),
         allowNull: false,

@@ -680,12 +680,15 @@ h3 {
 /* definindo o tamanho e dando espaço na lateral do titulo */
 .titulo-noticia {
   font-size: 1.5rem;
-  padding-left: 1rem;
+  padding-left: 1.5rem;
+  padding-top: 1rem;
+  color: yellow;
 }
 
 /* deixando os icones de autor e data um do lado do outro e dando margin a eles */
 .sect-autor-data-pai {
   display: flex;
+  margin-left: 0.3rem;
   margin-bottom: 1rem;
   margin-top: 0.5rem;
 }
@@ -707,6 +710,11 @@ h3 {
   padding-left: 1rem;
 }
 
+.sect-capa-pagina-noticia {
+  display: flex;
+  justify-content: center;
+}
+
 /* definindo o tamanho da imagem principal da noticia */
 .sect-capa-pagina-noticia img {
   width: 95%;
@@ -716,12 +724,20 @@ h3 {
 /* definindo o tamanho dos texto de descrição e dando margin em baixo */
 .sect-descricao {
   font-size: 1.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.sect-leia-tambem-pai {
+  padding-top: 2rem;
+  margin-left: 2rem;
 }
 
 /* dando margim ao texto leia tambem  */
 .sect-leia-tambem-pai h1 {
   margin-bottom: 1rem;
+  color: red;
 }
 
 /* definindo o tamanho dos icones da sessão leia tambem */
@@ -741,13 +757,39 @@ h3 {
 /* dando margin e dexando o texto e icones do texto veja mais um ao lado do outro */
 .sect-veja-mais {
   display: flex;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-left: 3rem;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
 }
 
 /* definindo o tamanho do icones veja mais */
 .sect-veja-mais img {
   width: 1rem;
+}
+
+.sect-veja-mais h3 {
+  font-size: 1rem;
+  margin-left: 0.5rem;
+  display: flex;
+}
+
+.sect-veja-mais h4 {
+  color: rgb(217, 255, 0);
+  margin-left: 0.3rem;
+  background-color: transparent;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.sect-veja-mais h4:hover {
+  color: #d10202;
+}
+
+.sect-veja-mais button {
+  border: 0;
+  background-color: transparent;
+
+
 }
 
 /* definindo o tamanho e cor da linha da pagina de noticia */
@@ -768,6 +810,39 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
   margin-left: 2rem;
   margin-right: 2rem;
 }
+
+.leia-tambem-details h1 {
+  padding-left: 1.5rem;
+}
+
+.leia-tambem-details a {
+  text-decoration: none;
+  color: rgb(235, 219, 0);
+}
+
+.leia-tambem-details a:hover {
+  color: red;
+}
+
+
+@media (max-width: 555px) {
+/* definindo o tamanho dos texto de descrição e dando margin em baixo */
+.sect-descricao {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+/* dando margin e dexando o texto e icones do texto veja mais um ao lado do outro */
+.sect-veja-mais {
+  margin-left: 0.5rem;
+}
+
+.sect-leia-tambem-pai {
+  margin-left: 0.3rem;
+}
+
+}
+
 
 
 /* ------------**Estilização do Footer**---------- */
@@ -912,16 +987,16 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
 
 /* ----------- Pagina ViewsTemporada -----------  */
 
-.lado-esquerdo-neto1-temporada a{
+.lado-esquerdo-neto1-temporada section{
   display: flex;
   max-width: 60rem;
 }
 
 .lado-esquerdo-neto1-temporada {
-  min-width: 32rem;
+  min-width: 35rem;
 }
 
-.zoomable-image-container-temporada {
+.zoomable-image-container-temporada section{
   min-width: 50%;
   max-width: 50%;
 }
@@ -932,8 +1007,8 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
 }
 
 .lado-esquerdo-neto1-temporada p {
-  margin-left: 0.6srem;
-  margin-right: 0.6rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
   border-bottom: 1px solid white;
   padding-bottom: 1.5rem;
   margin-bottom: 2rem;
@@ -969,6 +1044,107 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
   margin-bottom: 0.5rem;
 }
 
+.generos-temporada-principal a {
+  background-color: #d10202;
+  color: white;
+  margin-left: 0.3rem;
+  border-radius: 5px;
+  padding: 0.3rem;
+  
+}
+
+.generos-temporada-principal a:hover {
+  background-color: #0d0480;
+  color: white;
+  font-size: 1rem;
+}
+ 
+
+.iframe-video iframe {
+  width: 80%;
+  height: 30.2rem;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+}
+
+.iframe-video {
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center;
+}
+
+.descricao-2-temporada {
+  display: none;
+}
+
+
+/* ------------ Estilização DetailsTemporada --------------  */
+.lado-esquerdo-neto1-detailstemporada {
+  min-width: 55rem;
+}
+
+.div3 h1{
+  font-size: 2rem;
+}
+
+.lado-esquerdo-neto1-detailstemporada p {
+  font-size: 1.2rem;
+  padding-bottom: 3rem;
+}
+
+.generos-temporada3 h3 {
+  font-size: 1.1rem;
+}
+
+.generos-temporada-principal2 {
+  font-size: 1.2rem;
+  padding-bottom: 0.5rem;
+}
+
+
+/* ----------- Search ------------ */
+
+.descricao-search  {
+  padding-bottom: 0.5rem;
+}
+
+
+@media (max-width: 590px) {
+  .lado-esquerdo-neto1-temporada {
+    min-width: 21rem;
+    
+  }
+
+  .lado-esquerdo-neto1-temporada p {
+    margin-left: 0;
+    margin-right: 0.2rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.7rem;
+  }
+  
+  .generos-temporada-principal {
+    display: flex;
+    margin-right: 0.5rem;
+    font-size: 0.6rem;
+
+  }
+
+  
+  .descricao-1-temporada {
+    display: none;
+  }
+
+  .descricao-2-temporada {
+    display: block;
+  }
+
+  .generos-temporada2 h3 {
+    font-size: 0.6rem;
+  }
+
+}
 
 /*  -------------------- DAQUI PARA BAIXO FICA A ESTILIZAÇÃO DO HEADER MOBILE -------------------- */
 
@@ -1321,7 +1497,7 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
   /* centralizando e dando espaçamento no titulo da pagina */
   .titulo-noticia {
     font-size: 1.2rem;
-    padding-left: 1rem;
+    padding-left: 0.3rem;
   }
 }
 

@@ -9,6 +9,8 @@ const News = require("../models/News");
 const Recomenda = require("../models/Recomenda");
 const Temporada = require("../models/Temporada");
 const { Op } = require("sequelize");
+const { Sequelize } = require("../config/sequelize"); 
+
 
 const detailsTemporadaController = {
   // index - controlador da aba que visualiza a lista dos usuario /
@@ -148,12 +150,34 @@ show: async (req, res) => {
       
     });
 
+    const nextRecomenda = await Temporada.findAll({
+      where: {
+        id: {
+          [Sequelize.Op.not]: id,
+        },
+        created_at: {
+          [Sequelize.Op.lt]: detailsTemporada.created_at, // Alterado para "menor que" para pegar recomendações mais antigas
+        },
+      },
+      order: [['created_at', 'DESC']], // Ordena por data descendente (mais antigas primeiro)
+      limit: 3,
+    });
+    
+
+    // Base64 encode images das próximas recomendações
+    nextRecomenda.map((item) => {
+      if (item.image) {
+        item.image = files.base64Encode(upload.path + item.image);
+      }
+    });
+
     return res.render("detailsTemporada", {
       title: detailsTemporada.titulo,
       temporada: detailsTemporada,
       detailsTemporada,
       tipoAnime,
       tipoMangas,
+      nextRecomenda,
     });
   } catch (error) {
     console.error(error);
@@ -169,7 +193,7 @@ show: async (req, res) => {
     return res.render("temporada-create", { title: "Cadastrar Noticia" });
   },
   store: async (req, res) => {
-    const { titulo, description, conecxao, categoria, genero1, genero2, genero3, estreia, streaming, tipo, estacao } = req.body;
+    const { titulo, description, conecxao, categoria, genero1, genero2, genero3, estreia, streaming, tipo, estacao, link_video } = req.body;
     const { image, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11 } = req.files;
 
     try {
@@ -192,6 +216,7 @@ show: async (req, res) => {
         estreia, 
         streaming,
         estacao,
+        link_video,
 
         image: filename1, 
         image2: filename2, 
@@ -247,7 +272,7 @@ show: async (req, res) => {
   // Executa a atualização
   update: async (req, res) => {
     const { id } = req.params;
-    const { titulo, description, conecxao, categoria, genero1, genero2, genero3, estreia, streaming, tipo, estacao } = req.body;
+    const { titulo, description, conecxao, categoria, genero1, genero2, genero3, estreia, streaming, tipo, estacao, link_video } = req.body;
 
     try {
       let filename1 = "user-default.jpeg";
@@ -269,6 +294,7 @@ show: async (req, res) => {
         estreia, 
         streaming,
         estacao,
+        link_video,
         image: filename1, 
         image2: filename2, 
       });

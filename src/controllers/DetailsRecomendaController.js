@@ -8,7 +8,9 @@ const db = require("../config/sequelize");
 const News = require("../models/News");
 const Recomenda = require("../models/Recomenda");
 const Temporada = require("../models/Temporada");
+
 const { Op } = require("sequelize");
+const { Sequelize } = require("../config/sequelize"); 
 
 const detailsRecomendaController = {
   // index - controlador da aba que visualiza a lista dos usuario /
@@ -86,15 +88,9 @@ show: async (req, res) => {
       order: [['created_at', 'DESC']]
     });
 
-    const temporadasAnimes = await Temporada.findAll({
-      where: {
-        tipo: "Animes"
-      },
-      order: [['created_at', 'DESC']]
-    });
 
     // Combine the data from all three tables
-    let tipoAnime = [...noticiasAnimes, ...recomendacoesAnimes, ...temporadasAnimes];
+    let tipoAnime = [...noticiasAnimes, ...recomendacoesAnimes];
 
     // Sort tipoAnime by created_at in descending order
     tipoAnime.sort((a, b) => b.created_at - a.created_at);
@@ -112,9 +108,7 @@ show: async (req, res) => {
         item.contentType = 'News';
       } else if (item instanceof Recomenda) {
         item.contentType = 'Recomenda';
-      } else if (item instanceof Temporada) {
-        item.contentType = 'Temporada';
-      }
+      } 
     });
 
     const noticiasMangas = await News.findAll({
@@ -131,15 +125,10 @@ show: async (req, res) => {
       order: [['created_at', 'DESC']]
     });
 
-    const temporadasMangas = await Temporada.findAll({
-      where: {
-        tipo: "Mangas"
-      },
-      order: [['created_at', 'DESC']]
-    });
+
 
     // Combine the data from all three tables
-    let tipoMangas = [...noticiasMangas, ...recomendacoesMangas, ...temporadasMangas];
+    let tipoMangas = [...noticiasMangas, ...recomendacoesMangas];
 
 
     // Sort tipoMangas by created_at in descending order
@@ -155,6 +144,27 @@ show: async (req, res) => {
       }
       
     });
+    
+    const nextRecomenda = await Recomenda.findAll({
+      where: {
+        id: {
+          [Sequelize.Op.not]: id,
+        },
+        created_at: {
+          [Sequelize.Op.lt]: detailsRecomenda.created_at, // Alterado para "menor que" para pegar recomendações mais antigas
+        },
+      },
+      order: [['created_at', 'DESC']], // Ordena por data descendente (mais antigas primeiro)
+      limit: 3,
+    });
+    
+
+    // Base64 encode images das próximas recomendações
+    nextRecomenda.map((item) => {
+      if (item.image) {
+        item.image = files.base64Encode(upload.path + item.image);
+      }
+    });
 
     if (!detailsRecomenda) {
       return res.render("error", {
@@ -169,6 +179,7 @@ show: async (req, res) => {
       detailsRecomenda,
       tipoAnime,
       tipoMangas,
+      nextRecomenda,
     });
   } catch (error) {
     console.error(error);
@@ -191,17 +202,22 @@ show: async (req, res) => {
         const { image, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11 } = req.files;
 
         try {
-            let filename1 = "user-default.jpeg";
-            let filename2 = "user-default.jpeg";
-            let filename3 = "user-default.jpeg";
-            let filename4 = "user-default.jpeg";
-            let filename5 = "user-default.jpeg";
-            let filename6 = "user-default.jpeg";
-            let filename7 = "user-default.jpeg";
-            let filename8 = "user-default.jpeg";
-            let filename9 = "user-default.jpeg";
-            let filename10 = "user-default.jpeg";
-            let filename11 = "user-default.jpeg";
+
+          // let filename = "default-image.jpeg";
+          // if (req.file) {
+          //   filename = req.file.filename;
+          // }
+            let filename1 = "user-default.jpg";
+            let filename2 = "user-default.jpg";
+            let filename3 = "user-default.jpg";
+            let filename4 = "user-default.jpg";
+            let filename5 = "user-default.jpg";
+            let filename6 = "user-default.jpg";
+            let filename7 = "user-default.jpg";
+            let filename8 = "user-default.jpg";
+            let filename9 = "user-default.jpg";
+            let filename10 = "user-default.jpg";
+            let filename11 = "user-default.jpg";
 
             if (image) { filename1 = image[0].filename; }
             if (image2) { filename2 = image2[0].filename; }

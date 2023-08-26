@@ -35,8 +35,12 @@ const News = db.define(
     image: {
       type: Sequelize.DataTypes.STRING(500),
       allowNull: false,
-
     },
+
+    link_video:
+    { type: Sequelize.DataTypes.STRING(250), 
+       allowNull: false 
+   },
 
     created_at: {
       type: Sequelize.DataTypes.DATE,

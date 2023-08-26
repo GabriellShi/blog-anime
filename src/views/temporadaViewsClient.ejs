@@ -2,7 +2,7 @@
 <%- include("partials/header") %>
 
 <main class="main-paginas">
-  <h1 class="titulo-paginas">CALENDARIO</h1>
+  <h1 class="titulo-paginas">TEMPORADAS</h1>
 
   <div class="dias-da-semana-buttons">
     <% const diasDaSemana = ["INVERNO-2024", "PRIMAVERA-2023", "VERÃO-2023", "OUTONO-2023"]; %>
@@ -35,22 +35,18 @@
  
     <ul class="lado-esquerdo-filho1">
       <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque lado-esquerdo-neto1-temporada">
-        <a href="/detailsTemporada/${ detailsTemporada.id }">
+        <section>
+          <a href="/detailsTemporada/${ detailsTemporada.id }">
           <div class="zoomable-image-container zoomable-image-container-temporada">
             <img class="zoomable-image" src="${ detailsTemporada.image }" alt="Capa Noticia" />
             <div class="zoomable-image-overlay"></div>
           </div>
           <div class="div2">
             <h1>${ detailsTemporada.titulo }</h1>
-            <p>${ detailsTemporada.description.substring(0, 364) }...</p>
+            <p class="descricao-1-temporada">${ detailsTemporada.description.substring(0, 364) }...</p>
+            <p class="descricao-2-temporada">${ detailsTemporada.description.substring(0, 120) }...</p>
+            
 
-            <h2 class="generos-temporada-principal ">Generos:
-              <div class="generos-temporada generos-temporada2">
-                <h3>${ detailsTemporada.genero1 }</h3>
-                <h3>${ detailsTemporada.genero2 }</h3>
-                <h3>${ detailsTemporada.genero3 }</h3>
-                </div>
-            </h2>
             <h2 class="generos-temporada-principal">Data de Estreia:
               <div class="generos-temporada">
                 <h3>${ detailsTemporada.estreia }</h3>
@@ -62,8 +58,22 @@
                 <h3>${ detailsTemporada.streaming }</h3>
                 </div>
             </h2>
+
+            <h2 class="generos-temporada-principal ">Generos:
+              <div class="generos-temporada generos-temporada2">
+                <h3>${ detailsTemporada.genero1 }</h3>
+                <h3>${ detailsTemporada.genero2 }</h3>
+                </div>
+            </h2>
+
+            <h2 class="generos-temporada-principal">
+     <a href="/detailsTemporada/${detailsTemporada.id}?scrollTo=videoTrailer">Trailer</a>
+</h2>
+
+
           </div>
         </a>
+          </section
       </li>
     </ul>
             `;

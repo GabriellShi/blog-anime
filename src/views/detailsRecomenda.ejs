@@ -3,7 +3,8 @@
 <main>
   <section class="lado-esquerdo-pai">
     <div class="titulo-noticia">
-      <h1><%= detailsRecomenda.titulo%>
+      <h1 class="titulo-destaque-index" ><%= detailsRecomenda.titulo%>
+    </div>
 
     <div class="sect-autor-data-pai">
       <div class="sect-autor-data-filho">
@@ -28,8 +29,10 @@
 
 
     <!-- Recomenda 1  -->
-    <div class="titulo-noticia">
+    <div class="titulo-noticia titulo-noticia-recomenda">
       <h1><%= detailsRecomenda.titulo2%>
+    </div>
+
     <div class="sect-capa-pagina-noticia">
       <img src="<%= detailsRecomenda.image2 %>" alt="Imagem" />
     </div>
@@ -42,6 +45,8 @@
         <!-- Recomenda 2  -->
         <div class="titulo-noticia">
           <h1><%= detailsRecomenda.titulo3%>
+       </div>
+
         <div class="sect-capa-pagina-noticia">
           <img src="<%= detailsRecomenda.image3 %>" alt="Imagem" />
         </div>
@@ -54,6 +59,8 @@
             <!-- Recomenda 3  -->
     <div class="titulo-noticia">
       <h1><%= detailsRecomenda.titulo4%>
+    </div>
+
     <div class="sect-capa-pagina-noticia">
       <img src="<%= detailsRecomenda.image4 %>" alt="Imagem" />
     </div>
@@ -66,6 +73,8 @@
         <!-- Recomenda 4  -->
         <div class="titulo-noticia">
           <h1><%= detailsRecomenda.titulo5%>
+    </div>
+
         <div class="sect-capa-pagina-noticia">
           <img src="<%= detailsRecomenda.image5 %>" alt="Imagem" />
         </div>
@@ -78,6 +87,8 @@
             <!-- Recomenda 5  -->
     <div class="titulo-noticia">
       <h1><%= detailsRecomenda.titulo6%>
+    </div>
+
     <div class="sect-capa-pagina-noticia">
       <img src="<%= detailsRecomenda.image6 %>" alt="Imagem" />
     </div>
@@ -90,6 +101,8 @@
         <!-- Recomenda 6  -->
         <div class="titulo-noticia">
           <h1><%= detailsRecomenda.titulo7%>
+    </div>
+
         <div class="sect-capa-pagina-noticia">
           <img src="<%= detailsRecomenda.image7 %>" alt="Imagem" />
         </div>
@@ -103,6 +116,8 @@
             <!-- Recomenda 7  -->
     <div class="titulo-noticia">
       <h1><%= detailsRecomenda.titulo8%>
+    </div>
+
     <div class="sect-capa-pagina-noticia">
       <img src="<%= detailsRecomenda.image8 %>" alt="Imagem" />
     </div>
@@ -116,6 +131,8 @@
         <!-- Recomenda 8  -->
         <div class="titulo-noticia">
           <h1><%= detailsRecomenda.titulo9%>
+    </div>
+
         <div class="sect-capa-pagina-noticia">
           <img src="<%= detailsRecomenda.image9 %>" alt="Imagem" />
         </div>
@@ -130,6 +147,8 @@
             <!-- Recomenda 9 -->
     <div class="titulo-noticia">
       <h1><%= detailsRecomenda.titulo10%>
+    </div>
+
     <div class="sect-capa-pagina-noticia">
       <img src="<%= detailsRecomenda.image10 %>" alt="Imagem" />
     </div>
@@ -142,6 +161,8 @@
                 <!-- Recomenda 10 -->
                 <div class="titulo-noticia">
                   <h1><%= detailsRecomenda.titulo11%>
+               </div>
+
                 <div class="sect-capa-pagina-noticia">
                   <img src="<%= detailsRecomenda.image11 %>" alt="Imagem" />
                 </div>
@@ -151,40 +172,36 @@
                   </p>
                 </div>
 
-    <div class="sect-leia-tambem-pai">
-      <h1>Leia tambem:</h1>
-      <div class="sect-leia-tambem-filho">
-        <img src="/img/bola-vermelha.png" alt="" />
-        <h2>
-          Zom 100: Bucket List of the Dead – 5º Episódio do anime sofre com
-          atraso
-        </h2>
-      </div>
-      <div class="sect-leia-tambem-filho">
-        <img src="/img/bola-vermelha.png" alt="" />
-        <h2>
-          Zom 100: Bucket List of the Dead – 5º Episódio do anime sofre com
-          atraso
-        </h2>
-      </div>
-      <div class="sect-leia-tambem-filho">
-        <img src="/img/bola-vermelha.png" alt="" />
-        <h2>
-          Zom 100: Bucket List of the Dead – 5º Episódio do anime sofre com
-          atraso
-        </h2>
-      </div>
-    </div>
+                <div class="leia-tambem-details">
+                <h1>Leia também:</h1>
+                <% for (let i = 0; i < 3 && i < nextRecomenda.length; i++) { %>
+                  <a href="/detailsRecomenda/<%= nextRecomenda[i].id %>">
+                    <div class="sect-leia-tambem-pai">
+                      <div class="sect-leia-tambem-filho">
+                        <img src="/img/bola-vermelha.png" alt="" />
+                        <h2><%= nextRecomenda[i].titulo %></h2>
+                      </div>
+                    </div>
+                  </a>
+                <% } %>
+                </div>
+                
 
-    <div class="sect-veja-mais">
-      <img src="/img/bola-vermelha.png" alt="" />
-      <h3>Veja mais sobre: <%= detailsRecomenda.conecxao %></h3>
-    </div>
-
+                <div class="sect-veja-mais">
+                  <img src="/img/bola-vermelha.png" alt="" />
+                  <h3>
+                    Veja mais sobre:
+                    <form action="/search" method="POST">
+                      <input type="hidden" name="searchQuery" value="<%= detailsRecomenda.conecxao %>">
+                      <button type="submit"><h4><%= detailsRecomenda.conecxao %></h4></button>
+                    </form>
+                  </h3>
+                </div>
+  
     <div class="linha-noticia"></div>
 
     <div class="sect-resenha-autor">
-      <img src="/img/bola-vermelha.png" alt="" />
+      <img src="/img/logo2.png" alt="" />
       <h2>
         Fuzi <br />
         Redator, designer e ilustrador freelancer. Um fã eterno de animes e
@@ -234,12 +251,11 @@
     
 
     <h1 class="titulo-destaque-index titulo-destaque-index2">MANGA</h1>
-
     <% if (tipoMangas.length > 0) { %>
       <ul class="lado-direito-filho1">
         <% for (let mangas of tipoMangas) { %>
           <li class="lado-esquerdo-neto5 lado-esquerdo-neto6 lado-direito-neto1">
-            <a class="manga-link" href="/detailsNews/<%= mangas.id %>">
+            <a class="manga-link" href="<%= mangas.tipo === 'News' ? '/detailsNews/' + mangas.id : '/detailsRecomenda/' + mangas.id %>">
               <div class="temporada-lado-direito">
                 <div class="temporada-lado-direito-image">
                   <img src="<%= mangas.image %>" alt="Capa Notica" />
@@ -253,8 +269,6 @@
           </li>
         <% } %>
       </ul>
-    <% } else { %>
-      <h2>Nenhum manga Encontrado</h2>
     <% } %>
     
   </section>

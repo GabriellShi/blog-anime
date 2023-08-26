@@ -15,8 +15,7 @@
           <a href="/detailsNews/<%= anime.id %>">
         <% } else if (anime.contentType === 'Recomenda') { %>
           <a href="/detailsRecomenda/<%= anime.id %>">
-        <% } else if (anime.contentType === 'Temporada') { %>
-          <a href="/detailsTemporada/<%= anime.id %>">
+
         <% } %>
         <div class="zoomable-image-container">
           <img class="zoomable-image" src="<%= anime.image %>" alt="Capa Noticia" />
@@ -29,8 +28,7 @@
         </a>
       <% } else if (anime.contentType === 'Recomenda') { %>
         </a>
-      <% } else if (anime.contentType === 'Temporada') { %>
-        </a>
+
       <% } %>
       </a>
     </li>
