@@ -15,11 +15,12 @@ CREATE TABLE news (
     categoria VARCHAR(100) NOT NULL,
     image VARCHAR(500),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    tipo VARCHAR(150) NOT NULL
+    tipo VARCHAR(150) NOT NULL,
+     link_video VARCHAR(250)
 );
 
 -- Altera tabela
- -- ALTER TABLE news ADD created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+  ALTER TABLE news ADD  link_video VARCHAR(250);
     
 
 -- Insere um ou mais usuário
@@ -129,25 +130,31 @@ CREATE TABLE temporada (
     genero2 VARCHAR(100) NOT NULL,
     genero3 VARCHAR(100) NOT NULL,
     image VARCHAR(500),
+    image2 VARCHAR(500),
     estreia VARCHAR(100) NOT NULL,
     streaming VARCHAR(100) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    tipo VARCHAR(150) NOT NULL
+    tipo VARCHAR(150) NOT NULL,
+    estacao VARCHAR(150) NOT NULL,
+    link_video VARCHAR(250)
 );
 
+-- Adiciona Coluna
+ -- ALTER TABLE temporada ADD link_video VARCHAR(250);
+
 INSERT INTO temporada (
-titulo, description, conecxao, categoria, genero1, genero2, genero3, estreia, streaming, image
+titulo, description, conecxao, categoria, genero1, genero2, genero3, estreia, streaming, image, image2, tipo, estacao
 )
 
 VALUES 
 	(
-"tate no yusha", "na luta pelos mundos", "tate", "temporada", "ação", "aventura", "drama", "2023", "desney", "1d8770ecb20c7c2248e6.png"
+"tate no yusha", "na luta pelos mundos", "tate", "temporada", "ação", "aventura", "drama", "2023", "desney", "1d8770ecb20c7c2248e6.png", "1d8770ecb20c7c2248e6.png", "animes", "Verão"
     );
 
 -- Lista todos os usuários
-SELECT * FROM temporada;
+SELECT * FROM temporada;	
 
- -- DELETE FROM temporada WHERE id = 11;
+ -- DELETE FROM temporada WHERE id = 43;
 
 
 -- Cria tabela de usuário

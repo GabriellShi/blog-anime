@@ -8,8 +8,9 @@
 
 
   <% if (tipoAnime.length > 0) { %>
-  <ul class="lado-esquerdo-filho1">
-    <% for (let anime of tipoAnime) { %>
+  <ul class="lado-esquerdo-filho1" id="newsListAnimes">
+    <% for (const anime of tipoAnime.slice(0, 12)) { %>
+
     <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
         <% if (anime.contentType === 'News') { %>
           <a href="/detailsNews/<%= anime.id %>">
@@ -35,6 +36,32 @@
     <% } %>
     <% } %>
   </ul>
+
+ 
+  
+  <div id="loadMoreContainerAnimes" class="loadMoreContainer-css">
+    <button id="loadMoreButtonAnimes">Ver mais</button>
+  </div>
+  
+  <script>
+    let offsetNoticiasAnimes = 10;
+  
+    function carregarMaisNoticiasAnimes() {
+      $.ajax({
+        url: `/carregarMaisNoticiasAnimes/${offsetNoticiasAnimes}`,
+        method: "GET",
+        success: function(data) {
+          $("#newsListAnimes").append(data);
+          offsetNoticiasAnimes += 10;
+        },
+        error: function(error) {
+          console.error(error);
+        }
+      });
+    }
+  
+    $("#loadMoreButtonAnimes").click(carregarMaisNoticiasAnimes);
+  </script>
 
 </main>
 

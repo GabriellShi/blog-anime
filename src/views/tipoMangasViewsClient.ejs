@@ -6,15 +6,15 @@
  
 
   <% if (tipoMangas.length > 0) { %>
-    <ul class="lado-esquerdo-filho1">
-      <% for (let mangas of tipoMangas) { %>
+    <ul class="lado-esquerdo-filho1" id="newsListMangas">
+      <% for (const mangas of tipoMangas.slice(0, 10)) { %>
+  
       <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
           <% if (mangas.contentType === 'News') { %>
             <a href="/detailsNews/<%= mangas.id %>">
           <% } else if (mangas.contentType === 'Recomenda') { %>
             <a href="/detailsRecomenda/<%= mangas.id %>">
-          <% } else if (mangas.contentType === 'Temporada') { %>
-            <a href="/detailsTemporada/<%= mangas.id %>">
+  
           <% } %>
           <div class="zoomable-image-container">
             <img class="zoomable-image" src="<%= mangas.image %>" alt="Capa Noticia" />
@@ -27,14 +27,39 @@
           </a>
         <% } else if (mangas.contentType === 'Recomenda') { %>
           </a>
-        <% } else if (mangas.contentType === 'Temporada') { %>
-          </a>
+  
         <% } %>
         </a>
       </li>
       <% } %>
       <% } %>
     </ul>
+  
+   
+    
+    <div id="loadMoreContainerMangas" class="loadMoreContainer-css">
+      <button id="loadMoreButtonMangas">Ver mais</button>
+    </div>
+    
+    <script>
+      let offsetNoticiasMangas = 10;
+    
+      function carregarMaisNoticiasMangas() {
+        $.ajax({
+          url: `/carregarMaisNoticiasMangas/${offsetNoticiasMangas}`,
+          method: "GET",
+          success: function(data) {
+            $("#newsListMangas").append(data);
+            offsetNoticiasMangas += 10;
+          },
+          error: function(error) {
+            console.error(error);
+          }
+        });
+      }
+    
+      $("#loadMoreButtonMangas").click(carregarMaisNoticiasMangas);
+    </script>
 </main>
 
 

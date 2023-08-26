@@ -675,22 +675,24 @@ h3 {
 
 }
 
-#loadMoreContainer {
+.loadMoreContainer-css {
   display: flex;
   justify-content: center;
   padding-bottom: 4rem;
 }
 
-#loadMoreContainer button{
+.loadMoreContainer-css button{
   background-color: #fbff01;
   border: 0;
   border-radius: 7px;
   font-size: 2rem;
   padding: 0.2rem;
   font-weight: bolder;
+  cursor: pointer;
+
 }
 
-#loadMoreContainer button:hover{
+.loadMoreContainer-css button:hover{
   background-color: #ce0404;
   color: white;
 

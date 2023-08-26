@@ -15,6 +15,10 @@ router.get("/tipoMangasViewsClient", indexController.tipoMangasViewsClient);
 
 // Rota para carregar mais notícias
 router.get("/carregarMaisNoticias/:offset", indexController.loadMoreNews);
+router.get("/carregarMaisNoticiasAnimes/:offsetAnimes", indexController.loadMoreNewsAnimes);
+router.get("/carregarMaisNoticiasMangas/:offsetMangas", indexController.loadMoreNewsMangas);
+router.get("/carregarMaisNoticiasRecomenda/:offsetRecomenda", indexController.loadMoreNewsRecomenda);
+router.get("/carregarMaisNoticiasCuriosidade/:offsetCuriosidade", indexController.loadMoreNewsCuriosidade);
 
 
 module.exports = router;
