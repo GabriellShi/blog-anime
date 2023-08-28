@@ -6,7 +6,6 @@
   padding: 0;
   font-family: Arial, sans-serif;
   box-sizing: border-box;
-
   scroll-behavior: smooth;
 }
 
@@ -383,6 +382,12 @@ body {
   margin-top: 3rem;
 }
 
+.titulo-index {
+  font-size: 1.6rem;
+  padding: 0.5rem;
+  margin-bottom: 2rem;
+}
+
 /* Estilo para o botão selecionado */
 .dia-button.selected {
   background-color: #3498db; /* Cor de fundo que você deseja quando selecionado */
@@ -420,6 +425,7 @@ body {
   color: yellow;
   padding-top: 0.5rem;
   padding-bottom: 0.3rem;
+
 }
 
 .lado-esquerdo-neto1 h1:hover {
@@ -543,8 +549,8 @@ body {
 }
 
 .lado-esquerdo-neto2 h2{
-  padding-top: 0.7rem;
-  padding-bottom: 0.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   color: yellow;
   font-size: 1.3rem;
 }
@@ -555,7 +561,7 @@ body {
 
 .lado-esquerdo-neto2 h4{
   padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-bottom: 2rem;
   padding-right: 0.7rem;
   text-align: end;
   font-size: 0.8rem;
@@ -619,6 +625,8 @@ width: 100%;
   margin-bottom: 0.5rem;
   margin-top: 0.5rem;
 }
+
+
 /* ----**Estilização lado direito da pagina */
 
 
@@ -661,10 +669,23 @@ h3 {
 .temporada-lado-direito{
   display: flex;
   margin-bottom: 1rem;
+  width: 100%;
+}
+
+.temporada-lado-direito div{
+  width: 50%;
+}
+
+.temporada-lado-direito-index div{
+  width: 40%;
+}
+
+.temporada-lado-direito-index {
+  justify-content: center;
 }
 
 .temporada-lado-direito h1{
-  text-align:justify;
+  text-align:center;
 }
 
 .temporada-lado-direito-image {
@@ -699,13 +720,15 @@ h3 {
 
 }
 
+
 /* --------------*** Estilização da pagina Da Noticia ***-------------- */
 
 /* definindo o tamanho e dando espaço na lateral do titulo */
 .titulo-noticia {
   font-size: 1.5rem;
-  padding-left: 1.5rem;
+  padding-left: 2rem;
   padding-top: 1rem;
+  padding-bottom: 1rem;
   color: yellow;
 }
 
@@ -872,31 +895,36 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
 /* ------------**Estilização do Footer**---------- */
 
 .footer-index-maior {
+  display: flex;
+  align-items: center;
   background-color: black;
   width: 100%;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   float: left;
   padding: 1rem;
+  justify-content: space-around;
 }
 
 .footer-index {
-  display: flex;
+
   flex-direction: row;
   flex-flow: wrap;
   justify-content: center;
   justify-content: space-around;
   justify-content: center;
+  align-items: center;
 }
 
-.logo img {
-  width: 10rem;
+.logo-footer img {
+  width: 13rem;
   display: flex;
   justify-content: center;
   text-align: center;
   padding-bottom: 1rem;
   flex-direction: row;
   flex-flow: wrap;
+  margin-left: 2rem;
 }
 
 .topicos-footer-index {
@@ -925,24 +953,38 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
   flex-direction: row;
   flex-flow: wrap;
   justify-content: center;
+
 }
 
 
  /* --------Pagina de Contato--------  */
 
 .contato {
-  color:  white;
-  background-color: rgb(98, 0, 128);
+  color:  rgb(0, 0, 0);
+  background-color: rgb(50, 211, 1);
   text-align: center;
   border-radius: 1rem;
   margin-left: 15rem;
   margin-right: 15rem;
   margin-top: 3rem;
   padding: 5rem;
+  width: 100%;
+}
+
+.contato h2 {
+  width: 100%;
 }
 
 .main-contato {
   padding-bottom: 2.5rem;
+}
+
+.contato-div {
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  justify-content: center;
+  margin: 1rem;
 }
  
 .lancamentos-container {
@@ -1109,11 +1151,11 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
 
 /* ------------ Estilização DetailsTemporada --------------  */
 .lado-esquerdo-neto1-detailstemporada {
-  min-width: 55rem;
+  min-width: 50rem;
 }
 
 .div3 h1{
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .lado-esquerdo-neto1-detailstemporada p {
@@ -1191,6 +1233,11 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
   .menu-partials ul ul {
     top: 1.7rem;
   }
+
+  .temporada-lado-direito-index div{
+    width: 50%;
+  }
+
 }
 
 @media (max-width: 1078px) {
@@ -1218,6 +1265,10 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
   .nav-partials ul {
     gap: 0.7rem;
   }
+
+  .temporada-lado-direito-index div{
+    width: 100%;
+  }
 }
 
 /* Diminuindo o tamanho e dando uma margin inferior nos itens do menu de navegação  */
@@ -1231,6 +1282,23 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
 @media (max-width: 900px) {
   .login-pesquisa-partials {
     display: none;
+  }
+
+  .lado-esquerdo-neto1-detailstemporada{
+    min-width: 45rem;
+  }
+
+  .section-detailsTemporada {
+    display: flex;
+  }
+
+  .div3 h1 {
+    padding: 0.3rem;
+    font-size: 1.3rem;
+  }
+
+  .div3 h1 {
+    padding: 0.3rem;
   }
 }
 
@@ -1329,7 +1397,52 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
   .nav-partials #toggle-partials:checked ~ .menu-partials {
     height: 100%;
   }
+
+  .lado-esquerdo-filho-imagem {
+    display: block;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 21rem;
+    margin: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .lado-esquerdo-neto2 h4 {
+    padding-bottom: 0;
+    padding-top: 0;
+
+  }
+
+  .lado-esquerdo-filho2 {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
+
+@media (max-width: 730px) {
+  .lado-esquerdo-neto1-detailstemporada{
+    min-width: 35rem;
+  }
+
+
+  .div3 h1 {
+    padding: 0.3rem;
+    font-size: 1.1rem;
+  }
+
+  .div3 p {
+    font-size: 0.8rem;
+    margin: 0;
+  }
+
+  .div3 h2, h3 {
+    font-size: 0.8rem;
+  }
+
+
+}
+  
+
 
 @media (max-width: 663px) {
 
@@ -1342,6 +1455,28 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
     margin-left: 1rem;
   }
 }
+
+@media (max-width: 571px) {
+
+.lado-esquerdo-neto1-detailstemporada{
+  min-width: 25rem;
+}
+
+
+.lado-esquerdo-neto1-temporada section{
+  display: inline-block;
+
+  max-width: 60rem;
+}
+
+.div2 {
+  min-width: 100%;
+  max-width: 100%;
+}
+
+
+}
+
 
 @media (max-width: 530px) {
   .lupa-button {
@@ -1489,6 +1624,38 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
   }
 }
 
+
+@media (max-width: 418px) {
+
+  .lado-esquerdo-neto1-detailstemporada{
+    min-width: 10rem;
+  }
+  
+  .lado-esquerdo-neto1-detailstemporada section {
+    display: inline-block;
+  }
+  
+  .div2 {
+    min-width: 100%;
+    max-width: 100%;
+  }
+  
+  .div3 h1 {
+    padding: 0.3rem;
+    font-size: 1.1rem;
+  }
+  
+  .div3 p {
+    font-size: 0.8rem;
+    margin: 0;
+  }
+  
+  .div3 h2, h3 {
+    font-size: 0.8rem;
+  }
+  
+  }
+
 @media (max-width: 916px) {
     /* tirando a coluna do lado direito da pagina */
     .lado-direito-pai {
@@ -1531,6 +1698,34 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
   .titulo-noticia {
     font-size: 1.2rem;
     padding-left: 0.3rem;
+  }
+
+  .footer-index-maior {
+    display: block;
+    justify-content: center;
+  }
+
+  .logo-footer {
+    display: flex;
+    justify-content: center;
+  }
+
+  .contato h1, h2 {
+    font-size: 1rem;
+  }
+
+  .contato h1 {
+    text-align: center;
+  }
+}
+
+
+@media (max-width: 474px) {
+  .dias-da-semana-buttons{
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    justify-content: center;
   }
 }
 

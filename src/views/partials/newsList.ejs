@@ -1,15 +1,14 @@
 <ul class="lado-esquerdo-filho2" id="newsList">
     <% for (const noticia of newsSlice) { %>
       <li>
-        <div class="lado-esquerdo-filho3">
+        <a href="<%= noticia.categoria === 'Curiosidades' ? '/detailsNews/' + noticia.id : '/detailsRecomenda/' + noticia.id %>">
+        <div class="lado-esquerdo-filho3 temporada-lado-direito-index ">
           <div class="zoomable-image-container image-principais-noticias">
-            <a href="<%= noticia.categoria === 'Curiosidades' ? '/detailsNews/' + noticia.id : '/detailsRecomenda/' + noticia.id %>">
               <% if (noticia.image) { %>
                 <img class="zoomable-image" src="<%= noticia.imageUrl %>" alt="Capa Noticia" />
                 <% } else { %>
                 <!-- Coloque aqui um placeholder caso a imagem não esteja disponível -->
               <% } %>
-            </a>
           </div>
           <div class="lado-esquerdo-neto2">
             <h2><%= noticia.titulo %></h2>
@@ -17,6 +16,8 @@
             <p><%- noticia.description.substring(0, 200) %>...</p>
           </div>
         </div>
+      </a>
+
       </li>
     <% } %>
   </ul>

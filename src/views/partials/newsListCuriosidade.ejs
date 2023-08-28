@@ -2,16 +2,15 @@
 
     <% for (const noticia of newsSliceCuriosidade) { %>
         <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
-          
+          <a href="<%= '/details/' + noticia.id %>">
+
             <div class="zoomable-image-container">
-                <a href="<%= '/details/' + noticia.id %>">
                     <% if (noticia.image) { %>
                 <img class="zoomable-image" src="<%= noticia.imageUrl %>" alt="Capa noticia" />
                 <% } else { %>
                 <!-- Coloque aqui um placeholder caso a imagem não esteja disponível -->
               <% } %>
               <div class="zoomable-image-overlay"></div>
-            </a>
           
           </div>
  
@@ -19,6 +18,8 @@
             <h3>Data: <%= noticia.created_at.toLocaleDateString() %></h3>
             <p><%- noticia.description.substring(0, 298) %>...</p>
         </div>
+      </a>
+
       </li>
     <% } %>
   </ul>

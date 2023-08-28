@@ -17,7 +17,7 @@
               <img class="zoomable-image" src="<%= curiosidade.image %>" alt="Capa Noticia" />
               <div class="zoomable-image-overlay"></div>
             </div>
-            <h1><%= curiosidade.titulo.substring(0, 58) %></h1>
+            <h1><%= curiosidade.titulo.substring(0, 58) %>...</h1>
             <h3>Data: <%= curiosidade.created_at.toLocaleDateString() %></h3>
             <p><%- curiosidade.description.substring(0, 298) %>...</p>
           </a>

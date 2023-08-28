@@ -101,7 +101,7 @@
                   <img src="<%= anime.image %>" alt="Capa Notica" />
                 </div>
                 <div>
-                  <h1><%= anime.titulo %></h1>
+                  <h1><%= anime.titulo.substring(0, 48) %></h1>
                   <h3>
                     <%= new Date(anime.created_at).toLocaleDateString('pt-BR')
                     %>
@@ -131,7 +131,7 @@
                   <img src="<%= mangas.image %>" alt="Capa Notica" />
                 </div>
                 <div>
-                  <h1><%= mangas.titulo %></h1>
+                  <h1><%= mangas.titulo.substring(0, 48) %></h1>
                   <h3><%= new Date(mangas.created_at).toLocaleDateString('pt-BR') %></h3>
                 </div>
               </div>

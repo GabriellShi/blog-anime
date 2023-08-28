@@ -4,7 +4,7 @@
  <section class="section-supremo">
   <section class="lado-esquerdo-pai">
     <!-- Destaque -->
-    <h1 class="titulo-destaque-index">DESTAQUE</h1>
+    <h1 class="titulo-destaque-index titulo-index">DESTAQUES</h1>
     
     <div>
       <ul class="lado-esquerdo-filho1">
@@ -40,24 +40,30 @@
       });
     </script>
 
+<h1 class="titulo-destaque-index titulo-index">PRINCIPAIS NOTICIAS</h1>
+
 
 
     <ul class="lado-esquerdo-filho2" id="newsList">
       <% for (const noticia of mergedData.slice(0, 10)) { %>
         <li>
-          <div class="lado-esquerdo-filho3">
-            <div class="zoomable-image-container image-principais-noticias">
-              <a href="<%= noticia instanceof News ? '/detailsNews/' + noticia.id : '/detailsRecomenda/' + noticia.id %>">
+          <a href="<%= noticia instanceof News ? '/detailsNews/' + noticia.id : '/detailsRecomenda/' + noticia.id %>">
+
+          <div class="lado-esquerdo-filho3 temporada-lado-direito-index lado-esquerdo-filho-imagem">
+
+            <div class="zoomable-image-container image-principais-noticias lado-esquerdo-neto-imagem1">
                 <img class="zoomable-image" src="<%= noticia.image %>" alt="Capa Noticia" />
                 <div class="zoomable-image-overlay"></div>
-              </a>
             </div>
-            <div class="lado-esquerdo-neto2">
-              <h2><%= noticia.titulo %></h2>
+           
+            <div class="lado-esquerdo-neto2 lado-esquerdo-neto-imagem2">
+              <h2><%= noticia.titulo.substring(0, 45) %> </h2>
               <h4>Data: <%= new Date(noticia.created_at).toLocaleDateString() %></h4>
               <p><%- noticia.description.substring(0, 200) %>...</p>
             </div>
+            
           </div>
+        </a>
         </li>
       <% } %>
     </ul> 
@@ -103,7 +109,6 @@
                 <img src="<%= detailsTemporada.image2 %>" alt="Capa Notica" />
               </div>
               <div>
-                
                 <h1><%= detailsTemporada.titulo.substring(0, 48) %></h1>
                 <h3>Estreia: <%= new Date(detailsTemporada.created_at).toLocaleDateString() %></h3>
               </div>
