@@ -9,15 +9,32 @@
     <input type="hidden" name="_method" value="POST">
     <label for="">Titulo</label>
     <input class="input-form" type="text" name="titulo" placeholder="Titulo" value=" <%= news.titulo %>">
+
+    <label for="">Sub Titulo</label>
+    <input class="input-form" type="text" name="subtitulo" placeholder="Sub Titulo" value=" <%= news.subtitulo %>">
     
+      <label for="">Imagem</label>
+      <input class="input-form" type="file" name="image" value="<%= detailsNews.imageURL %>">
+      <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
+        <img src="<%= detailsNews.image %>" alt="Imagem" />
+      </li>
+
     <label for="">Descrição</label>
-    <input class="input-form" type="text" name="description" placeholder="Descrição" value="  <%= news.description %>">
+    <textarea class="input-form" name="description" placeholder="Descrição"><%= news.description %></textarea>
     
-    <label for="">Conexão</label>
-    <input class="input-form" type="text" name="conecxao" placeholder="Conexão" value=" <%= news.conecxao %>">
+<label for="">Image 2</label>
+<input class="input-form" type="file" name="image2" value="<%= detailsNews.image2URL %>">
+<img src="<%= detailsNews.image2 %>" alt="Imagem" />
 
     <label for="">Link Video</label>
     <input class="input-form" type="text" name="link_video" placeholder="Link Video" value="<%= news.link_video %>" >
+
+    <label for="">Descrição 2</label>
+    <textarea class="input-form" name="description2" placeholder="Descrição 2"><%= news.description2 %></textarea>
+    
+
+    <label for="">Conexão</label>
+    <input class="input-form" type="text" name="conecxao" placeholder="Conexão" value=" <%= news.conecxao %>">
 
 
     <label for="">Categoria</label>
@@ -36,11 +53,7 @@
         <option value="Mangas" <%= news.tipo === "Mangas" ? "selected" : "" %>>Mangas</option>
     </select>
     
-    <label for="">Imagem</label>
-      <input class="input-form" type="file" name="image" value="<%= news.image %>">
-    <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
-      <img src="<%= detailsNews.image %>" alt="Imagem" />
-    </li>
+
 
     <button type="submit"> Criar Noticia </button>
 </form> 

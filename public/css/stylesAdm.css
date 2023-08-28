@@ -6,7 +6,12 @@
     font-family: Arial, sans-serif;
     box-sizing: border-box;
     scroll-behavior: smooth;
-    color: rgb(12, 12, 12);
+    color: rgb(0, 0, 0);
+  
+  }
+
+  form {
+    color: rgb(252, 0, 0);
   }
 
 
@@ -188,5 +193,10 @@ padding: 0.3rem;
 
   .main-news-adm ul {
     margin-top: 5rem;
+  }
+
+  .description-text h1, h2, h3, p, span{
+    color: white;
+    font-size: 1rem;
   }
 

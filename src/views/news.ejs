@@ -8,9 +8,11 @@
     <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
       <div>
         <img src="<%= detailsNews.image %>" alt="Imagem" />
-        <h1><%= detailsNews.titulo %></h1>
+        <h1><%= detailsNews.titulo.substring(0, 52) %></h1>
         <h3><%= detailsNews.created_at.toLocaleDateString('pt-BR') %></h3>
-        <p><%= detailsNews.description.substring(0, 298) %>...</p>
+        <div class="description-text">
+          <p><%- detailsNews.description.substring(0, 242) %>...</p>
+        </div>
       </div>
       <div class="botao-visualizar-adm">
         <a href="/detailsNews/<%= detailsNews.id %>">Visualizar</a>

@@ -20,9 +20,9 @@
             <img class="zoomable-image" src="<%= mangas.image %>" alt="Capa Noticia" />
             <div class="zoomable-image-overlay"></div>
           </div>
-          <h1><%= mangas.titulo %></h1>
+          <h1><%= mangas.titulo.substring(0, 58) %></h1>
           <h3>Data: <%= mangas.created_at.toLocaleDateString() %></h3>
-          <p><%= mangas.description.substring(0, 298) %>...</p>
+          <p><%- mangas.description.substring(0, 298) %>...</p>
           <% if (mangas.contentType === 'News') { %>
           </a>
         <% } else if (mangas.contentType === 'Recomenda') { %>

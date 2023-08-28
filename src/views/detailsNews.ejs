@@ -4,7 +4,10 @@
   <section class="lado-esquerdo-pai">
     <div class="titulo-noticia">
       <h1 class="titulo-destaque-index"><%= detailsNews.titulo %></h1>
+      <h2><%= detailsNews.subtitulo %></h2>
+
     </div>
+
 
     <div class="sect-autor-data-pai">
       <div class="sect-autor-data-filho">
@@ -17,13 +20,15 @@
       </div>
     </div>
 
+
     <div class="sect-capa-pagina-noticia">
       <img src="<%= detailsNews.image %>" alt="Imagem" />
     </div>
 
     <div class="sect-descricao">
-      <p><%= detailsNews.description %></p>
+      <p><%- unescape(detailsNews.description) %></p>
     </div>
+    
 
     <% if (detailsNews.link_video) { %>
       <div class="iframe-video">
@@ -34,6 +39,12 @@
       </div>
     <% } %>
 
+    <div class="sect-descricao">
+      <p><%- unescape(detailsNews.description2) %></p>
+    </div>
+    <div class="sect-capa-pagina-noticia">
+      <img src="<%= detailsNews.image2 %>" alt="Imagem" />
+    </div>
 
     <div class="leia-tambem-details">
                   
