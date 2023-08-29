@@ -338,19 +338,19 @@ padding-left: 0;
   box-sizing: border-box;
   padding: 10px;
   color: white;
-  background-color: aqua;
+  background-color: #008080;
   min-height: 100vh; /* Definindo a altura mínima como 100% da viewport */
 }
 
 body {
-  background-color: #2c0e5e;
+  background-color: #111111;
 }
 
 /* Estilização do lado esquerdo */
 .lado-esquerdo-pai {
   float: left;
   width: 80%;
-  background-color: #031a64;
+  background-color: #1c1c1c;
   z-index: 2;
 }
 
@@ -359,7 +359,7 @@ body {
   float: left;
   width: 20%;
   height: auto;
-  background-color: #2c0e5e;
+  background-color: #111111;
 }
 
 /* Limpar floats após as seções */
@@ -382,10 +382,21 @@ body {
   margin-top: 3rem;
 }
 
+.titulo-destaque-index-direito {
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+  border: 2px solid yellow;
+  color: white;
+  margin-bottom: 2rem;
+}
+
 .titulo-index {
   font-size: 1.6rem;
   padding: 0.5rem;
   margin-bottom: 2rem;
+  background-color: black;
+  border: 2px solid #00e6ff;
+  color: yellow;
 }
 
 /* Estilo para o botão selecionado */
@@ -408,7 +419,8 @@ body {
 
 /*   Estiliza as listas netos a terem uma largura fixam margin e a coloração do fundo */
 .lado-esquerdo-neto1 {
-  background-color: black;
+  background-color: black	;
+  border: 2px solid #00e6ff;
   flex: 1;
   min-width: 18rem; /* Defina a largura mínima que deseja para cada div item */
   max-width: 21rem;
@@ -425,11 +437,19 @@ body {
   color: yellow;
   padding-top: 0.5rem;
   padding-bottom: 0.3rem;
+  font-weight: 800;
 
 }
 
+.lado-esquerdo-neto1 h3 {
+  color: rgb(255, 255, 255);
+
+}
+
+
+
 .lado-esquerdo-neto1 h1:hover {
-  color: red;
+  color: rgb(253, 0, 0);
 }
 
 /* Definindo o tamanho da fonte do titulo h1 do neto do lado esquerdo  */
@@ -438,6 +458,7 @@ body {
   text-align: justify;
   padding: 0.5rem;
   color: white;
+  font-weight:700;
 }
 
 .lado-esquerdo-neto1 img {
@@ -668,8 +689,11 @@ h3 {
 
 .temporada-lado-direito{
   display: flex;
-  margin-bottom: 1rem;
+  align-items: center;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
   width: 100%;
+
 }
 
 .temporada-lado-direito div{
@@ -678,10 +702,12 @@ h3 {
 
 .temporada-lado-direito-index div{
   width: 40%;
+  
 }
 
 .temporada-lado-direito-index {
   justify-content: center;
+  
 }
 
 .temporada-lado-direito h1{
@@ -700,6 +726,7 @@ h3 {
   display: flex;
   justify-content: center;
   padding-bottom: 4rem;
+
 }
 
 .loadMoreContainer-css button{
@@ -710,6 +737,8 @@ h3 {
   padding: 0.2rem;
   font-weight: bolder;
   cursor: pointer;
+  padding-left: 1rem;
+  padding-right: 1rem;
 
 }
 
@@ -961,7 +990,9 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
 
 .contato {
   color:  rgb(0, 0, 0);
-  background-color: rgb(50, 211, 1);
+  background-color: rgb(0, 0, 0);
+  color: yellow;
+  border: 2px solid #00e6ff;
   text-align: center;
   border-radius: 1rem;
   margin-left: 15rem;
@@ -995,7 +1026,7 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
 /* -------------- Pagina Calendario ------------  */
 
 .main-paginas {
-  background-color: #031a64;
+  background-color: #1c1c1c;
   padding-top: 1.8rem;
 }
 
@@ -1730,3 +1761,6 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
 }
 
 
+.lado-esquerdo-neto1 h3 {
+  color: rgb(255, 0, 0);
+}

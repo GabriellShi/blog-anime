@@ -16,11 +16,14 @@ CREATE TABLE news (
     image VARCHAR(500),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     tipo VARCHAR(150) NOT NULL,
-     link_video VARCHAR(250)
+	subtitulo VARCHAR(250) NOT NULL,
+	description2 TEXT(1000) NOT NULL,
+	image2 VARCHAR(500),
+	link_video VARCHAR(250)
 );
 
 -- Altera tabela
-  ALTER TABLE news ADD  link_video VARCHAR(250);
+ -- ALTER TABLE news ADD  image2 VARCHAR(500);
     
 
 -- Insere um ou mais usuário
@@ -154,7 +157,7 @@ VALUES
 -- Lista todos os usuários
 SELECT * FROM temporada;	
 
- -- DELETE FROM temporada WHERE id = 43;
+  -- DELETE FROM temporada WHERE id = 65;
 
 
 -- Cria tabela de usuário
