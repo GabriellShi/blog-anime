@@ -14,7 +14,15 @@ const News = db.define(
       type: Sequelize.DataTypes.STRING(150),
       allowNull: false,
     },
+    subtitulo: {
+      type: Sequelize.DataTypes.STRING(250),
+      allowNull: false,
+    },
     description: {
+      type: Sequelize.DataTypes.TEXT(1000),
+      allowNull: false,
+    },
+    description2: {
       type: Sequelize.DataTypes.TEXT(1000),
       allowNull: false,
     },
@@ -35,8 +43,17 @@ const News = db.define(
     image: {
       type: Sequelize.DataTypes.STRING(500),
       allowNull: false,
-
     },
+
+    image2: {
+      type: Sequelize.DataTypes.STRING(500),
+      allowNull: false,
+    },
+
+    link_video:
+    { type: Sequelize.DataTypes.STRING(250), 
+       allowNull: false 
+   },
 
     created_at: {
       type: Sequelize.DataTypes.DATE,

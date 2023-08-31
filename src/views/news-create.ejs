@@ -1,13 +1,21 @@
 <%- include("./partials/headAdm") %> <%- include("./partials/headerAdm") %>
 
+ <main class="form-news-create main-news-adm">
 <h1 class="titulo-news-create">Criar Novidade</h1>
-
- <main class="form-news-create">
 
     <form action="/detailsNews/create" method="post" enctype="multipart/form-data" >
             <input class="input-form" type="text" name="titulo" placeholder="Titulo">
-            <input class="input-form" type="text" name="description" placeholder="Descrição">
+            <input class="input-form" type="text" name="subtitulo" placeholder="Sub Titulo">
+            <input class="input-form" type="file" name="image">
+            <textarea class="input-form" name="description" placeholder="Descrição"></textarea>
+
+            <input class="input-form" type="file" name="image2">
+            <input class="input-form" type="text" name="link_video" placeholder="Link do Vídeo">
+
+            <textarea class="input-form" name="description2" placeholder="Descrição 2"></textarea>
             <input class="input-form" type="text" name="conecxao" placeholder="Conexão">
+
+
 
             <select class="input-form" name="categoria"> <option value="" disabled selected>Categoria</option>
                 <option value="Recomendações">Recomendações</option> <option value="Novidades">Novidades</option> 
@@ -17,7 +25,6 @@
                  <option value="Animes">Animes</option> <option value="Mangas">Mangas</option> 
               </select>
               
-            <input class="input-form" type="file" name="image">
 
             <button type="submit"> Criar Noticia </button>
     </form> 

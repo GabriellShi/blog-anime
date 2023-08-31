@@ -1,13 +1,17 @@
 <%- include("./partials/headAdm") %> <%- include("./partials/headerAdm") %>
 
-<h1 class="titulo-news-create">Criar Temporada</h1>
 
- <main class="form-news-create">
+
+ <main class="form-news-create main-news-adm">
+<h1 class="titulo-news-create">Criar Nova Temporada</h1>
+
 
     <form action="/detailsTemporada/create" method="post" enctype="multipart/form-data" >
    
             <input class="input-form" type="text" name="titulo" placeholder="Titulo">
             <input class="input-form" type="file" name="image">
+            <label for="">Image Capa Temporada Index</label>
+            <input class="input-form" type="file" name="image2">
             <input class="input-form" type="text" name="description" placeholder="Descrição">    
             <input class="input-form" type="text" name="conecxao" placeholder="Conexão">
             <input class="input-form" type="text" name="genero1" placeholder="Genero 1"  >
@@ -15,6 +19,7 @@
             <input class="input-form" type="text" name="genero3" placeholder="Genero 3" >
             <input class="input-form" type="date" name="estreia" placeholder="Data de Estreia" >
             <input class="input-form" type="text" name="streaming" placeholder="streaming" >
+            <input class="input-form" type="text" name="link_video" placeholder="Link Video" >
 
             <select class="input-form" name="categoria"> <option value="" disabled selected>Categoria</option>
                 <option value="Recomendações">Recomendações</option> <option value="Novidades">Novidades</option> 
@@ -24,6 +29,10 @@
                  <option value="Animes">Animes</option> <option value="Mangas">Mangas</option> 
               </select>
 
+              <select class="input-form" name="estacao"> <option value="" disabled selected>Estação</option>
+                <option value="INVERNO-2024">INVERNO 2024</option> <option value="PRIMAVERA-2023">PRIMAVERA 2023</option> 
+                <option value="VERÃO-2023">VERÃO 2023</option> <option value="OUTONO-2023">OUTONO 2023</option> 
+             </select>
 
             <button type="submit"> Criar Temporada </button>
     </form> 

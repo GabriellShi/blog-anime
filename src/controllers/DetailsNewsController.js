@@ -11,6 +11,8 @@ const News = require("../models/News");
 const Recomenda = require("../models/Recomenda");
 const Temporada = require("../models/Temporada");
 const { Op } = require("sequelize");
+const { Sequelize } = require("../config/sequelize"); 
+
 
 const detailsNewsController = {
   // index - controlador da aba que visualiza a lista dos usuario /
@@ -72,6 +74,10 @@ show: async (req, res) => {
       detailsNews.image = files.base64Encode(upload.path + detailsNews.image);
     }
 
+    if (detailsNews.image2) {
+      detailsNews.image2 = files.base64Encode(upload.path + detailsNews.image2);
+    }
+
     const noticiasAnimes = await News.findAll({
       where: {
         tipo: "Animes"
@@ -86,15 +92,10 @@ show: async (req, res) => {
       order: [['created_at', 'DESC']]
     });
 
-    const temporadasAnimes = await Temporada.findAll({
-      where: {
-        tipo: "Animes"
-      },
-      order: [['created_at', 'DESC']]
-    });
+ 
 
     // Combine the data from all three tables
-    let tipoAnime = [...noticiasAnimes, ...recomendacoesAnimes, ...temporadasAnimes];
+    let tipoAnime = [...noticiasAnimes, ...recomendacoesAnimes];
 
     // Sort tipoAnime by created_at in descending order
     tipoAnime.sort((a, b) => b.created_at - a.created_at);
@@ -112,8 +113,6 @@ show: async (req, res) => {
         item.contentType = 'News';
       } else if (item instanceof Recomenda) {
         item.contentType = 'Recomenda';
-      } else if (item instanceof Temporada) {
-        item.contentType = 'Temporada';
       }
     });
 
@@ -131,15 +130,9 @@ show: async (req, res) => {
       order: [['created_at', 'DESC']]
     });
 
-    const temporadasMangas = await Temporada.findAll({
-      where: {
-        tipo: "Mangas"
-      },
-      order: [['created_at', 'DESC']]
-    });
-
+  
     // Combine the data from all three tables
-    let tipoMangas = [...noticiasMangas, ...recomendacoesMangas, ...temporadasMangas];
+    let tipoMangas = [...noticiasMangas, ...recomendacoesMangas];
 
 
     // Sort tipoMangas by created_at in descending order
@@ -156,13 +149,36 @@ show: async (req, res) => {
       
     });
 
+    const nextRecomenda = await News.findAll({
+      where: {
+        id: {
+          [Sequelize.Op.not]: id,
+        },
+        created_at: {
+          [Sequelize.Op.lt]: detailsNews.created_at, // Alterado para "menor que" para pegar recomendações mais antigas
+        },
+      },
+      order: [['created_at', 'DESC']], // Ordena por data descendente (mais antigas primeiro)
+      limit: 3,
+    });
+    
+
+    // Base64 encode images das próximas recomendações
+    nextRecomenda.map((item) => {
+      if (item.image) {
+        item.image = files.base64Encode(upload.path + item.image);
+      }
+    });
+
     return res.render("detailsNews", {
-      title: "Visualizar notícia",
+      title: detailsNews.titulo, // Use o título da notícia como título da guia do navegador
       news: detailsNews,
       detailsNews,
       tipoAnime,
       tipoMangas,
+      nextRecomenda,
     });
+    
   } catch (error) {
     console.error(error);
     return res.status(500).render("error", {
@@ -178,12 +194,20 @@ show: async (req, res) => {
     return res.render("news-create", { title: "Cadastrar Noticia" });
   },
   store: async (req, res) => {
-    const { titulo, description, conecxao, categoria, tipo } = req.body;
+    const { titulo, description, subtitulo, description2, conecxao, categoria, tipo, link_video } = req.body;
+    const { image, image2} = req.files;
+
+    
     try {
-      let filename = "default-image.jpeg";
-      if (req.file) {
-        filename = req.file.filename;
-      }
+
+        let filename1 = "user-default.jpg";
+        let filename2 = "user-default.jpg";
+
+
+        if (image) { filename1 = image[0].filename; }
+        if (image2) { filename2 = image2[0].filename; }
+ 
+
 
       const novaNews = await News.create({
         titulo,
@@ -191,7 +215,11 @@ show: async (req, res) => {
         conecxao,
         categoria,
         tipo,
-        image: filename,
+        link_video,
+        subtitulo, description2,
+
+        image: filename1, image2: filename2,
+          
       });
 
       res.redirect("/detailsNews");
@@ -222,6 +250,12 @@ show: async (req, res) => {
       // Converte a imagem em base64
       if (detailsNews.image) {
         detailsNews.image = files.base64Encode(upload.path + detailsNews.image);
+        detailsNews.imageURL = `${upload.path}${detailsNews.image}`;
+      }
+      
+      if (detailsNews.image2) {
+        detailsNews.image2 = files.base64Encode(upload.path + detailsNews.image2);
+        detailsNews.image2URL = `${upload.path}${detailsNews.image2}`;
       }
   
       return res.render("news-edit", {
@@ -243,25 +277,46 @@ show: async (req, res) => {
   // Executa a atualização
   update: async (req, res) => {
     const { id } = req.params;
-    const { titulo, description, conecxao, categoria, tipo } = req.body;
-
+    const { titulo, description, subtitulo, description2, conecxao, categoria, tipo, link_video } = req.body;
+    const { image, image2 } = req.files;
+  
     try {
       const newsToUpdate = await News.findByPk(id);
-
-      let filename = newsToUpdate.image;
-      if (req.file) {
-        filename = req.file.filename;
+  
+      // Verificar se o campo 'image' está presente no objeto 'req.files'
+      if (image) {
+        const filename1 = image[0].filename;
+        newsToUpdate.image = filename1;
       }
-
+  
+      // Verificar se o campo 'image2' está presente no objeto 'req.files'
+      if (image2) {
+        const filename2 = image2[0].filename;
+        newsToUpdate.image2 = filename2;
+      }
+  
+      // Verificar se o campo 'description' foi preenchido no formulário
+      // Se não foi preenchido, manter o valor original
+      if (description.trim() === '') {
+        description = newsToUpdate.description;
+      }
+  
+      // Restante do código de atualização permanece igual
+  
       await newsToUpdate.update({
         titulo,
         description,
         conecxao,
         categoria,
         tipo,
-        image: filename,
+        link_video,
+        subtitulo,
+        description2,
+        // Certifique-se de incluir as propriedades de imagem aqui
+        image: newsToUpdate.image,
+        image2: newsToUpdate.image2,
       });
-
+  
       return res.render("success", {
         title: "Notícia Atualizada",
         message: `Notícia ${newsToUpdate.titulo} foi atualizada`,
@@ -274,6 +329,8 @@ show: async (req, res) => {
       });
     }
   },
+  
+
 
   delete: async (req, res) => {
     const { id } = req.params;

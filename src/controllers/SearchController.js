@@ -93,6 +93,7 @@ const searchController = {
       });
 
       res.render("search", {
+        title: "Resultado Pesquisa",
         news,
         recomenda,
         temporada,

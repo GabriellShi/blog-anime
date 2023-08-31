@@ -48,6 +48,12 @@ const indexController = {
         }
       });
 
+      temporadaNews.map((detailsTemporada) => {
+        if (detailsTemporada.image2) {
+          detailsTemporada.image2 = files.base64Encode(upload.path + detailsTemporada.image2);
+        }
+      });
+
       const curiosidadeNews = await News.findAll({
         where: {
           categoria: "Curiosidades"
@@ -62,14 +68,15 @@ const indexController = {
           curiosidade.image = files.base64Encode(upload.path + curiosidade.image);
         }
       });
+      
+
       res.render('index', {
-        title: 'Seu título aqui',
-        mergedData,
+        title: 'Go Geek',
+        mergedData: mergedData.slice(0, 10), // Limitar a 10 notícias iniciais
         News,
         Recomenda,
         curiosidadeNews,
         temporadaNews,
-        
       });
     } catch (error) {
       console.error(error);
@@ -77,6 +84,38 @@ const indexController = {
     }
   },
 
+  loadMoreNews: async (req, res) => {
+    try {
+      const offset = parseInt(req.params.offset);
+  
+      const noticiasDestaque2 = await News.findAll({
+        order: [['created_at', 'DESC']]
+      });
+  
+      const temporadasRecomendadas2 = await Recomenda.findAll({
+        order: [['created_at', 'DESC']]
+      });
+  
+      const mergedData = [...noticiasDestaque2, ...temporadasRecomendadas2];
+      mergedData.sort((a, b) => b.created_at - a.created_at);
+  
+      // Atualize as URLs das imagens
+      mergedData.map((item) => {
+        if (item.image) {
+          item.imageUrl = '/images/' + item.image; // Use '/images/' em vez de '/image/'
+        }
+      });
+  
+      const newsSlice = mergedData.slice(offset, offset + 10);
+  
+      res.render('partials/newsList', { newsSlice });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Erro ao carregar mais notícias');
+    }
+  },
+  
+  
   temporadaViewsClient: async (req, res) => {
     try {
       const temporada = await Temporada.findAll({
@@ -90,7 +129,7 @@ const indexController = {
       });
   
       return res.render("temporadaViewsClient", {
-        title: "Lista de Temporadas",
+        title: "Temporadas",
         temporada, // Certifique-se de passar a variável temporada para a renderização
       });
     } catch (error) {
@@ -105,7 +144,9 @@ const indexController = {
 
   recomendaViewsClient: async (req, res) => {
     try {
-      const recomenda = await Recomenda.findAll();
+      const recomenda = await Recomenda.findAll({
+        order: [['created_at', 'DESC']]
+      });
   
       recomenda.map((detailsRecomenda) => {
         if (detailsRecomenda.image) {
@@ -114,7 +155,7 @@ const indexController = {
       });
   
       return res.render("recomendaViewsClient", {
-        title: "Lista de Recomenda",
+        title: "Recomendações",
         recomenda, // Certifique-se de passar a variável temporada para a renderização
       });
     } catch (error) {
@@ -123,6 +164,38 @@ const indexController = {
         title: "Erro",
         message: "Ocorreu um erro ao carregar as Recomenda",
       });
+    }
+  },
+
+  loadMoreNewsRecomenda: async (req, res) => {
+    try {
+      const offsetRecomenda = parseInt(req.params.offsetRecomenda);
+  
+
+      const recomenda = await Recomenda.findAll({
+        order: [['created_at', 'DESC']]
+      });
+
+
+
+      // // // Combine the data from all three tables
+      // const tipoAnime = [ ...recomenda];
+      // tipoAnime.sort((a, b) => b.created_at - a.created_at);
+  
+      // Atualize as URLs das imagens
+      recomenda.map((detailsRecomenda) => {
+        if (detailsRecomenda.image) {
+          detailsRecomenda.imageUrl = '/images/' + detailsRecomenda.image; // Use '/images/' em vez de '/image/'
+        }
+      });
+  
+      const newsSliceRecomenda = recomenda.slice(offsetRecomenda, offsetRecomenda + 10);
+  
+      res.render('partials/newsListRecomenda', 
+      { newsSliceRecomenda, });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Erro ao carregar mais notícias');
     }
   },
 
@@ -152,7 +225,37 @@ const indexController = {
         message: "Ocorreu um erro ao carregar as curiosidades",
       });
     }
+  },
+
+  loadMoreNewsCuriosidade: async (req, res) => {
+    try {
+      const offsetCuriosidade = parseInt(req.params.offsetCuriosidade);
   
+      const curiosidades = await News.findAll({
+        where: {
+          categoria: "Curiosidades"
+        },
+        order: [['created_at', 'DESC']]
+      });
+
+      // Atualize as URLs das imagens
+      curiosidades.map((curiosidade) => {
+        if (curiosidade.image) {
+          curiosidade.imageUrl = '/images/' + curiosidade.image; // Use '/images/' em vez de '/image/'
+        }
+      });
+  
+      const newsSliceCuriosidade = curiosidades.slice(offsetCuriosidade, offsetCuriosidade + 10);
+  
+      res.render('partials/newsListCuriosidade', {
+        curiosidades,
+        newsSliceCuriosidade
+      });
+      
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Erro ao carregar mais notícias');
+    }
   },
 
   tipoAnimesViewsClient: async (req, res) => {
@@ -171,15 +274,10 @@ const indexController = {
         order: [['created_at', 'DESC']]
       });
 
-      const temporadasAnimes = await Temporada.findAll({
-        where: {
-          tipo: "Animes"
-        },
-        order: [['created_at', 'DESC']]
-      });
+
 
       // Combine the data from all three tables
-      const tipoAnime = [...noticiasAnimes, ...recomendacoesAnimes, ...temporadasAnimes];
+      const tipoAnime = [...noticiasAnimes, ...recomendacoesAnimes];
 
       // Sort tipoAnime by created_at in descending order
       tipoAnime.sort((a, b) => b.created_at - a.created_at);
@@ -194,9 +292,7 @@ const indexController = {
           item.contentType = 'News';
         } else if (item instanceof Recomenda) {
           item.contentType = 'Recomenda';
-        } else if (item instanceof Temporada) {
-          item.contentType = 'Temporada';
-        }
+        } 
       });
       
       return res.render("tipoAnimesViewsClient", {
@@ -210,7 +306,47 @@ const indexController = {
         message: "Ocorreu um erro ao carregar as informações de Animes",
       });
     }
+  },
+
+  loadMoreNewsAnimes: async (req, res) => {
+    try {
+      const offsetAnimes = parseInt(req.params.offsetAnimes);
   
+      const noticiasAnimes = await News.findAll({
+        where: {
+          tipo: "Animes"
+        },
+        order: [['created_at', 'DESC']]
+      });
+
+      const recomendacoesAnimes = await Recomenda.findAll({
+        where: {
+          tipo: "Animes"
+        },
+        order: [['created_at', 'DESC']]
+      });
+
+
+
+      // Combine the data from all three tables
+      const tipoAnime = [...noticiasAnimes, ...recomendacoesAnimes];
+      tipoAnime.sort((a, b) => b.created_at - a.created_at);
+  
+      // Atualize as URLs das imagens
+      tipoAnime.map((item) => {
+        if (item.image) {
+          item.imageUrl = '/images/' + item.image; // Use '/images/' em vez de '/image/'
+        }
+      });
+  
+      const newsSliceAnimes = tipoAnime.slice(offsetAnimes, offsetAnimes + 10);
+  
+      res.render('partials/newsListAnimes', 
+      { newsSliceAnimes, });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Erro ao carregar mais notícias');
+    }
   },
 
   
@@ -230,15 +366,9 @@ const indexController = {
         order: [['created_at', 'DESC']]
       });
 
-      const temporadasMangas = await Temporada.findAll({
-        where: {
-          tipo: "Mangas"
-        },
-        order: [['created_at', 'DESC']]
-      });
 
       // Combine the data from all three tables
-      const tipoMangas = [...noticiasMangas, ...recomendacoesMangas, ...temporadasMangas];
+      const tipoMangas = [...noticiasMangas, ...recomendacoesMangas];
 
       // Sort tipoMangas by created_at in descending order
       tipoMangas.sort((a, b) => b.created_at - a.created_at);
@@ -253,9 +383,7 @@ const indexController = {
           item.contentType = 'News';
         } else if (item instanceof Recomenda) {
           item.contentType = 'Recomenda';
-        } else if (item instanceof Temporada) {
-          item.contentType = 'Temporada';
-        }
+        } 
       });
       
       return res.render("tipoMangasViewsClient", {
@@ -269,8 +397,54 @@ const indexController = {
         message: "Ocorreu um erro ao carregar as informações de Mangas",
       });
     }
-  
   },
+
+  loadMoreNewsMangas: async (req, res) => {
+    try {
+      const offsetMangas = parseInt(req.params.offsetMangas);
+  
+      const noticiasMangas = await News.findAll({
+        where: {
+          tipo: "Mangas"
+        },
+        order: [['created_at', 'DESC']]
+      });
+
+      const recomendacoesMangas = await Recomenda.findAll({
+        where: {
+          tipo: "Mangas"
+        },
+        order: [['created_at', 'DESC']]
+      });
+
+
+
+      // Combine the data from all three tables
+      const tipoAnime = [...noticiasMangas, ...recomendacoesMangas];
+      tipoAnime.sort((a, b) => b.created_at - a.created_at);
+  
+      // Atualize as URLs das imagens
+      tipoAnime.map((item) => {
+        if (item.image) {
+          item.imageUrl = '/images/' + item.image; // Use '/images/' em vez de '/image/'
+        }
+      });
+  
+      const newsSliceMangas = tipoAnime.slice(offsetMangas, offsetMangas + 10);
+  
+      res.render('partials/newsListMangas', 
+      { newsSliceMangas, });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Erro ao carregar mais notícias');
+    }
+  },
+
+ 
+  
+
+  
+  
 };
 
 module.exports = indexController;

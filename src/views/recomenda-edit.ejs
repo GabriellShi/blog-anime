@@ -1,79 +1,189 @@
 <%- include("./partials/headAdm") %> <%- include("./partials/headerAdm") %>
 
+<main class="form-news-create main-news-adm">
 <h1 class="titulo-news-create">Editar Recomendação</h1>
 
-<main class="form-news-create">
   <form action="/detailsRecomenda/edit/<%= recomenda.id %>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="_method" value="POST">
-
+<br>
     <label for="">Edição da Recomendação Principal</label>
+<br>
+<br>
+    <label for="">Titulo</label>
     <input class="input-form" type="text" name="titulo" placeholder="Titulo" value="<%= recomenda.titulo %>">
+    <label for="">Descrição</label>
     <input class="input-form" type="text" name="description" placeholder="Descrição" value="<%= recomenda.description %>">
-    <input class="input-form" type="file" name="image" value="<%= recomenda.image %>">
-    <img src="<%= detailsRecomenda.image %>" alt="Imagem" />
+    <label for="">Imagem</label>
+    <input class="input-form" type="file" name="image" value="<%= recomenda.imageURL %>">
+    <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
+      <img src="<%= recomenda.image %>" alt="Imagem" />
+    </li>
+<br>
 
     <label for="">Edição da Recomendação 1 </label>
+    <br>
+<br>
+    <label for="">Titulo 1</label>
     <input class="input-form" type="text" name="titulo2" placeholder="Titulo" value="<%= recomenda.titulo2 %>">
-    <input class="input-form" type="text" name="description2" placeholder="Descrição" value="<%= recomenda.description2 %>">
-    <input class="input-form" type="file" name="image2" value="<%= recomenda.image2 %>">
-    <img src="<%= detailsRecomenda.image2 %>" alt="Imagem" />
+    <label for="">Descrição 1</label>
+    <textarea class="input-form" name="description2" placeholder="Descrição"><%= recomenda.description2 %></textarea>
+    <label for="">Imagem 1</label>
+    <input class="input-form" type="file" name="image2" value="<%= recomenda.image2URL %>">
+    <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
+      <img src="<%= recomenda.image2 %>" alt="Imagem" />
+    </li>
+
+    <br>
 
     <label for="">Edição da Recomendação 2 </label>
+    <br>
+<br>
+    <label for="">Titulo 2</label>
     <input class="input-form" type="text" name="titulo3" placeholder="Titulo" value="<%= recomenda.titulo3 %>">
-    <input class="input-form" type="text" name="description3" placeholder="Descrição" value="<%= recomenda.description3 %>">
-    <input class="input-form" type="file" name="image3" value="<%= recomenda.image3 %>">
-    <img src="<%= detailsRecomenda.image3 %>" alt="Imagem" />
+    <label for="">Descrição 2</label>
+    <textarea class="input-form" name="description3" placeholder="Descrição"><%= recomenda.description3 %></textarea>
+    <label for="">Imagem 2 </label>
+    <input class="input-form" type="file" name="image3" value="<%= recomenda.image3URL %>">
+    <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
+      <img src="<%= recomenda.image3 %>" alt="Imagem" />
+    </li>
 
-    <label for="">Edição da Recomendação 3</label>
+
+    <br>
+    <label for="">Edição da Recomendação 3 </label>
+    <br>
+<br>
+    <label for="">Titulo 3</label>
     <input class="input-form" type="text" name="titulo4" placeholder="Titulo" value="<%= recomenda.titulo4 %>">
-    <input class="input-form" type="text" name="description4" placeholder="Descrição" value="<%= recomenda.description4 %>">
-    <input class="input-form" type="file" name="image4" value="<%= recomenda.image4 %>">
-    <img src="<%= detailsRecomenda.image4 %>" alt="Imagem" />
+    <label for="">Descrição 3</label>
+    <textarea class="input-form" name="description4" placeholder="Descrição"><%= recomenda.description4 %></textarea>
+    <label for="">Imagem 3</label>
+    <input class="input-form" type="file" name="image4" value="<%= recomenda.image4URL %>">
+    <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
+      <img src="<%= recomenda.image4 %>" alt="Imagem" />
+    </li>
 
+
+    <br>
     <label for="">Edição da Recomendação 4 </label>
+    <br>
+<br>
+    <label for="">Titulo 4</label>
     <input class="input-form" type="text" name="titulo5" placeholder="Titulo" value="<%= recomenda.titulo5 %>">
-    <input class="input-form" type="text" name="description5" placeholder="Descrição" value="<%= recomenda.description5 %>">
-    <input class="input-form" type="file" name="image5" value="<%= recomenda.image5 %>">
-    <img src="<%= detailsRecomenda.image5 %>" alt="Imagem" />
+    <label for="">Descrição 4</label>
+    <textarea class="input-form" name="description5" placeholder="Descrição"><%= recomenda.description5 %></textarea>
+    <label for="">Imagem 4</label>
+    <input class="input-form" type="file" name="image5" value="<%= recomenda.image5URL %>">
+    <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
+      <img src="<%= recomenda.image5 %>" alt="Imagem" />
+    </li>
 
-    <label for="">Edição da Recomendação 5</label>
+    <br>
+    <label for="">Edição da Recomendação 5 </label>
+    <br>
+<br>
+    <label for="">Titulo 5</label>
     <input class="input-form" type="text" name="titulo6" placeholder="Titulo" value="<%= recomenda.titulo6 %>">
-    <input class="input-form" type="text" name="description6" placeholder="Descrição" value="<%= recomenda.description6 %>">
-    <input class="input-form" type="file" name="image6" value="<%= recomenda.image6 %>">
-    <img src="<%= detailsRecomenda.image6 %>" alt="Imagem" />
+    <label for="">Descrição 5</label>
+    <textarea class="input-form" name="description6" placeholder="Descrição"><%= recomenda.description6 %></textarea>
+    <label for="">Imagem 5</label>
+    <input class="input-form" type="file" name="image6" value="<%= recomenda.image6URL %>">
+    <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
+      <img src="<%= recomenda.image6 %>" alt="Imagem" />
+    </li>
 
+    
+    <br>
     <label for="">Edição da Recomendação 6 </label>
+    <br>
+<br>
+    <label for="">Titulo 6</label>
     <input class="input-form" type="text" name="titulo7" placeholder="Titulo" value="<%= recomenda.titulo7 %>">
-    <input class="input-form" type="text" name="description7" placeholder="Descrição" value="<%= recomenda.description7 %>">
-    <input class="input-form" type="file" name="image7" value="<%= recomenda.image7 %>">
-    <img src="<%= detailsRecomenda.image7 %>" alt="Imagem" />
+    <label for="">Descrição 6</label>
+    <textarea class="input-form" name="description7" placeholder="Descrição"><%= recomenda.description7 %></textarea>
+    <label for="">Imagem 6</label>
+    <input class="input-form" type="file" name="image7" value="<%= recomenda.image7URL %>">
+    <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
+      <img src="<%= recomenda.image7 %>" alt="Imagem" />
+    </li>
 
-    <label for="">Edição da Recomendação 7</label>
+
+    <br>
+    <label for="">Edição da Recomendação 7 </label>
+    <br>
+<br>
+    <label for="">Titulo 7</label>
     <input class="input-form" type="text" name="titulo8" placeholder="Titulo" value="<%= recomenda.titulo8 %>">
-    <input class="input-form" type="text" name="description8" placeholder="Descrição" value="<%= recomenda.description8 %>">
-    <input class="input-form" type="file" name="image8" value="<%= recomenda.image8 %>">
-    <img src="<%= detailsRecomenda.image8 %>" alt="Imagem" />
+    <label for="">Descrição 7</label>
+    <textarea class="input-form" name="description8" placeholder="Descrição"><%= recomenda.description8 %></textarea>
+    <label for="">Imagem 7</label>
+    <input class="input-form" type="file" name="image8" value="<%= recomenda.image8URL %>">
+    <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
+      <img src="<%= recomenda.image8 %>" alt="Imagem" />
+    </li>
 
+
+    <br>
     <label for="">Edição da Recomendação 8 </label>
+    <br>
+<br>
+    <label for="">Titulo 8</label>
     <input class="input-form" type="text" name="titulo9" placeholder="Titulo" value="<%= recomenda.titulo9 %>">
-    <input class="input-form" type="text" name="description9" placeholder="Descrição" value="<%= recomenda.description9 %>">
-    <input class="input-form" type="file" name="image9" value="<%= recomenda.image9 %>">
-    <img src="<%= detailsRecomenda.image9 %>" alt="Imagem" />
+    <label for="">Descrição 8</label>
+    <textarea class="input-form" name="description9" placeholder="Descrição"><%= recomenda.description9 %></textarea>
+    <label for="">Imagem 8</label>
+    <input class="input-form" type="file" name="image9" value="<%= recomenda.image9URL %>">
+    <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
+      <img src="<%= recomenda.image9 %>" alt="Imagem" />
+    </li>
 
-    <label for="">Edição da Recomendação 9 </label>
+
+    <br>
+    <label for="">Edição da Recomendação 9</label>
+    <br>
+<br>
+    <label for="">Titulo 9</label>
     <input class="input-form" type="text" name="titulo10" placeholder="Titulo" value="<%= recomenda.titulo10 %>">
-    <input class="input-form" type="text" name="description10" placeholder="Descrição" value="<%= recomenda.description10 %>">
-    <input class="input-form" type="file" name="image10" value="<%= recomenda.image10 %>">
-    <img src="<%= detailsRecomenda.image10 %>" alt="Imagem" />
+    <label for="">Descrição 9</label>
+    <textarea class="input-form" name="description10" placeholder="Descrição"><%= recomenda.description10 %></textarea>
+    <label for="">Imagem 9</label>
+    <input class="input-form" type="file" name="image10" value="<%= recomenda.image10URL %>">
+    <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
+      <img src="<%= recomenda.image10 %>" alt="Imagem" />
+    </li>
 
+
+    <br>
     <label for="">Edição da Recomendação 10 </label>
+    <br>
+<br>
+    <label for="">Titulo 10</label>
     <input class="input-form" type="text" name="titulo11" placeholder="Titulo" value="<%= recomenda.titulo11 %>">
-    <input class="input-form" type="text" name="description11" placeholder="Descrição" value="<%= recomenda.description11 %>">
-    <input class="input-form" type="file" name="image11" value="<%= recomenda.image11 %>">
-    <img src="<%= detailsRecomenda.image11 %>" alt="Imagem" />
+    <label for="">Descrição 10</label>
+    <textarea class="input-form" name="description11" placeholder="Descrição"><%= recomenda.description11 %></textarea>
+    <label for="">Imagem 10</label>
+    <input class="input-form" type="file" name="image11" value="<%= recomenda.image11URL %>">
+    <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
+      <img src="<%= recomenda.image11 %>" alt="Imagem" />
+    </li>
 
     <input class="input-form" type="text" name="conecxao" placeholder="Conexão" value="<%= recomenda.conecxao %>">
-    <input class="input-form" type="text" name="categoria" placeholder="Categoria" value="<%= recomenda.categoria %>">
+
+    <label for="">Categoria</label>
+    <select class="input-form" name="categoria">
+        <option value="" disabled selected>Categoria:</option>
+        <option value="Recomendações" <%= recomenda.categoria === "Recomendações" ? "selected" : "" %>>Recomendações</option>
+        <option value="Novidades" <%= recomenda.categoria === "Novidades" ? "selected" : "" %>>Novidades</option>
+        <option value="Temporadas" <%= recomenda.categoria === "Temporadas" ? "selected" : "" %>>Temporadas</option>
+        <option value="Curiosidades" <%= recomenda.categoria === "Curiosidades" ? "selected" : "" %>>Curiosidades</option>
+    </select>
+    
+    <label for="">Tipo</label>
+    <select class="input-form" name="tipo">
+        <option value="" disabled selected>Tipo:</option>
+        <option value="Animes" <%= recomenda.tipo === "Animes" ? "selected" : "" %>>Animes</option>
+        <option value="Mangas" <%= recomenda.tipo === "Mangas" ? "selected" : "" %>>Mangas</option>
+    </select>
 
     <button type="submit">Salvar Edições</button>
   </form>

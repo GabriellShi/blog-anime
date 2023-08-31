@@ -3,8 +3,11 @@
 <main>
   <section class="lado-esquerdo-pai">
     <div class="titulo-noticia">
-      <h1><%= detailsNews.titulo %></h1>
+      <h1 class="titulo-destaque-index"><%= detailsNews.titulo %></h1>
+      <h2><%= detailsNews.subtitulo %></h2>
+
     </div>
+
 
     <div class="sect-autor-data-pai">
       <div class="sect-autor-data-filho">
@@ -17,52 +20,63 @@
       </div>
     </div>
 
+
     <div class="sect-capa-pagina-noticia">
       <img src="<%= detailsNews.image %>" alt="Imagem" />
-
-
     </div>
 
     <div class="sect-descricao">
-      <p>
-        <%= detailsNews.description %>
-      </p>
+      <p><%- unescape(detailsNews.description) %></p>
+    </div>
+    
+
+    <% if (detailsNews.link_video) { %>
+      <div class="iframe-video">
+        <iframe
+          src="https://www.youtube.com/embed/<%= detailsNews.link_video %>"
+          frameborder="0"
+        ></iframe>
+      </div>
+    <% } %>
+
+    <div class="sect-descricao">
+      <p><%- unescape(detailsNews.description2) %></p>
+    </div>
+    <div class="sect-capa-pagina-noticia">
+      <img src="<%= detailsNews.image2 %>" alt="Imagem" />
     </div>
 
-    <div class="sect-leia-tambem-pai">
-      <h1>Leia tambem:</h1>
-      <div class="sect-leia-tambem-filho">
-        <img src="/img/bola-vermelha.png" alt="" />
-        <h2>
-          Zom 100: Bucket List of the Dead – 5º Episódio do anime sofre com
-          atraso
-        </h2>
+    <div class="leia-tambem-details">
+                  
+      <h1>Leia também:</h1>
+      <% for (let i = 0; i < 3 && i < nextRecomenda.length; i++) { %>
+        <a href="/detailsNews/<%= nextRecomenda[i].id %>">
+          <div class="sect-leia-tambem-pai">
+            <div class="sect-leia-tambem-filho">
+              <img src="/img/bola-vermelha.png" alt="" />
+              <h2><%= nextRecomenda[i].titulo %></h2>
+            </div>
+          </div>
+        </a>
+      <% } %>
       </div>
-      <div class="sect-leia-tambem-filho">
-        <img src="/img/bola-vermelha.png" alt="" />
-        <h2>
-          Zom 100: Bucket List of the Dead – 5º Episódio do anime sofre com
-          atraso
-        </h2>
-      </div>
-      <div class="sect-leia-tambem-filho">
-        <img src="/img/bola-vermelha.png" alt="" />
-        <h2>
-          Zom 100: Bucket List of the Dead – 5º Episódio do anime sofre com
-          atraso
-        </h2>
-      </div>
-    </div>
 
     <div class="sect-veja-mais">
       <img src="/img/bola-vermelha.png" alt="" />
-      <h3>Veja mais sobre: <%= detailsNews.conecxao %></h3>
+      <h3>
+        Veja mais sobre:
+        <form action="/search" method="POST">
+          <input type="hidden" name="searchQuery" value="<%= detailsNews.conecxao %>">
+          <button type="submit"><h4><%= detailsNews.conecxao %></h4></button>
+        </form>
+      </h3>
     </div>
+    
 
     <div class="linha-noticia"></div>
 
     <div class="sect-resenha-autor">
-      <img src="/img/bola-vermelha.png" alt="" />
+      <img src="/img/logo2.png" alt="" />
       <h2>
         Fuzi <br />
         Redator, designer e ilustrador freelancer. Um fã eterno de animes e
@@ -71,65 +85,63 @@
     </div>
   </section>
   <section class="lado-direito-pai">
-    <h1 class="titulo-destaque-index">ANIME</h1>
+    <h1 class="titulo-destaque-index titulo-destaque-index-direito">ANIME</h1>
 
-   <ul>
+    <ul class="lado-direito-filho1">
       <% for (let anime of tipoAnime) { %>
-        <li class="lado-esquerdo-neto1 lado-direito-neto1">
-          <button type="submit">
-            <% if (anime.contentType === 'News') { %>
-              <a href="/detailsNews/<%= anime.id %>">
+      <li class="lado-esquerdo-neto5 lado-direito-neto1">
+        <button type="submit">
+          <% if (anime.contentType === 'News') { %>
+          <a href="/detailsNews/<%= anime.id %>">
             <% } else if (anime.contentType === 'Recomenda') { %>
-              <a href="/detailsRecomenda/<%= anime.id %>">
-            <% } else if (anime.contentType === 'Temporada') { %>
-              <a href="/detailsTemporada/<%= anime.id %>">
-            <% } %>
-            <div>
-              <img src="<%= anime.image %>" alt="Capa Notica" />
-            </div>
-            <div>
-              <h1><%= anime.titulo %></h1>
-              <h3><%= new Date(anime.created_at).toLocaleDateString('pt-BR') %></h3>
-            </div>
-            <% if (anime.contentType === 'News') { %>
-              </a>
+            <a href="/detailsRecomenda/<%= anime.id %>">
+              <% } %>
+              <div class="temporada-lado-direito">
+                <div class="temporada-lado-direito-image">
+                  <img src="<%= anime.image %>" alt="Capa Notica" />
+                </div>
+                <div>
+                  <h1><%= anime.titulo.substring(0, 48) %></h1>
+                  <h3>
+                    <%= new Date(anime.created_at).toLocaleDateString('pt-BR')
+                    %>
+                  </h3>
+                </div>
+              </div>
+              <% if (anime.contentType === 'News') { %>
+            </a>
             <% } else if (anime.contentType === 'Recomenda') { %>
-              </a>
-            <% } else if (anime.contentType === 'Temporada') { %>
-              </a>
-            <% } %>
-          </button>
-        </li>
+          </a>
+
+          <% } %>
+        </button>
+      </li>
       <% } %>
     </ul>
- 
-    
 
-
-    
-    
-
-    <h1 class="titulo-destaque-index">MANGA</h1>
+    <h1 class="titulo-destaque-index titulo-destaque-index2 titulo-destaque-index-direito">MANGA</h1>
 
     <% if (tipoMangas.length > 0) { %>
-      <ul>
+      <ul class="lado-direito-filho1">
         <% for (let mangas of tipoMangas) { %>
-          <li class="lado-esquerdo-neto1 lado-direito-neto1">
-            <a class="manga-link" href="/detailsNews/<%= mangas.id %>">
-              <div>
-                <img src="<%= mangas.image %>" alt="Capa Notica" />
-              </div>
-              <div>
-                <h1><%= mangas.titulo %></h1>
-                <h3><%= new Date(mangas.created_at).toLocaleDateString('pt-BR') %></h3>
+          <li class="lado-esquerdo-neto5 lado-esquerdo-neto6 lado-direito-neto1">
+            <a class="manga-link" href="<%= mangas.tipo === 'News' ? '/detailsNews/' + mangas.id : '/detailsRecomenda/' + mangas.id %>">
+              <div class="temporada-lado-direito">
+                <div class="temporada-lado-direito-image">
+                  <img src="<%= mangas.image %>" alt="Capa Notica" />
+                </div>
+                <div>
+                  <h1><%= mangas.titulo.substring(0, 48) %></h1>
+                  <h3><%= new Date(mangas.created_at).toLocaleDateString('pt-BR') %></h3>
+                </div>
               </div>
             </a>
           </li>
         <% } %>
       </ul>
-    <% } else { %>
-      <h2>Nenhum manga Encontrado</h2>
     <% } %>
     
   </section>
 </main>
+
+<%- include("./partials/footer") %>

@@ -9,6 +9,8 @@ const News = require("../models/News");
 const Recomenda = require("../models/Recomenda");
 const Temporada = require("../models/Temporada");
 const { Op } = require("sequelize");
+const { Sequelize } = require("../config/sequelize"); 
+
 
 const detailsTemporadaController = {
   // index - controlador da aba que visualiza a lista dos usuario /
@@ -27,6 +29,8 @@ const detailsTemporadaController = {
           detailsTemporada.image = files.base64Encode(upload.path + detailsTemporada.image);
         }
       });
+
+      
 
       return res.render("temporada", {
         title: "Lista de Notícias",
@@ -64,6 +68,9 @@ show: async (req, res) => {
       detailsTemporada.image = files.base64Encode(upload.path + detailsTemporada.image);
     }
 
+    if (detailsTemporada.image2) {
+      detailsTemporada.image2 = files.base64Encode(upload.path + detailsTemporada.image2);
+    }
     const noticiasAnimes = await News.findAll({
       where: {
         tipo: "Animes"
@@ -78,15 +85,10 @@ show: async (req, res) => {
       order: [['created_at', 'DESC']]
     });
 
-    const temporadasAnimes = await Temporada.findAll({
-      where: {
-        tipo: "Animes"
-      },
-      order: [['created_at', 'DESC']]
-    });
+
 
     // Combine the data from all three tables
-    let tipoAnime = [...noticiasAnimes, ...recomendacoesAnimes, ...temporadasAnimes];
+    let tipoAnime = [...noticiasAnimes, ...recomendacoesAnimes];
 
     // Sort tipoAnime by created_at in descending order
     tipoAnime.sort((a, b) => b.created_at - a.created_at);
@@ -123,15 +125,10 @@ show: async (req, res) => {
       order: [['created_at', 'DESC']]
     });
 
-    const temporadasMangas = await Temporada.findAll({
-      where: {
-        tipo: "Mangas"
-      },
-      order: [['created_at', 'DESC']]
-    });
+
 
     // Combine the data from all three tables
-    let tipoMangas = [...noticiasMangas, ...recomendacoesMangas, ...temporadasMangas];
+    let tipoMangas = [...noticiasMangas, ...recomendacoesMangas];
 
 
     // Sort tipoMangas by created_at in descending order
@@ -148,12 +145,34 @@ show: async (req, res) => {
       
     });
 
+    const nextRecomenda = await Temporada.findAll({
+      where: {
+        id: {
+          [Sequelize.Op.not]: id,
+        },
+        created_at: {
+          [Sequelize.Op.lt]: detailsTemporada.created_at, // Alterado para "menor que" para pegar recomendações mais antigas
+        },
+      },
+      order: [['created_at', 'DESC']], // Ordena por data descendente (mais antigas primeiro)
+      limit: 3,
+    });
+    
+
+    // Base64 encode images das próximas recomendações
+    nextRecomenda.map((item) => {
+      if (item.image) {
+        item.image = files.base64Encode(upload.path + item.image);
+      }
+    });
+
     return res.render("detailsTemporada", {
-      title: "Visualizar notícia",
+      title: detailsTemporada.titulo,
       temporada: detailsTemporada,
       detailsTemporada,
       tipoAnime,
       tipoMangas,
+      nextRecomenda,
     });
   } catch (error) {
     console.error(error);
@@ -169,12 +188,16 @@ show: async (req, res) => {
     return res.render("temporada-create", { title: "Cadastrar Noticia" });
   },
   store: async (req, res) => {
-    const { titulo, description, conecxao, categoria, genero1, genero2, genero3, estreia, streaming, tipo } = req.body;
+    const { titulo, description, conecxao, categoria, genero1, genero2, genero3, estreia, streaming, tipo, estacao, link_video } = req.body;
+    const { image, image2 } = req.files;
+
     try {
-      let filename = "default-image.jpeg";
-      if (req.file) {
-        filename = req.file.filename;
-      }
+        let filename1 = "user-default.jpeg";
+        let filename2 = "user-default.jpeg";
+
+        if (image) { filename1 = image[0].filename; }
+        if (image2) { filename2 = image2[0].filename; }
+
 
       const novaNews = await Temporada.create({
         titulo,
@@ -187,7 +210,12 @@ show: async (req, res) => {
         genero3, 
         estreia, 
         streaming,
-        image: filename,
+        estacao,
+        link_video,
+
+        image: filename1, 
+        image2: filename2, 
+             
       });
 
       res.redirect("/detailsTemporada");
@@ -218,6 +246,12 @@ show: async (req, res) => {
       // Converte a imagem em base64
       if (detailsTemporada.image) {
         detailsTemporada.image = files.base64Encode(upload.path + detailsTemporada.image);
+        detailsTemporada.imageURL = `${upload.path}${detailsTemporada.image}`;
+      }
+      
+      if (detailsTemporada.image2) {
+        detailsTemporada.image2 = files.base64Encode(upload.path + detailsTemporada.image2);
+        detailsTemporada.image2URL = `${upload.path}${detailsTemporada.image2}`;
       }
   
       return res.render("temporada-edit", {
@@ -239,15 +273,23 @@ show: async (req, res) => {
   // Executa a atualização
   update: async (req, res) => {
     const { id } = req.params;
-    const { titulo, description, conecxao, categoria, genero1, genero2, genero3, estreia, streaming, tipo } = req.body;
+    const { titulo, description, conecxao, categoria, genero1, genero2, genero3, estreia, streaming, tipo, estacao, link_video } = req.body;
+    const { image, image2 } = req.files;
 
     try {
       const newsToUpdate = await Temporada.findByPk(id);
 
-      let filename = newsToUpdate.image;
-      if (req.file) {
-        filename = req.file.filename;
+      if (image) {
+        const filename1 = image[0].filename;
+        newsToUpdate.image = filename1;
       }
+  
+      // Verificar se o campo 'image2' está presente no objeto 'req.files'
+      if (image2) {
+        const filename2 = image2[0].filename;
+        newsToUpdate.image2 = filename2;
+      }
+
 
       await newsToUpdate.update({
         titulo,
@@ -260,7 +302,10 @@ show: async (req, res) => {
         genero3, 
         estreia, 
         streaming,
-        image: filename,
+        estacao,
+        link_video,
+        image: newsToUpdate.image,
+        image2: newsToUpdate.image2, 
       });
 
       return res.render("success", {

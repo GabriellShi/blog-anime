@@ -14,13 +14,19 @@ router.get("/create", detailsNewsController.create);
 
 // Essa rota faz conecção com a create de cima, ela ira ser a responsavel pelo envio do formulario
 // com o metodo 'post '
-router.post("/create", upload.single("image"), detailsNewsController.store);
+router.post("/create", 
+  upload.fields([
+    { name: "image", maxCount: 1 }, { name: "image2", maxCount: 1 }]), detailsNewsController.store);
 
 // Mostra a tela
 router.get("/edit/:id", detailsNewsController.edit);
 
 // Executa a atualização
-router.post("/edit/:id", upload.single("image"), detailsNewsController.update);
+router.post("/edit/:id",   upload.fields([
+    { name: "image", maxCount: 1 }, { name: "image2", maxCount: 1 }]),  detailsNewsController.update);
+  
+
+
 router.get("/delete/:id", detailsNewsController.delete);
 
 router.delete("/delete/:id", detailsNewsController.destroy);

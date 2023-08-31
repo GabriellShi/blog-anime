@@ -1,10 +1,13 @@
 const express = require("express");
 const app = express();
-const port = 3040;
 const path = require("path");
 const methodOverride = require("method-override");
 
-
+// Inicia o servidor
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log("Servidor está rodando");
+});
 
 const indexRoute = require("./src/routes/indexRoute");
 const contatoRoute = require("./src/routes/contatoRoute");
@@ -16,14 +19,13 @@ const detailsRecomendaRoute = require("./src/routes/detailsRecomendaRoute");
 const detailsTemporadaRoute = require("./src/routes/detailsTemporadaRoute");
 const detailsLancamentoRoute = require("./src/routes/detailsLancamentoRoute");
 
-
-
 // Configura o methodOverride no express
 // methodOverride = Pacote que transforma um método http em outro
 // Ex: POST => PUT
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
+
 //
 // Configura pasta estática para acesso externo
 app.use(express.static(path.join(__dirname, "public")));
@@ -32,12 +34,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 // Configura o caminho para os views, troca o padrão que é no raiz para o src
 app.set("views", path.join(__dirname, "src", "views"));
-
-// Inicia o servidor
-app.listen(port, () => {
-  console.log("Estamos rodando em: http://localhost:" + port);
-});
-
 
 app.use("/detailsNews", detailsNewsRoute);
 app.use("/", contatoRoute);
@@ -48,3 +44,5 @@ app.use("/detailsTemporada", detailsTemporadaRoute);
 app.use("/detailsLancamento", detailsLancamentoRoute);
 app.use("/", indexRoute);
 app.use("/", indexAdmRoute);
+
+app.use("/images", express.static(path.join(__dirname, "/uploads")));
