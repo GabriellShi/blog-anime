@@ -45,7 +45,7 @@ SELECT * FROM news;
 -- UPDATE users SET is_admin = 1 WHERE id = 16;
 
 -- Deleta o usuário a partir do id
- -- DELETE FROM news WHERE id = 34;
+ -- DELETE FROM news WHERE id = 54;
 
 -- Atualiza dados de uma linha
 -- UPDATE users 
@@ -124,7 +124,7 @@ VALUES
 -- Lista todos os usuários
 SELECT * FROM recomenda;
 
- -- DELETE FROM recomenda WHERE id = 4;
+-- DELETE FROM recomenda WHERE id = 14;
 
 
 
@@ -165,7 +165,7 @@ VALUES
 -- Lista todos os usuários
 SELECT * FROM temporada;
 
--- DELETE FROM temporada WHERE id = 4;
+-- DELETE FROM temporada WHERE id = 14;
 
 
 -- Cria tabela de usuário
@@ -191,4 +191,4 @@ VALUES
 -- Lista todos os usuários
 SELECT * FROM lancamento;
 
- -- DELETE FROM lancamento WHERE id = 4;
+-- DELETE FROM lancamento WHERE id = 14;
