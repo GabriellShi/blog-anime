@@ -6,7 +6,7 @@ const methodOverride = require("method-override");
 // Inicia o servidor
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  console.log("Servidor está rodando");
+  console.log("Servidor está rodando bem");
 });
 
 const indexRoute = require("./src/routes/indexRoute");
