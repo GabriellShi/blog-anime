@@ -25,7 +25,6 @@ const detailsLancamentoRoute = require("./src/routes/detailsLancamentoRoute");
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
-
 //
 // Configura pasta estática para acesso externo
 app.use(express.static(path.join(__dirname, "public")));
@@ -44,5 +43,3 @@ app.use("/detailsTemporada", detailsTemporadaRoute);
 app.use("/detailsLancamento", detailsLancamentoRoute);
 app.use("/", indexRoute);
 app.use("/", indexAdmRoute);
-
-app.use("/images", express.static(path.join(__dirname, "/uploads")));
