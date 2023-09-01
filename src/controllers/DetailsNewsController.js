@@ -13,8 +13,6 @@ const Temporada = require("../models/Temporada");
 const { Op } = require("sequelize");
 const { Sequelize } = require("../config/sequelize"); 
 
-const News2 = require("../models/NewsModel");
-
 
 const detailsNewsController = {
   // index - controlador da aba que visualiza a lista dos usuario /
@@ -52,10 +50,10 @@ const detailsNewsController = {
 // show - controlador que irá visualizar os detalhes de cada notícia
 // show - controlador que irá visualizar os detalhes de cada notícia
 show: async (req, res) => {
-  const { id } = req.params;
 
 
   try {
+    const { id } = req.params;
 
     // Busque os detalhes da notícia no banco de dados pelo ID
     const detailsNews = await News.findByPk(id);
