@@ -43,3 +43,5 @@ app.use("/detailsTemporada", detailsTemporadaRoute);
 app.use("/detailsLancamento", detailsLancamentoRoute);
 app.use("/", indexRoute);
 app.use("/", indexAdmRoute);
+
+app.use("/images", express.static(path.join(__dirname, "/uploads")));
