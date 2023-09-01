@@ -4,7 +4,7 @@ const router = express.Router();
 // Controllers
 const calendarioAnimesController = require("../controllers/CalendarioAnimesController");
 
-router.get("/calendarioAnimes", calendarioAnimesController.calendarioAnimes);
+router.get("/calendario", calendarioAnimesController.calendarioAnimes);
 
 
 

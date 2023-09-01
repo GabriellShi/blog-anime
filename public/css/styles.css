@@ -376,6 +376,7 @@ body {
   padding: 0.3rem;
   padding-left: 1rem;
   margin-bottom: 1rem;
+  
 }
 
 .titulo-destaque-index2 {
@@ -388,6 +389,7 @@ body {
   border: 2px solid yellow;
   color: white;
   margin-bottom: 2rem;
+  text-align: center;
 }
 
 .titulo-index {
@@ -1653,6 +1655,8 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
   .icone-login-mob ul ul {
     left: 0.1rem;
   }
+
+
 }
 
 
@@ -1748,6 +1752,12 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
   .contato h1 {
     text-align: center;
   }
+
+  .titulo-index {
+    text-align: center;
+  }
+  
+  
 }
 
 
@@ -1758,6 +1768,8 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
     flex-flow: wrap;
     justify-content: center;
   }
+
+
 }
 
 

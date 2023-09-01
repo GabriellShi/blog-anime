@@ -35,8 +35,9 @@ router.delete("/delete/:id", detailsNewsController.destroy);
 router.get("/", detailsNewsController.index);
 
 
-// Rota do controlador 'show' que ira fazer a visualização de cada usuario
+// Rota do controlador 'show' que irá fazer a visualização de cada notícia
 router.get("/:id", detailsNewsController.show);
+
 router.get("/:nomedeuser", detailsNewsController.show);
 
 module.exports = router;
