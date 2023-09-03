@@ -6,6 +6,4 @@ const calendarioAnimesController = require("../controllers/CalendarioAnimesContr
 
 router.get("/calendario", calendarioAnimesController.calendarioAnimes);
 
-
-
 module.exports = router;

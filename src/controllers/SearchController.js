@@ -31,15 +31,6 @@ const searchController = {
         },
       });
 
-      // Mapeie os URLs completos das imagens
-      news.map((detailsNews) => {
-        if (detailsNews.image) {
-          detailsNews.image = files.base64Encode(
-            upload.path + detailsNews.image
-          );
-        }
-      });
-
       const recomenda = await Recomenda.findAll({
         where: {
           [Sequelize.Op.or]: [
@@ -57,14 +48,6 @@ const searchController = {
         },
       });
 
-      // Mapeie os URLs completos das imagens
-      recomenda.map((detailsRecomenda) => {
-        if (detailsRecomenda.image) {
-          detailsRecomenda.image = files.base64Encode(
-            upload.path + detailsRecomenda.image
-          );
-        }
-      });
 
       const temporada = await Temporada.findAll({
         where: {
@@ -81,15 +64,6 @@ const searchController = {
             },
           ],
         },
-      });
-
-      // Mapeie os URLs completos das imagens
-      temporada.map((detailsTemporada) => {
-        if (detailsTemporada.image) {
-          detailsTemporada.image = files.base64Encode(
-            upload.path + detailsTemporada.image
-          );
-        }
       });
 
       res.render("search", {

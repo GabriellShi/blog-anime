@@ -23,15 +23,6 @@ const detailsLancamentoController = {
         order: [['created_at', 'DESC']]
       });
 
-      // Mapeie os URLs completos das imagens
-      lancamento.map((detailsLancamento) => {
-        if (detailsLancamento.image) {
-          detailsLancamento.image = files.base64Encode(
-            upload.path + detailsLancamento.image
-          );
-        }
-      });
-
       return res.render("lancamento", {
         title: "Lista de Notícias",
         lancamento,
@@ -46,8 +37,6 @@ const detailsLancamentoController = {
     }
   },
 
-  // show - controlador que ira visualizar os detalhas de cada usuario da lista 'users'
-  // show - controlador que irá visualizar os detalhes de cada notícia
   // show - controlador que irá visualizar os detalhes de cada notícia
   show: async (req, res) => {
     try {
@@ -71,13 +60,6 @@ const detailsLancamentoController = {
         detailsLancamento.formattedCreatedAt = formattedCreatedAt;
       }
 
-      // Converte a imagem em base64
-      if (detailsLancamento.image) {
-        detailsLancamento.image = files.base64Encode(
-          upload.path + detailsLancamento.image
-        );
-      }
-
       return res.render("detailsLancamento", {
         title: "Visualizar notícia",
         lancamento: detailsLancamento,
@@ -97,19 +79,15 @@ const detailsLancamentoController = {
   },
 
   store: async (req, res) => {
-    const { titulo, horario, dia, streaming } = req.body;
+    const { titulo, horario, dia, streaming, image } = req.body;
     try {
-      let filename = "default-image.jpeg";
-      if (req.file) {
-        filename = req.file.filename;
-      }
 
       await Lancamento.create({
         titulo,
         horario,
         dia,
         streaming,
-        image: filename,
+        image: image,
       });
 
       res.redirect("/detailsLancamento");
@@ -137,13 +115,6 @@ const detailsLancamentoController = {
         });
       }
 
-      // Converte a imagem em base64
-      if (detailsLancamento.image) {
-        detailsLancamento.image = files.base64Encode(
-          upload.path + detailsLancamento.image
-        );
-      }
-
       return res.render("lancamento-edit", {
         title: "Editar Notícia",
         lancamento: detailsLancamento, // Passamos os detalhes diretamente para a propriedade 'news'
@@ -162,22 +133,17 @@ const detailsLancamentoController = {
   // Executa a atualização
   update: async (req, res) => {
     const { id } = req.params;
-    const { titulo, horario, dia, streaming } = req.body;
+    const { titulo, horario, dia, streaming, image } = req.body;
 
     try {
       const newsToUpdate = await Lancamento.findByPk(id);
-
-      let filename = newsToUpdate.image;
-      if (req.file) {
-        filename = req.file.filename;
-      }
 
       await newsToUpdate.update({
         titulo,
         horario,
         dia,
         streaming,
-        image: filename,
+        image: image,
       });
 
       return res.render("success", {
@@ -205,12 +171,6 @@ const detailsLancamentoController = {
           title: "Ops!",
           message: "Detalhes da notícia não encontrados",
         });
-      }
-
-      if (detailsLancamento.image) {
-        detailsLancamento.image = files.base64Encode(
-          upload.path + detailsLancamento.image
-        );
       }
 
       return res.render("lancamento-delete", {

@@ -13,7 +13,6 @@ const { Sequelize } = require("../config/sequelize");
 
 
 const detailsTemporadaController = {
-  // index - controlador da aba que visualiza a lista dos usuario /
   // esse codigo renderiza a tabela 'users' dos usuarios
   // /Pode retornar uma página ou não
   index: async (req, res) => {
@@ -22,15 +21,6 @@ const detailsTemporadaController = {
       const temporada = await Temporada.findAll({
         order: [['created_at', 'DESC']]
       });
-
-      // Mapeie os URLs completos das imagens
-      temporada.map((detailsTemporada) => {
-        if (detailsTemporada.image) {
-          detailsTemporada.image = files.base64Encode(upload.path + detailsTemporada.image);
-        }
-      });
-
-      
 
       return res.render("temporada", {
         title: "Lista de Notícias",
@@ -46,8 +36,6 @@ const detailsTemporadaController = {
     }
   },
 
-  // show - controlador que ira visualizar os detalhas de cada usuario da lista 'users'
-// show - controlador que irá visualizar os detalhes de cada notícia
 // show - controlador que irá visualizar os detalhes de cada notícia
 show: async (req, res) => {
   try {
@@ -63,14 +51,6 @@ show: async (req, res) => {
       });
     }
 
-    // Converte a imagem em base64
-    if (detailsTemporada.image) {
-      detailsTemporada.image = files.base64Encode(upload.path + detailsTemporada.image);
-    }
-
-    if (detailsTemporada.image2) {
-      detailsTemporada.image2 = files.base64Encode(upload.path + detailsTemporada.image2);
-    }
     const noticiasAnimes = await News.findAll({
       where: {
         tipo: "Animes"
@@ -85,8 +65,6 @@ show: async (req, res) => {
       order: [['created_at', 'DESC']]
     });
 
-
-
     // Combine the data from all three tables
     let tipoAnime = [...noticiasAnimes, ...recomendacoesAnimes];
 
@@ -98,9 +76,6 @@ show: async (req, res) => {
 
     // Base64 encode images
     tipoAnime.map((item) => {
-      if (item.image) {
-        item.image = files.base64Encode(upload.path + item.image);
-      }
 
       if (item instanceof News) {
         item.contentType = 'News';
@@ -125,24 +100,16 @@ show: async (req, res) => {
       order: [['created_at', 'DESC']]
     });
 
-
-
     // Combine the data from all three tables
     let tipoMangas = [...noticiasMangas, ...recomendacoesMangas];
-
 
     // Sort tipoMangas by created_at in descending order
     tipoMangas.sort((a, b) => b.created_at - a.created_at);
 
- 
     tipoMangas = tipoMangas.slice(0, 5);
 
     // Base64 encode images
     tipoMangas.map((item) => {
-      if (item.image) {
-        item.image = files.base64Encode(upload.path + item.image);
-      }
-      
     });
 
     const nextRecomenda = await Temporada.findAll({
@@ -158,12 +125,8 @@ show: async (req, res) => {
       limit: 3,
     });
     
-
     // Base64 encode images das próximas recomendações
     nextRecomenda.map((item) => {
-      if (item.image) {
-        item.image = files.base64Encode(upload.path + item.image);
-      }
     });
 
     return res.render("detailsTemporada", {
@@ -183,21 +146,14 @@ show: async (req, res) => {
   }
 },
 
-
   create: async (req, res) => {
     return res.render("temporada-create", { title: "Cadastrar Noticia" });
   },
   store: async (req, res) => {
-    const { titulo, description, conecxao, categoria, genero1, genero2, genero3, estreia, streaming, tipo, estacao, link_video } = req.body;
-    const { image, image2 } = req.files;
+    const { titulo, description, conecxao, categoria, genero1, genero2, genero3, estreia, streaming, tipo, estacao, link_video, image, image2 } = req.body;
+    const {  } = req.files;
 
     try {
-        let filename1 = "user-default.jpeg";
-        let filename2 = "user-default.jpeg";
-
-        if (image) { filename1 = image[0].filename; }
-        if (image2) { filename2 = image2[0].filename; }
-
 
       const novaNews = await Temporada.create({
         titulo,
@@ -212,9 +168,8 @@ show: async (req, res) => {
         streaming,
         estacao,
         link_video,
-
-        image: filename1, 
-        image2: filename2, 
+        image: image, 
+        image2: image2, 
              
       });
 
@@ -242,18 +197,7 @@ show: async (req, res) => {
           message: "Detalhes da notícia não encontrados",
         });
       }
-  
-      // Converte a imagem em base64
-      if (detailsTemporada.image) {
-        detailsTemporada.image = files.base64Encode(upload.path + detailsTemporada.image);
-        detailsTemporada.imageURL = `${upload.path}${detailsTemporada.image}`;
-      }
-      
-      if (detailsTemporada.image2) {
-        detailsTemporada.image2 = files.base64Encode(upload.path + detailsTemporada.image2);
-        detailsTemporada.image2URL = `${upload.path}${detailsTemporada.image2}`;
-      }
-  
+
       return res.render("temporada-edit", {
         title: "Editar Notícia",
         temporada: detailsTemporada, // Passamos os detalhes diretamente para a propriedade 'news'
@@ -269,27 +213,13 @@ show: async (req, res) => {
     }
   },
   
-
   // Executa a atualização
   update: async (req, res) => {
     const { id } = req.params;
-    const { titulo, description, conecxao, categoria, genero1, genero2, genero3, estreia, streaming, tipo, estacao, link_video } = req.body;
-    const { image, image2 } = req.files;
+    const { titulo, description, conecxao, categoria, genero1, genero2, genero3, estreia, streaming, tipo, estacao, link_video, image, image2  } = req.body;
 
     try {
       const newsToUpdate = await Temporada.findByPk(id);
-
-      if (image) {
-        const filename1 = image[0].filename;
-        newsToUpdate.image = filename1;
-      }
-  
-      // Verificar se o campo 'image2' está presente no objeto 'req.files'
-      if (image2) {
-        const filename2 = image2[0].filename;
-        newsToUpdate.image2 = filename2;
-      }
-
 
       await newsToUpdate.update({
         titulo,
@@ -304,8 +234,8 @@ show: async (req, res) => {
         streaming,
         estacao,
         link_video,
-        image: newsToUpdate.image,
-        image2: newsToUpdate.image2, 
+        image: image,
+        image2: image2, 
       });
 
       return res.render("success", {
@@ -333,10 +263,6 @@ show: async (req, res) => {
           title: "Ops!",
           message: "Detalhes da notícia não encontrados",
         });
-      }
-
-      if (detailsTemporada.image) {
-        detailsTemporada.image = files.base64Encode(upload.path + detailsTemporada.image);
       }
 
       return res.render("temporada-delete", {

@@ -8,21 +8,21 @@
     
     <div>
       <ul class="lado-esquerdo-filho1">
-        <% for (const noticia of mergedData.slice(0, 3)) { %>
-        <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
-          <a href="<%= noticia instanceof News ? '/detailsNews/' + noticia.id : '/detailsRecomenda/' + noticia.id %>">
-            <div class="zoomable-image-container">
-              <img class="zoomable-image" src="<%= noticia.image %>" alt="Capa Noticia" />
-              <div class="zoomable-image-overlay"></div>
-            </div>
-            <h1><%= noticia.titulo.substring(0, 58) %></h1>
-            <h3>Data: <%= noticia.created_at.toLocaleDateString() %></h3>
-            <p><%- noticia.description.substring(0, 200) %>...</p>
-          </a>
-        </li>
-        <% } %>
+          <% for (const noticia of noticiasDestaqueSlice) { %>
+          <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
+              <a href="<%= noticia instanceof News ? '/detailsNews/' + noticia.id : '/detailsRecomenda/' + noticia.id %>">
+                  <div class="zoomable-image-container">
+                      <img class="zoomable-image" src="<%= noticia.image %>" alt="Capa Noticia" />
+                      <div class="zoomable-image-overlay"></div>
+                  </div>
+                  <h1><%= noticia.titulo.substring(0, 58) %></h1>
+                  <h3>Data: <%= noticia.created_at.toLocaleDateString() %></h3>
+                  <p><%- noticia.description.substring(0, 200) %>...</p>
+              </a>
+          </li>
+          <% } %>
       </ul>
-    </div>
+  </div>
     
 
     <script>
@@ -44,29 +44,25 @@
 
 
 
-    <ul class="lado-esquerdo-filho2" id="newsList">
-      <% for (const noticia of mergedData.slice(0, 10)) { %>
-        <li>
-          <a href="<%= noticia instanceof News ? '/detailsNews/' + noticia.id : '/detailsRecomenda/' + noticia.id %>">
-
+<ul class="lado-esquerdo-filho2" id="newsList">
+  <% for (const noticia of noticiasPrincipaisSlice.slice(0, 10)) { %>
+  <li>
+      <a href="<%= noticia instanceof News ? '/detailsNews/' + noticia.id : '/detailsRecomenda/' + noticia.id %>">
           <div class="lado-esquerdo-filho3 temporada-lado-direito-index lado-esquerdo-filho-imagem">
-
-            <div class="zoomable-image-container image-principais-noticias lado-esquerdo-neto-imagem1">
-                <img class="zoomable-image" src="<%= noticia.image %>" alt="Capa Noticia" />
-                <div class="zoomable-image-overlay"></div>
-            </div>
-           
-            <div class="lado-esquerdo-neto2 lado-esquerdo-neto-imagem2">
-              <h2><%= noticia.titulo.substring(0, 45) %> </h2>
-              <h4>Data: <%= new Date(noticia.created_at).toLocaleDateString() %></h4>
-              <p><%- noticia.description.substring(0, 200) %>...</p>
-            </div>
-            
+              <div class="zoomable-image-container image-principais-noticias lado-esquerdo-neto-imagem1">
+                  <img class="zoomable-image" src="<%= noticia.image %>" alt="Capa Noticia" />
+                  <div class="zoomable-image-overlay"></div>
+              </div>
+              <div class="lado-esquerdo-neto2 lado-esquerdo-neto-imagem2">
+                  <h2><%= noticia.titulo.substring(0, 45) %> </h2>
+                  <h4>Data: <%= new Date(noticia.created_at).toLocaleDateString() %></h4>
+                  <p><%- noticia.description.substring(0, 200) %>...</p>
+              </div>
           </div>
-        </a>
-        </li>
-      <% } %>
-    </ul> 
+      </a>
+  </li>
+  <% } %>
+</ul>
     
     <div id="loadMoreContainer" class="loadMoreContainer-css">
       <button id="loadMoreButton">VER MAIS</button>

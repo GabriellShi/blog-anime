@@ -13,7 +13,6 @@ const { Op } = require("sequelize");
 const { Sequelize } = require("../config/sequelize");
 
 const detailsRecomendaController = {
-  // index - controlador da aba que visualiza a lista dos usuario /
   // esse codigo renderiza a tabela 'users' dos usuarios
   // /Pode retornar uma página ou não
   index: async (req, res) => {
@@ -22,15 +21,6 @@ const detailsRecomendaController = {
       // Busque todas as notícias do banco de dados
       const recomenda = await Recomenda.findAll({
         order: [["created_at", "DESC"]],
-      });
-
-      // Mapeie os URLs completos das imagens
-      recomenda.map((detailsRecomenda) => {
-        if (detailsRecomenda.image) {
-          detailsRecomenda.image = files.base64Encode(
-            upload.path + detailsRecomenda.image
-          );
-        }
       });
 
       return res.render("recomenda", {
@@ -46,8 +36,6 @@ const detailsRecomendaController = {
     }
   },
 
-  // show - controlador que ira visualizar os detalhas de cada usuario da lista 'users'
-  // show - controlador que irá visualizar os detalhes de cada notícia
   // show - controlador que irá visualizar os detalhes de cada notícia
   show: async (req, res) => {
     try {
@@ -55,63 +43,6 @@ const detailsRecomendaController = {
 
       // Busque os detalhes da notícia no banco de dados pelo ID ssssssssssssssssss
       const detailsRecomenda = await Recomenda.findByPk(id);
-
-      // Converte a imagem em base64
-      if (detailsRecomenda.image) {
-        detailsRecomenda.image = files.base64Encode(
-          upload.path + detailsRecomenda.image
-        );
-      }
-      if (detailsRecomenda.image2) {
-        detailsRecomenda.image2 = files.base64Encode(
-          upload.path + detailsRecomenda.image2
-        );
-      }
-      if (detailsRecomenda.image3) {
-        detailsRecomenda.image3 = files.base64Encode(
-          upload.path + detailsRecomenda.image3
-        );
-      }
-      if (detailsRecomenda.image4) {
-        detailsRecomenda.image4 = files.base64Encode(
-          upload.path + detailsRecomenda.image4
-        );
-      }
-      if (detailsRecomenda.image5) {
-        detailsRecomenda.image5 = files.base64Encode(
-          upload.path + detailsRecomenda.image5
-        );
-      }
-      if (detailsRecomenda.image6) {
-        detailsRecomenda.image6 = files.base64Encode(
-          upload.path + detailsRecomenda.image6
-        );
-      }
-      if (detailsRecomenda.image7) {
-        detailsRecomenda.image7 = files.base64Encode(
-          upload.path + detailsRecomenda.image7
-        );
-      }
-      if (detailsRecomenda.image8) {
-        detailsRecomenda.image8 = files.base64Encode(
-          upload.path + detailsRecomenda.image8
-        );
-      }
-      if (detailsRecomenda.image9) {
-        detailsRecomenda.image9 = files.base64Encode(
-          upload.path + detailsRecomenda.image9
-        );
-      }
-      if (detailsRecomenda.image10) {
-        detailsRecomenda.image10 = files.base64Encode(
-          upload.path + detailsRecomenda.image10
-        );
-      }
-      if (detailsRecomenda.image11) {
-        detailsRecomenda.image11 = files.base64Encode(
-          upload.path + detailsRecomenda.image11
-        );
-      }
 
       const noticiasAnimes = await News.findAll({
         where: {
@@ -138,9 +69,6 @@ const detailsRecomendaController = {
 
       // Base64 encode images
       tipoAnime.map((item) => {
-        if (item.image) {
-          item.image = files.base64Encode(upload.path + item.image);
-        }
 
         if (item instanceof News) {
           item.contentType = "News";
@@ -173,9 +101,6 @@ const detailsRecomendaController = {
 
       // Base64 encode images
       tipoMangas.map((item) => {
-        if (item.image) {
-          item.image = files.base64Encode(upload.path + item.image);
-        }
       });
 
       const nextRecomenda = await Recomenda.findAll({
@@ -189,13 +114,6 @@ const detailsRecomendaController = {
         },
         order: [["created_at", "DESC"]], // Ordena por data descendente (mais antigas primeiro)
         limit: 3,
-      });
-
-      // Base64 encode images das próximas recomendações
-      nextRecomenda.map((item) => {
-        if (item.image) {
-          item.image = files.base64Encode(upload.path + item.image);
-        }
       });
 
       if (!detailsRecomenda) {
@@ -252,8 +170,6 @@ const detailsRecomendaController = {
       conecxao,
       categoria,
       tipo,
-    } = req.body;
-    const {
       image,
       image2,
       image3,
@@ -265,55 +181,10 @@ const detailsRecomendaController = {
       image9,
       image10,
       image11,
-    } = req.files;
-
+    } = req.body;
+  
     try {
-      let filename1 = "user-default.jpg";
-      let filename2 = "user-default.jpg";
-      let filename3 = "user-default.jpg";
-      let filename4 = "user-default.jpg";
-      let filename5 = "user-default.jpg";
-      let filename6 = "user-default.jpg";
-      let filename7 = "user-default.jpg";
-      let filename8 = "user-default.jpg";
-      let filename9 = "user-default.jpg";
-      let filename10 = "user-default.jpg";
-      let filename11 = "user-default.jpg";
-
-      if (image) {
-        filename1 = image[0].filename;
-      }
-      if (image2) {
-        filename2 = image2[0].filename;
-      }
-      if (image3) {
-        filename3 = image3[0].filename;
-      }
-      if (image4) {
-        filename4 = image4[0].filename;
-      }
-      if (image5) {
-        filename5 = image5[0].filename;
-      }
-      if (image6) {
-        filename6 = image6[0].filename;
-      }
-      if (image7) {
-        filename7 = image7[0].filename;
-      }
-      if (image8) {
-        filename8 = image8[0].filename;
-      }
-      if (image9) {
-        filename9 = image9[0].filename;
-      }
-      if (image10) {
-        filename10 = image10[0].filename;
-      }
-      if (image11) {
-        filename11 = image11[0].filename;
-      }
-
+  
       const novaNews = await Recomenda.create({
         titulo,
         titulo2,
@@ -342,17 +213,17 @@ const detailsRecomendaController = {
         categoria,
         tipo,
 
-        image: filename1,
-        image2: filename2,
-        image3: filename3,
-        image4: filename4,
-        image5: filename5,
-        image6: filename6,
-        image7: filename7,
-        image8: filename8,
-        image9: filename9,
-        image10: filename10,
-        image11: filename11,
+        image: image,
+        image2: image2,
+        image3: image3,
+        image4: image4,
+        image5: image5,
+        image6: image6,
+        image7: image7,
+        image8: image8,
+        image9: image9,
+        image10: image10,
+        image11: image11,
       });
 
       res.redirect("/detailsRecomenda");
@@ -378,94 +249,6 @@ const detailsRecomendaController = {
           title: "Ops!",
           message: "Detalhes da notícia não encontrados",
         });
-      }
-
-      //  // Converte a imagem em base64
-      //  if (detailsRecomenda.image) {detailsRecomenda.image = files.base64Encode(upload.path + detailsRecomenda.image); }
-      //  if (detailsRecomenda.image2) {detailsRecomenda.image2 = files.base64Encode(upload.path + detailsRecomenda.image2); }
-      //  if (detailsRecomenda.image3) {detailsRecomenda.image3 = files.base64Encode(upload.path + detailsRecomenda.image3); }
-      //  if (detailsRecomenda.image4) {detailsRecomenda.image4 = files.base64Encode(upload.path + detailsRecomenda.image4); }
-      //  if (detailsRecomenda.image5) {detailsRecomenda.image5 = files.base64Encode(upload.path + detailsRecomenda.image5); }
-      //  if (detailsRecomenda.image6) {detailsRecomenda.image6 = files.base64Encode(upload.path + detailsRecomenda.image6); }
-      //  if (detailsRecomenda.image7) {detailsRecomenda.image7 = files.base64Encode(upload.path + detailsRecomenda.image7); }
-      //  if (detailsRecomenda.image8) {detailsRecomenda.image8 = files.base64Encode(upload.path + detailsRecomenda.image8); }
-      //  if (detailsRecomenda.image9) {detailsRecomenda.image9 = files.base64Encode(upload.path + detailsRecomenda.image9); }
-      //  if (detailsRecomenda.image10) {detailsRecomenda.image10 = files.base64Encode(upload.path + detailsRecomenda.image10); }
-      //  if (detailsRecomenda.image11) {detailsRecomenda.image11 = files.base64Encode(upload.path + detailsRecomenda.image11); }
-
-      if (detailsRecomenda.image) {
-        detailsRecomenda.image = files.base64Encode(upload.path + detailsRecomenda.image);
-        detailsRecomenda.imageURL = `${upload.path}${detailsRecomenda.image}`;
-      }
-
-      if (detailsRecomenda.image2) {
-        detailsRecomenda.image2 = files.base64Encode(
-          upload.path + detailsRecomenda.image2
-        );
-        detailsRecomenda.image2URL = `${upload.path}${detailsRecomenda.image2}`;
-      }
-
-      if (detailsRecomenda.image3) {
-        detailsRecomenda.image3 = files.base64Encode(
-          upload.path + detailsRecomenda.image3
-        );
-        detailsRecomenda.image3URL = `${upload.path}${detailsRecomenda.image3}`;
-      }
-
-      if (detailsRecomenda.image4) {
-        detailsRecomenda.image4 = files.base64Encode(
-          upload.path + detailsRecomenda.image4
-        );
-        detailsRecomenda.image4URL = `${upload.path}${detailsRecomenda.image4}`;
-      }
-
-      if (detailsRecomenda.image5) {
-        detailsRecomenda.image5 = files.base64Encode(
-          upload.path + detailsRecomenda.image5
-        );
-        detailsRecomenda.image5URL = `${upload.path}${detailsRecomenda.image5}`;
-      }
-
-      if (detailsRecomenda.image6) {
-        detailsRecomenda.image6 = files.base64Encode(
-          upload.path + detailsRecomenda.image6
-        );
-        detailsRecomenda.image6URL = `${upload.path}${detailsRecomenda.image6}`;
-      }
-
-      if (detailsRecomenda.image7) {
-        detailsRecomenda.image7 = files.base64Encode(
-          upload.path + detailsRecomenda.image7
-        );
-        detailsRecomenda.image7URL = `${upload.path}${detailsRecomenda.image7}`;
-      }
-
-      if (detailsRecomenda.image8) {
-        detailsRecomenda.image8 = files.base64Encode(
-          upload.path + detailsRecomenda.image8
-        );
-        detailsRecomenda.image8URL = `${upload.path}${detailsRecomenda.image8}`;
-      }
-
-      if (detailsRecomenda.image9) {
-        detailsRecomenda.image9 = files.base64Encode(
-          upload.path + detailsRecomenda.image9
-        );
-        detailsRecomenda.image9URL = `${upload.path}${detailsRecomenda.image9}`;
-      }
-
-      if (detailsRecomenda.image10) {
-        detailsRecomenda.image10 = files.base64Encode(
-          upload.path + detailsRecomenda.image10
-        );
-        detailsRecomenda.image10URL = `${upload.path}${detailsRecomenda.image10}`;
-      }
-
-      if (detailsRecomenda.image11) {
-        detailsRecomenda.image11 = files.base64Encode(
-          upload.path + detailsRecomenda.image11
-        );
-        detailsRecomenda.image11URL = `${upload.path}${detailsRecomenda.image11}`;
       }
 
       return res.render("recomenda-edit", {
@@ -512,9 +295,6 @@ const detailsRecomendaController = {
       conecxao,
       categoria,
       tipo,
-    } = req.body;
-
-    const {
       image,
       image2,
       image3,
@@ -526,80 +306,10 @@ const detailsRecomendaController = {
       image9,
       image10,
       image11,
-    } = req.files;
+    } = req.body;
 
     try {
       const newsToUpdate = await Recomenda.findByPk(id);
-
-      // Verificar se o campo 'image' está presente no objeto 'req.files'
-      if (image) {
-        const filename1 = image[0].filename;
-        newsToUpdate.image = filename1;
-      }
-      if (image2) {
-        const filename2 = image2[0].filename;
-        newsToUpdate.image2 = filename2;
-      }
-      if (image3) {
-        const filename3 = image3[0].filename;
-        newsToUpdate.image3 = filename3;
-      }
-      if (image4) {
-        const filename4 = image4[0].filename;
-        newsToUpdate.image4 = filename4;
-      }
-      if (image5) {
-        const filename5 = image5[0].filename;
-        newsToUpdate.image5 = filename5;
-      }
-      if (image6) {
-        const filename6 = image6[0].filename;
-        newsToUpdate.image6 = filename6;
-      }
-      if (image7) {
-        const filename7 = image7[0].filename;
-        newsToUpdate.image7 = filename7;
-      }
-      if (image8) {
-        const filename8 = image8[0].filename;
-        newsToUpdate.image8 = filename8;
-      }
-      if (image9) {
-        const filename9 = image9[0].filename;
-        newsToUpdate.image9 = filename9;
-      }
-      if (image10) {
-        const filename10 = image10[0].filename;
-        newsToUpdate.image10 = filename10;
-      }
-      if (image11) {
-        const filename11 = image11[0].filename;
-        newsToUpdate.image11 = filename11;
-      }
-
-      //  let filename1 = "user-default.jpeg";
-      //  let filename2 = "user-default.jpeg";
-      //  let filename3 = "user-default.jpeg";
-      //  let filename4 = "user-default.jpeg";
-      //  let filename5 = "user-default.jpeg";
-      //  let filename6 = "user-default.jpeg";
-      //  let filename7 = "user-default.jpeg";
-      //  let filename8 = "user-default.jpeg";
-      //  let filename9 = "user-default.jpeg";
-      //  let filename10 = "user-default.jpeg";
-      //  let filename11 = "user-default.jpeg";
-
-      //  if (image) { filename1 = image[0].filename; }
-      //  if (image2) { filename2 = image2[0].filename; }
-      //  if (image3) { filename3 = image3[0].filename; }
-      //  if (image4) { filename4 = image4[0].filename; }
-      //  if (image5) { filename5 = image5[0].filename; }
-      //  if (image6) { filename6 = image6[0].filename; }
-      //  if (image7) { filename7 = image7[0].filename; }
-      //  if (image8) { filename8 = image8[0].filename; }
-      //  if (image9) { filename9 = image9[0].filename; }
-      //  if (image10) { filename10 = image10[0].filename; }
-      //  if (image11) { filename11 = image11[0].filename; }
 
       if (description.trim() === "") {
         description = newsToUpdate.description;
@@ -633,20 +343,17 @@ const detailsRecomendaController = {
         categoria,
         tipo,
 
-        // image: filename1, image2: filename2, image3: filename3, image4: filename4, image5: filename5,
-        // image6: filename6, image7: filename7, image8: filename8, image9: filename9, image10: filename10, image11: filename11,
-
-        image: newsToUpdate.image,
-        image2: newsToUpdate.image2,
-        image3: newsToUpdate.image3,
-        image4: newsToUpdate.image4,
-        image5: newsToUpdate.image5,
-        image6: newsToUpdate.image6,
-        image7: newsToUpdate.image7,
-        image8: newsToUpdate.image8,
-        image9: newsToUpdate.image9,
-        image10: newsToUpdate.image10,
-        image11: newsToUpdate.image11,
+        image: image,
+        image2: image2,
+        image3: image3,
+        image4: image4,
+        image5: image5,
+        image6: image6,
+        image7: image7,
+        image8: image8,
+        image9: image9,
+        image10: image10,
+        image11: image11,
       });
 
       return res.render("success", {
@@ -674,12 +381,6 @@ const detailsRecomendaController = {
           title: "Ops!",
           message: "Detalhes da notícia não encontrados",
         });
-      }
-
-      if (detailsRecomenda.image) {
-        detailsRecomenda.image = files.base64Encode(
-          upload.path + detailsRecomenda.image
-        );
       }
 
       return res.render("recomenda-delete", {

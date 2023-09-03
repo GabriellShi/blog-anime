@@ -6,9 +6,6 @@ const upload = require("../helpers/multer");
 // Controllers
 const datailsLancamentoController = require("../controllers/DetailsLancamentoController");
 
-
-
-
 // Rota do controlador 'store' que ira criar um novo usuario
 router.get("/create", datailsLancamentoController.create);
 
@@ -27,7 +24,6 @@ router.delete("/delete/:id", datailsLancamentoController.destroy);
 
 // Rota do controlador 'index' que ira mostras a lista dos usuarios
 router.get("/", datailsLancamentoController.index);
-
 
 // Rota do controlador 'show' que ira fazer a visualização de cada usuario
 router.get("/:id", datailsLancamentoController.show);

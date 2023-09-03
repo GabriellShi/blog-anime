@@ -421,8 +421,8 @@ body {
 
 /*   Estiliza as listas netos a terem uma largura fixam margin e a coloração do fundo */
 .lado-esquerdo-neto1 {
-  background-color: black	;
-  border: 2px solid #00e6ff;
+
+  border: 2px solid #dfdb04;
   flex: 1;
   min-width: 18rem; /* Defina a largura mínima que deseja para cada div item */
   max-width: 21rem;
@@ -797,6 +797,10 @@ h3 {
 .sect-capa-pagina-noticia img {
   width: 95%;
   margin-bottom: 2rem;
+}
+
+.sect-capa-pagina-noticia-img2 img {
+  width: 70%;
 }
 
 /* definindo o tamanho dos texto de descrição e dando margin em baixo */
@@ -1769,6 +1773,14 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
     justify-content: center;
   }
 
+  .contato h2 {
+
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+
+ 
 
 }
 

@@ -7,8 +7,6 @@ const upload = require("../helpers/multer");
 const detailsRecomendaController = require("../controllers/DetailsRecomendaController");
 
 
-
-
 // Rota do controlador 'store' que ira criar um novo usuario
 router.get("/create", detailsRecomendaController.create);
 
@@ -23,8 +21,6 @@ router.post("/create",
   ]), 
   detailsRecomendaController.store
 );
-
-
 
 // Mostra a tela
 router.get("/edit/:id", detailsRecomendaController.edit);
@@ -43,7 +39,6 @@ router.delete("/delete/:id", detailsRecomendaController.destroy);
 
 // Rota do controlador 'index' que ira mostras a lista dos usuarios
 router.get("/", detailsRecomendaController.index);
-
 
 // Rota do controlador 'show' que ira fazer a visualização de cada usuario
 router.get("/:id", detailsRecomendaController.show);

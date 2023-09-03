@@ -14,44 +14,36 @@ const indexController = {
       const noticiasDestaque = await News.findAll({
         order: [['created_at', 'DESC']]
       });
-
+  
       const temporadasRecomendadas = await Recomenda.findAll({
         order: [['created_at', 'DESC']]
       });
-
+  
+      // Combine as notícias das duas tabelas e ordene por data de criação
+      const todasNoticias = [...noticiasDestaque, ...temporadasRecomendadas];
+      todasNoticias.sort((a, b) => b.created_at - a.created_at);
+  
+      // Separe as notícias em destaque e principais
+      const noticiasDestaqueSlice = todasNoticias.slice(0, 3);
+      const noticiasPrincipaisSlice = todasNoticias.slice(3); // Remova o limite de 10, pegue todas as notícias restantes
+  
       // Combine the two sets of data
       const mergedData = [...noticiasDestaque, ...temporadasRecomendadas];
-
-      // Sort mergedData by created_at in descending order
       mergedData.sort((a, b) => b.created_at - a.created_at);
-
-      noticiasDestaque.map((detailsNews) => {
-        if (detailsNews.image) {
-          detailsNews.image = files.base64Encode(upload.path + detailsNews.image);
+      
+      // Filtrar notícias únicas com base no id
+      const noticiasUnicas = [];
+      const noticiasIds = new Set();
+      
+      for (const noticia of mergedData) {
+        if (!noticiasIds.has(noticia.id)) {
+          noticiasUnicas.push(noticia);
+          noticiasIds.add(noticia.id);
         }
-      });
-
-      temporadasRecomendadas.map((detailsRecomenda) => {
-        if (detailsRecomenda.image) {
-          detailsRecomenda.image = files.base64Encode(upload.path + detailsRecomenda.image);
-        }
-      });
+      }
 
       const temporadaNews = await Temporada.findAll({
         order: [['created_at', 'DESC']]
-      });
-
-      // Encode images
-      temporadaNews.map((detailsTemporada) => {
-        if (detailsTemporada.image) {
-          detailsTemporada.image = files.base64Encode(upload.path + detailsTemporada.image);
-        }
-      });
-
-      temporadaNews.map((detailsTemporada) => {
-        if (detailsTemporada.image2) {
-          detailsTemporada.image2 = files.base64Encode(upload.path + detailsTemporada.image2);
-        }
       });
 
       const curiosidadeNews = await News.findAll({
@@ -62,21 +54,15 @@ const indexController = {
         
       });
 
-      // Encode images
-      curiosidadeNews.map((curiosidade) => {
-        if (curiosidade.image) {
-          curiosidade.image = files.base64Encode(upload.path + curiosidade.image);
-        }
-      });
-      
-
       res.render('index', {
         title: 'Go Geek',
-        mergedData: mergedData.slice(0, 10), // Limitar a 10 notícias iniciais
+        noticiasUnicas: noticiasUnicas.slice(0, 10), // Passando noticiasUnicas para o template
         News,
         Recomenda,
         curiosidadeNews,
         temporadaNews,
+        noticiasDestaqueSlice,
+        noticiasPrincipaisSlice,
       });
     } catch (error) {
       console.error(error);
@@ -115,18 +101,17 @@ const indexController = {
     }
   },
   
-  
   temporadaViewsClient: async (req, res) => {
     try {
       const temporada = await Temporada.findAll({
         order: [['created_at', 'DESC']]
       });
   
-      temporada.map((detailsTemporada) => {
-        if (detailsTemporada.image) {
-          detailsTemporada.image = files.base64Encode(upload.path + detailsTemporada.image);
-        }
-      });
+      // temporada.map((detailsTemporada) => {
+      //   if (detailsTemporada.image) {
+      //     detailsTemporada.image = files.base64Encode(upload.path + detailsTemporada.image);
+      //   }
+      // });
   
       return res.render("temporadaViewsClient", {
         title: "Temporadas",
@@ -140,7 +125,6 @@ const indexController = {
       });
     }
   },
-  
 
   recomendaViewsClient: async (req, res) => {
     try {
@@ -148,11 +132,11 @@ const indexController = {
         order: [['created_at', 'DESC']]
       });
   
-      recomenda.map((detailsRecomenda) => {
-        if (detailsRecomenda.image) {
-          detailsRecomenda.image = files.base64Encode(upload.path + detailsRecomenda.image);
-        }
-      });
+      // recomenda.map((detailsRecomenda) => {
+      //   if (detailsRecomenda.image) {
+      //     detailsRecomenda.image = files.base64Encode(upload.path + detailsRecomenda.image);
+      //   }
+      // });
   
       return res.render("recomendaViewsClient", {
         title: "Recomendações",
@@ -176,12 +160,6 @@ const indexController = {
         order: [['created_at', 'DESC']]
       });
 
-
-
-      // // // Combine the data from all three tables
-      // const tipoAnime = [ ...recomenda];
-      // tipoAnime.sort((a, b) => b.created_at - a.created_at);
-  
       // Atualize as URLs das imagens
       recomenda.map((detailsRecomenda) => {
         if (detailsRecomenda.image) {
@@ -206,12 +184,6 @@ const indexController = {
           categoria: "Curiosidades"
         },
         order: [['created_at', 'DESC']]
-      });
-
-      curiosidades.map((curiosidade) => {
-        if (curiosidade.image) {
-          curiosidade.image = files.base64Encode(upload.path + curiosidade.image);
-        }
       });
 
       return res.render("curiosidadeViewsClient", {
@@ -274,8 +246,6 @@ const indexController = {
         order: [['created_at', 'DESC']]
       });
 
-
-
       // Combine the data from all three tables
       const tipoAnime = [...noticiasAnimes, ...recomendacoesAnimes];
 
@@ -284,10 +254,7 @@ const indexController = {
 
       // Base64 encode images
       tipoAnime.map((item) => {
-        if (item.image) {
-          item.image = files.base64Encode(upload.path + item.image);
-        }
-        
+ 
         if (item instanceof News) {
           item.contentType = 'News';
         } else if (item instanceof Recomenda) {
@@ -326,8 +293,6 @@ const indexController = {
         order: [['created_at', 'DESC']]
       });
 
-
-
       // Combine the data from all three tables
       const tipoAnime = [...noticiasAnimes, ...recomendacoesAnimes];
       tipoAnime.sort((a, b) => b.created_at - a.created_at);
@@ -348,7 +313,6 @@ const indexController = {
       res.status(500).send('Erro ao carregar mais notícias');
     }
   },
-
   
   tipoMangasViewsClient: async (req, res) => {
     try {
@@ -366,7 +330,6 @@ const indexController = {
         order: [['created_at', 'DESC']]
       });
 
-
       // Combine the data from all three tables
       const tipoMangas = [...noticiasMangas, ...recomendacoesMangas];
 
@@ -375,9 +338,6 @@ const indexController = {
 
       // Base64 encode images
       tipoMangas.map((item) => {
-        if (item.image) {
-          item.image = files.base64Encode(upload.path + item.image);
-        }
         
         if (item instanceof News) {
           item.contentType = 'News';
@@ -417,8 +377,6 @@ const indexController = {
         order: [['created_at', 'DESC']]
       });
 
-
-
       // Combine the data from all three tables
       const tipoAnime = [...noticiasMangas, ...recomendacoesMangas];
       tipoAnime.sort((a, b) => b.created_at - a.created_at);
@@ -440,10 +398,6 @@ const indexController = {
     }
   },
 
- 
-  
-
-  
   
 };
 

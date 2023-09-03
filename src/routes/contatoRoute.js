@@ -6,6 +6,4 @@ const contatoController = require("../controllers/ContatoController");
 
 router.get("/contato", contatoController.contato);
 
-
-
 module.exports = router;

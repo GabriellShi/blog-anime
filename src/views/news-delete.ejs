@@ -1,10 +1,12 @@
 <%- include("./partials/headAdm") %> <%- include("./partials/headerAdm") %>
 
-<main>
-  <h1>Deletar Notica</h1>
+<main class="form-news-create main-news-adm">
+  <h1 class="titulo-news-create">Deletar Notica</h1>
   <% if(locals.detailsNews){ %>
   <div class="imagem-usuario">
+    <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
     <img src="<%= detailsNews.image %>" alt="imagem" />
+    </li>
     <span>Titulo: <%= detailsNews.titulo %>  </span>
     <span>Descrição: <%= detailsNews.description %> </span>
     <span>Conexão: <%= detailsNews.conecxao %> </span>

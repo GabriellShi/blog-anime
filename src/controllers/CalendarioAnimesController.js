@@ -15,14 +15,6 @@ const calendarioAnimesController = {
 
       });
 
-      // Mapeie os URLs completos das imagens
-      lancamento.map((detailsLancamento) => {
-        if (detailsLancamento.image) {
-          detailsLancamento.image = files.base64Encode(
-            upload.path + detailsLancamento.image
-          );
-        }
-      });
       return res.render("calendarioAnimes", {
         title: "Calendario" ,
         lancamento, 

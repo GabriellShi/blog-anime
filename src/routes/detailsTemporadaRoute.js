@@ -6,9 +6,6 @@ const upload = require("../helpers/multer");
 // Controllers
 const detailsTemporadaController = require("../controllers/DetailsTemporadaController");
 
-
-
-
 // Rota do controlador 'store' que ira criar um novo usuario
 router.get("/create", detailsTemporadaController.create);
 
@@ -34,7 +31,6 @@ router.delete("/delete/:id", detailsTemporadaController.destroy);
 
 // Rota do controlador 'index' que ira mostras a lista dos usuarios
 router.get("/", detailsTemporadaController.index);
-
 
 // Rota do controlador 'show' que ira fazer a visualização de cada usuario
 router.get("/:id", detailsTemporadaController.show);

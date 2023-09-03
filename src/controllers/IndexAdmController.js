@@ -20,5 +20,4 @@ const indexAdmController = {
 };
 
 
-
 module.exports = indexAdmController;

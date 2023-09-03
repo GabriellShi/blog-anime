@@ -14,7 +14,7 @@
     <input class="input-form" type="text" name="subtitulo" placeholder="Sub Titulo" value=" <%= news.subtitulo %>">
     
       <label for="">Imagem</label>
-      <input class="input-form" type="file" name="image" value="<%= detailsNews.imageURL %>">
+      <input class="input-form" type="text" name="image" value="<%= detailsNews.image %>" placeholder=" Imagem 1">
       <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
         <img src="<%= detailsNews.image %>" alt="Imagem" />
       </li>
@@ -23,8 +23,10 @@
     <textarea class="input-form" name="description" placeholder="Descrição"><%= news.description %></textarea>
     
 <label for="">Image 2</label>
-<input class="input-form" type="file" name="image2" value="<%= detailsNews.image2URL %>">
+<input class="input-form" type="text" name="image2" value="<%= detailsNews.image2 %>" placeholder="Imagem 2">
+<li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
 <img src="<%= detailsNews.image2 %>" alt="Imagem" />
+</li>
 
     <label for="">Link Video</label>
     <input class="input-form" type="text" name="link_video" placeholder="Link Video" value="<%= news.link_video %>" >

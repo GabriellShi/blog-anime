@@ -4,7 +4,6 @@ const upload = require("../config/upload");
 const path = require("path");
 
 
-
 // Configuração para conexão com o banco de dados
 const db = require("../config/sequelize");
 const News = require("../models/News");
@@ -16,20 +15,12 @@ const { Sequelize } = require("../config/sequelize");
 
 const detailsNewsController = {
   // index - controlador da aba que visualiza a lista dos usuario /
-  // esse codigo renderiza a tabela 'users' dos usuarios
   // /Pode retornar uma página ou não
   index: async (req, res) => {
     try {
       // Busque todas as notícias do banco de dados
       const news = await News.findAll({
         order: [['created_at', 'DESC']]
-      });
-
-      // Mapeie os URLs completos das imagens
-      news.map((detailsNews) => {
-        if (detailsNews.image) {
-          detailsNews.image = files.base64Encode(upload.path + detailsNews.image);
-        }
       });
 
       return res.render("news", {
@@ -46,19 +37,14 @@ const detailsNewsController = {
     }
   },
 
-  // show - controlador que ira visualizar os detalhas de cada usuario da lista 'users'
-// show - controlador que irá visualizar os detalhes de cada notícia
 // show - controlador que irá visualizar os detalhes de cada notícia
 show: async (req, res) => {
-
 
   try {
     const { id } = req.params;
 
     // Busque os detalhes da notícia no banco de dados pelo ID
     const detailsNews = await News.findByPk(id);
-
-  
 
     if (!detailsNews) {
       return res.render("error", {
@@ -67,21 +53,10 @@ show: async (req, res) => {
       });
     }
 
-
-
     if (detailsNews.created_at) {
       const createdAtDate = new Date(detailsNews.created_at);
       const formattedCreatedAt = `${createdAtDate.getDate()}/${createdAtDate.getMonth() + 1}/${createdAtDate.getFullYear()}`;
       detailsNews.formattedCreatedAt = formattedCreatedAt;
-    }
-
-    // Converte a imagem em base64
-    if (detailsNews.image) {
-      detailsNews.image = files.base64Encode(upload.path + detailsNews.image);
-    }
-
-    if (detailsNews.image2) {
-      detailsNews.image2 = files.base64Encode(upload.path + detailsNews.image2);
     }
 
     const noticiasAnimes = await News.findAll({
@@ -98,8 +73,6 @@ show: async (req, res) => {
       order: [['created_at', 'DESC']]
     });
 
- 
-
     // Combine the data from all three tables
     let tipoAnime = [...noticiasAnimes, ...recomendacoesAnimes];
 
@@ -111,9 +84,6 @@ show: async (req, res) => {
 
     // Base64 encode images
     tipoAnime.map((item) => {
-      if (item.image) {
-        item.image = files.base64Encode(upload.path + item.image);
-      }
 
       if (item instanceof News) {
         item.contentType = 'News';
@@ -135,24 +105,17 @@ show: async (req, res) => {
       },
       order: [['created_at', 'DESC']]
     });
-
   
     // Combine the data from all three tables
     let tipoMangas = [...noticiasMangas, ...recomendacoesMangas];
 
-
     // Sort tipoMangas by created_at in descending order
     tipoMangas.sort((a, b) => b.created_at - a.created_at);
 
- 
     tipoMangas = tipoMangas.slice(0, 5);
 
     // Base64 encode images
-    tipoMangas.map((item) => {
-      if (item.image) {
-        item.image = files.base64Encode(upload.path + item.image);
-      }
-      
+    tipoMangas.map((item) => {    
     });
 
     const nextRecomenda = await News.findAll({
@@ -168,16 +131,6 @@ show: async (req, res) => {
       limit: 3,
     });
     
-
-    // Base64 encode images das próximas recomendações
-    nextRecomenda.map((item) => {
-      if (item.image) {
-        item.image = files.base64Encode(upload.path + item.image);
-      }
-    });
-
-
-
     return res.render("detailsNews", {
       title: detailsNews.titulo, // Use o título da notícia como título da guia do navegador
       news: detailsNews,
@@ -196,26 +149,13 @@ show: async (req, res) => {
   }
 },
 
-
-
   create: async (req, res) => {
     return res.render("news-create", { title: "Cadastrar Noticia" });
   },
   store: async (req, res) => {
-    const { titulo, description, subtitulo, description2, conecxao, categoria, tipo, link_video } = req.body;
-    const { image, image2} = req.files;
-
+    const { titulo, description, subtitulo, description2, conecxao, categoria, tipo, link_video, image, image2 } = req.body;
     
     try {
-
-        let filename1 = "user-default.jpg";
-        let filename2 = "user-default.jpg";
-
-
-        if (image) { filename1 = image[0].filename; }
-        if (image2) { filename2 = image2[0].filename; }
- 
-
 
       const novaNews = await News.create({
         titulo,
@@ -224,9 +164,10 @@ show: async (req, res) => {
         categoria,
         tipo,
         link_video,
-        subtitulo, description2,
-
-        image: filename1, image2: filename2,
+        subtitulo, 
+        description2,
+        image: image, 
+        image2: image2,
           
       });
 
@@ -255,17 +196,6 @@ show: async (req, res) => {
         });
       }
   
-      // Converte a imagem em base64
-      if (detailsNews.image) {
-        detailsNews.image = files.base64Encode(upload.path + detailsNews.image);
-        detailsNews.imageURL = `${upload.path}${detailsNews.image}`;
-      }
-      
-      if (detailsNews.image2) {
-        detailsNews.image2 = files.base64Encode(upload.path + detailsNews.image2);
-        detailsNews.image2URL = `${upload.path}${detailsNews.image2}`;
-      }
-  
       return res.render("news-edit", {
         title: "Editar Notícia",
         news: detailsNews, // Passamos os detalhes diretamente para a propriedade 'news'
@@ -280,28 +210,14 @@ show: async (req, res) => {
       });
     }
   },
-  
 
   // Executa a atualização
   update: async (req, res) => {
     const { id } = req.params;
-    const { titulo, description, subtitulo, description2, conecxao, categoria, tipo, link_video } = req.body;
-    const { image, image2 } = req.files;
-  
+    const { titulo, description, subtitulo, description2, conecxao, categoria, tipo, link_video, image, image2 } = req.body;
+ 
     try {
       const newsToUpdate = await News.findByPk(id);
-  
-      // Verificar se o campo 'image' está presente no objeto 'req.files'
-      if (image) {
-        const filename1 = image[0].filename;
-        newsToUpdate.image = filename1;
-      }
-  
-      // Verificar se o campo 'image2' está presente no objeto 'req.files'
-      if (image2) {
-        const filename2 = image2[0].filename;
-        newsToUpdate.image2 = filename2;
-      }
   
       // Verificar se o campo 'description' foi preenchido no formulário
       // Se não foi preenchido, manter o valor original
@@ -321,8 +237,8 @@ show: async (req, res) => {
         subtitulo,
         description2,
         // Certifique-se de incluir as propriedades de imagem aqui
-        image: newsToUpdate.image,
-        image2: newsToUpdate.image2,
+        image: image,
+        image2: image2,
       });
   
       return res.render("success", {
@@ -337,8 +253,6 @@ show: async (req, res) => {
       });
     }
   },
-  
-
 
   delete: async (req, res) => {
     const { id } = req.params;
@@ -352,10 +266,6 @@ show: async (req, res) => {
           title: "Ops!",
           message: "Detalhes da notícia não encontrados",
         });
-      }
-
-      if (detailsNews.image) {
-        detailsNews.image = files.base64Encode(upload.path + detailsNews.image);
       }
 
       return res.render("news-delete", {

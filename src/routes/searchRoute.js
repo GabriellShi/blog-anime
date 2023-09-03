@@ -6,6 +6,4 @@ const searchController = require("../controllers/SearchController");
 
 router.post("/search", searchController.search);
 
-
-
 module.exports = router;
