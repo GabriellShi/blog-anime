@@ -38,11 +38,17 @@ const detailsRecomendaController = {
 
   // show - controlador que irá visualizar os detalhes de cada notícia
   show: async (req, res) => {
-    try {
-      const { id } = req.params;
 
-      // Busque os detalhes da notícia no banco de dados pelo ID ssssssssssssssssss
-      const detailsRecomenda = await Recomenda.findByPk(id);
+
+    try {
+      const { titulo } = req.params;
+
+      // Busque os detalhes da recomendação no banco de dados pelo título (slug)
+      const detailsRecomenda = await Recomenda.findOne({
+        where: {
+          titulo: titulo, // Mantenha o uso de "titulo" para buscar pelo título no URL
+        },
+      });
 
       const noticiasAnimes = await News.findAll({
         where: {
@@ -105,8 +111,8 @@ const detailsRecomendaController = {
 
       const nextRecomenda = await Recomenda.findAll({
         where: {
-          id: {
-            [Sequelize.Op.not]: id,
+          titulo: {
+            [Sequelize.Op.not]: titulo,
           },
           created_at: {
             [Sequelize.Op.lt]: detailsRecomenda.created_at, // Alterado para "menor que" para pegar recomendações mais antigas

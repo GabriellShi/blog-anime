@@ -41,11 +41,15 @@ const detailsNewsController = {
 show: async (req, res) => {
 
   try {
-    const { id } = req.params;
+    const { titulo } = req.params;
 
-    // Busque os detalhes da notícia no banco de dados pelo ID
-    const detailsNews = await News.findByPk(id);
-
+    // Busque os detalhes da notícia no banco de dados pelo título
+    const detailsNews = await News.findOne({
+      where: {
+        titulo: titulo
+      }
+    });
+    
     if (!detailsNews) {
       return res.render("error", {
         title: "Ops!",
@@ -120,8 +124,8 @@ show: async (req, res) => {
 
     const nextRecomenda = await News.findAll({
       where: {
-        id: {
-          [Sequelize.Op.not]: id,
+        titulo: {
+          [Sequelize.Op.not]: titulo,
         },
         created_at: {
           [Sequelize.Op.lt]: detailsNews.created_at, // Alterado para "menor que" para pegar recomendações mais antigas
