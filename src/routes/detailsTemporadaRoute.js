@@ -33,7 +33,7 @@ router.delete("/delete/:id", detailsTemporadaController.destroy);
 router.get("/", detailsTemporadaController.index);
 
 // Rota do controlador 'show' que ira fazer a visualização de cada usuario
-router.get("/:id", detailsTemporadaController.show);
+router.get("/:titulo", detailsTemporadaController.show);
 router.get("/:nomedeuser", detailsTemporadaController.show);
 
 module.exports = router;

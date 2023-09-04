@@ -5,7 +5,7 @@
     <ul class="lado-esquerdo-filho1">
       <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque lado-esquerdo-neto1-temporada lado-esquerdo-neto1-detailstemporada">
         <section class="section-detailsTemporada">
-          <a href="/detailsTemporada/<%= detailsTemporada.id %>">
+
           <div class="zoomable-image-container zoomable-image-container-temporada">
             <img class="zoomable-image" src="<%= detailsTemporada.image %>" alt="Capa Noticia" />
             <div class="zoomable-image-overlay"></div>
@@ -40,7 +40,6 @@
 
 
           </div>
-        </a>
           </section
       </li>
     </ul>
@@ -77,7 +76,7 @@
     <div class="leia-tambem-details">
       <h1>Leia também:</h1>
       <% for (let i = 0; i < 3 && i < nextRecomenda.length; i++) { %>
-        <a href="/detailsTemporada/<%= nextRecomenda[i].id %>">
+        <a href="/detailsTemporada/<%= nextRecomenda[i].titulo.replace(/ /g, '-') %>">
           <div class="sect-leia-tambem-pai">
             <div class="sect-leia-tambem-filho">
               <img src="/img/bola-vermelha.png" alt="" />
@@ -119,11 +118,11 @@
         <li class="lado-esquerdo-neto5 lado-direito-neto1">
           <button type="submit">
             <% if (anime.contentType === 'News') { %>
-              <a href="/detailsNews/<%= anime.id %>">
+              <a href="/detailsNews/<%= anime.titulo.replace(/ /g, '-') %>">
             <% } else if (anime.contentType === 'Recomenda') { %>
-              <a href="/detailsRecomenda/<%= anime.id %>">
+              <a href="/detailsRecomenda/<%= anime.titulo.replace(/ /g, '-') %>">
             <% } else if (anime.contentType === 'Temporada') { %>
-              <a href="/detailsTemporada/<%= anime.id %>">
+              <a href="/detailsTemporada/<%= anime.titulo.replace(/ /g, '-') %>">
             <% } %>
             <div class="temporada-lado-direito">
               <div class="temporada-lado-direito-image">
@@ -151,16 +150,18 @@
 
     <% if (tipoMangas.length > 0) { %>
       <ul class="lado-direito-filho1">
-        <% for (let mangas of tipoMangas) { %>
+        <% for (let item of tipoMangas) { %>
           <li class="lado-esquerdo-neto5 lado-esquerdo-neto6 lado-direito-neto1">
-            <a class="manga-link" href="/detailsNews/<%= mangas.id %>">
+            <a href="<%= item instanceof News ? '/detailsNews/' + item.titulo.replace(/ /g, '-') : '/detailsRecomenda/' + item.titulo.replace(/ /g, '-') %>">
+
+              
               <div class="temporada-lado-direito ">
                 <div class="temporada-lado-direito-image">
-                  <img src="<%= mangas.image %>" alt="Capa Notica" />
+                  <img src="<%= item.image %>" alt="Capa Notica" />
                 </div>
                 <div>
-                  <h1><%= mangas.titulo.substring(0, 48) %></h1>
-                  <h3><%= new Date(mangas.created_at).toLocaleDateString('pt-BR') %></h3>
+                  <h1><%= item.titulo.substring(0, 48) %></h1>
+                  <h3><%= new Date(item.created_at).toLocaleDateString('pt-BR') %></h3>
                 </div>
               </div>
             </a>

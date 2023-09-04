@@ -9,7 +9,7 @@ const Recomenda = require('../models/Recomenda');
 const News = require('../models/News');
 
 const indexController = {
-  index: async (req, res) => {
+  index: async (req, res, pageTitle) => {
     try {
       const noticiasDestaque = await News.findAll({
         order: [['created_at', 'DESC']]
@@ -46,6 +46,8 @@ const indexController = {
         order: [['created_at', 'DESC']]
       });
 
+      const { titulo } = req.params;
+
       const curiosidadeNews = await News.findAll({
         where: {
           categoria: "Curiosidades"
@@ -55,7 +57,7 @@ const indexController = {
       });
 
       res.render('index', {
-        title: 'Go Geek',
+        title: pageTitle,
         noticiasUnicas: noticiasUnicas.slice(0, 10), // Passando noticiasUnicas para o template
         News,
         Recomenda,
@@ -177,7 +179,7 @@ const indexController = {
     }
   },
 
-  curiosidadeViewsClient: async (req, res) => {
+  curiosidadeViewsClient: async (req, res, pageTitle) => {
     try {
       const curiosidades = await News.findAll({
         where: {
@@ -185,9 +187,9 @@ const indexController = {
         },
         order: [['created_at', 'DESC']]
       });
-
+  
       return res.render("curiosidadeViewsClient", {
-        title: "Curiosidades",
+        title: pageTitle, // Defina o título da página com base no argumento pageTitle
         curiosidades,
       });
     } catch (error) {
@@ -198,6 +200,7 @@ const indexController = {
       });
     }
   },
+  
 
   loadMoreNewsCuriosidade: async (req, res) => {
     try {

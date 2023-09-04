@@ -175,7 +175,7 @@
                 <div class="leia-tambem-details">
                 <h1>Leia também:</h1>
                 <% for (let i = 0; i < 3 && i < nextRecomenda.length; i++) { %>
-                  <a href="/detailsRecomenda/<%= nextRecomenda[i].id %>">
+                  <a href="/detailsRecomenda/<%= nextRecomenda[i].titulo.replace(/ /g, '-') %>">
                     <div class="sect-leia-tambem-pai">
                       <div class="sect-leia-tambem-filho">
                         <img src="/img/bola-vermelha.png" alt="" />
@@ -217,11 +217,11 @@
         <li class="lado-esquerdo-neto5 lado-direito-neto1">
           <button type="submit">
             <% if (anime.contentType === 'News') { %>
-              <a href="/detailsNews/<%= anime.id %>">
+              <a href="/detailsNews/<%= anime.titulo.replace(/ /g, '-') %>">
             <% } else if (anime.contentType === 'Recomenda') { %>
-              <a href="/detailsRecomenda/<%= anime.id %>">
+              <a href="/detailsRecomenda/<%= anime.titulo.replace(/ /g, '-') %>">
             <% } else if (anime.contentType === 'Temporada') { %>
-              <a href="/detailsTemporada/<%= anime.id %>">
+              <a href="/detailsTemporada/<%= anime.titulo.replace(/ /g, '-') %>">
             <% } %>
             <div class="temporada-lado-direito">
               <div class="temporada-lado-direito-image">
@@ -251,24 +251,29 @@
     
 
     <h1 class="titulo-destaque-index titulo-destaque-index2 titulo-destaque-index-direito">MANGA</h1>
+
     <% if (tipoMangas.length > 0) { %>
       <ul class="lado-direito-filho1">
-        <% for (let mangas of tipoMangas) { %>
+        <% for (let item of tipoMangas) { %>
           <li class="lado-esquerdo-neto5 lado-esquerdo-neto6 lado-direito-neto1">
-            <a class="manga-link" href="<%= mangas.tipo === 'News' ? '/detailsNews/' + mangas.id : '/detailsRecomenda/' + mangas.id %>">
-              <div class="temporada-lado-direito">
+            <a href="<%= item instanceof News ? '/detailsNews/' + item.titulo.replace(/ /g, '-') : '/detailsRecomenda/' + item.titulo.replace(/ /g, '-') %>">
+
+              
+              <div class="temporada-lado-direito ">
                 <div class="temporada-lado-direito-image">
-                  <img src="<%= mangas.image %>" alt="Capa Notica" />
+                  <img src="<%= item.image %>" alt="Capa Notica" />
                 </div>
                 <div>
-                  <h1><%= mangas.titulo.substring(0, 48) %></h1>
-                  <h3><%= new Date(mangas.created_at).toLocaleDateString('pt-BR') %></h3>
+                  <h1><%= item.titulo.substring(0, 48) %></h1>
+                  <h3><%= new Date(item.created_at).toLocaleDateString('pt-BR') %></h3>
                 </div>
               </div>
             </a>
           </li>
         <% } %>
       </ul>
+    <% } else { %>
+      <h2>Nenhum manga Encontrado</h2>
     <% } %>
     
   </section>

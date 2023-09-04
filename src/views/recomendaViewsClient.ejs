@@ -10,7 +10,7 @@
         <% for (const detailsRecomenda of recomenda.slice(0, 10)) { %>
     
         <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
-          <a href="/detailsRecomenda/<%= detailsRecomenda.id %>">
+          <a href="/detailsRecomenda/<%= detailsRecomenda.titulo.replace(/ /g, '-') %>">
 
             <div class="zoomable-image-container">
               <img class="zoomable-image" src="<%= detailsRecomenda.image %>" alt="Capa Noticia" />

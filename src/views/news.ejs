@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="botao-visualizar-adm">
-        <a href="/detailsNews/<%= detailsNews.id %>">Visualizar</a>
+        <a href="/detailsNews/<%= detailsNews.titulo.replace(/ /g, '-') %>">Visualizar</a>
         <a href="/detailsNews/edit/<%= detailsNews.id %>">Editar</a>
         <a href="/detailsNews/delete/<%= detailsNews.id %>">Excluir</a>
       </div>

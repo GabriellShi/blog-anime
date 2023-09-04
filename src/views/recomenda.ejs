@@ -13,7 +13,7 @@
         <p><%- detailsRecomenda.description %></p>
       </div>
       <div class="botao-visualizar-adm">
-          <a href="/detailsRecomenda/<%= detailsRecomenda.id %>">Visualizar</a>
+          <a href="/detailsRecomenda/<%= detailsRecomenda.titulo.replace(/ /g, '-') %>">Visualizar</a>
           <a href="/detailsRecomenda/edit/<%= detailsRecomenda.id %>">Editar</a>
           <a href="/detailsRecomenda/delete/<%= detailsRecomenda.id %>">Excluir</a>
       </div>

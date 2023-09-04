@@ -43,10 +43,11 @@ show: async (req, res) => {
   try {
     const { titulo } = req.params;
 
+    const tituloDecodificado = titulo.replace(/-/g, ' ');
     // Busque os detalhes da notícia no banco de dados pelo título
     const detailsNews = await News.findOne({
       where: {
-        titulo: titulo
+        titulo: tituloDecodificado
       }
     });
     
@@ -142,6 +143,7 @@ show: async (req, res) => {
       tipoAnime,
       tipoMangas,
       nextRecomenda,
+      News,
     });
     
   } catch (error) {

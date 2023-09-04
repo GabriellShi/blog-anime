@@ -11,9 +11,9 @@
   
       <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
           <% if (mangas.contentType === 'News') { %>
-            <a href="/detailsNews/<%= mangas.id %>">
+            <a href="/detailsNews/<%= mangas.titulo.replace(/ /g, '-') %>">
           <% } else if (mangas.contentType === 'Recomenda') { %>
-            <a href="/detailsRecomenda/<%= mangas.id %>">
+            <a href="/detailsRecomenda/<%= mangas.titulo.replace(/ /g, '-') %>">
   
           <% } %>
           <div class="zoomable-image-container">

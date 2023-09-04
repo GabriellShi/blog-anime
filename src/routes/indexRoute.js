@@ -9,7 +9,11 @@ router.get("/", indexController.index);
 
 router.get("/temporadas", indexController.temporadaViewsClient);
 router.get("/recomendas", indexController.recomendaViewsClient);
-router.get("/curiosidade", indexController.curiosidadeViewsClient);
+router.get("/curiosidade/", (req, res) => {
+    const pageTitle = "Curiosidades";
+    indexController.curiosidadeViewsClient(req, res, pageTitle);
+  });
+  
 router.get("/Animes", indexController.tipoAnimesViewsClient);
 router.get("/Mangas", indexController.tipoMangasViewsClient);
 

@@ -36,13 +36,21 @@ const detailsTemporadaController = {
     }
   },
 
+  
+
 // show - controlador que irá visualizar os detalhes de cada notícia
 show: async (req, res) => {
   try {
-    const { id } = req.params;
+    const { titulo } = req.params;
 
-    // Busque os detalhes da notícia no banco de dados pelo ID
-    const detailsTemporada = await Temporada.findByPk(id);
+    const tituloDecodificado = titulo.replace(/-/g, ' ');
+
+    const detailsTemporada = await Temporada.findOne({
+      where: {
+        titulo: tituloDecodificado, // Mantenha o uso de "titulo" para buscar pelo título no URL
+      },
+    });
+    
 
     if (!detailsTemporada) {
       return res.render("error", {
@@ -114,8 +122,8 @@ show: async (req, res) => {
 
     const nextRecomenda = await Temporada.findAll({
       where: {
-        id: {
-          [Sequelize.Op.not]: id,
+        titulo: {
+          [Sequelize.Op.not]: titulo,
         },
         created_at: {
           [Sequelize.Op.lt]: detailsTemporada.created_at, // Alterado para "menor que" para pegar recomendações mais antigas
@@ -129,6 +137,8 @@ show: async (req, res) => {
     nextRecomenda.map((item) => {
     });
 
+    
+
     return res.render("detailsTemporada", {
       title: detailsTemporada.titulo,
       temporada: detailsTemporada,
@@ -136,6 +146,7 @@ show: async (req, res) => {
       tipoAnime,
       tipoMangas,
       nextRecomenda,
+      News,
     });
   } catch (error) {
     console.error(error);

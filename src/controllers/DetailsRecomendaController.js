@@ -43,10 +43,12 @@ const detailsRecomendaController = {
     try {
       const { titulo } = req.params;
 
+      const tituloDecodificado = titulo.replace(/-/g, ' ');
+
       // Busque os detalhes da recomendação no banco de dados pelo título (slug)
       const detailsRecomenda = await Recomenda.findOne({
         where: {
-          titulo: titulo, // Mantenha o uso de "titulo" para buscar pelo título no URL
+          titulo: tituloDecodificado, // Mantenha o uso de "titulo" para buscar pelo título no URL
         },
       });
 
@@ -136,6 +138,8 @@ const detailsRecomendaController = {
         tipoAnime,
         tipoMangas,
         nextRecomenda,
+        News,
+        Recomenda,
       });
     } catch (error) {
       console.error(error);
