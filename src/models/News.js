@@ -10,6 +10,12 @@ const News = db.define(
       autoIncrement: true,
       primaryKey: true,
     },
+
+    id: {
+      type: Sequelize.DataTypes.INTEGER.UNSIGNED,
+      autoIncrement: true,
+      primaryKey: true,
+    },
     titulo: {
       type: Sequelize.DataTypes.STRING(150),
       allowNull: false,

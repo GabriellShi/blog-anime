@@ -10,8 +10,7 @@
       <ul class="lado-esquerdo-filho1">
           <% for (const noticia of noticiasDestaqueSlice) { %>
           <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
-              <a href="<%= noticia instanceof News ? '/detailsNews/' + noticia.id : '/detailsRecomenda/' + noticia.id %>">
-                  <div class="zoomable-image-container">
+            <a href="<%= noticia instanceof News ? '/detailsNews/' + noticia.titulo : '/detailsRecomenda/' + noticia.titulo %>">                  <div class="zoomable-image-container">
                       <img class="zoomable-image" src="<%= noticia.image %>" alt="Capa Noticia" />
                       <div class="zoomable-image-overlay"></div>
                   </div>

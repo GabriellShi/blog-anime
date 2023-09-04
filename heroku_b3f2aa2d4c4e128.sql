@@ -1,7 +1,7 @@
--- DROP DATABASE IF EXISTS blog_anime_db;
+DROP DATABASE IF EXISTS heroku_b3f2aa2d4c4e128;
 
 -- Cria banco de dados
--- CREATE DATABASE blog_anime_db;
+CREATE DATABASE heroku_b3f2aa2d4c4e128;
 
 -- Seleciona banco de  dados para uso
 USE heroku_b3f2aa2d4c4e128;
@@ -20,16 +20,15 @@ CREATE TABLE news (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     tipo VARCHAR(150) NOT NULL,
     link_video VARCHAR(250) NOT NULL
-    
-    
 );
 
 -- Altera tabela
---  ALTER TABLE news ADD link_video VARCHAR(250) NOT NULL;
+-- ALTER TABLE news ADD image2 VARCHAR(500);
   
  -- Apagar Coluna
--- ALTER TABLE news
--- DROP COLUMN estacao;
+ 
+  -- ALTER TABLE news
+ -- DROP COLUMN image;
 
 -- Insere um ou mais usuário
 INSERT INTO news (titulo, subtitulo, description, description2, conecxao, categoria, image, image2, tipo, link_video)
@@ -98,7 +97,6 @@ CREATE TABLE recomenda (
     image9 VARCHAR(500),
     image10 VARCHAR(500),
     image11 VARCHAR(500),
-    
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     tipo VARCHAR(150) NOT NULL
 );
@@ -165,7 +163,7 @@ VALUES
 -- Lista todos os usuários
 SELECT * FROM temporada;
 
--- DELETE FROM temporada WHERE id = 14;
+-- DELETE FROM temporada WHERE id = 24;
 
 
 -- Cria tabela de usuário
@@ -191,4 +189,4 @@ VALUES
 -- Lista todos os usuários
 SELECT * FROM lancamento;
 
--- DELETE FROM lancamento WHERE id = 14;
+-- DELETE FROM lancamento WHERE id = 154;

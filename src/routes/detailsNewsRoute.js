@@ -29,8 +29,9 @@ router.delete("/delete/:id", detailsNewsController.destroy);
 // Rota do controlador 'index' que ira mostras a lista dos usuarios
 router.get("/", detailsNewsController.index);
 
-// Rota do controlador 'show' que irá fazer a visualização de cada notícia
-router.get("/:id", detailsNewsController.show);
+// Rota do controlador 'show' que irá visualizar os detalhes de cada notícia
+router.get("/:titulo", detailsNewsController.show);
+
 
 router.get("/:nomedeuser", detailsNewsController.show);
 

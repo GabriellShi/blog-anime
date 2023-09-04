@@ -41,7 +41,10 @@ router.delete("/delete/:id", detailsRecomendaController.destroy);
 router.get("/", detailsRecomendaController.index);
 
 // Rota do controlador 'show' que ira fazer a visualização de cada usuario
-router.get("/:id", detailsRecomendaController.show);
-router.get("/:nomedeuser", detailsRecomendaController.show);
+
+router.get("/:titulo", detailsRecomendaController.show);
+
+
+
 
 module.exports = router;
