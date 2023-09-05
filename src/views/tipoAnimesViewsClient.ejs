@@ -13,9 +13,9 @@
 
     <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
         <% if (anime.contentType === 'News') { %>
-          <a href="/detailsNews/<%= anime.titulo.replace(/ /g, '-') %>">
+          <a href="/detailsNews/<%= anime.titulo.replace(/ /g, '-') %>" target="_blank">
         <% } else if (anime.contentType === 'Recomenda') { %>
-          <a href="/detailsRecomenda/<%= anime.titulo.replace(/ /g, '-') %>">
+          <a href="/detailsRecomenda/<%= anime.titulo.replace(/ /g, '-') %>" target="_blank">
 
         <% } %>
         <div class="zoomable-image-container">

@@ -53,11 +53,22 @@
 }
 
 /* Definindo a largura e dando margem a imagem que fai no menu de navegação  */
-.nav-partials img {
+.logo-partials img {
   width: 6.5rem;
   padding-top: 0.8rem;
   padding-bottom: 0.8rem;
 }
+
+.imagem-redes-sociais a img {
+ width: 2rem;
+ margin-left: 0.5rem;
+}
+
+.imagem-redes-sociais {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
 
 /* Deixando os item no menu de navegação um ao lado do outro, dando espaçamento com gap e tirando os topicos das listas  */
 .nav-partials ul {

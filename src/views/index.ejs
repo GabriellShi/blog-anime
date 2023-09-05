@@ -10,7 +10,7 @@
       <ul class="lado-esquerdo-filho1">
           <% for (const noticia of noticiasDestaqueSlice) { %>
           <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
-            <a href="<%= noticia instanceof News ? '/detailsNews/' + noticia.titulo.replace(/ /g, '-') : '/detailsRecomenda/' + noticia.titulo.replace(/ /g, '-') %>">
+            <a href="<%= noticia instanceof News ? '/detailsNews/' + noticia.titulo.replace(/ /g, '-') : '/detailsRecomenda/' + noticia.titulo.replace(/ /g, '-') %>" target="_blank">
   
                     <div class="zoomable-image-container">
                       <img class="zoomable-image" src="<%= noticia.image %>" alt="Capa Noticia" />
@@ -48,7 +48,7 @@
 <ul class="lado-esquerdo-filho2" id="newsList">
   <% for (const noticia of noticiasPrincipaisSlice.slice(0, 10)) { %>
   <li>
-      <a href="<%= noticia instanceof News ? '/detailsNews/' + noticia.titulo.replace(/ /g, '-') : '/detailsRecomenda/' + noticia.titulo.replace(/ /g, '-') %>">
+      <a href="<%= noticia instanceof News ? '/detailsNews/' + noticia.titulo.replace(/ /g, '-') : '/detailsRecomenda/' + noticia.titulo.replace(/ /g, '-') %>" target="_blank">
           <div class="lado-esquerdo-filho3 temporada-lado-direito-index lado-esquerdo-filho-imagem">
               <div class="zoomable-image-container image-principais-noticias lado-esquerdo-neto-imagem1">
                   <img class="zoomable-image" src="<%= noticia.image %>" alt="Capa Noticia" />
@@ -100,7 +100,7 @@
         <% for (let detailsTemporada of temporadaNews.slice(0, 5)) { %>
           <li class="lado-esquerdo-neto5 lado-direito-neto1">
             <button type="submit">
-              <a href="/detailsTemporada/<%= detailsTemporada.titulo.replace(/ /g, '-') %>">
+              <a href="/detailsTemporada/<%= detailsTemporada.titulo.replace(/ /g, '-') %>" target="_blank">
             <div class="temporada-lado-direito">
               <div class="temporada-lado-direito-image">
                 <img src="<%= detailsTemporada.image2 %>" alt="Capa Notica" />
@@ -126,7 +126,7 @@
         <% for (let curiosidade of curiosidadeNews.slice(0, 5)) { %>
           <li class="lado-esquerdo-neto5 lado-direito-neto1">
             <button type="submit">
-              <a href="/detailsNews/<%= curiosidade.titulo.replace(/ /g, '-') %>">
+              <a href="/detailsNews/<%= curiosidade.titulo.replace(/ /g, '-') %>" target="_blank">
             <div class="temporada-lado-direito">
               <div class="temporada-lado-direito-image">
                 <img src="<%= curiosidade.image %>" alt="Capa Notica" />

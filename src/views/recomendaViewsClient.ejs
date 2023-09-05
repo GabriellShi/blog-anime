@@ -1,7 +1,7 @@
 <%- include("./partials/head") %> <%- include("./partials/header")%>
 
 <main class="main-paginas">
-  <h1 class=" titulo-paginas">Lista de Recomendações</h1>
+  <h1 class=" titulo-paginas">LISTA DE RECOMENDAÇÕES</h1>
 
 
 
@@ -10,7 +10,7 @@
         <% for (const detailsRecomenda of recomenda.slice(0, 10)) { %>
     
         <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
-          <a href="/detailsRecomenda/<%= detailsRecomenda.titulo.replace(/ /g, '-') %>">
+          <a href="/detailsRecomenda/<%= detailsRecomenda.titulo.replace(/ /g, '-') %>" target="_blank">
 
             <div class="zoomable-image-container">
               <img class="zoomable-image" src="<%= detailsRecomenda.image %>" alt="Capa Noticia" />
