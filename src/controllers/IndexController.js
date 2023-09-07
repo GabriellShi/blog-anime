@@ -56,8 +56,11 @@ const indexController = {
         
       });
 
+ 
+
       res.render('index', {
         title: pageTitle,
+        title: "Go Geek",
         noticiasUnicas: noticiasUnicas.slice(0, 10), // Passando noticiasUnicas para o template
         News,
         Recomenda,

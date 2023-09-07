@@ -8,7 +8,7 @@
     <ul class="lado-esquerdo-filho1">
       <% news.forEach((noticia) => { %>
         <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
-          <a href="/detailsNews/<%= noticia.id %>">
+          <a href="/detailsNews/<%= noticia.titulo.replace(/ /g, '-') %>">
             <div class="zoomable-image-container">
               <img class="zoomable-image" src="<%= noticia.image %>" alt="Capa Noticia" />
               <div class="zoomable-image-overlay"></div>
@@ -32,7 +32,7 @@
   <ul class="lado-esquerdo-filho1">
     <% recomenda.forEach((noticia) => { %>
       <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
-          <a href="/detailsRecomenda/<%= noticia.id %>">
+          <a href="/detailsRecomenda/<%= noticia.titulo.replace(/ /g, '-') %>">
         <div class="zoomable-image-container">
           <img class="zoomable-image" src="<%= noticia.image %>" alt="Capa Noticia" />
           <div class="zoomable-image-overlay"></div>
@@ -47,9 +47,30 @@
     <% }) %>
   </ul>
 <% } else { %>
-  <p>Nenhum resultado encontrado para notícias.</p>
+
 <% } %>
 
+<% if (temporada.length > 0) { %>
+  <ul class="lado-esquerdo-filho1">
+    <% temporada.forEach((noticia) => { %>
+      <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
+          <a href="/detailsTemporada/<%= noticia.titulo.replace(/ /g, '-') %>">
+        <div class="zoomable-image-container">
+          <img class="zoomable-image" src="<%= noticia.image2 %>" alt="Capa Noticia" />
+          <div class="zoomable-image-overlay"></div>
+        </div>
+        <div class="descricao-search">
+        <h1><%= noticia.titulo %></h1>
+        <p><%= noticia.description.substring(0, 298) %>...</p>
+        <h3>Data: <%= noticia.created_at.toLocaleDateString() %></h3>
+        </div>
+      </a>
+      </li>
+    <% }) %>
+  </ul>
+<% } else { %>
+
+<% } %>
 
 </main>
 
