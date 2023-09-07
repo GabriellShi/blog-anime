@@ -1120,6 +1120,11 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
   max-width: 50%;
 }
 
+.div2 h1 {
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+}
+
 .lado-esquerdo-neto1-temporada p {
   margin-left: 0.5rem;
   margin-right: 0.5rem;

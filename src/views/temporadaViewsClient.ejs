@@ -37,11 +37,7 @@
       <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque lado-esquerdo-neto1-temporada">
         <section>
           <a href="/detailsTemporada/${ detailsTemporada.titulo.replace(/ /g, '-') }" target="_blank">
-          <div class="zoomable-image-container zoomable-image-container-temporada">
-            <img class="zoomable-image" src="${ detailsTemporada.image }" alt="Capa Noticia" />
-            <div class="zoomable-image-overlay"></div>
-          </div>
-          <div class="div2">
+            <div class="div2">
             <h1>${ detailsTemporada.titulo.substring(0, 34) }</h1>
             <p class="descricao-1-temporada">${ detailsTemporada.description.substring(0, 364) }...</p>
             <p class="descricao-2-temporada">${ detailsTemporada.description.substring(0, 100) }...</p>
@@ -67,11 +63,16 @@
             </h2>
 
             <h2 class="generos-temporada-principal">
-     <a href="/detailsTemporada/${detailsTemporada.titulo.replace(/ /g, '-')}?scrollTo=videoTrailer">Trailer</a>
-</h2>
+            <a href="/detailsTemporada/${detailsTemporada.titulo.replace(/ /g, '-')}?scrollTo=videoTrailer">Trailer</a>
+            </h2>
 
 
           </div>
+          <div class="zoomable-image-container zoomable-image-container-temporada">
+            <img class="zoomable-image" src="${ detailsTemporada.image }" alt="Capa Noticia" />
+            <div class="zoomable-image-overlay"></div>
+          </div>
+
         </a>
           </section
       </li>
