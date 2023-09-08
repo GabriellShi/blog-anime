@@ -1,5 +1,4 @@
 User-agent: *
 Disallow: /admin/
-Disallow: /Adm/
-Disallow: /login/
-Disallow: /painel-de-controle/
+Disallow: /private/
+Sitemap: https://www.gogeekanimes.com/sitemap.xml
