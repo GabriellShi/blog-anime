@@ -13,16 +13,16 @@
 
     <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
         <% if (anime.contentType === 'News') { %>
-          <a href="/detailsNews/<%= anime.titulo.replace(/ /g, '-') %>" target="_blank">
+          <a rel="canonical" href="/detailsNews/<%= anime.titulo.replace(/ /g, '-') %>" target="_blank">
         <% } else if (anime.contentType === 'Recomenda') { %>
-          <a href="/detailsRecomenda/<%= anime.titulo.replace(/ /g, '-') %>" target="_blank">
+          <a rel="canonical" href="/detailsRecomenda/<%= anime.titulo.replace(/ /g, '-') %>" target="_blank">
 
         <% } %>
         <div class="zoomable-image-container">
           <img class="zoomable-image" src="<%= anime.image %>" alt="Capa Noticia" />
           <div class="zoomable-image-overlay"></div>
         </div>
-        <h1><%= anime.titulo.substring(0, 58) %></h1>
+        <h2><%= anime.titulo.substring(0, 58) %></h2>
         <h3>Data: <%= anime.created_at.toLocaleDateString() %></h3>
         <p><%- anime.description.substring(0, 298) %>...</p>
         <% if (anime.contentType === 'News') { %>

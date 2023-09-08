@@ -67,7 +67,7 @@ const searchController = {
       });
 
       res.render("search", {
-        title: "Resultado Pesquisa",
+        title: "Resultado Pesquisa - Go Geek",
         news,
         recomenda,
         temporada,

@@ -16,7 +16,7 @@ const calendarioAnimesController = {
       });
 
       return res.render("calendarioAnimes", {
-        title: "Calendario" ,
+        title: "Calendario - Go Geek" ,
         lancamento, 
       });
     },

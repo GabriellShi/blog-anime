@@ -10,13 +10,13 @@
         <% for (const detailsRecomenda of recomenda.slice(0, 10)) { %>
     
         <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
-          <a href="/detailsRecomenda/<%= detailsRecomenda.titulo.replace(/ /g, '-') %>" target="_blank">
+          <a rel="canonical" href="/detailsRecomenda/<%= detailsRecomenda.titulo.replace(/ /g, '-') %>" target="_blank">
 
             <div class="zoomable-image-container">
               <img class="zoomable-image" src="<%= detailsRecomenda.image %>" alt="Capa Noticia" />
               <div class="zoomable-image-overlay"></div>
             </div>
-            <h1><%= detailsRecomenda.titulo.substring(0, 58) %></h1>
+            <h2><%= detailsRecomenda.titulo.substring(0, 58) %></h2>
             <h3>Data: <%= detailsRecomenda.created_at.toLocaleDateString() %></h3>
             <p><%- detailsRecomenda.description.substring(0, 298) %>...</p>
           </a>

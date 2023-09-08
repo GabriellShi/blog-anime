@@ -445,7 +445,7 @@ body {
 
 
 /* Definindo o tamanho da fonte do titulo h1 do neto do lado esquerdo  */
-.lado-esquerdo-neto1 h1 {
+.lado-esquerdo-neto1 h2 {
   font-size: 1rem;
   color: yellow;
   padding-top: 0.5rem;
@@ -461,7 +461,7 @@ body {
 
 
 
-.lado-esquerdo-neto1 h1:hover {
+.lado-esquerdo-neto1 h2:hover {
   color: rgb(253, 0, 0);
 }
 
@@ -684,7 +684,7 @@ width: 100%;
 }
 
 /* definindo o tamanho dos texto do lado direito da pagina */
-.lado-direito-neto1 h1,
+.lado-direito-neto1 h2,
 h3 {
   font-size: 0.8rem;
 }
@@ -723,7 +723,7 @@ h3 {
   
 }
 
-.temporada-lado-direito h1{
+.temporada-lado-direito h2{
   text-align:center;
 }
 

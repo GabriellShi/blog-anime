@@ -60,7 +60,10 @@ const indexController = {
 
       res.render('index', {
         title: pageTitle,
-        title: "Go Geek",
+        title: "Go Geek Animes - Tudo sobre animes, mangas, doramas e muito mais",
+
+
+
         noticiasUnicas: noticiasUnicas.slice(0, 10), // Passando noticiasUnicas para o template
         News,
         Recomenda,
@@ -112,15 +115,26 @@ const indexController = {
         order: [['created_at', 'DESC']]
       });
   
-      // temporada.map((detailsTemporada) => {
-      //   if (detailsTemporada.image) {
-      //     detailsTemporada.image = files.base64Encode(upload.path + detailsTemporada.image);
-      //   }
-      // });
+
+      const detailsTemporada = {
+        estreia: new Date('2023-08-31')
+      };
+      
+      // função para formatar a data no formato desejado (dd-mm-yyyy).
+      function formatarData(data) {
+        const dia = data.getDate().toString().padStart(2, '0');
+        const mes = (data.getMonth() + 1).toString().padStart(2, '0'); // O mês é base 0, então adicionamos 1.
+        const ano = data.getFullYear();
+      
+        return `${dia}-${mes}-${ano}`;
+      }
+      
+
   
       return res.render("temporadaViewsClient", {
-        title: "Temporadas",
-        temporada, // Certifique-se de passar a variável temporada para a renderização
+        title: "Temporadas - Go Geek",
+        temporada, 
+        dataFormatada: formatarData(detailsTemporada.estreia)
       });
     } catch (error) {
       console.error(error);
@@ -144,7 +158,7 @@ const indexController = {
       // });
   
       return res.render("recomendaViewsClient", {
-        title: "Recomendações",
+        title: "Recomendações - Go Geek",
         recomenda, // Certifique-se de passar a variável temporada para a renderização
       });
     } catch (error) {
@@ -193,6 +207,8 @@ const indexController = {
   
       return res.render("curiosidadeViewsClient", {
         title: pageTitle, // Defina o título da página com base no argumento pageTitle
+        title: "Curiosidades - Go Geek",
+
         curiosidades,
       });
     } catch (error) {
@@ -269,7 +285,7 @@ const indexController = {
       });
       
       return res.render("tipoAnimesViewsClient", {
-        title: "Animes",
+        title: "Animes - Go Geek",
         tipoAnime,
       });
     } catch (error) {
@@ -353,7 +369,7 @@ const indexController = {
       });
       
       return res.render("tipoMangasViewsClient", {
-        title: "Mangas",
+        title: "Mangas - Go Geek",
         tipoMangas,
       });
     } catch (error) {

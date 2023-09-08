@@ -3,7 +3,7 @@
 <main>
   <section class="lado-esquerdo-pai">
     <div class="titulo-noticia">
-      <h1 class="titulo-destaque-index " ><%= detailsRecomenda.titulo%>
+      <h1 class="titulo-destaque-index " ><%= detailsRecomenda.titulo%></h1>
     </div>
 
     <div class="sect-autor-data-pai">
@@ -30,7 +30,7 @@
 
     <!-- Recomenda 1  -->
     <div class="titulo-noticia titulo-noticia-recomenda">
-      <h1><%= detailsRecomenda.titulo2%>
+      <h2><%= detailsRecomenda.titulo2%></h2>
     </div>
 
     <div class="sect-capa-pagina-noticia ">
@@ -44,7 +44,7 @@
 
         <!-- Recomenda 2  -->
         <div class="titulo-noticia">
-          <h1><%= detailsRecomenda.titulo3%>
+          <h2><%= detailsRecomenda.titulo3%></h2>
        </div>
 
         <div class="sect-capa-pagina-noticia">
@@ -58,7 +58,7 @@
 
             <!-- Recomenda 3  -->
     <div class="titulo-noticia">
-      <h1><%= detailsRecomenda.titulo4%>
+      <h2><%= detailsRecomenda.titulo4%></h2>
     </div>
 
     <div class="sect-capa-pagina-noticia">
@@ -72,7 +72,7 @@
 
         <!-- Recomenda 4  -->
         <div class="titulo-noticia">
-          <h1><%= detailsRecomenda.titulo5%>
+          <h2><%= detailsRecomenda.titulo5%></h2>
     </div>
 
         <div class="sect-capa-pagina-noticia">
@@ -86,7 +86,7 @@
 
             <!-- Recomenda 5  -->
     <div class="titulo-noticia">
-      <h1><%= detailsRecomenda.titulo6%>
+      <h2><%= detailsRecomenda.titulo6%></h2>
     </div>
 
     <div class="sect-capa-pagina-noticia">
@@ -100,7 +100,7 @@
 
         <!-- Recomenda 6  -->
         <div class="titulo-noticia">
-          <h1><%= detailsRecomenda.titulo7%>
+          <h2><%= detailsRecomenda.titulo7%></h2>
     </div>
 
         <div class="sect-capa-pagina-noticia">
@@ -115,7 +115,7 @@
 
             <!-- Recomenda 7  -->
     <div class="titulo-noticia">
-      <h1><%= detailsRecomenda.titulo8%>
+      <h2><%= detailsRecomenda.titulo8%></h2>
     </div>
 
     <div class="sect-capa-pagina-noticia">
@@ -130,7 +130,7 @@
 
         <!-- Recomenda 8  -->
         <div class="titulo-noticia">
-          <h1><%= detailsRecomenda.titulo9%>
+          <h2><%= detailsRecomenda.titulo9%></h2>
     </div>
 
         <div class="sect-capa-pagina-noticia">
@@ -146,7 +146,7 @@
 
             <!-- Recomenda 9 -->
     <div class="titulo-noticia">
-      <h1><%= detailsRecomenda.titulo10%>
+      <h2><%= detailsRecomenda.titulo10%></h2>
     </div>
 
     <div class="sect-capa-pagina-noticia">
@@ -160,7 +160,7 @@
 
                 <!-- Recomenda 10 -->
                 <div class="titulo-noticia">
-                  <h1><%= detailsRecomenda.titulo11%>
+                  <h2><%= detailsRecomenda.titulo11%></h2>
                </div>
 
                 <div class="sect-capa-pagina-noticia">
@@ -173,7 +173,7 @@
                 </div>
 
                 <div class="leia-tambem-details">
-                <h1>Leia também:</h1>
+                <h2>Leia também:</h2>
                 <% for (let i = 0; i < 3 && i < nextRecomenda.length; i++) { %>
                   <a href="/detailsRecomenda/<%= nextRecomenda[i].titulo.replace(/ /g, '-') %>">
                     <div class="sect-leia-tambem-pai">
@@ -210,7 +210,7 @@
     </div>
   </section>
   <section class="lado-direito-pai">
-    <h1 class="titulo-destaque-index titulo-destaque-index-direito" >ANIMES</h1>
+    <h2 class="titulo-destaque-index titulo-destaque-index-direito" >ANIMES</h2>
 
     <ul class="lado-direito-filho1">
       <% for (let anime of tipoAnime) { %>
@@ -228,7 +228,7 @@
                 <img src="<%= anime.image %>" alt="Capa Notica" />
               </div>
               <div>
-                <h1><%= anime.titulo.substring(0, 48) %></h1>
+                <h2><%= anime.titulo.substring(0, 48) %></h2>
                 <h3><%= new Date(anime.created_at).toLocaleDateString('pt-BR') %></h3>
               </div>
             </div>
@@ -250,7 +250,7 @@
     
     
 
-    <h1 class="titulo-destaque-index titulo-destaque-index2 titulo-destaque-index-direito">MANGAS</h1>
+    <h2 class="titulo-destaque-index titulo-destaque-index2 titulo-destaque-index-direito">MANGAS</h2>
 
     <% if (tipoMangas.length > 0) { %>
       <ul class="lado-direito-filho1">
@@ -264,7 +264,7 @@
                   <img src="<%= item.image %>" alt="Capa Notica" />
                 </div>
                 <div>
-                  <h1><%= item.titulo.substring(0, 48) %></h1>
+                  <h2><%= item.titulo.substring(0, 48) %></h2>
                   <h3><%= new Date(item.created_at).toLocaleDateString('pt-BR') %></h3>
                 </div>
               </div>
