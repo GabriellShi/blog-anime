@@ -1,4 +1,6 @@
 User-agent: *
-Disallow: /admin/
+Disallow: /indexAdm/
+Disallow: /paginasNews/
+Disallow: /paginasCreate/
 Disallow: /private/
 Sitemap: https://www.gogeekanimes.com/sitemap.xml
