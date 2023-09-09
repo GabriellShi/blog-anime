@@ -1357,6 +1357,61 @@ deixando o logo e texto da resenha do autor um do lado do outro de dando uma mar
   cursor: pointer;
 }
 
+
+/* Pagina Thanks
+------------------------------------------------------------------------------- */
+
+.main-thaks {
+  background-color: rgb(255, 255, 255);
+  padding-bottom: 4rem;
+  padding-top: 4rem;
+}
+
+
+.thanks-h1, .thanks-h2 {
+  display: flex;
+  justify-content: center;
+  color: rgb(0, 0, 0);
+}
+
+.thanks-h2 {
+  margin-bottom: px;
+}
+
+.img-thanks {
+  display: flex;
+  justify-content: center;
+}
+
+.button-pagina-inicial{
+  display: flex;
+  justify-content: center;
+}
+
+.button-pagina-inicial button{
+  background-color: blue;
+  color: white;
+  border: 0;
+  padding: 5px;
+  border-radius: 7px;
+  margin-bottom: 20px;
+  width: 200px;
+  margin-top: 2rem;
+  cursor: pointer;
+}
+
+.button-pagina-inicial button:hover{
+  background-color: rgb(43, 255, 0);
+
+}
+
+.placeholder-text::placeholder {
+  padding: 5px;
+
+}
+
+
+
 @media (max-width: 812px) {
   .dados-pedidosanimes {
     width: 80%;

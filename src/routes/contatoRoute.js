@@ -8,6 +8,9 @@ router.get("/contato", contatoController.contato);
 
 router.get("/melhorias", contatoController.melhorias);
 
+router.get("/obrigado", contatoController.obrigado);
+
+
 
   
 

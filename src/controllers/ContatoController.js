@@ -11,7 +11,14 @@ const contatoController = {
       return res.render("melhorias", {
         title: "Melhorias - GoGeek", //user: req.cookies.user,
       });
-},
+    },
+    
+
+    obrigado: (req, res) => {
+      return res.render("obrigado", {
+        title: "Obrigado - GoGeek", //user: req.cookies.user,
+      });
+    },
 
   };
   
