@@ -28,6 +28,7 @@
               <meta itemprop="datePublished" content="<%= noticia.created_at.toISOString() %>" />
               <meta itemprop="description" content="<%= noticia.description %>" />
               <meta itemprop="image" content="<%= noticia.image %>" />
+   
 
             <a rel="canonical" href="<%= noticia instanceof News ? '/detailsNews/' + noticia.titulo.replace(/ /g, '-') : '/detailsRecomenda/' + noticia.titulo.replace(/ /g, '-') %>" target="_blank">
   
