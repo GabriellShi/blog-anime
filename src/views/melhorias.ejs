@@ -1,0 +1,53 @@
+
+<%- include("./partials/head") %>
+<%- include("./partials/header") %>
+
+<section class="site-animes-pedidos-de-animes">
+
+    <div class="lado-esquerdo-do-site-pagina-anime">
+        <div class="titulo-principal-pedidos-pedidosanimes">
+            <img src="/img/barra-azul.png" alt="">
+            <h2>FEEDBACKS/AVISO DE BUG OU MELHORIAS</h2>
+        </div>
+    
+        <div class="inf-para-comentar-pedidosanimes">
+            <h4>Comente aqui algum Aviso de Bug ou Melhoria que você gostaria no Blog.</h4>
+        </div>
+    
+        <div class="formulario-envio-de-pedido-pedidosanimes">
+            <form action="/enviar-email" method="POST">
+                <div class="titulo-formulario-pedidosanimes">
+                    <img src="/img/icone-pedido-anime.png" alt="">
+                    <h4>Mande sua mensagem</h4>
+                </div>
+    
+                <div class="info-do-solicitante-pedidosanimes">
+                    <div class="dados-nome-pedidosaimes dados-pedidosanimes">
+                        <label for="">Nome</label>
+                        <input id="name" type="text" name="Nome" 
+                        placeholder="Seu Nome de Usuário" required>
+                    </div>
+                    <div class="dados-email-pedidosaimes dados-pedidosanimes">
+                        <label for="">Email</label>
+                        <input id="email" type="email" name="Email" 
+                        placeholder="Seu e-mail aqui" required>
+                    </div>
+
+                </div>
+    
+                <div class="comentario-pedidosanimes">
+                    <input type="text" name="comentario" id="comentario" placeholder="Seu Comentario...">
+                </div>
+    
+                <div class="botao-envio-pedidosanimes"><button type="submit">Enviar</button></div>
+            </form>
+        </div>
+    
+    </div>
+
+
+
+</section>
+
+
+<%- include("./partials/footer") %> 

@@ -6,6 +6,13 @@ const contatoController = {
       });
     },
   
+
+    melhorias: (req, res) => {
+      return res.render("melhorias", {
+        title: "Melhorias - GoGeek", //user: req.cookies.user,
+      });
+},
+
   };
   
   module.exports = contatoController;
