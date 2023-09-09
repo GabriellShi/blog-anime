@@ -30,6 +30,7 @@
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.6.0",
     "node": "^20.5.1",
+    "node-jsonld": "^1.0.0",
     "nodemailer": "^6.9.5",
     "nodemon": "^3.0.1",
     "op": "^0.0.6",
@@ -37,6 +38,7 @@
     "sequelize": "^6.32.1",
     "sharp": "^0.32.5",
     "slugify": "^1.6.6",
+    "structured-data": "^0.1.0",
     "uuid": "^9.0.0"
   },
   "devDependencies": {

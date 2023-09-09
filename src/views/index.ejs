@@ -1,6 +1,18 @@
 <%- include("./partials/head") %> <%- include("./partials/header") %>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+<script type="text/javascript">
+  <% if (noticiasDestaqueSlice.length > 0) { %>
+    var tituloPagina = "<%= noticiasDestaqueSlice[0].titulo %>";
+    var descricaoPagina = "<%= noticiasDestaqueSlice[0].description %>";
+    var imagemPagina = "<%= noticiasDestaqueSlice[0].image %>";
+    var dataPublicacao = "<%= noticiasDestaqueSlice[0].created_at.toISOString() %>";
+  <% } %>
+</script>
+
+
+
+
 <main>
  <section class="section-supremo">
   <section class="lado-esquerdo-pai">
@@ -11,16 +23,23 @@
       <ul class="lado-esquerdo-filho1">
           <% for (const noticia of noticiasDestaqueSlice) { %>
           <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
+            <article itemscope itemtype="http://schema.org/Article">
+              <meta itemprop="headline" content="<%= noticia.titulo %>" />
+              <meta itemprop="datePublished" content="<%= noticia.created_at.toISOString() %>" />
+              <meta itemprop="description" content="<%= noticia.description %>" />
+              <meta itemprop="image" content="<%= noticia.image %>" />
+
             <a rel="canonical" href="<%= noticia instanceof News ? '/detailsNews/' + noticia.titulo.replace(/ /g, '-') : '/detailsRecomenda/' + noticia.titulo.replace(/ /g, '-') %>" target="_blank">
   
                     <div class="zoomable-image-container">
-                      <img class="zoomable-image" src="<%= noticia.image %>" alt="Capa Noticia" />
+                      <img itemprop="image" class="zoomable-image" src="<%= noticia.image %>" alt="Capa Noticia" />
                       <div class="zoomable-image-overlay"></div>
                   </div>
-                  <h2><%= noticia.titulo.substring(0, 58) %></h2>
-                  <h3>Data: <%= noticia.created_at.toLocaleDateString() %></h3>
-                  <p><%- noticia.description.substring(0, 200) %>...</p>
+                  <h2 itemprop="headline"><%= noticia.titulo.substring(0, 58) %></h2>
+                  <h3 itemprop="datePublished">Data: <%= noticia.created_at.toLocaleDateString() %></h3>
+                  <p itemprop="description"><%- noticia.description.substring(0, 200) %>...</p>
               </a>
+           </article>
           </li>
           <% } %>
       </ul>

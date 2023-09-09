@@ -403,6 +403,12 @@ body {
   text-align: center;
 }
 
+.titulo-details {
+  font-size: 150%;
+  font-weight: bolder;
+  text-align: center;
+}
+
 .titulo-index {
   font-size: 1.6rem;
   padding: 0.5rem;

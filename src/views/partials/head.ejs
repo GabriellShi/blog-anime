@@ -1,6 +1,46 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
+
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "NewsArticle",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://www.gogeekanimes.com/"
+        },
+        "headline": tituloPagina,
+        "description": descricaoPagina,
+        "image": {
+          "@type": "ImageObject",
+          "url": imagemPagina,
+          "width": 800,
+          "height": 600
+        },
+        "datePublished": dataPublicacao,
+        "dateModified": dataPublicacao, // Use a mesma data de publicação para data de modificação, ou ajuste conforme necessário
+        "author": {
+          "@type": "Person",
+          "name": "Nome do autor"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Go Geek",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "URL do logo da sua organização",
+            "width": 200,
+            "height": 200
+          }
+        }
+      }
+      </script>
+      
+    
+      
+   
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -9,12 +49,6 @@
 
     <title><%= title %></title>
     <link rel="canonical" href="https://www.gogeekanimes.com/">
-    <link rel="alternate" media="only screen and (max-width: 640px)" href="https://www.gogeekanimes.com/">
-    
-     <!-- Bootstrap CSS -->
-     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
     <link rel="stylesheet" type="text/css" href="/css/styles.css" />
     <link rel="icon" type="image/png" href="../img/logo2.png"/>
 
@@ -25,6 +59,8 @@
     <!-- Script para ter anuncios -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9046617245443049"
     crossorigin="anonymous"></script>
+
+    
   </head>
 
 
