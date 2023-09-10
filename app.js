@@ -51,5 +51,8 @@ app.use("/", indexAdmRoute);
 
 app.use("/images", express.static(path.join(__dirname, "/uploads")));
 
-
+// Rota de erro 404 - página não encontrada
+app.use((req, res, next) => {
+  res.status(404).sendFile(path.join(__dirname, 'views', '404.ejs'));
+});
 
