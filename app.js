@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const methodOverride = require("method-override");
+const compression = require("compression"); // Importe o middleware de compressão
 
 // Inicia o servidor
 const port = process.env.PORT || 3000;
@@ -18,6 +19,10 @@ const indexAdmRoute = require("./src/routes/indexAdmRoute");
 const detailsRecomendaRoute = require("./src/routes/detailsRecomendaRoute");
 const detailsTemporadaRoute = require("./src/routes/detailsTemporadaRoute");
 const detailsLancamentoRoute = require("./src/routes/detailsLancamentoRoute");
+
+// Use o middleware de compressão GZIP
+app.use(compression());
+
 
 // Configura o methodOverride no express
 // methodOverride = Pacote que transforma um método http em outro
