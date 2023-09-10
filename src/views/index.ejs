@@ -1,1 +1,152 @@
-<%- include("./partials/head") %> <%- include("./partials/header") %><main> <section class=" h-feed section-supremo"> <section class="lado-esquerdo-pai"> <h1 class="p-name titulo-destaque-index titulo-index">DESTAQUES NOTICIAS</h1> <div> <ul class="lado-esquerdo-filho1"> <% for (const noticia of noticiasDestaqueSlice){%> <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque"> <a rel="canonical" href="<%=noticia instanceof News ? '/detailsNews/' + noticia.titulo.replace(/ /g, '-') : '/detailsRecomenda/' + noticia.titulo.replace(/ /g, '-') %>" target="_blank"> <div class="zoomable-image-container"> <img class="zoomable-image" src="<%=noticia.image %>" alt="Capa Noticia"/> <div class="zoomable-image-overlay"></div></div><h2><%=noticia.titulo.substring(0, 58) %></h2> <h3>Data: <%=noticia.created_at.toLocaleDateString() %></h3> <p><%- noticia.description.substring(0, 200) %>...</p></a> </li><%}%> </ul> </div><script>$(document).ready(function(){$(".zoomable-image-container").hover( function(){$(this).find(".zoomable-image").css("transform", "scale(1.1)"); $(this).find(".zoomable-image-overlay").css("opacity", "1");}, function(){$(this).find(".zoomable-image").css("transform", "scale(1)"); $(this).find(".zoomable-image-overlay").css("opacity", "0");});}); </script><h2 class="titulo-destaque-index titulo-index">PRINCIPAIS NOTICIAS</h2><ul class="lado-esquerdo-filho2" id="newsList"> <% for (const noticia of noticiasPrincipaisSlice.slice(0, 10)){%> <li> <a rel="canonical" href="<%=noticia instanceof News ? '/detailsNews/' + noticia.titulo.replace(/ /g, '-') : '/detailsRecomenda/' + noticia.titulo.replace(/ /g, '-') %>" target="_blank"> <div class="lado-esquerdo-filho3 temporada-lado-direito-index lado-esquerdo-filho-imagem"> <div class="zoomable-image-container image-principais-noticias lado-esquerdo-neto-imagem1"> <img class="zoomable-image" src="<%=noticia.image %>" alt="Capa Noticia"/> <div class="zoomable-image-overlay"></div></div><div class="lado-esquerdo-neto2 lado-esquerdo-neto-imagem2"> <h2><%=noticia.titulo.substring(0, 45) %> </h2> <h4>Data: <%=new Date(noticia.created_at).toLocaleDateString() %></h4> <p><%- noticia.description.substring(0, 200) %>...</p></div></div></a> </li><%}%></ul> <div id="loadMoreContainer" class="loadMoreContainer-css"> <button id="loadMoreButton">VER MAIS</button> </div><script>let offsetNoticias=10; function carregarMaisNoticias(){$.ajax({url: `/carregarMaisNoticias/${offsetNoticias}`, method: "GET", success: function(data){$("#newsList").append(data); offsetNoticias +=10;}, error: function(error){console.error(error);}});}$("#loadMoreButton").click(carregarMaisNoticias); </script> </section> <section class="lado-direito-pai"> <h2 class="titulo-destaque-index titulo-destaque-index-direito">TEMPORADAS</h2> <% if (temporadaNews.length > 0){%> <ul class="lado-direito-filho1"> <% for (let detailsTemporada of temporadaNews.slice(0, 5)){%> <li class="lado-esquerdo-neto5 lado-direito-neto1"> <button type="submit"> <a rel="canonical" href="/detailsTemporada/<%=detailsTemporada.titulo.replace(/ /g, '-') %>" target="_blank"> <div class="temporada-lado-direito"> <div class="temporada-lado-direito-image"> <img src="<%=detailsTemporada.image2 %>" alt="Capa Notica"/> </div><div> <h2><%=detailsTemporada.titulo.substring(0, 48) %></h2> <h3>Estreia: <%=new Date(detailsTemporada.created_at).toLocaleDateString() %></h3> </div></div></a> </button> </li><%}%> </ul> <%}else{%> <h2>Nenhuma Notícia de Temporada Encontrada</h2> <%}%> <h2 class="titulo-destaque-index titulo-destaque-index2 titulo-destaque-index-direito">CURIOSIDADES</h2> <% if (curiosidadeNews.length > 0){%> <ul class="lado-direito-filho1"> <% for (let curiosidade of curiosidadeNews.slice(0, 5)){%> <li class="lado-esquerdo-neto5 lado-direito-neto1"> <button type="submit"> <a rel="canonical" href="/detailsNews/<%=curiosidade.titulo.replace(/ /g, '-') %>" target="_blank"> <div class="temporada-lado-direito"> <div class="temporada-lado-direito-image"> <img src="<%=curiosidade.image %>" alt="Capa Notica"/> </div><div> <h2><%=curiosidade.titulo.substring(0, 48) %></h2> <h3>data: <%=new Date(curiosidade.created_at).toLocaleDateString() %></h3> </div></div></a> </button> </li><%}%> </ul> <%}else{%> <h2>Nenhuma Notícia de curiosidade Encontrada</h2> <%}%> </section> </section></main><%- include("./partials/footer") %>
+<%- include("./partials/head") %> <%- include("./partials/header") %>
+
+<main>
+ <section class=" h-feed section-supremo">
+  <section class="lado-esquerdo-pai">
+    <!-- Destaque -->
+    <h1 class="p-name titulo-destaque-index titulo-index">DESTAQUES NOTICIAS</h1>
+    
+    <div>
+      <ul class="lado-esquerdo-filho1">
+          <% for (const noticia of noticiasDestaqueSlice) { %>
+          <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
+            <a rel="canonical" href="<%= noticia instanceof News ? '/detailsNews/' + noticia.titulo.replace(/ /g, '-') : '/detailsRecomenda/' + noticia.titulo.replace(/ /g, '-') %>" target="_blank">
+  
+                    <div class="zoomable-image-container">
+                      <img class="zoomable-image" src="<%= noticia.image %>" alt="Capa Noticia" />
+                      <div class="zoomable-image-overlay"></div>
+                  </div>
+                  <h2><%= noticia.titulo.substring(0, 58) %></h2>
+                  <h3>Data: <%= noticia.created_at.toLocaleDateString() %></h3>
+                  <p><%- noticia.description.substring(0, 200) %>...</p>
+              </a>
+          </li>
+          <% } %>
+      </ul>
+  </div>
+    
+
+    <script>
+      $(document).ready(function() {
+        $(".zoomable-image-container").hover(
+          function() {
+            $(this).find(".zoomable-image").css("transform", "scale(1.1)");
+            $(this).find(".zoomable-image-overlay").css("opacity", "1");
+          },
+          function() {
+            $(this).find(".zoomable-image").css("transform", "scale(1)");
+            $(this).find(".zoomable-image-overlay").css("opacity", "0");
+          }
+        );
+      });
+    </script>
+
+<h2 class="titulo-destaque-index titulo-index">PRINCIPAIS NOTICIAS</h2>
+
+
+
+<ul class="lado-esquerdo-filho2" id="newsList">
+  <% for (const noticia of noticiasPrincipaisSlice.slice(0, 10)) { %>
+  <li>
+      <a rel="canonical" href="<%= noticia instanceof News ? '/detailsNews/' + noticia.titulo.replace(/ /g, '-') : '/detailsRecomenda/' + noticia.titulo.replace(/ /g, '-') %>" target="_blank">
+          <div class="lado-esquerdo-filho3 temporada-lado-direito-index lado-esquerdo-filho-imagem">
+              <div class="zoomable-image-container image-principais-noticias lado-esquerdo-neto-imagem1">
+                  <img class="zoomable-image" src="<%= noticia.image %>" alt="Capa Noticia" />
+                  <div class="zoomable-image-overlay"></div>
+              </div>
+              <div class="lado-esquerdo-neto2 lado-esquerdo-neto-imagem2">
+                  <h2><%= noticia.titulo.substring(0, 45) %> </h2>
+                  <h4>Data: <%= new Date(noticia.created_at).toLocaleDateString() %></h4>
+                  <p><%- noticia.description.substring(0, 200) %>...</p>
+              </div>
+          </div>
+      </a>
+  </li>
+  <% } %>
+</ul>
+    
+    <div id="loadMoreContainer" class="loadMoreContainer-css">
+      <button id="loadMoreButton">VER MAIS</button>
+    </div>
+    
+    <script>
+      let offsetNoticias = 10;
+    
+      function carregarMaisNoticias() {
+        $.ajax({
+          url: `/carregarMaisNoticias/${offsetNoticias}`,
+          method: "GET",
+          success: function(data) {
+            $("#newsList").append(data);
+            offsetNoticias += 10;
+          },
+          error: function(error) {
+            console.error(error);
+          }
+        });
+      }
+    
+      $("#loadMoreButton").click(carregarMaisNoticias);
+    </script>
+    
+
+  </section>
+
+  <section class="lado-direito-pai">
+    <h2 class="titulo-destaque-index titulo-destaque-index-direito">TEMPORADAS</h2>
+
+    <% if (temporadaNews.length > 0) { %>
+      <ul class="lado-direito-filho1">
+        <% for (let detailsTemporada of temporadaNews.slice(0, 5)) { %>
+          <li class="lado-esquerdo-neto5 lado-direito-neto1">
+            <button type="submit">
+              <a rel="canonical" href="/detailsTemporada/<%= detailsTemporada.titulo.replace(/ /g, '-') %>" target="_blank">
+            <div class="temporada-lado-direito">
+              <div class="temporada-lado-direito-image">
+                <img src="<%= detailsTemporada.image2 %>" alt="Capa Notica" />
+              </div>
+              <div>
+                <h2><%= detailsTemporada.titulo.substring(0, 48) %></h2>
+                <h3>Estreia: <%= new Date(detailsTemporada.created_at).toLocaleDateString() %></h3>
+              </div>
+            </div>
+            </a>
+            </button>
+          </li>
+        <% } %>
+      </ul>
+    <% } else { %>
+      <h2>Nenhuma Notícia de Temporada Encontrada</h2>
+    <% } %>
+
+    <h2 class="titulo-destaque-index titulo-destaque-index2 titulo-destaque-index-direito">CURIOSIDADES</h2>
+
+    <% if (curiosidadeNews.length > 0) { %>
+      <ul class="lado-direito-filho1">
+        <% for (let curiosidade of curiosidadeNews.slice(0, 5)) { %>
+          <li class="lado-esquerdo-neto5 lado-direito-neto1">
+            <button type="submit">
+              <a rel="canonical" href="/detailsNews/<%= curiosidade.titulo.replace(/ /g, '-') %>" target="_blank">
+            <div class="temporada-lado-direito">
+              <div class="temporada-lado-direito-image">
+                <img src="<%= curiosidade.image %>" alt="Capa Notica" />
+              </div>
+              <div>
+                <h2><%= curiosidade.titulo.substring(0, 48) %></h2>
+                <h3>data: <%= new Date(curiosidade.created_at).toLocaleDateString() %></h3>
+              </div>
+            </div>
+            </a>
+            </button>
+          </li>
+        <% } %>
+      </ul>
+    <% } else { %>
+      <h2>Nenhuma Notícia de curiosidade Encontrada</h2>
+    <% } %>
+
+  </section>
+ </section>
+</main>
+
+<%- include("./partials/footer") %>
