@@ -56,7 +56,7 @@
               </div>
               <div class="lado-esquerdo-neto2 lado-esquerdo-neto-imagem2">
                   <h2><%= noticia.titulo.substring(0, 45) %> </h2>
-                  <h4>Data: <%= new Date(noticia.created_at).toLocaleDateString() %></h4>
+                  <h3>Data: <%= new Date(noticia.created_at).toLocaleDateString() %></h3>
                   <p><%- noticia.description.substring(0, 200) %>...</p>
               </div>
           </div>
