@@ -354,7 +354,7 @@ body {
 }
 
 .lado-esquerdo-neto1 h3 {
-  color: rgb(255, 251, 0);
+  color: rgb(240, 236, 2);
 }
 .lado-esquerdo-neto5 h3 {
   padding-top: 0.5rem;
@@ -399,13 +399,13 @@ body {
   color: #ff0;
   font-size: 1.3rem;
 }
-.lado-esquerdo-neto2 h4 {
+.lado-esquerdo-neto2 h3 {
   padding-top: 0.5rem;
   padding-bottom: 2rem;
   padding-right: 0.7rem;
   text-align: end;
   font-size: 0.8rem;
-  color: red;
+  color: rgb(230, 255, 1);
 }
 .lado-esquerdo-neto2 p {
   padding-top: 0.5rem;
@@ -1105,7 +1105,7 @@ body {
     max-width: 21rem;
     margin: 0.5rem 0.5rem 2rem;
   }
-  .lado-esquerdo-neto2 h4 {
+  .lado-esquerdo-neto2 h3 {
     padding-bottom: 0;
     padding-top: 0;
   }
