@@ -53,6 +53,5 @@ app.use("/images", express.static(path.join(__dirname, "/uploads")));
 
 // Rota de erro 404 - página não encontrada
 app.use((req, res) => {
-  res.status(404).render('erro-404.ejs');
+  res.status(404).render('erro-404.ejs', { title: 'Página não encontrada' });
 });
-
