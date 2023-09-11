@@ -9,32 +9,21 @@
   <% if (tipoMangas.length > 0) { %>
     <ul class="lado-esquerdo-filho1" id="newsListMangas">
       <% for (const mangas of tipoMangas.slice(0, 10)) { %>
-  
-      <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
-          <% if (mangas.contentType === 'News') { %>
-            <a rel="canonical" href="/detailsNews/<%= mangas.titulo.replace(/ /g, '-') %>" target="_blank">
-          <% } else if (mangas.contentType === 'Recomenda') { %>
-            <a rel="canonical" href="/detailsRecomenda/<%= mangas.titulo.replace(/ /g, '-') %>" target="_blank">
-  
-          <% } %>
-          <div class="zoomable-image-container">
-            <img class="zoomable-image" src="<%= mangas.image %>" alt="Capa Noticia" />
-            <div class="zoomable-image-overlay"></div>
-          </div>
-          <h2><%= mangas.titulo.substring(0, 58) %></h2>
-          <h3>Data: <%= mangas.created_at.toLocaleDateString() %></h3>
-          <p><%- mangas.description.substring(0, 298) %>...</p>
-          <% if (mangas.contentType === 'News') { %>
+        <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
+          <a rel="canonical" href="<%= mangas.contentType === 'News' ? '/detailsNews/' + mangas.titulo.replace(/ /g, '-') : '/detailsRecomenda/' + mangas.titulo.replace(/ /g, '-') %>" target="_blank">
+            <div class="zoomable-image-container">
+              <img class="zoomable-image" src="<%= mangas.image %>" alt="Capa Noticia" />
+              <div class="zoomable-image-overlay"></div>
+            </div>
+            <h2><%= mangas.titulo.substring(0, 58) %></h2>
+            <h3>Data: <%= mangas.created_at.toLocaleDateString() %></h3>
+            <p><%- mangas.description.substring(0, 298) %>...</p>
           </a>
-        <% } else if (mangas.contentType === 'Recomenda') { %>
-          </a>
-  
-        <% } %>
-        </a>
-      </li>
-      <% } %>
+        </li>
       <% } %>
     </ul>
+    <% } %>
+    
   
    
     

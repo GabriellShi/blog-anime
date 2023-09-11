@@ -1376,7 +1376,12 @@ color: rgb(0, 0, 0);
   text-align: center;
 }
 
-.mensagem-erro h1, p {
+.mensagem-erro h1 {
   color: rgb(228, 253, 3);
+  margin-bottom: 1rem;
+}
+
+.mensagem-erro p {
+  color: rgb(255, 255, 255);
   margin-bottom: 1rem;
 }

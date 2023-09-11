@@ -9,33 +9,22 @@
 
 
   <% if (tipoAnime.length > 0) { %>
-  <ul class="lado-esquerdo-filho1" id="newsListAnimes">
-    <% for (const anime of tipoAnime.slice(0, 12)) { %>
-
-    <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
-        <% if (anime.contentType === 'News') { %>
-          <a rel="canonical" href="/detailsNews/<%= anime.titulo.replace(/ /g, '-') %>" target="_blank">
-        <% } else if (anime.contentType === 'Recomenda') { %>
-          <a rel="canonical" href="/detailsRecomenda/<%= anime.titulo.replace(/ /g, '-') %>" target="_blank">
-
-        <% } %>
-        <div class="zoomable-image-container">
-          <img class="zoomable-image" src="<%= anime.image %>" alt="Capa Noticia" />
-          <div class="zoomable-image-overlay"></div>
-        </div>
-        <h2><%= anime.titulo.substring(0, 58) %></h2>
-        <h3>Data: <%= anime.created_at.toLocaleDateString() %></h3>
-        <p><%- anime.description.substring(0, 298) %>...</p>
-        <% if (anime.contentType === 'News') { %>
-        </a>
-      <% } else if (anime.contentType === 'Recomenda') { %>
-        </a>
-
+    <ul class="lado-esquerdo-filho1" id="newsListAnimes">
+      <% for (const anime of tipoAnime.slice(0, 12)) { %>
+        <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
+          <a rel="canonical" href="<%= anime.contentType === 'News' ? '/detailsNews/' + anime.titulo.replace(/ /g, '-') : '/detailsRecomenda/' + anime.titulo.replace(/ /g, '-') %>" target="_blank">
+            <div class="zoomable-image-container">
+              <img class="zoomable-image" src="<%= anime.image %>" alt="Capa Noticia" />
+              <div class="zoomable-image-overlay"></div>
+            </div>
+            <h2><%= anime.titulo.substring(0, 58) %></h2>
+            <h3>Data: <%= anime.created_at.toLocaleDateString() %></h3>
+            <p><%- anime.description.substring(0, 298) %>...</p>
+          </a>
+        </li>
       <% } %>
-      </a>
-    </li>
-    <% } %>
-  </ul>
+    </ul>
+    
   <% } %>
 
  
