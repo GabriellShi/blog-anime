@@ -1,5 +1,5 @@
 User-agent: Googlebot
-Disallow: /nogooglebot/
+
 
 
 User-agent: *
@@ -8,7 +8,7 @@ Disallow: /indexAdm/
 Disallow: /paginasNews/
 Disallow: /paginasCreate/
 Disallow: /private/
-Allow: /
+
 Sitemap: https://www.gogeekanimes.com/sitemap.xml
 
 
