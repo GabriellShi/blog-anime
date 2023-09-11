@@ -102,7 +102,10 @@ const indexController = {
   
       const newsSlice = mergedData.slice(offset, offset + 10);
   
-      res.render('partials/newsList', { newsSlice });
+      res.render('partials/newsList', {
+         newsSlice,
+         News, 
+        });
     } catch (error) {
       console.error(error);
       res.status(500).send('Erro ao carregar mais notícias');
@@ -189,7 +192,9 @@ const indexController = {
       const newsSliceRecomenda = recomenda.slice(offsetRecomenda, offsetRecomenda + 10);
   
       res.render('partials/newsListRecomenda', 
-      { newsSliceRecomenda, });
+      { newsSliceRecomenda,
+        News,
+       });
     } catch (error) {
       console.error(error);
       res.status(500).send('Erro ao carregar mais notícias');
@@ -243,7 +248,8 @@ const indexController = {
   
       res.render('partials/newsListCuriosidade', {
         curiosidades,
-        newsSliceCuriosidade
+        newsSliceCuriosidade,
+        News,
       });
       
     } catch (error) {
@@ -329,7 +335,9 @@ const indexController = {
       const newsSliceAnimes = tipoAnime.slice(offsetAnimes, offsetAnimes + 10);
   
       res.render('partials/newsListAnimes', 
-      { newsSliceAnimes, });
+      { newsSliceAnimes,
+        News,
+      });
     } catch (error) {
       console.error(error);
       res.status(500).send('Erro ao carregar mais notícias');
@@ -413,7 +421,9 @@ const indexController = {
       const newsSliceMangas = tipoAnime.slice(offsetMangas, offsetMangas + 10);
   
       res.render('partials/newsListMangas', 
-      { newsSliceMangas, });
+      { newsSliceMangas,
+        News,
+       });
     } catch (error) {
       console.error(error);
       res.status(500).send('Erro ao carregar mais notícias');

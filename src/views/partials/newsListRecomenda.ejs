@@ -2,7 +2,7 @@
 
     <% for (const noticia of newsSliceRecomenda) { %>
         <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
-          <a href="<%= '/detailsRecomenda/' + noticia.id %>">
+          <a rel="canonical" href="<%= noticia instanceof News ? '/detailsNews/' + noticia.titulo.replace(/ /g, '-') : '/detailsRecomenda/' + noticia.titulo.replace(/ /g, '-') %>" target="_blank">
 
             <div class="zoomable-image-container">
                     <% if (noticia.image) { %>
