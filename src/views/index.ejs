@@ -17,7 +17,7 @@
                       <div class="zoomable-image-overlay"></div>
                     </div>
                   <h2><%= noticia.titulo.substring(0, 58) %></h2>
-                  <h3>Data: <%= noticia.created_at.toLocaleDateString() %></h3>
+                  <h3>Data: <%= noticia.created_at.toLocaleDateString('pt-BR') %></h3>
                   <p><%- noticia.description.substring(0, 200) %>...</p>
               </a>
           </li>
