@@ -20,4 +20,8 @@
     <changefreq>daily</changefreq>
     <priority>0.75</priority>
   </url>
+
+    <sitemap>
+    <loc>https://www.gogeekanimes.com/sitemap-index.xml</loc>
+  </sitemap>
 </urlset>

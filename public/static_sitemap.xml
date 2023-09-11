@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.gogeekanimes.com/</loc>
+<a><loc>https://www.gogeekanimes.com/</loc></a>
     <lastmod>2023-09-09T08:31:09+00:00</lastmod>
     <priority>1.00</priority>
     <changefreq>daily</changefreq>
   </url>
 <url>
-  <loc>https://www.gogeekanimes.com/Animes</loc>
+  <loc><a>https://www.gogeekanimes.com/Animes</a></loc>
   <lastmod>2023-09-09T08:31:09+00:00</lastmod>
   <priority>0.80</priority>
   <changefreq>daily</changefreq>
@@ -49,7 +49,9 @@
   <priority>0.80</priority>
 </url>
 
-
+  <sitemap>
+    <loc>https://www.gogeekanimes.com/sitemap-index.xml</loc>
+  </sitemap>
 </urlset>
 
 
