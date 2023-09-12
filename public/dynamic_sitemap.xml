@@ -1,4 +1,5 @@
 <!-- dynamic_sitemap.xml -->
+<?xml-stylesheet type="text/xsl" href="sitemap.xsl"?>
 
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- URLs dinâmicas geradas a partir do seu banco de dados ou lógica de negócios -->
