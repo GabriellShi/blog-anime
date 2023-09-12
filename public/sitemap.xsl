@@ -29,7 +29,7 @@
   <!-- Define o estilo para cada URL no sitemap -->
   <xsl:template match="url">
     <p>
-      <strong>URL:</strong> <a href="{loc}"><xsl:value-of select="loc" /></a><br />
+      <strong>URL:</strong> <a href="{loc}">xxs<xsl:value-of select="loc" />ssss</a><br />
       <strong>Última Modificação:</strong> <xsl:value-of select="lastmod" /><br />
       <strong>Changefreq:</strong> <xsl:value-of select="changefreq" /><br />
       <strong>Prioridade:</strong> <xsl:value-of select="priority" /><br />
