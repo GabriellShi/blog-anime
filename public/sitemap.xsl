@@ -21,19 +21,27 @@
       <body>
         <!-- Renderiza o conteúdo do sitemap -->
         <h1>Seu Sitemap</h1>
-        <xsl:apply-templates />
+        <table border="1">
+          <tr>
+            <th>URL</th>
+            <th>Última Modificação</th>
+            <th>Changefreq</th>
+            <th>Prioridade</th>
+          </tr>
+          <xsl:apply-templates />
+        </table>
       </body>
     </html>
   </xsl:template>
 
   <!-- Define o estilo para cada URL no sitemap -->
   <xsl:template match="url">
-    <p>
-      <strong>URL:</strong> <a href="{loc}">xxs<xsl:value-of select="loc" />ssss</a><br />
-      <strong>Última Modificação:</strong> <xsl:value-of select="lastmod" /><br />
-      <strong>Changefreq:</strong> <xsl:value-of select="changefreq" /><br />
-      <strong>Prioridade:</strong> <xsl:value-of select="priority" /><br />
-    </p>
+    <tr>
+      <td><a href="{loc}"><xsl:value-of select="loc" /></a></td>
+      <td><xsl:value-of select="lastmod" /></td>
+      <td><xsl:value-of select="changefreq" /></td>
+      <td><xsl:value-of select="priority" /></td>
+    </tr>
   </xsl:template>
 
 </xsl:stylesheet>
