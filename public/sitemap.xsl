@@ -7,26 +7,34 @@
       <head>
         <title>Seu Sitemap</title>
         <style>
-          /* Adicione seu CSS personalizado aqui para estilizar o sitemap */
-          /* Exemplo: */
+          /* Estilos CSS para o sitemap */
           body {
             font-family: Arial, sans-serif;
           }
           h1 {
             color: #333;
           }
-          /* Adicione mais estilos conforme necessário */
+          table {
+            width: 100%;
+            border-collapse: collapse;
+          }
+          th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+          }
+          th {
+            background-color: #f2f2f2;
+          }
         </style>
       </head>
       <body>
         <!-- Renderiza o conteúdo do sitemap -->
         <h1>Seu Sitemap</h1>
-        <table border="1">
+        <table>
           <tr>
             <th>URL</th>
             <th>Última Modificação</th>
-            <th>Changefreq</th>
-            <th>Prioridade</th>
           </tr>
           <xsl:apply-templates />
         </table>
@@ -39,8 +47,6 @@
     <tr>
       <td><a href="{loc}"><xsl:value-of select="loc" /></a></td>
       <td><xsl:value-of select="lastmod" /></td>
-      <td><xsl:value-of select="changefreq" /></td>
-      <td><xsl:value-of select="priority" /></td>
     </tr>
   </xsl:template>
 
