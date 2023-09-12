@@ -13,10 +13,6 @@ app.listen(port, () => {
 });
 
 
-const sitemapIndexRoute = require("./src/routes/sitemapIndexRoute"); // Rota para o índice de sitemaps
-const staticSitemapRoute = require("./src/routes/staticSitemapRoute"); // Rota para o sitemap estático
-const dynamicSitemapRoute = require("./src/routes/dynamicSitemapRoute"); // Rota para o sitemap dinâmico
-
 
 const indexRoute = require("./src/routes/indexRoute");
 const contatoRoute = require("./src/routes/contatoRoute");
@@ -30,11 +26,6 @@ const detailsLancamentoRoute = require("./src/routes/detailsLancamentoRoute");
 
 // Use o middleware de compressão GZIP
 app.use(compression());
-
-// Registre a rota do sitemap
-app.use('/', sitemapIndexRoute);
-app.use('/', staticSitemapRoute);
-app.use('/', dynamicSitemapRoute);
 
 // Configura o methodOverride no express
 // methodOverride = Pacote que transforma um método http em outro
