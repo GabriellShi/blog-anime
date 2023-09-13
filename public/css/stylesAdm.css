@@ -200,5 +200,11 @@ padding: 0.3rem;
     font-size: 1rem;
   }
 
+    /* Exemplo de estilo personalizado para o Quill */
+    #editor {
+      height: 300px;
+      border: 1px solid #ccc;
+    }
 
+   
     
