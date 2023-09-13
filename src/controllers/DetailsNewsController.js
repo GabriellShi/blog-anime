@@ -26,6 +26,7 @@ const detailsNewsController = {
       return res.render("news", {
         title: "Lista de Notícias",
         news,
+        
       
       });
     } catch (error) {
@@ -159,12 +160,13 @@ show: async (req, res) => {
     return res.render("news-create", { title: "Cadastrar Noticia" });
   },
   store: async (req, res) => {
-    const { titulo, description, subtitulo, description2, conecxao, categoria, tipo, link_video, image, image2 } = req.body;
+    const { titulo,  description1, description, subtitulo, description2, conecxao, categoria, tipo, link_video, image, image2 } = req.body;
     
     try {
 
       const novaNews = await News.create({
         titulo,
+        description1,
         description,
         conecxao,
         categoria,
@@ -220,21 +222,18 @@ show: async (req, res) => {
   // Executa a atualização
   update: async (req, res) => {
     const { id } = req.params;
-    const { titulo, description, subtitulo, description2, conecxao, categoria, tipo, link_video, image, image2 } = req.body;
+    const { titulo, description1, description, subtitulo, description2, conecxao, categoria, tipo, link_video, image, image2 } = req.body;
  
     try {
       const newsToUpdate = await News.findByPk(id);
   
-      // Verificar se o campo 'description' foi preenchido no formulário
-      // Se não foi preenchido, manter o valor original
-      if (description.trim() === '') {
-        description = newsToUpdate.description;
-      }
+  
   
       // Restante do código de atualização permanece igual
   
       await newsToUpdate.update({
         titulo,
+        description1,
         description,
         conecxao,
         categoria,

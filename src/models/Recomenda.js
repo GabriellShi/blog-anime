@@ -35,7 +35,7 @@ const Recomenda = db.define(
 
 
 
-    description: { type: Sequelize.DataTypes.TEXT(1000), allowNull: false },
+    description1: { type: Sequelize.DataTypes.TEXT(1000), allowNull: false },
 
     description2: { type: Sequelize.DataTypes.TEXT(1000), allowNull: false },
 

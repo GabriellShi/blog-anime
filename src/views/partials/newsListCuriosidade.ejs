@@ -16,7 +16,9 @@
  
             <h2><%= noticia.titulo %></h2>
             <h3>Data: <%= noticia.created_at.toLocaleDateString('pt-BR') %></h3>
-            <p><%- noticia.description.substring(0, 298) %>...</p>
+            <% if (noticia instanceof News && noticia.description1) { %>
+              <p><%- noticia.description1.substring(0, 200) %>...</p>
+            <% } %>
         </div>
       </a>
 

@@ -8,6 +8,7 @@ const Temporada = require('../models/Temporada');
 const Recomenda = require('../models/Recomenda');
 const News = require('../models/News');
 
+
 const indexController = {
   index: async (req, res, pageTitle) => {
     try {
@@ -56,14 +57,11 @@ const indexController = {
         
       });
 
- 
+
 
       res.render('index', {
         title: pageTitle,
         title: "Go Geek Animes - Tudo sobre animes, mangas, doramas e muito mais",
-
-
-
         noticiasUnicas: noticiasUnicas.slice(0, 10), // Passando noticiasUnicas para o template
         News,
         Recomenda,

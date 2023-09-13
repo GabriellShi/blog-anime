@@ -18,7 +18,9 @@
                     </div>
                   <h2><%= noticia.titulo.substring(0, 58) %></h2>
                   <h3>Data: <%= noticia.created_at.toLocaleDateString('pt-BR') %></h3>
-                  <p><%- noticia.description.substring(0, 200) %>...</p>
+                  <% if (noticia instanceof News && noticia.description1) { %>
+                    <p><%- noticia.description1.substring(0, 200) %>...</p>
+                  <% } %>
               </a>
           </li>
           <% } %>
@@ -57,7 +59,9 @@
               <div class="lado-esquerdo-neto2 lado-esquerdo-neto-imagem2">
                   <h2><%= noticia.titulo.substring(0, 45) %> </h2>
                   <h3>Data: <%= new Date(noticia.created_at).toLocaleDateString('pt-BR') %></h3>
-                  <p><%- noticia.description.substring(0, 200) %>...</p>
+                  <% if (noticia instanceof News && noticia.description1) { %>
+                    <p><%- noticia.description1.substring(0, 200) %>...</p>
+                  <% } %>
               </div>
           </div>
       </a>

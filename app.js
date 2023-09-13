@@ -24,6 +24,8 @@ const detailsRecomendaRoute = require("./src/routes/detailsRecomendaRoute");
 const detailsTemporadaRoute = require("./src/routes/detailsTemporadaRoute");
 const detailsLancamentoRoute = require("./src/routes/detailsLancamentoRoute");
 
+
+
 // Use o middleware de compressão GZIP
 app.use(compression());
 
