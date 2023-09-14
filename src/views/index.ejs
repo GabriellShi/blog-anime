@@ -20,6 +20,8 @@
                   <h3>Data: <%= noticia.created_at.toLocaleDateString('pt-BR') %></h3>
                   <% if (noticia instanceof News && noticia.description1) { %>
                     <p><%- noticia.description1.substring(0, 200) %>...</p>
+                  <% } else if (noticia instanceof Recomenda && noticia.description1) { %>
+                    <p><%- noticia.description1.substring(0, 200) %>...</p>
                   <% } %>
               </a>
           </li>
@@ -60,6 +62,8 @@
                   <h2><%= noticia.titulo.substring(0, 45) %> </h2>
                   <h3>Data: <%= new Date(noticia.created_at).toLocaleDateString('pt-BR') %></h3>
                   <% if (noticia instanceof News && noticia.description1) { %>
+                    <p><%- noticia.description1.substring(0, 200) %>...</p>
+                  <% } else if (noticia instanceof Recomenda && noticia.description1) { %>
                     <p><%- noticia.description1.substring(0, 200) %>...</p>
                   <% } %>
               </div>

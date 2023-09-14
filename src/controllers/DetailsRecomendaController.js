@@ -321,9 +321,9 @@ const detailsRecomendaController = {
     try {
       const newsToUpdate = await Recomenda.findByPk(id);
 
-      if (description.trim() === "") {
-        description = newsToUpdate.description;
-      }
+      // if (description1.trim() === "") {
+      //   description1 = newsToUpdate.description1;
+      // }
 
       await newsToUpdate.update({
         titulo,
