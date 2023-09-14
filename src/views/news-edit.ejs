@@ -23,8 +23,8 @@
       <textarea  class="input-form" name="description1" placeholder="Descrição Principal"><%= news.description1 %></textarea>
 
 
-    <label for="">Descrição</label>
-    <textarea class="input-form" name="description" placeholder="Descrição"><%= news.description %></textarea>
+    <label for="">Descrição 1</label>
+    <textarea id="editor" class="input-form" name="description" placeholder="Descrição"><%= news.description %></textarea>
     
 <label for="">Image 2</label>
 <input class="input-form" type="text" name="image2" value="<%= detailsNews.image2 %>" placeholder="Imagem 2">
@@ -36,7 +36,7 @@
     <input class="input-form" type="text" name="link_video" placeholder="Link Video" value="<%= news.link_video %>" >
 
     <label for="">Descrição 2</label>
-    <textarea class="input-form" name="description2" placeholder="Descrição 2"><%= news.description2 %></textarea>
+    <textarea id="editor2" class="input-form" name="description2" placeholder="Descrição 2"><%= news.description2 %></textarea>
     
 
     <label for="">Conexão</label>
@@ -59,8 +59,25 @@
         <option value="Mangas" <%= news.tipo === "Mangas" ? "selected" : "" %>>Mangas</option>
     </select>
     
-
-
     <button type="submit"> Criar Noticia </button>
 </form> 
+
+<script>
+  ClassicEditor
+      .create( document.querySelector( '#editor' ) )
+      .catch( error => {
+          console.error( error );
+      } );
+</script>
+
+
+<script>
+ClassicEditor
+  .create( document.querySelector( '#editor2' ) )
+  .catch( error => {
+      console.error( error );
+  } );
+</script>
+
+
 </main>
