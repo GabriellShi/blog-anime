@@ -316,10 +316,15 @@ body {
 .lado-esquerdo-neto1 h2 {
   font-size: 1rem;
   color: #ff0;
-  padding-top: 0.5rem;
-  padding-bottom: 0.3rem;
   font-weight: 800;
 }
+
+.titulo-temporadas{
+  padding-left: 0.4rem;
+  padding-bottom: 0.4rem;
+  padding-top: 0.3rem;
+}
+
 .lado-esquerdo-neto1 h2:hover {
   color: #fd0000;
 }
@@ -353,7 +358,7 @@ body {
   padding-top: 0.3rem;
   padding-right: 0.5rem;
   text-align: end;
-  color: #f0ec02;
+  color: #ffffff;
 }
 .lado-esquerdo-neto5 h3 {
   padding-top: 0.5rem;
@@ -715,13 +720,18 @@ body {
 .descricao-calendario div {
   display: flex;
   justify-content: center;
-  align-items: end;
+  align-items: center;
   padding-bottom: 0.5rem;
 }
 .descricao-calendario h2 {
-  color: #fff;
-  font-size: 0.6rem;
+  color: #fbff00;
+  font-size: 1rem;
 }
+
+.titulo-calendarios{
+  font-size: 3rem;
+}
+
 .dias-da-semana-buttons button {
   border: 1px solid #00e6ff;
   color: #fff;
@@ -756,7 +766,7 @@ body {
   margin-right: 0.5rem;
   border-bottom: 1px solid #fff;
   padding-bottom: 1.5rem;
-  margin-bottom: 2rem;
+
 }
 .generos-temporada {
   display: flex;
@@ -1324,10 +1334,7 @@ body {
     display: flex;
     justify-content: center;
   }
-  .contato h1,
-  h2 {
-    font-size: 1rem;
-  }
+
   .contato h1,
   .titulo-index {
     text-align: center;

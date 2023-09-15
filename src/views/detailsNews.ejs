@@ -21,10 +21,11 @@
       </div>
     </div>
 
-
-    <div class="sect-capa-pagina-noticia">
-      <img src="<%= detailsNews.image %>" alt="Imagem" />
-    </div>
+    <% if (detailsNews.image) { %>
+      <div class="sect-capa-pagina-noticia">
+        <img src="<%= detailsNews.image %>" alt="Imagem " />
+      </div>
+    <% } %>
 
     <div class="sect-descricao">
       <p><%- unescape(detailsNews.description1) %></p>
@@ -43,11 +44,13 @@
       </div>
     <% } %>
 
+   
 
+    <% if (detailsNews.image2) { %>
     <div class="sect-capa-pagina-noticia sect-capa-pagina-noticia-img2">
       <img src="<%= detailsNews.image2 %>" alt="Imagem" />
     </div>
-
+    <% } %>
     <div class="sect-descricao">
       <p><%- unescape(detailsNews.description2) %></p>
     </div>
