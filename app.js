@@ -1,8 +1,14 @@
+
+// Importe o arquivo de agendamento (cron.js)
+require('./cron');
+
+
 const express = require("express");
 const app = express();
 const path = require("path");
 const methodOverride = require("method-override");
 const compression = require("compression"); // Importe o middleware de compressão
+const sitemapRoute = require('./src/routes/sitemapRoute');
 
 
 
@@ -13,6 +19,7 @@ app.listen(port, () => {
 });
 
 
+app.use('/', sitemapRoute);
 
 const indexRoute = require("./src/routes/indexRoute");
 const contatoRoute = require("./src/routes/contatoRoute");
