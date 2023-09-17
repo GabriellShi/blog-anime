@@ -93,6 +93,8 @@
           }
         });
       }
+
+      
     
       $("#loadMoreButton").click(carregarMaisNoticias);
     </script>
@@ -131,14 +133,14 @@
 
     </div>
 
-    <h2 class="titulo-destaque-index titulo-destaque-index2 titulo-destaque-index-direito">CURIOSIDADES</h2>
+    <h2 class="titulo-destaque-index titulo-destaque-index2 titulo-destaque-index-direito">CURIOSIDADES </h2>
 
     <% if (curiosidadeNews.length > 0) { %>
       <ul class="lado-direito-filho1">
         <% for (let curiosidade of curiosidadeNews.slice(0, 5)) { %>
           <li class="lado-esquerdo-neto5 lado-direito-neto1">
-            <button type="submit">
-              <a rel="canonical" href="/detailsNews/<%= curiosidade.titulo.replace(/ /g, '-') %>" target="_blank">
+            <button type="submit" >
+              <a rel="canonical" href="/detailsNews/<%= curiosidade.titulo.replace(/ /g, '-') %>" target="_blank" >
             <div class="temporada-lado-direito">
               <div class="temporada-lado-direito-image">
                 <img src="<%= curiosidade.image %>" alt="Capa Notica" />
