@@ -19,6 +19,8 @@ app.listen(port, () => {
 });
 
 
+app.use('/', sitemapRoute);
+
 const indexRoute = require("./src/routes/indexRoute");
 const contatoRoute = require("./src/routes/contatoRoute");
 const searchRoute = require("./src/routes/searchRoute");
