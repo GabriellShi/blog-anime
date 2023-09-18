@@ -103,6 +103,7 @@ const indexController = {
       res.render('partials/newsList', {
          newsSlice,
          News, 
+         Recomenda,
         });
     } catch (error) {
       console.error(error);
@@ -161,6 +162,8 @@ const indexController = {
       return res.render("recomendaViewsClient", {
         title: "Recomendações - Go Geek",
         recomenda, // Certifique-se de passar a variável temporada para a renderização
+        Recomenda,
+
       });
     } catch (error) {
       console.error(error);
@@ -192,6 +195,8 @@ const indexController = {
       res.render('partials/newsListRecomenda', 
       { newsSliceRecomenda,
         News,
+        Recomenda,
+
        });
     } catch (error) {
       console.error(error);
@@ -291,6 +296,7 @@ const indexController = {
       return res.render("tipoAnimesViewsClient", {
         title: "Animes - Go Geek",
         tipoAnime,
+        Recomenda,
       });
     } catch (error) {
       console.error(error);
@@ -335,6 +341,7 @@ const indexController = {
       res.render('partials/newsListAnimes', 
       { newsSliceAnimes,
         News,
+        Recomenda,
       });
     } catch (error) {
       console.error(error);
@@ -377,6 +384,9 @@ const indexController = {
       return res.render("tipoMangasViewsClient", {
         title: "Mangas - Go Geek",
         tipoMangas,
+        Recomenda,
+
+        
       });
     } catch (error) {
       console.error(error);
@@ -421,6 +431,8 @@ const indexController = {
       res.render('partials/newsListMangas', 
       { newsSliceMangas,
         News,
+        Recomenda,
+
        });
     } catch (error) {
       console.error(error);
