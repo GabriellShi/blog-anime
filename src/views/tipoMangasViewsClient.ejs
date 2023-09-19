@@ -10,7 +10,7 @@
     <ul class="lado-esquerdo-filho1" id="newsListMangas">
       <% for (const mangas of tipoMangas.slice(0, 10)) { %>
         <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
-          <a rel="canonical" href="<%= mangas.contentType === 'News' ? '/detailsNews/' + mangas.titulo.replace(/ /g, '-') : '/detailsRecomenda/' + mangas.titulo.replace(/ /g, '-') %>" target="_blank">
+          <a  href="<%= mangas.contentType === 'News' ? '/detailsNews/' + mangas.titulo.replace(/ /g, '-') : '/detailsRecomenda/' + mangas.titulo.replace(/ /g, '-') %>" target="_blank">
             <div class="zoomable-image-container">
               <img class="zoomable-image" src="<%= mangas.image %>" alt="Capa Noticia" />
               <div class="zoomable-image-overlay"></div>

@@ -1,8 +1,8 @@
 <ul class="lado-esquerdo-filho2" id="newsList">
-  
+
     <% for (const noticia of newsSlice) { %>
       <li class=" lado-esquerdo-neto1-destaque">
-        <a rel="canonical" href="<%= noticia instanceof News ? '/detailsNews/' + noticia.titulo.replace(/ /g, '-') : '/detailsRecomenda/' + noticia.titulo.replace(/ /g, '-') %>" target="_blank">
+        <a href="<%= noticia instanceof News ? '/detailsNews/' + noticia.titulo.replace(/ /g, '-') : '/detailsRecomenda/' + noticia.titulo.replace(/ /g, '-') %>" target="_blank">
           <div class="lado-esquerdo-filho3 temporada-lado-direito-index ">
           <div class="zoomable-image-container image-principais-noticias">
               <% if (noticia.image) { %>
