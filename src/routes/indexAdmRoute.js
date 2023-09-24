@@ -6,9 +6,9 @@ const indexAdmController = require("../controllers/IndexAdmController");
 
 router.get("/indexAdm", indexAdmController.indexAdm);
 
-router.get("/paginasCreate", indexAdmController.paginasCreate);
+    router.get("/paginasCreate", indexAdmController.paginasCreate);
 
-router.get("/paginasNews", indexAdmController.paginasNews);
+    router.get("/paginasNews", indexAdmController.paginasNews);
 
 
 module.exports = router;

@@ -223,11 +223,11 @@ show: async (req, res) => {
   update: async (req, res) => {
     const { id } = req.params;
     const { titulo, description1, description, subtitulo, description2, conecxao, categoria, tipo, link_video, image, image2 } = req.body;
- 
-    try {
-      const newsToUpdate = await News.findByPk(id);
   
-  
+      try {
+        const newsToUpdate = await News.findByPk(id);
+    
+    
   
       // Restante do código de atualização permanece igual
   
