@@ -11,5 +11,6 @@ Disallow: /private/
 
 Sitemap: https://www.gogeekanimes.com/sitemap.xml
 
+mapa do site: https://a325007.sitemaphosting6.com/4389097/sitemap_4389097.xml
 
 
