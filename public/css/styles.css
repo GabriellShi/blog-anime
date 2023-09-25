@@ -827,6 +827,11 @@ body {
 .descricao-search {
   padding-bottom: 0.5rem;
 }
+
+.paginas-search {
+  display: flex;
+}
+
 .site-animes-pedidos-de-animes {
   background-color: #000;
   color: #fff;
