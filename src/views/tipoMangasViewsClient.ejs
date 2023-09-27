@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <main class="main-paginas">
-  <h1 class=" titulo-paginas">MANGAS</h1>
+  <h1 class=" titulo-paginas">LISTA DE MANGAS</h1>
  
 
   <% if (tipoMangas.length > 0) { %>
@@ -15,9 +15,9 @@
               <img class="zoomable-image" src="<%= mangas.image %>" alt="Capa Noticia" />
               <div class="zoomable-image-overlay"></div>
             </div>
-            <h2><%= mangas.titulo.substring(0, 58) %></h2>
+            <h2><%= mangas.titulo.substring(0, 57) %></h2>
             <h3>Data: <%= mangas.created_at.toLocaleDateString() %></h3>
-            <p><%- mangas.description1.substring(0, 298) %>...</p>
+            <p><%- mangas.description1.substring(0, 297) %>...</p>
           </a>
         </li>
       <% } %>
@@ -28,7 +28,7 @@
    
     
     <div id="loadMoreContainerMangas" class="loadMoreContainer-css">
-      <button id="loadMoreButtonMangas">Ver mais</button>
+      <button id="loadMoreButtonMangas">Mais Noticias</button>
     </div>
     
     <script>
