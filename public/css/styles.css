@@ -14,6 +14,8 @@
   align-items: center;
   justify-content: space-between;
   background-color: #000;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 .wrapper-partials {
   width: 100%;
@@ -1242,7 +1244,8 @@ body {
   }
   .barra-de-pesquisa-partials-mobile img,
   .nav-partials label img {
-    width: 1.5rem;
+    margin-top: 0.8rem;
+    margin-bottom: 0.8rem;
   }
   .icone-login-partials-mobile,
   .toggle-partials-2-pai {
