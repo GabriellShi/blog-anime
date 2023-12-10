@@ -1,9 +1,9 @@
 require("dotenv").config();
 const database = {
-  username: process.env.DB_USERNAME || "bf258360bce196",
-  password: process.env.DB_PASSWORD || "393a56bb",
-  database: process.env.DB_DATABASE || "heroku_b3f2aa2d4c4e128",
-  host: process.env.DB_HOST || "us-cdbr-east-06.cleardb.net",
+  username: process.env.DB_USERNAME || "admin123",
+  password: process.env.DB_PASSWORD || "Naruto67**",
+  database: process.env.DB_DATABASE || "animescoldnews",
+  host: process.env.DB_HOST || "animescoldnews.cnajtz6ttvye.sa-east-1.rds.amazonaws.com",
   dialect: process.env.DB_DIALECT || "mysql",
 };
 
