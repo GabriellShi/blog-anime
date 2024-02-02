@@ -1,0 +1,309 @@
+APP -------------------------------- 
+
+
+ const express = require("express");
+const app = express();
+const path = require("path");
+const methodOverride = require("method-override");
+const compression = require("compression"); // Importe o middleware de compressão
+
+
+// Inicia o servidor
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log("Servidor está rodando bem");
+});
+
+
+const getAllRoute = require("./src/routes/getAllRoute");
+const salesPendingRoute = require("./src/routes/salesPendingRoute");
+
+
+
+// Use o middleware de compressão GZIP
+app.use(compression());
+
+// Configura o methodOverride no express
+// methodOverride = Pacote que transforma um método http em outro
+// Ex: POST => PUT
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride("_method"));
+//
+// Configura pasta estática para acesso externo
+app.use(express.static(path.join(__dirname, "public")));
+
+// Configura o template engine, troca do padrão (jade) para ejs
+app.set("view engine", "ejs");
+// Configura o caminho para os views, troca o padrão que é no raiz para o src
+app.set("views", path.join(__dirname, "src", "views"));
+
+
+app.use("/", getAllRoute);
+
+app.use("/", salesPendingRoute);
+
+
+
+
+
+
+
+
+app.use("/images", express.static(path.join(__dirname, "/uploads")));
+
+// Rota de erro 404 - página não encontrada
+app.use((req, res) => {
+  res.status(404).render('erro-404.ejs', { title: 'Página não encontrada' });
+});
+
+
+
+
+// GetAllController --------------------------
+
+
+const fs = require("fs");
+const axios = require('axios');
+const express = require("express");
+const router = express.Router();
+const mysql = require('mysql');
+
+console.log("Rota getAllController atingida");
+
+const connection = mysql.createConnection({
+  host: '127.0.0.1',
+  user: 'root',
+  password: '',
+  database: 'api_moloni_db'
+});
+
+connection.connect();
+
+const getAllController = {
+  _index: async (_req, res) => {
+    try {
+      let accessToken = 'e328494800a6581fb047efe878d56ddb74c5db78';
+      const companyId = 158513;
+
+      const apiEndpointURL = 'https://api.moloni.pt/v1/customers/getAll/?access_token=e328494800a6581fb047efe878d56ddb74c5db78';
+      const headers = {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/x-www-form-urlencoded'
+      };
+
+      const payload = {
+        'company_id': companyId
+      };
+
+      axios.post(apiEndpointURL, payload, { headers })
+        .then(async (response) => {
+          const data = response.data;
+          const documents = data.documents;
+          const getAlls = response.data;
+
+          // Itera sobre os clientes e insere no banco de dados
+          for (const getAll of getAlls) {
+            await insertGetAll(getAll);
+          }
+
+          // Aqui, você retorna a resposta do controlador para a página EJS
+          return res.status(200).json({ success: true, message: 'Dados salvos com sucesso na tabela getAll do banco de dados' });
+
+        })
+        .catch(error => {
+          console.error(error.response.data);
+          // Aqui, você pode renderizar uma página de erro se o request falhar
+          res.status(400).render('erro-400.ejs');
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  get index() {
+    return this._index;
+  },
+  set index(value) {
+    this._index = value;
+  },
+};
+
+
+
+async function insertGetAll(getAll) {
+  const sql = `
+    INSERT INTO getAll (
+      customer_id, email, number, contact_email
+    )
+    VALUES (?, ?, ?, ?)
+  `;
+
+  const values = [
+    getAll.customer_id,
+    getAll.email,
+    getAll.number,
+    getAll.contact_email
+  ];
+
+  connection.query(sql, values, (error, results, fields) => {
+    if (error) throw error;
+    console.log(`Cliente inserido no banco de dados - Tabela: getAll: ${getAll.name}`);
+  });
+}
+
+module.exports = getAllController;
+
+
+
+
+// SalesPendingController ------------------------------------------- 
+
+
+const fs = require("fs");
+const axios = require('axios');
+const express = require("express");
+const router = express.Router();
+const mysql = require('mysql');
+
+const connection = mysql.createConnection({
+  host: '127.0.0.1',
+  user: 'root',
+  password: '',
+  database: 'api_moloni_db'
+});
+
+connection.connect();
+
+console.log("Rota SalesPendingController atingida");
+
+const SalesPendingController = { 
+  index: async (req, res) => {
+    try {
+      let accessToken = 'e328494800a6581fb047efe878d56ddb74c5db78';
+      const companyId = 158513;
+
+      const apiEndpointURL = 'https://api.moloni.pt/v2/SalesPending/getAllByClient/?access_token=e328494800a6581fb047efe878d56ddb74c5db78';
+      const headers = {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/x-www-form-urlencoded'
+      };
+
+      const payload = {
+        'company_id': companyId
+      };
+
+      axios.post(apiEndpointURL, payload, { headers })
+      .then(async (response) => {
+        console.log('Resposta da API:', response.data);
+
+        if (response.data && response.data.customers) {
+          const customers = response.data.customers;npm
+          // Itera sobre os clientes e insere no banco de dados
+          for (const customer of customers) {
+            await insertCustomer(customer);
+
+            // Verifica se há documentos para o cliente
+            if (customer.documents && customer.documents.length > 0) {
+              // Itera sobre os documentos e insere na tabela 'documents'
+              for (const document of customer.documents) {
+                await insertDocument(document, customer.customer_id);
+              }
+            }
+          }
+
+          // Aqui, você retorna a resposta do controlador para a página EJS
+          return res.status(200).json({ success: true, message: 'Dados salvos com sucesso no banco de dados' });
+        } else {
+          console.error('Resposta da API não contém documentos válidos:', response.data);
+          res.status(400).json({ error: 'Erro ao processar a requisição1' });
+        }
+      })
+      .catch(error => {
+        if (error.response && error.response.data) {
+          console.error(error.response.data);
+        } else {
+          console.error('Erro desconhecido:', error);
+        }
+        // Retorna uma resposta JSON indicando o erro
+        res.status(400).json({ error: 'Erro ao processar a requisição2' });
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Erro interno no servidor' });
+    }
+  },
+}
+
+
+async function insertCustomer(customer) {
+  console.log('Inserindo cliente no banco de dados:', customer);
+  console.log("Rota aaaaaaaaa atingida");
+
+  const sql = `
+    INSERT INTO customers (
+      customer_id, number, name, vat, num_docs, net_value, delay, total_delay, total, pending 
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `;
+
+  const values = [
+    customer.customer_id,
+    customer.number,
+    customer.customer.name,
+    customer.customer.vat,
+    customer.num_docs,
+    customer.net_value,
+    customer.delay,
+    customer.total_delay,
+    customer.total,
+    customer.pending
+  ];
+
+
+
+  
+
+  connection.query(sql, values, (error, results, fields) => {
+    if (error) {
+      console.error(`Erro ao inserir cliente na tabela "customers" do banco de dados : ${error.message}`);
+    } else {
+      console.log(`Cliente inserido na tabela "customers" do banco de dados: ${customer.customer.name}`);
+    }
+  });
+}
+
+
+async function insertDocument(document, customer_id) {
+  console.log('Inserindo documento no banco de dados:', document);
+
+  const sql = `
+    INSERT INTO documents (
+      customer_id, delay, document_id, document_type_id, number, date, expiration_date, net_value, pending, customers_id
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `;
+
+  const values = [
+    customer_id,
+    document.delay,
+    document.document_id,
+    document.document_type_id,
+    document.number,
+    document.date,
+    document.expiration_date,
+    document.net_value,
+    document.pending,
+    null, // customers_id será atualizado posteriormente com o ID correspondente da tabela 'customers'
+  ];
+
+  connection.query(sql, values, (error, results, fields) => {
+    if (error) {
+      console.error(`Erro ao inserir documento na tabela "documents" do banco de dados: ${error.message}`);
+    } else {
+      console.log(`Documento inserido na tabela "documents" do banco de dados: ${document.number}`);
+    }
+  });
+}
+
+
+

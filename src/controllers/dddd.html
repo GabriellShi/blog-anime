@@ -1,0 +1,102 @@
+Possuo duas api, uma de sales pending - cliente pendentes e ou getAll - todos clientes, peguei essas duas api, fiz dois script no vs code com node.js e padrão mvc, em seguida salvei os dados dessas duas api em 3 tabelas no mysql worckbranch, onde fiz uma tabela da api getAll - todos clientes e a api salespendiing tinha duas tabelas dentro, "costumers" e "documents" então no banco de dados salvei uma tabela customers e outra tabela documents, ficando com 3 tabelas no banco de dados. Agora irei pegar os dados desses cliente pendentes e criar uma pagina pode ser em html a principiio. Então quero que voce me crie uma pagina html para renderizar os dados desses clientes pendentes e nessa pagina irei começar a automatizar para selecionar todos os clientes, e atraves do email que tem na tabela get alll e customers irei enviar um email para todos os clientes pendentes, mais vamos começar criando uma tabela para os clientes pendentes. Quero que faça uma pagina assim: https://www.moloni.pt/habilfix/PendentesVendas/showAll/0 caso não consiga visualizar a pagina aqui está o codigo do  site: 
+
+
+<body class="fundoTmpl">
+        <div class="corpoContainer"><svg width="0" height="0" class="hidden" style="display: none">
+
+<button id="input650" type="button" class="btn  btn--quaternary-navy actionsBtnTop actionsBtnOn actionsBtnFirst" aria-label="Filtrar" onclick="setAction('showAll', '1', 'PendentesVendas', '0');">
+            <span class="btn__label">Filtrar</span>
+            </button></div></div><div class="filtroBlocoHolder" id="filtro_AC"><div class="filtroAC_tituloData t14"><div class="filtroAC_tituloTipo_1 filtroAC_tituloTipo_holder t14 flex-container flex-wrap"><div class="filtroAC_tituloTipo_2 filtroAC_tituloTipo_child t14 flex-container"><b>Tipo Listagem</b>&nbsp;<input type="radio" value="data" name="tipo_listagem" id="tipo_listagem_data"><label for="tipo_listagem_data">Data</label><input type="radio" value="cliente" name="tipo_listagem" id="tipo_listagem_cliente" checked="checked"><label for="tipo_listagem_artigo">Cliente</label></div><b>Controlar por</b><input type="radio" name="tipo_data" value="data" id="tipo_data_data" checked="checked"><label for="tipo_data_data">Data Emissão</label><input type="radio" name="tipo_data" value="data_vencimento" id="tipo_data_data_vencimento"><label for="tipo_data_data_vencimento">Data Vencimento</label></div><b>Intervalo de datas</b><span class="mr-4 toolTip__cursor--pointer" longdesc="" tooltip_title="" title=""><svg class="input__icon input__icon--tooltip icon-6 paginadorTxt"><use xlink:href="#input_tooltip"></use></svg></span>Início<input type="text" name="data_inicio" id="data_inicio" maxlength="10" class="inputOut inputOutShort" value="" onfocus="this.addClassName('inputOn');" onblur="this.removeClassName('inputOn');"><span class="iconeCalendario filtroAC_iconeData" id="auto_5e4ac1" title="Escolha uma data"></span><script type="text/javascript" language="javascript">Calendar.setup({inputField: "data_inicio", ifFormat: "%d-%m-%Y", showsTime: false, button: "auto_5e4ac1", singleClick: true});</script>Fim<input type="text" name="data_fim" id="data_fim" maxlength="10" class="inputOut inputOutShort" value="" onfocus="this.addClassName('inputOn');" onblur="this.removeClassName('inputOn');"><span class="iconeCalendario filtroAC_iconeData" id="auto_5e4ac2" title="Escolha uma data"></span><script type="text/javascript" language="javascript">Calendar.setup({inputField: "data_fim", ifFormat: "%d-%m-%Y", showsTime: false, button: "auto_5e4ac2", singleClick: true});</script>Ou<select name="prazo_comum" id="prazo_comum" class="inputOut"><option value="0" selected="selected">Escolha uma opção</option><option value="divida_hoje">À data de hoje</option><option value="hoje">Hoje</option><option value="estemes">Este mês</option><option value="ultimos30dias">Últimos 30 dias</option><option value="mespassado">Mês Anterior</option><option value="estetrimestre">Este Trimestre</option><option value="trimestreanterior">Trimestre Anterior</option><option value="estesemestre">Este Semestre</option><option value="esteano">Este Ano</option><option value="anoanterior">Ano Anterior</option></select></div><div class="filtroAC_titulo"><a href="#">Segmentar por <b>Clientes</b></a></div><div class="filtroAC_content" style="height: 0px; display: none;"><div style="float:left; margin:10px; width:100%;"><div class="filtroBlocoItens" id="filtro_holder_clientes"><span class="filtroTitulo">Pesquisa de Clientes</span><input type="text" name="clientePesquisaPendentes" id="clientePesquisaPendentes" value="" maxlength="250" class="inputOut inputOutMedio" onfocus="this.addClassName('inputOn');" onblur="this.removeClassName('inputOn');"><div class="iconePreloaderPesquisa" id="pesquisa_resultados_preloader" style="display:none"></div><span class="filtroNotas" style="padding:5px">Insira palavras para pesquisar</span><div class="docEdit_blocoPesquisaHolder" id="holderClientesPesquisados"></div><ul class="docEdit_blocoItem" id="clientesHolder" style="border:none;"></ul></div></div></div><div class="filtroAC_titulo"><a href="#">Segmentar por <b>Vendedores</b></a></div><div class="filtroAC_content" style="height: 0px; display: none;"><div style="float:left; margin:10px; width:100%;"><div class="filtroBlocoItens" id="filtro_holder_vendedores"><span class="filtroTitulo">Pesquisa de Vendedores</span><input type="text" name="vendedorPesquisaPendentes" id="vendedorPesquisaPendentes" class="inputOut" value="" maxlength="250" onfocus="this.addClassName('inputOn');" onblur="this.removeClassName('inputOn');"><div class="iconePreloaderPesquisa" id="pesquisa_resultados_preloader" style="display:none"></div><span class="filtroNotas" style="padding:5px"> Insira palavras para pesquisar</span><div class="docEdit_blocoPesquisaHolder" id="holderVendedoresPesquisados"></div><ul class="docEdit_blocoItem" id="vendedoresHolder" style="border:none;"></ul></div></div></div><div class="filtroAC_titulo"><a href="#">Segmentar por <b>Documentos e Séries</b></a></div><div class="filtroAC_content" style="height: 0px; display: none;"><div style="margin:10px; overflow:hidden;"><div style="float:left; width:60%;"><b>Tipo de Documento</b><br><div class="filtroItemCheckBox_4"><input type="checkbox" value="1" name="tipo_documento_id[]" id="tipo_documento_id_0"> <label for="tipo_documento_id_0">Fatura</label></div><div class="filtroItemCheckBox_4"><input type="checkbox" value="3" name="tipo_documento_id[]" id="tipo_documento_id_1"> <label for="tipo_documento_id_1">Nota de Crédito</label></div><div class="filtroItemCheckBox_4"><input type="checkbox" value="4" name="tipo_documento_id[]" id="tipo_documento_id_2"> <label for="tipo_documento_id_2">Nota de Débito</label></div><div class="filtroItemCheckBox_4"><input type="checkbox" value="5" name="tipo_documento_id[]" id="tipo_documento_id_3"> <label for="tipo_documento_id_3">Venda a Dinheiro</label></div><div class="filtroItemCheckBox_4"><input type="checkbox" value="11" name="tipo_documento_id[]" id="tipo_documento_id_4"> <label for="tipo_documento_id_4">Saldos Migrados (Faturas)</label></div><div class="filtroItemCheckBox_4"><input type="checkbox" value="17" name="tipo_documento_id[]" id="tipo_documento_id_5"> <label for="tipo_documento_id_5">Saldos Migrados (Vendas a Dinheiro)</label></div><div class="filtroItemCheckBox_4"><input type="checkbox" value="18" name="tipo_documento_id[]" id="tipo_documento_id_6"> <label for="tipo_documento_id_6">Saldos Migrados (Notas de Crédito)</label></div><div class="filtroItemCheckBox_4"><input type="checkbox" value="20" name="tipo_documento_id[]" id="tipo_documento_id_7"> <label for="tipo_documento_id_7">Fatura Simplificada</label></div><div class="filtroItemCheckBox_4"><input type="checkbox" value="24" name="tipo_documento_id[]" id="tipo_documento_id_8"> <label for="tipo_documento_id_8">Saldos Migrados (Nota de Débito)</label></div><div class="filtroItemCheckBox_4"><input type="checkbox" value="25" name="tipo_documento_id[]" id="tipo_documento_id_9"> <label for="tipo_documento_id_9">Saldos Migrados (Fatura Simplificada)</label></div><div class="filtroItemCheckBox_4"><input type="checkbox" value="27" name="tipo_documento_id[]" id="tipo_documento_id_10"> <label for="tipo_documento_id_10">Fatura-Recibo</label></div></div><div style="float:right; width:35%;"><div style="float: right;"><a id="series_ver_inactivos" href="javascript:tmpl.tools.toggleHiddenSeries(false);" title="Ver Inativos">Ver Inativos</a><a id="series_ocultar_inactivos" href="javascript:tmpl.tools.toggleHiddenSeries(true);" title="Ocultar Inativos" style="display: none;">Ocultar Inativos</a></div><b>Séries de Documentos</b><br><div class="filtroItemCheckBox_4"><input type="checkbox" value="106367" name="serie_id[]" id="serie_id_0"> <label for="serie_id_0" title="M">M</label></div></div></div></div><div class="filtroAC_titulo"><a href="#">Segmentar por <b>Vencimento / Liquidação </b></a></div><div class="filtroAC_content" style="height: 0px; display: none;"><div style="margin:10px; overflow:hidden;"><div style="float:left; width:50%;"><b>Estado de Vencimento</b><span class="mr-4 toolTip__cursor--pointer" longdesc="" tooltip_title="" title=""><svg class="input__icon input__icon--tooltip icon-6 paginadorTxt"><use xlink:href="#input_tooltip"></use></svg></span><label class="checkbox checkbox--green mt-4">
+  <span class="checkbox__input  ">
+    <input type="checkbox" name="filter_by_dueDate[with_delay]" id="dueDateWithDelay" value="1" data-not="true">
+    <span class="checkbox__control">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path fill="none" stroke="currentColor" stroke-width="3" d="M1.73 12.91l6.37 6.37L22.79 4.59"></path>
+      </svg>
+    </span>
+  </span>
+            <span class="checkbox__label ">
+          Com atraso
+        </span>
+    </label>
+<label class="checkbox checkbox--green mt-4">
+  <span class="checkbox__input  ">
+    <input type="checkbox" name="filter_by_dueDate[without_delay]" id="dueDateWithoutDelay" value="1" data-not="true">
+    <span class="checkbox__control">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path fill="none" stroke="currentColor" stroke-width="3" d="M1.73 12.91l6.37 6.37L22.79 4.59"></path>
+      </svg>
+    </span>
+  </span>
+            <span class="checkbox__label ">
+          Sem atraso
+        </span>
+    </label>
+</div><div style="float:right; width:50%;"><b>Estado de Liquidação</b><span class="mr-4 toolTip__cursor--pointer" longdesc="" tooltip_title="" title=""><svg class="input__icon input__icon--tooltip icon-6 paginadorTxt"><use xlink:href="#input_tooltip"></use></svg></span><fieldset><label class="radio radio--green mt-4">
+  <span class="radio__input">
+    <input type="radio" name="liquidacao" id="input844" value="0" checked="">
+    <span class="radio__control"></span>
+  </span>
+            <span class="radio__label">Sem liquidação</span>
+    </label>
+<label class="radio radio--green mt-4">
+  <span class="radio__input">
+    <input type="radio" name="liquidacao" id="input168" value="1">
+    <span class="radio__control"></span>
+  </span>
+            <span class="radio__label">Liquidação parcial</span>
+    </label>
+<label class="radio radio--green mt-4">
+  <span class="radio__input">
+    <input type="radio" name="liquidacao" id="input344" value="2">
+    <span class="radio__control"></span>
+  </span>
+            <span class="radio__label">Liquidação total</span>
+    </label>
+</fieldset></div></div></div><div class="filtroAC_titulo"><a href="#">Segmentar por<b> Zonas Geográficas</b></a></div><div class="filtroAC_content" style="height: 0px; display: none;"><div style="margin:10px; overflow:hidden;"><div style="float:left; width:100%;"><b>Zonas Geográficas</b><br><div class=""><label class="checkbox checkbox--green filtroItemCheckBox_4">
+  <span class="checkbox__input  ">
+    <input type="checkbox" name="zonas_id[]" id="zona_id_0" value="16689" data-not="true">
+    <span class="checkbox__control">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path fill="none" stroke="currentColor" stroke-width="3" d="M1.73 12.91l6.37 6.37L22.79 4.59"></path>
+      </svg>
+    </span>
+  </span>
+            <span class="checkbox__label ">
+          Revendedores HABILFIX
+        </span>
+    </label>
+<label class="checkbox checkbox--green filtroItemCheckBox_4">
+  <span class="checkbox__input  ">
+    <input type="checkbox" name="zonas_id[]" id="zona_id_1" value="16693" data-not="true">
+    <span class="checkbox__control">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path fill="none" stroke="currentColor" stroke-width="3" d="M1.73 12.91l6.37 6.37L22.79 4.59"></path>
+      </svg>
+    </span>
+  </span>
+            <span class="checkbox__label ">
+          Revendedores OUTROS
+        </span>
+    </label>
+</div></div></div></div><div class="filtroAC_titulo" id="filtroAC_titulo_ord"><a href="#"><b>Ordenação</b></a></div><div class="filtroAC_content" style="height: 0px; display: none;"><div style="margin:10px;float:left;" class="flex-container"><b>Campo:</b>&nbsp;<input type="radio" name="ordenacao_clientes_ord" id="ordenacao_clientes_ord_1" value="nome" style="vertical-align:bottom;" checked="checked"><label for="ordenacao_clientes_ord_1" style="width:auto; font-weight:normal;">Nome</label><input type="radio" name="ordenacao_clientes_ord" id="ordenacao_clientes_ord_2" value="codigo" style="vertical-align:bottom;"><label for="ordenacao_clientes_ord_2" style="width:auto; font-weight:normal;">Código de Cliente</label><input type="radio" name="ordenacao_clientes_ord" id="ordenacao_clientes_ord_3" value="contribuinte" style="vertical-align:bottom;"><label for="ordenacao_clientes_ord_3" style="width:auto; font-weight:normal;">Contribuinte</label></div><div style="margin:10px 0 10px 50px;float:left;" class="flex-container"><b>Ordem:</b>&nbsp;<input type="radio" name="ordenacao_clientes_dir" id="ordenacao_clientes_dir_0" value="asc" style="vertical-align:bottom;" checked="checked"><label for="ordenacao_clientes_dir_0" style="width:auto; font-weight:normal;">Ascendente</label><input type="radio" name="ordenacao_clientes_dir" id="ordenacao_clientes_dir_1" value="desc" style="vertical-align:bottom;"><label for="ordenacao_clientes_dir_1" style="width:auto; font-weight:normal;">Descendente</label></div></div></div><div class="actionsHolderBottom"><div class="filtroBlocoBtns">
+
+<button id="input520" type="button" class="btn  btn--quaternary-navy actionsBtnBottom actionsBtnOn" aria-label="Filtrar" onclick="setAction('showAll', '1', 'PendentesVendas', '0');">
+            <span class="btn__label">Filtrar</span>
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'AW-973653826');
+		</script><!-- Google tag (gtag.js) - Google Analytics 4 (GA4) --><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-CNRRTMYS4F"></script><script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-CNRRTMYS4F');</script>    
+
+</body>

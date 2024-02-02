@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listagem de pendentes - Clientes</title>
+    <style>
+        /* Estilos para o layout */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .conteudo {
+            padding: 20px;
+        }
+        .tabela {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .tabela th, .tabela td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .tabela th {
+            background-color: #f2f2f2;
+        }
+        .detalhes-documentos {
+            display: none;
+        }
+        .mostrar-detalhes {
+            display: table-row; /* Para exibir os detalhes dos documentos */
+        }
+    </style>
+</head>
+<body>
+    <div class="conteudo">
+        <table class="tabela">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Código de Cliente</th>
+                    <th>Contribuinte</th>
+                    <th>Qtd. Docs.</th>
+                    <th>Zona geográfica</th>
+                    <th>Total</th>
+                    <th>Pago</th>
+                    <th>Pendente</th>
+                    <th>Atraso (Dias)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="cliente">
+                    <td>NELSON GUEDES DE OLIVEIRA</td>
+                    <td>10002</td>
+                    <td>234422963</td>
+                    <td>13</td>
+                    <td>--</td>
+                    <td>10.500,00€</td>
+                    <td>0,00€</td>
+                    <td>10.500,00€</td>
+                    <td>180,85</td>
+                </tr>
+                <tr class="detalhes-documentos">
+                    <td colspan="9">
+                        <!-- Inclua aqui os detalhes dos documentos do cliente -->
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Document ID</th>
+                                    <th>Document Type ID</th>
+                                    <th>Number</th>
+                                    <th>Date</th>
+                                    <th>Expiration Date</th>
+                                    <th>Net Value</th>
+                                    <th>Pending</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>123</td>
+                                    <td>DOC001</td>
+                                    <td>2024-01-01</td>
+                                    <td>2024-01-31</td>
+                                    <td>1000.00€</td>
+                                    <td>500.00€</td>
+                                </tr>
+                                <!-- Adicione mais linhas conforme necessário -->
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="cliente">
+                    <td>Rafael Guedes de Oliveira</td>
+                    <td>10000</td>
+                    <td>234423102</td>
+                    <td>27</td>
+                    <td>--</td>
+                    <td>18.900,00€</td>
+                    <td>0,00€</td>
+                    <td>18.900,00€</td>
+                    <td>547,41</td>
+                </tr>
+                <!-- Adicione mais linhas de clientes conforme necessário -->
+            </tbody>
+        </table>
+    </div>
+    <script>
+        // Captura todos os elementos da classe cliente
+        const clientes = document.querySelectorAll('.cliente');
+
+        // Para cada cliente, adiciona um evento de clique para mostrar/ocultar os detalhes dos documentos
+        clientes.forEach(cliente => {
+            cliente.addEventListener('click', () => {
+                // Encontra o próximo elemento irmão que possui a classe detalhes-documentos
+                const detalhesDocumentos = cliente.nextElementSibling;
+
+                // Alterna a visibilidade dos detalhes dos documentos
+                detalhesDocumentos.classList.toggle('mostrar-detalhes');
+            });
+        });
+    </script>
+</body>
+</html>
