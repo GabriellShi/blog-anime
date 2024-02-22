@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GabriellShi/blog-anime.git"
+    "url": ""
   },
-  "author": "Gabriel",
+  "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/GabriellShi/blog-anime/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/GabriellShi/blog-anime#readme",
+  "homepage": "",
   "dependencies": {
     "@ckeditor/ckeditor5-build-decoupled-document": "^39.0.2",
     "body-parser": "^1.20.2",

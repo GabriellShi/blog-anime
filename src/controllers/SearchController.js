@@ -67,7 +67,7 @@ const searchController = {
       });
 
       res.render("search", {
-        title: "Resultado Pesquisa - Go Geek",
+        title: "Resultado Pesquisa -  Go Geek Animes",
         news,
         recomenda,
         temporada,

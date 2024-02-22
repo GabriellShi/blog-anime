@@ -134,7 +134,7 @@ const indexController = {
 
   
       return res.render("temporadaViewsClient", {
-        title: "Temporadas - Go Geek",
+        title: "Temporadas - Go Geek Animes",
         temporada, 
         dataFormatada: formatarData(detailsTemporada.estreia)
       });
@@ -160,7 +160,7 @@ const indexController = {
       // });
   
       return res.render("recomendaViewsClient", {
-        title: "Recomendações - Go Geek",
+        title: "Recomendações - Go Geek Animes",
         recomenda, // Certifique-se de passar a variável temporada para a renderização
         Recomenda,
 
@@ -215,7 +215,7 @@ const indexController = {
   
       return res.render("curiosidadeViewsClient", {
         title: pageTitle, // Defina o título da página com base no argumento pageTitle
-        title: "Curiosidades - Go Geek",
+        title: "Curiosidades -  Go Geek Animes",
 
         curiosidades,
       });
@@ -294,7 +294,7 @@ const indexController = {
       });
       
       return res.render("tipoAnimesViewsClient", {
-        title: "Animes - Go Geek",
+        title: "Animes -Go Geek Animes",
         tipoAnime,
         Recomenda,
       });
@@ -382,7 +382,7 @@ const indexController = {
       });
       
       return res.render("tipoMangasViewsClient", {
-        title: "Mangas - Go Geek",
+        title: "Mangas -  Go Geek Animes",
         tipoMangas,
         Recomenda,
 
