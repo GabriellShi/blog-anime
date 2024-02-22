@@ -1,10 +1,10 @@
-DROP DATABASE IF EXISTS heroku_b3f2aa2d4c4e128;
+DROP DATABASE IF EXISTS railway;
 
 -- Cria banco de dados
-CREATE DATABASE heroku_b3f2aa2d4c4e128;
+ CREATE DATABASE railway;
 
 -- Seleciona banco de  dados para uso
-USE heroku_b3f2aa2d4c4e128;
+USE railway;
 
 -- Cria tabela de usuário
 CREATE TABLE news (
@@ -12,6 +12,7 @@ CREATE TABLE news (
     titulo VARCHAR(150) NOT NULL,
     subtitulo VARCHAR(250) NOT NULL,
     description TEXT(1000)  NOT NULL,
+    description1 TEXT(1000)  NOT NULL,
     description2 TEXT(1000)  NOT NULL,
     conecxao VARCHAR(100) NOT NULL,
     categoria VARCHAR(100) NOT NULL,
@@ -31,9 +32,9 @@ CREATE TABLE news (
  -- DROP COLUMN image;
 
 -- Insere um ou mais usuário
-INSERT INTO news (titulo, subtitulo, description, description2, conecxao, categoria, image, image2, tipo, link_video)
+INSERT INTO news (titulo, subtitulo, description, description1, description2, conecxao, categoria, image, image2, tipo, link_video)
 VALUES 
-	("naruto vem ai", "naruto vem ai", "foi anunciado a data", "foi anunciado a data", "Naruto", "novidade",
+	("naruto vem ai", "naruto vem ai", "foi anunciado a data", "foi anunciado a data", "foi anunciado a data", "Naruto", "novidade",
     "0b5bd355eb900ff34ade.jpg", "0b5bd355eb900ff34ade.jpg", "animes", "dd");
 
 
@@ -74,6 +75,7 @@ CREATE TABLE recomenda (
     titulo10 VARCHAR(150) NOT NULL,
     titulo11 VARCHAR(150) NOT NULL,
     description TEXT(1000)  NOT NULL,
+    description1 TEXT(1000)  NOT NULL,
     description2 TEXT(1000)  NOT NULL,
     description3 TEXT(1000)  NOT NULL,
     description4 TEXT(1000)  NOT NULL,
@@ -104,7 +106,7 @@ CREATE TABLE recomenda (
 
 INSERT INTO recomenda (
 titulo, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, titulo11,
-description, description2, description3, description4, description5, description6, description7, description8, description9, description10, description11,
+description, description1, description2, description3, description4, description5, description6, description7, description8, description9, description10, description11,
 conecxao, categoria, 
 image, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, tipo
 )
@@ -112,7 +114,7 @@ VALUES
 	(
 
 "naruto vem ai 1", "naruto vem ai2", "naruto vem ai3", "naruto vem ai4", "naruto vem ai", "naruto vem ai", "naruto vem ai", "naruto vem ai", "naruto vem ai", "naruto vem ai", "naruto vem ai",
-"sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1",
+"sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1",
 "Naruto", "Recomendação",
 "0b5bd355eb900ff34ade.jpg", "0b5bd355eb900ff34ade.jpg", "0b5bd355eb900ff34ade.jpg", "0b5bd355eb900ff34ade.jpg", "0b5bd355eb900ff34ade.jpg", "0b5bd355eb900ff34ade.jpg", "0b5bd355eb900ff34ade.jpg", "0b5bd355eb900ff34ade.jpg", "0b5bd355eb900ff34ade.jpg", "0b5bd355eb900ff34ade.jpg", "0b5bd355eb900ff34ade.jpg", 
 "animes"  );
