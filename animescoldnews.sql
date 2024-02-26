@@ -1,10 +1,10 @@
--- DROP DATABASE IF EXISTS animescoldnews;
+ DROP DATABASE IF EXISTS railway;
 
 -- Cria banco de dados
-CREATE DATABASE animescoldnews;
+CREATE DATABASE railway;
 
 -- Seleciona banco de  dados para uso
-USE animescoldnews;
+USE railway;
 
 -- Cria tabela de usuário
 CREATE TABLE news (
