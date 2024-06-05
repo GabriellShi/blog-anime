@@ -1,6 +1,4 @@
 const fs = require("fs");
-const files = require("../helpers/files");
-const upload = require("../config/upload");
 const path = require("path");
 
 const { Op } = require("sequelize");

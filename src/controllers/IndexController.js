@@ -1,6 +1,4 @@
 const fs = require("fs");
-const files = require("../helpers/files");
-const upload = require("../config/upload");
 
 const db = require("../config/sequelize");
 const { Op } = require("sequelize");
@@ -152,12 +150,6 @@ const indexController = {
       const recomenda = await Recomenda.findAll({
         order: [['created_at', 'DESC']]
       });
-  
-      // recomenda.map((detailsRecomenda) => {
-      //   if (detailsRecomenda.image) {
-      //     detailsRecomenda.image = files.base64Encode(upload.path + detailsRecomenda.image);
-      //   }
-      // });
   
       return res.render("recomendaViewsClient", {
         title: "Recomendações - Go Geek Animes",

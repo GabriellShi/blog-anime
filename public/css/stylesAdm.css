@@ -1,131 +1,172 @@
 /*defini os estilos gerais da página, como fundo e cores de texto */
 * {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-    color: rgb(0, 0, 0);
-  
-  }
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  color: rgb(0, 0, 0);
+}
 
-  form {
-    color: rgb(252, 0, 0);
-  }
+/* configuração pagina inicial */
 
+.titulo-paginas-adm {
+  text-align: center;
+  color: red;
+  background-color: red;
+}
 
-  /* -------** Configuração do Header ADM **-------- */
+form {
+  color: rgb(252, 0, 0);
+}
 
-  .header-adm {
+/* -------** Configuração do Header ADM **-------- */
 
-    background-color: blue;
-    
-  }
+.header-adm {
+  background-color: rgb(0, 0, 0);
+}
 
-  .header-adm ul {
-    display: flex;
-    margin-left: 0.5rem;
-  }
+.header-adm ul {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
 
+.header-adm img {
+  height: 2rem;
+}
+
+.header-adm ul {
+  display: flex;
+  margin-left: 0.5rem;
+}
+
+.header-adm li {
+  padding-right: 1rem;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.header-adm a:hover {
+  color: rgb(255, 251, 0);
+}
+
+.header-adm a {
+  text-decoration: none;
+  color: white;
+}
+
+@media (max-width: 473px) {
   .header-adm li {
-    padding-right: 1rem;
-    font-size: 1.5rem;
+    padding-right: 0rem;
+    font-size: 1.2rem;
     padding: 0.5rem;
   }
+}
+/* ---------** Estilização da pagina Index ADM **----------- */
 
-  .header-adm a:hover {
-    color: rgb(255, 251, 0);
-  }
+.main-index-adm h1 {
+  margin-top: 1rem;
+  color: black;
+}
 
-  .header-adm a {
-    text-decoration: none;
-    color:  white;
-  }
+/* ---------** Estilização da pagina News-Create ADM **----------- */
+.form-news-create {
+  display: block;
+  width: 60%;
+  justify-content: center;
+  padding-right: 0.5rem;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-  @media (max-width: 473px) {
-    .header-adm li {
-      padding-right: 0rem;
-      font-size: 1.2rem;
-      padding: 0.5rem;
-    }
- }
-  /* ---------** Estilização da pagina Index ADM **----------- */
+.form-news-create form {
+  background-color: hsl(223.78deg 52.11% 13.92%);
+  border: 2px solid rgb(25, 0, 255);
+  border-radius: 10px;
+  padding: 0.8rem;
+}
 
-  .main-index-adm h1 {
-    margin-top: 1rem;
-    color: black;
-  }
+.form-news-create h1 {
+  margin-bottom: 1rem;
+}
 
+.form-news-create label {
+  color: white;
+  font-weight: bolder;
+  font-size: 1rem;
+}
 
-  
-  /* ---------** Estilização da pagina News-Create ADM **----------- */
-  .form-news-create  {
-    display: grid;
-    justify-content: center;
-    padding-right: 0.5rem;
-  }
+.titulo-news-create-recomenda {
+  margin-bottom: 1rem;
+}
 
-  .form-news-create label  {
-    color: white;
-    font-weight: bolder;
-    font-size: 1rem;
-  }
+.form-news-create input,
+select {
+  border: 0;
+  width: 95%;
+  height: 2rem;
+  border-radius: 5px;
+  padding-left: 1rem;
+}
 
-  .titulo-news-create-recomenda {
-    margin-bottom: 1rem;
-  }
+.form-news-create textarea {
+  border: 0;
+  width: 95%;
+  height: 6rem;
+}
 
-  .form-news-create input, select{
-    border: 0;
-    width: 30rem;
-    height: 1.7rem;
-    border-radius: 5px;
-    padding-left: 1rem;
-  }
+.form-news-create textarea::placeholder {
+  padding: 1rem;
+}
 
-  .form-news-create button   {
-    margin-left: 2rem;
-    background-color: rgb(43, 255, 0);
-    color: black;
-    font-weight: bolder;
-    padding: 0.4rem;
-    border: 0;
-    border-radius: 10px;
-    font-size: 1rem;
-    cursor: pointer;
-  }
+.form-news-create select {
+  border: 0;
+  width: 95%;
+  height: 2rem;
+  border-radius: 5px;
+  padding-left: 1rem;
+}
 
-  .form-news-create button:hover  {
-    font-size: 1rem;
-    color: rgb(255, 0, 0);
+.form-news-create button {
+  background-color: hsl(222.12deg 100% 50%);
+  color: rgb(255, 255, 255);
+  padding: 0.6rem;
+  border: 0;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+}
 
-  }
+.form-news-create button:hover {
+  font-size: 1rem;
+  color: rgb(255, 238, 0);
+  padding: 0.7rem;
+}
 
-  .input-form {
-    display: block;
-    width: 100%;
-    margin: 1rem;
-  }
+.input-form {
+  display: block;
+  width: 100%;
+  margin: 1rem;
+}
 
-.titulo-news-create {
-  text-align: center;
-  color: rgb(43, 255, 0);
+.input-form::placeholder {
+  color: rgb(0, 0, 0);
+  font-weight: bolder;
 }
 
 @media (max-width: 574px) {
-
-  .form-news-create input, select{
-    width: 20rem;
+  .form-news-create input,
+  select {
     height: 1.7rem;
     padding-left: 0.3rem;
     padding-right: 0.5rem;
   }
 }
 
-
-
-  /* ---------** Estilização da pagina news ADM **----------- */
+/* ---------** Estilização da pagina news ADM **----------- */
 
 .lado-esquerdo-neto1 img {
   width: 30%;
@@ -138,84 +179,400 @@
 }
 
 .botao-visualizar-adm a {
-color: black;
-font-weight: bolder;
-padding: 0.3rem;
+  color: black;
+  font-weight: bolder;
+  padding: 0.3rem;
 }
 
 .botao-visualizar-adm a:hover {
   color: red;
-  }
+}
 
 .titulo-paginas-adm {
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 1rem;
   text-align: center;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   padding: 0.5rem;
-  background-color: rgb(0, 255, 42);
+  background-color: rgb(0, 17, 255);
   border-radius: 0px 0px 15px 15px;
   font-size: 1.8rem;
+  width: 30%;
+}
+
+/* -------- Estilização paginasNews ----------  */
+
+.voltar-blog img {
+  width: 2rem;
+  padding-top: 1rem;
+  margin-left: 1rem;
+}
+.main-news-adm {
+  background-color: rgb(17 17 17);
+  text-align: center;
+  padding-bottom: 10.3rem;
+  padding-top: 1rem;
+}
+
+.main-news-adm a {
+  color: white;
+}
+
+.main-news-adm img {
+  width: 20%;
+}
+
+.main-news-adm ul {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+@media (max-width: 825px) {
+  .main-news-adm ul {
+    display: block;
   }
+}
 
-
-  /* -------- Estilização paginasNews ----------  */
-
-  .main-news-adm {
-    
-    background-color: #031a64;
-    padding-top: 1.8rem;
-    text-align: center;
-    padding-bottom: 10.3rem;
-
-  }
-
-  .main-news-adm li a{
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-    font-size: 30px;
-    font-weight: bolder;
-    background-color: rgb(17, 0, 255);
-    padding: 0.4rem;
-    border-radius: 10px;
-  }
-
-  .main-news-adm li a:hover{
-    color: black;
-    background-color: yellow;
-  }
-
-  .main-news-adm li {
-
-    margin-bottom: 2rem;
+@media (max-width: 752px) {
+  .form-news-create {
+    display: block;
+    width: 90%;
   }
 
   .main-news-adm ul {
-    margin-top: 5rem;
+    display: block;
   }
 
-  .description-text h1, h2, h3, p, span{
-    color: white;
-    font-size: 1rem;
+  .form-news-create input {
+    width: 90%;
+    height: 2.5rem;
   }
 
-    /* Exemplo de estilo personalizado para o Quill
+  .form-news-create select {
+    width: 90%;
+  }
+
+  .form-news-create textarea {
+    width: 90%;
+  }
+
+  .div-textearea {
+    padding-left: 1.1rem;
+    padding-right: 1.1rem;
+  }
+}
+
+@media (max-width: 572px) {
+  .main-news-adm img {
+    width: 40%;
+  }
+
+  .titulo-paginas-adm {
+    font-size: 1.2rem;
+    width: 80%;
+  }
+}
+
+.main-news-adm li {
+  border: 2px solid white;
+  margin: 50px;
+  padding: 20px;
+}
+
+.main-news-adm h2 {
+  font-size: 1.5rem;
+  color: yellow;
+  font-weight: bolder;
+  margin-bottom: 1rem;
+}
+
+.main-news-adm ul li a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+}
+
+.main-news-adm h3 {
+  margin-top: 3rem;
+  border: 2px solid blue;
+  background-color: blue;
+  font-weight: bolder;
+  padding: 0.5rem;
+  border-radius: 10px;
+  width: 40%;
+}
+
+.main-news-adm h3:hover {
+  border: 2px solid rgb(255, 255, 255);
+  width: 42%;
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+}
+
+.main-news-adm ul li a:hover {
+  color: rgb(255, 251, 0);
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.main-news-adm li a:hover {
+  color: rgb(255, 255, 255);
+}
+
+.main-news-adm li {
+  margin-bottom: 2rem;
+}
+
+.main-news-adm ul {
+  margin-top: 5rem;
+}
+
+.description-text h1,
+h2,
+h3,
+p,
+span {
+  color: white;
+  font-size: 1rem;
+}
+
+/* Exemplo de estilo personalizado para o Quill
     #editor {
       height: 300px;
       border: 1px solid #ccc;
     } */
 
+.ck-editor__editable[role="textbox"] {
+  /* editing area */
+  min-height: 200px;
+  max-width: 100%;
+}
+.ck-content .image {
+  /* block images */
+  max-width: 80%;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
 
-    .ck-editor__editable[role="textbox"] {
-        /* editing area */
-        min-height: 200px;
-   
-    }
-    .ck-content .image {
-        /* block images */
-        max-width: 80%;
-        margin: 20px auto;
-    }
+.div-textearea {
+  /* block images */
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+}
 
-    
+.ck-reset_all {
+  /* block images */
+  min-width: 49%;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.titulo-news-create {
+  width: 100%;
+  border-radius: 10px;
+  color: white;
+}
+
+@media (min-width: 1500px) {
+  .div-textearea {
+    padding-left: 1.8rem;
+    padding-right: 2.8rem;
+  }
+
+  .form-news-create input {
+    height: 3.7rem;
+  }
+
+  .form-news-create select {
+    height: 3.7rem;
+  }
+
+  .input-form {
+    margin: 2rem;
+  }
+}
+
+/* ---------------------------- Estilização Pagina Login -------------------- */
+
+.main-login {
+  background: url(/img/capa-login.jpeg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+.logo-partials-login a {
+  display: flex;
+  justify-content: center;
+}
+
+.logo-partials-login a {
+  margin-left: auto;
+  margin-right: 40rem;
+  background-color: rgb(0, 0, 0);
+  padding: 2rem;
+  border-radius: 90px;
+  width: 20%;
+  height: 125px;
+}
+
+.logo-partials-login a:hover {
+
+  background-color: gray;
+
+}
+
+
+
+.container-login {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(0, 0, 255, 0.712);
+  border-radius: 10px;
+  width: 50%;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+
+}
+
+.container-login section {
+  padding: 1rem;
+  text-align: center;
+}
+
+.form-login h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.input-login li {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.input-login label {
+  font-size: 1.2rem;
+  text-align: start;
+  color: white;
+}
+
+.input-login input {
+  width: 60%;
+  height: 2.5rem;
+  border-radius: 10px;
+  border: 0;
+  padding: 0.4rem;
+  margin-bottom: 2rem;
+}
+
+.texto-conectado-login {
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.texto-conectado-login {
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;
+}
+
+.texto-conectado-login h4 {
+  color: white;
+}
+
+.texto-conectado-login input {
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.botao-entrar-login button {
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: 0;
+  background-color: rgb(59, 57, 61);
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.botao-entrar-login button:hover {
+  background-color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+.opcao-cadastro-senha a {
+  text-decoration: none;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bolder;
+}
+
+.opcao-cadastro-senha h4 {
+  color: rgb(226, 226, 226);
+  font-weight: bolder;
+}
+.opcao-cadastro-senha h4:hover {
+  color: rgb(255, 251, 0);
+}
+
+.voltar-ao-incio a {
+text-decoration: none;
+}
+
+.voltar-ao-incio button {
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 238, 0);
+  border: 0;
+  border-radius: 10px;
+  display: flex;
+  justify-content: start;
+  padding: 0.5rem;
+  margin-top: 2rem;
+  display: none;
+}
+
+.voltar-ao-incio button:hover {
+  background-color: rgb(255, 153, 0);
+
+}
+
+@media (max-width: 780px) {
+  .logo-partials-login {
+    display: none;
+  }
+
+  .container-login {
+    width: 90%;
+  }
+
+  .voltar-ao-incio button {
+    display: list-item;
+  }
+
+  .input-login input {
+    width: 90%;
+    height: 2.5rem;
+    border-radius: 10px;
+    border: 0;
+    padding: 0.4rem;
+    margin-bottom: 2rem;
+  }
+  
+  .container-login {
+
+    padding-bottom: 1rem;
+  
+  }
+
+}

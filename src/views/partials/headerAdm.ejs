@@ -1,7 +1,20 @@
 <header class="header-adm">
     <ul>
-        <li><a href="/indexAdm">Pagina Inicial |</a></li>
-        <li><a href="/paginasNews">Noticias |</a></li>
-        <li><a href="/paginasCreate">Criar Noticias</a></li>
+        <li><a href="/indexAdm"><img src="../img/logo-home.png" alt=""></a></li>
+        <li><a href="/paginasNews"> Editar Notícias</a></li>
+        <li><a href="/paginasCreate">Criar novas Notícias</a></li>
+
+        <li  id="home">
+                <% if (locals.user) { %>
+                    <!-- Exibir botão de Logout se o usuário estiver logado -->
+                    <form class="btn-logout-adm-filho " action="/logout" method="post">
+                        <li>
+                            <button type="submit" class="btn-logout">Olá <%= locals.user.nome %> / Logout</button>
+                        </li>
+                    </form>
+                <% } %>
+        </li>
     </ul>
+
+
 </header>

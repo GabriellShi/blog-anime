@@ -1,0 +1,52 @@
+<%- include("./partials/headAdm") %> 
+<%- include("./partials/head") %> 
+
+<main class="main-login">
+    <div class="container-login">
+        <div class="logo-partials logo-partials-login">
+            <a href="/"><img src="../img/logo.png" alt="Logo" /></a>
+        </div>
+
+        <section class="pagina-login">
+            <form class="form-login" action="/novaSenha" method="post">
+                <% if (locals.error) { %>
+                    <h3 class="error-alert" style="color: red;"><%= error.message %></h3>
+                <% } %>
+                <div class="titulo-principal-login">
+                    <h2>CADASTRE UMA NOVA SENHA</h2>
+                </div>
+                <p>A senha deve ter no mínimo 8 caracteres.</p>
+                <ul class="input-login">
+                    <li>
+                        <label for="">E-mail</label>
+                    </li>
+                    <li>
+                        <input id="email" type="email" name="email" placeholder="Seu E-mail" />
+                    </li>
+                    <li>
+                        <label for="">Nova Senha</label>
+                    </li>
+                    <li>
+                        <input id="senha" type="password" name="senha" placeholder="Sua nova senha..." />
+                    </li>
+                    <li>
+                        <label for="">Confirmar Nova Senha</label>
+                    </li>
+                    <li>
+                        <input id="confirmSenha" type="password" name="confirmSenha" placeholder="Confirme sua nova senha..." />
+                    </li>
+                </ul>
+                <div class="botao-entrar-login">
+                    <button type="submit">Cadastrar</button>
+                </div>
+            </form>
+            <div class="voltar-ao-incio">
+                <a href="/">
+                    <button>Página Inicial</button>
+                </a>
+            </div>
+        </section>
+    </div>
+</main>
+
+<%- include("./partials/footer") %>

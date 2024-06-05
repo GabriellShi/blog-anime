@@ -1,0 +1,51 @@
+<%- include("./partials/headAdm") %> 
+<%- include("./partials/head") %> 
+
+<main class="main-login">
+    <div class="container-login">
+        <div class="logo-partials logo-partials-login">
+            <a href="/"><img src="../img/logo.png" alt="Logo" /></a>
+        </div>
+
+        <section class="pagina-login">
+            <form class="form-login" action="/codigoAcesso" method="post">
+                <% if (locals.error) { %>
+                    <h3 class="error-alert"><%= error.message %></h3>
+                <% } %>
+                <div class="titulo-principal-login">
+                    <h2>CODIGO DE ACESSO</h2>
+                </div>
+               
+                <ul class="input-login">
+                    <li>
+                        <label for="">E-mail</label>
+                    </li>
+                    <li>
+                        <input id="email" type="email" name="email" placeholder="Seu E-mail" />
+                    </li>
+
+                    <div class="titulo-principal-login">
+                        <h3>Informe o código de acesso de 6 dígitos enviado no seu email.</h3>
+                        <br>
+                    </div>
+                    <li>
+                        <label for="">Codigo de Recuperação</label>
+                    </li>
+                    <li>
+                        <input id="codigo" type="text" name="codigo" placeholder="Seu código..." />
+                    </li>
+                </ul>
+                <div class="botao-entrar-login">
+                    <button type="submit">Enviar</button>
+                </div>
+            </form>
+            <div class="voltar-ao-incio">
+                <a href="/">
+                    <button>Página Inicial</button>
+                </a>
+            </div>
+        </section>
+    </div>
+</main>
+
+<%- include("./partials/footer") %>

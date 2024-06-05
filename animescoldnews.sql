@@ -6,6 +6,42 @@ CREATE DATABASE railway;
 -- Seleciona banco de  dados para uso
 USE railway;
 
+CREATE TABLE users(
+	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    senha VARCHAR(100) NOT NULL,
+    is_active TINYINT DEFAULT 1,
+    is_admin TINYINT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+ -- Apagar Coluna
+ --   ALTER TABLE users DROP COLUMN token;
+
+-- Insere um ou mais usuário
+INSERT INTO users (nome, email, senha, is_admin)
+VALUES ("Gabriel", "gabrieloliveirasantos196@gmail.com", "Tanjiro67**##/", "1");
+
+
+SELECT * FROM users;
+
+CREATE TABLE newPassword(
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(100) NOT NULL,
+    codigo VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    expires_at DATETIME NOT NULL,
+    user_id INT UNSIGNED,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+
+
+
+SELECT * FROM newPassword;
+DROP table newPassword;
+
 -- Cria tabela de usuário
 CREATE TABLE news (
 	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
@@ -32,9 +68,9 @@ ALTER TABLE news ADD description1 TEXT(1000)  NOT NULL;
  -- DROP COLUMN image;
 
 -- Insere um ou mais usuário
-INSERT INTO news (titulo, subtitulo, description, description2, conecxao, categoria, image, image2, tipo, link_video)
+INSERT INTO news (titulo, subtitulo, description, description1, description2, conecxao, categoria, image, image2, tipo, link_video)
 VALUES 
-	("naruto vem ai", "naruto vem ai", "foi anunciado a data", "foi anunciado a data", "Naruto", "novidade",
+	("naruto vem ai", "naruto vem ai", "foi anunciado a data", "foi anunciado a data", "foi anunciado a data", "Naruto", "novidade",
     "0b5bd355eb900ff34ade.jpg", "0b5bd355eb900ff34ade.jpg", "animes", "dd");
 
 
@@ -108,7 +144,7 @@ CREATE TABLE recomenda (
 
 INSERT INTO recomenda (
 titulo, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, titulo11,
-description, description2, description3, description4, description5, description6, description7, description8, description9, description10, description11,
+description, description1, description2, description3, description4, description5, description6, description7, description8, description9, description10, description11,
 conecxao, categoria, 
 image, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, tipo
 )
@@ -116,7 +152,7 @@ VALUES
 	(
 
 "naruto vem ai 1", "naruto vem ai2", "naruto vem ai3", "naruto vem ai4", "naruto vem ai", "naruto vem ai", "naruto vem ai", "naruto vem ai", "naruto vem ai", "naruto vem ai", "naruto vem ai",
-"sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1",
+"sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1", "sinopse 1",
 "Naruto", "Recomendação",
 "0b5bd355eb900ff34ade.jpg", "0b5bd355eb900ff34ade.jpg", "0b5bd355eb900ff34ade.jpg", "0b5bd355eb900ff34ade.jpg", "0b5bd355eb900ff34ade.jpg", "0b5bd355eb900ff34ade.jpg", "0b5bd355eb900ff34ade.jpg", "0b5bd355eb900ff34ade.jpg", "0b5bd355eb900ff34ade.jpg", "0b5bd355eb900ff34ade.jpg", "0b5bd355eb900ff34ade.jpg", 
 "animes"  );

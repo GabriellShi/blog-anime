@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-const upload = require("../helpers/multer");
 
 // Controllers
 const detailsTemporadaController = require("../controllers/DetailsTemporadaController");
@@ -11,19 +10,13 @@ router.get("/create", detailsTemporadaController.create);
 
 // Essa rota faz conecção com a create de cima, ela ira ser a responsavel pelo envio do formulario
 // com o metodo 'post '
-router.post("/create", 
-  upload.fields([
-    { name: "image", maxCount: 1 }, { name: "image2", maxCount: 1 }
-  ]), 
-  detailsTemporadaController.store
+router.post("/create", detailsTemporadaController.store
 );
 // Mostra a tela
 router.get("/edit/:id", detailsTemporadaController.edit);
 
 // Executa a atualização
-router.post("/edit/:id", upload.fields([
-    { name: "image", maxCount: 1 }, { name: "image2", maxCount: 1 }
-  ]),  detailsTemporadaController.update);
+router.post("/edit/:id", detailsTemporadaController.update);
 
 router.get("/delete/:id", detailsTemporadaController.delete);
 

@@ -1,7 +1,5 @@
 const Lancamento = require("../models/Lancamento");
 const fs = require("fs");
-const files = require("../helpers/files");
-const upload = require("../config/upload");
 const path = require("path");
 
 // Configuração para conexão com o banco de dados

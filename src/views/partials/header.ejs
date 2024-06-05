@@ -107,6 +107,25 @@
           </div>
         </form>
       </div>
+
+      
+  <li class="btn-logout-adm-pai" id="home">
+    <% if (locals.user) { %>
+        <!-- Exibir botão de Logout e saudação se o usuário estiver logado -->
+        <form class="btn-logout-adm-filho" action="/logout" method="post">
+            <li >
+            <a href="/indexAdm">Administrador</a>
+            </li>
+            <li>
+                <button type="submit" class="btn-logout">Olá <%= locals.user.nome %> / Logout</button>
+            </li>
+        </form>
+    <% } %>
+</li>
     </nav>
   </div>
+
+
+    
 </header>
+

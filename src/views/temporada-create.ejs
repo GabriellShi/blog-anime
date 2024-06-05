@@ -2,7 +2,7 @@
 
 
 
- <main class="form-news-create main-news-adm">
+ <main class="form-news-create main-news-adm form-temporada-create ">
 <h1 class="titulo-news-create">Criar Nova Temporada</h1>
 
 
@@ -12,7 +12,12 @@
             <input class="input-form" type="text" name="image" placeholder="Imagem 1">
             <label for="">Image Capa Temporada Index</label>
             <input class="input-form" type="text" name="image2" placeholder="Imagem 2">
-            <input class="input-form" type="text" name="description" placeholder="Descrição">    
+
+          
+            <div class="div-textearea">
+              <textarea id="editor" class="input-form" name="description" placeholder="Descrição"></textarea>
+            </div>
+
             <input class="input-form" type="text" name="conecxao" placeholder="Conexão">
             <input class="input-form" type="text" name="genero1" placeholder="Genero 1"  >
             <input class="input-form" type="text" name="genero2" placeholder="Genero 2" >
@@ -36,4 +41,18 @@
 
             <button type="submit"> Criar Temporada </button>
     </form> 
+
+    <script>
+      ClassicEditor
+          .create( document.querySelector( '#editor' ) )
+          .then(editor => {
+              editor.editing.view.change(writer => {
+                  writer.setStyle('background-color', '#3f3b3b', editor.editing.view.document.getRoot());
+              });
+          })
+          .catch(error => {
+              console.error(error);
+          });
+  </script>
+
 </main>

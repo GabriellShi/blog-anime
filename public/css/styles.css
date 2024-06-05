@@ -1315,6 +1315,11 @@ body {
   .lado-esquerdo-pai {
     width: 100%;
   }
+
+  .btn-logout-adm-pai {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 @media (max-width: 826px) {
   .lado-esquerdo-filho2 {
@@ -1399,4 +1404,37 @@ color: rgb(0, 0, 0);
 .mensagem-erro p {
   color: rgb(255, 255, 255);
   margin-bottom: 1rem;
+}
+
+
+.btn-logout-adm-pai {
+  margin-right: 1rem;
+  text-align: center;
+}
+
+.btn-logout-adm-filho button {
+  margin-top: 0.4rem;
+  cursor: pointer;
+  padding: 5px;
+  background-color: gray;
+  border: 0;
+  border-radius: 5px;
+  color: white;
+}
+
+.btn-logout-adm-filho button:hover {
+  background-color: rgb(7, 225, 233);
+  
+}
+
+.btn-logout-adm-filho a:hover {
+  color: rgb(238, 255, 7);
+}
+
+
+@media (max-width: 960px) {
+  .btn-logout-adm-pai {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

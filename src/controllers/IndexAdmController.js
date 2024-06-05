@@ -1,6 +1,8 @@
+const Users = require("../models/Users");
+
 const indexAdmController = {
   // Pode retornar uma página ou não
-  indexAdm: (req, res) => {
+  indexAdm: async (req, res) => {
     return res.render("indexAdm", {
       title: "Pagina ADM", //user: req.cookies.user,
     });

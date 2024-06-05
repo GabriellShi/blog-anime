@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-const upload = require("../helpers/multer");
 
 // Controllers
 const detailsRecomendaController = require("../controllers/DetailsRecomendaController");
@@ -12,26 +11,14 @@ router.get("/create", detailsRecomendaController.create);
 
 // Essa rota faz conecção com a create de cima, ela ira ser a responsavel pelo envio do formulario
 // com o metodo 'post '
-router.post("/create", 
-  upload.fields([
-    { name: "image", maxCount: 1 }, { name: "image2", maxCount: 1 }, { name: "image3", maxCount: 1 },
-    { name: "image4", maxCount: 1 }, { name: "image5", maxCount: 1 }, { name: "image6", maxCount: 1 },
-    { name: "image7", maxCount: 1 }, { name: "image8", maxCount: 1 }, { name: "image9", maxCount: 1 },
-    { name: "image10", maxCount: 1 },  { name: "image11", maxCount: 1 }
-  ]), 
-  detailsRecomendaController.store
+router.post("/create",  detailsRecomendaController.store
 );
 
 // Mostra a tela
 router.get("/edit/:id", detailsRecomendaController.edit);
 
 // Executa a atualização
-router.post("/edit/:id",   upload.fields([
-    { name: "image", maxCount: 1 }, { name: "image2", maxCount: 1 }, { name: "image3", maxCount: 1 },
-    { name: "image4", maxCount: 1 }, { name: "image5", maxCount: 1 }, { name: "image6", maxCount: 1 },
-    { name: "image7", maxCount: 1 }, { name: "image8", maxCount: 1 }, { name: "image9", maxCount: 1 },
-    { name: "image10", maxCount: 1 }, { name: "image11", maxCount: 1 }
-  ]),  detailsRecomendaController.update);
+router.post("/edit/:id",  detailsRecomendaController.update);
   
 router.get("/delete/:id", detailsRecomendaController.delete);
 

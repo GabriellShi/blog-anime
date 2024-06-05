@@ -1,10 +1,47 @@
-DROP DATABASE IF EXISTS railway;
+ -- DROP DATABASE IF EXISTS localhost_bloganime;
 
 -- Cria banco de dados
- CREATE DATABASE railway;
+CREATE DATABASE localhost_bloganime;
 
 -- Seleciona banco de  dados para uso
-USE railway;
+USE localhost_bloganime;
+
+
+CREATE TABLE users(
+	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    senha VARCHAR(100) NOT NULL,
+    is_active TINYINT DEFAULT 1,
+    is_admin TINYINT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+ -- Apagar Coluna
+ --   ALTER TABLE users DROP COLUMN token;
+
+-- Insere um ou mais usuário
+INSERT INTO users (nome, email, senha, is_admin)
+VALUES ("Gabriel", "gabrieloliveirasantos196@gmail.com", "Tanjiro67**##/", "1");
+
+
+SELECT * FROM users;
+
+CREATE TABLE newPassword(
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(100) NOT NULL,
+    codigo VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    expires_at DATETIME NOT NULL,
+    user_id INT UNSIGNED,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+
+
+
+SELECT * FROM newPassword;
+DROP table newPassword;
 
 -- Cria tabela de usuário
 CREATE TABLE news (
@@ -24,7 +61,7 @@ CREATE TABLE news (
 );
 
 -- Altera tabela
--- ALTER TABLE news ADD image2 VARCHAR(500);
+ALTER TABLE news ADD description1 TEXT(1000)  NOT NULL;
   
  -- Apagar Coluna
  
@@ -103,6 +140,8 @@ CREATE TABLE recomenda (
     tipo VARCHAR(150) NOT NULL
 );
 
+-- Altera tabela
+-- ALTER TABLE recomenda ADD description1 TEXT(1000)  NOT NULL;
 
 INSERT INTO recomenda (
 titulo, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, titulo11,

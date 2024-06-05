@@ -1,7 +1,7 @@
 <%- include("./partials/headAdm") %> <%- include("./partials/headerAdm") %>
 
  <main class="form-news-create main-news-adm">
-<h1 class="titulo-news-create">Criar Novidade</h1>
+<h1 class="titulo-paginas-adm titulo-news-create ">Criar Novidade</h1>
 
     <form action="/detailsNews/create" method="post" enctype="multipart/form-data" >
             <input class="input-form" type="text" name="titulo" placeholder="Titulo">
@@ -9,12 +9,16 @@
             <input class="input-form" type="text" name="image" placeholder="Imagem 1">
             <textarea  class="input-form" name="description1" placeholder="Descrição Principal"></textarea>
 
-            <textarea id="editor" class="input-form" name="description" placeholder="Descrição"></textarea>
+            <div class="div-textearea">
+              <textarea id="editor" class="input-form" name="description" placeholder="Descrição"></textarea>
+            </div>
 
             <input class="input-form" type="text" name="image2" placeholder="Imagem 2">
             <input class="input-form" type="text" name="link_video" placeholder="Link do Vídeo">
 
+            <div class="div-textearea">
             <textarea id="editor2" class="input-form" name="description2" placeholder="Descrição 2"></textarea>
+            </div>
             <input class="input-form" type="text" name="conecxao" placeholder="Conexão">
 
 
@@ -34,19 +38,30 @@
 
     <script>
       ClassicEditor
-          .create( document.querySelector( '#editor' ) )
-          .catch( error => {
-              console.error( error );
-          } );
+          .create(document.querySelector('#editor'))
+          .then(editor => {
+              editor.editing.view.change(writer => {
+                  writer.setStyle('background-color', '#3f3b3b', editor.editing.view.document.getRoot());
+              });
+          })
+          .catch(error => {
+              console.error(error);
+          });
   </script>
 
   
 <script>
   ClassicEditor
       .create( document.querySelector( '#editor2' ) )
-      .catch( error => {
-          console.error( error );
-      } );
+      
+      .then(editor => {
+              editor.editing.view.change(writer => {
+                  writer.setStyle('background-color', '#3f3b3b', editor.editing.view.document.getRoot());
+              });
+          })
+          .catch(error => {
+              console.error(error);
+          });
 </script>
   
 
