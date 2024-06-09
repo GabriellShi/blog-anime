@@ -40,7 +40,6 @@ CREATE TABLE newPassword(
 
 
 SELECT * FROM newPassword;
-DROP table newPassword;
 
 -- Cria tabela de usuário
 CREATE TABLE news (

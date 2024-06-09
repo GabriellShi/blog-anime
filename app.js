@@ -1,3 +1,5 @@
+
+
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -43,8 +45,9 @@ const detailsTemporadaRoute = require("./src/routes/detailsTemporadaRoute");
 const detailsLancamentoRoute = require("./src/routes/detailsLancamentoRoute");
 
 app.use(compression());
+app.use(express.urlencoded({ extended: true  }));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -89,3 +92,6 @@ async function main() {
 }
 
 // main();
+
+
+

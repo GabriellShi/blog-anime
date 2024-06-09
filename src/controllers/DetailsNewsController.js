@@ -158,6 +158,7 @@ show: async (req, res) => {
     return res.render("news-create", { title: "Cadastrar Noticia" });
   },
   store: async (req, res) => {
+    console.log("VERIFICAÇÃO DE ERRO:::::: ", req.body); // Adicione isto para verificar os valores recebidos
     const { titulo,  description1, description, subtitulo, description2, conecxao, categoria, tipo, link_video, image, image2 } = req.body;
     
     try {
