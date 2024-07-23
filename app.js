@@ -91,7 +91,7 @@ async function main() {
   backupDatabase();
 }
 
-// main();
+main();
 
 
 

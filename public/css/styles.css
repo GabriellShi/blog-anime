@@ -545,14 +545,14 @@ body {
   justify-content: center;
 }
 .sect-capa-pagina-noticia img {
-  width: 95%;
+  width: 70%;
   margin-bottom: 2rem;
 }
 .sect-capa-pagina-noticia-img2 img {
   width: 70%;
 }
 .sect-descricao {
-  font-size: 1.5rem;
+  font-size: 20px;
   margin-bottom: 3rem;
   margin-left: 2rem;
   margin-right: 2rem;
@@ -1437,4 +1437,10 @@ color: rgb(0, 0, 0);
     margin-left: auto;
     margin-right: auto;
   }
+}
+
+.imagem-usuario li {
+
+  margin-left: auto;
+  margin-right: auto;
 }

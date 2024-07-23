@@ -4,14 +4,15 @@
   <h1 class="titulo-news-create">Deletar Notica</h1>
   <% if(locals.detailsNews){ %>
   <div class="imagem-usuario">
-    <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
+    <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque lado-esquerdo-neto1-destaque2">
     <img src="<%= detailsNews.image %>" alt="imagem" />
     </li>
-    <span>Titulo: <%= detailsNews.titulo %>  </span>
-    <span>Descrição: <%= detailsNews.description %> </span>
-    <span>Conexão: <%= detailsNews.conecxao %> </span>
-    <span>Categoria: <%= detailsNews.categoria %> </span>
+    <span>Titulo: <%= detailsNews.titulo %>  <br> <br> </span>
+    <span>Descrição: <%= detailsNews.description %> <br> <br></span>
+    <span>Conexão: <%= detailsNews.conecxao %> <br> <br></span>
+    <span>Categoria: <%= detailsNews.categoria %> <br> <br></span>
   </div>
+  <br>
   <form action="/detailsNews/delete/ <%= detailsNews.id %>?_method=delete" method="post">
     <h2>Deseja Deletar esse usuário</h2>
     <a href="/detailsNews"><button type="button">Não</button></a>

@@ -4,14 +4,15 @@
   <h1 class="titulo-news-create">Deletar Calendario</h1>
   <% if(locals.detailsLancamento){ %>
   <div class="imagem-usuario">
-    <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
+    <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque lado-esquerdo-neto1-destaque2">
     <img src="<%= detailsLancamento.image %>" alt="imagem" />
     </li>
-    <span>Titulo: <%= detailsLancamento.titulo %>  </span>
-    <span>Descrição: <%= detailsLancamento.description %> </span>
-    <span>Conexão: <%= detailsLancamento.conecxao %> </span>
-    <span>Categoria: <%= detailsLancamento.categoria %> </span>
+    <span>Titulo: <%= detailsLancamento.titulo %> <br> <br> </span>
+    <span>Descrição: <%= detailsLancamento.description %> <br> <br> </span>
+    <span>Conexão: <%= detailsLancamento.conecxao %> <br> <br> </span>
+    <span>Categoria: <%= detailsLancamento.categoria %> <br> <br></span>
   </div>
+  <br>
   <form action="/detailsLancamento/delete/ <%= detailsLancamento.id %>?_method=delete" method="post">
     <h2>Deseja Deletar esse usuário</h2>
     <a href="/detailsLancamento"><button type="button">Não</button></a>

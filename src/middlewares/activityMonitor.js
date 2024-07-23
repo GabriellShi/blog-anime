@@ -1,5 +1,5 @@
-const sessionTimeout = 1 * 60 * 1000; // 1 minuto em milissegundos
-const logoutTimeout = 3 * 60 * 1000; // 3 minutos em milissegundos
+const sessionTimeout = 20 * 60 * 1000; // 1 minuto em milissegundos
+const logoutTimeout = 59 * 60 * 1000; // 3 minutos em milissegundos
 
 const activityMonitor = (req, res, next) => {
   if (!req.cookies.user) {

@@ -276,6 +276,14 @@ select {
 
 .main-news-adm li {
   border: 2px solid white;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+}
+
+.main-news-adm2 li {
+  border: 2px solid white;
   margin: 50px;
   padding: 20px;
 }

@@ -7,7 +7,7 @@ const resetInactivityTimeout = () => {
       method: 'POST',
       credentials: 'same-origin'
     });
-  }, 1 * 60 * 1000); // 1 minuto em milissegundos
+  }, 20 * 60 * 1000); // 1 minuto em milissegundos
 };
 
 window.onload = resetInactivityTimeout;

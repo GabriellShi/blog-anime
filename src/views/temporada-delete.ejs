@@ -4,19 +4,20 @@
   <h1 class="titulo-news-create">Deletar Temporada</h1>
   <% if(locals.detailsTemporada){ %>
   <div class="imagem-usuario">
-    <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque">
+    <li class="lado-esquerdo-neto1 lado-esquerdo-neto1-destaque lado-esquerdo-neto1-destaque2">
     <img src="<%= detailsTemporada.image %>" alt="imagem" />
     </li>
-    <span>Titulo: <%= detailsTemporada.titulo %>  </span>
-    <span>Descrição: <%= detailsTemporada.description %> </span>
-    <span>Conexão: <%= detailsTemporada.conecxao %> </span>
-    <span>Categoria: <%= detailsTemporada.categoria %> </span>
-    <span>Genero 1: <%= detailsTemporada.genero1 %> </span>
-    <span>Genero 2: <%= detailsTemporada.genero2 %> </span>
-    <span>Genero 3: <%= detailsTemporada.genero3 %> </span>
-    <span>Data da Estreia: <%= detailsTemporada.estreia %> </span>
-    <span>Streaming: <%= detailsTemporada.streaming %> </span>
+    <span>Titulo: <%= detailsTemporada.titulo %> <br> <br>  </span>
+    <span>Descrição: <%= detailsTemporada.description %> <br> <br> </span>
+    <span>Conexão: <%= detailsTemporada.conecxao %><br> <br> </span>
+    <span>Categoria: <%= detailsTemporada.categoria %> <br> <br> </span>
+    <span>Genero 1: <%= detailsTemporada.genero1 %> <br> <br> </span>
+    <span>Genero 2: <%= detailsTemporada.genero2 %> <br> <br> </span>
+    <span>Genero 3: <%= detailsTemporada.genero3 %> <br> <br> </span>
+    <span>Data da Estreia: <%= detailsTemporada.estreia %> <br> <br> </span>
+    <span>Streaming: <%= detailsTemporada.streaming %> <br> <br> </span>
   </div>
+  <br>
   <form action="/detailsTemporada/delete/ <%= detailsTemporada.id %>?_method=delete" method="post">
     <h2>Deseja Deletar esse usuário</h2>
     <a href="/detailsTemporada"><button type="button">Não</button></a>
